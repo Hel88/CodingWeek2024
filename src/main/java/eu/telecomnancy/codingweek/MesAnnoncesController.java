@@ -13,5 +13,9 @@ public class MesAnnoncesController {
         app.getSceneController().switchToMonAnnonce();
     }
 
+    public void creerAnnonce(){
+        app.getSceneController().switchToCreationAnnonce();
+    }
+
 
 }
