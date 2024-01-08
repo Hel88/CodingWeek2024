@@ -15,6 +15,7 @@ public class SceneController {
     Scene mesAnnonces;
     Scene monProfil;
     Scene monAnnonce;
+    Scene consulterannonce;
     BorderPane layout;
 
 
@@ -59,6 +60,13 @@ public class SceneController {
         pageLoader.setLocation(getClass().getResource("MonAnnonce.fxml"));
         pageLoader.setControllerFactory(iC->new MonAnnonceController(app));
         pageScene = new Scene(pageLoader.load());
+        this.monAnnonce = pageScene;  
+        
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("consulterAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new ConsulterAnnonceController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.consulterannonce = pageScene;
         this.monAnnonce = pageScene;
 
         pageLoader = new FXMLLoader();
@@ -102,6 +110,11 @@ public class SceneController {
 
     public void switchToMonAnnonce() {
         setView(this.monAnnonce);
+    }
+
+    public void switchToConsulterAnnonce() {
+        //primaryStage.setScene(this.consulterannonce);
+        setView(this.consulterannonce);
     }
 
 }
