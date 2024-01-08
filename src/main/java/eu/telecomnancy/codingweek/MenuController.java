@@ -14,7 +14,7 @@ public class MenuController {
     public void offres(){
         System.out.println("offres");
     }
-
+    
     @FXML
     public void demandes(){
         System.out.println("demandes");
@@ -27,12 +27,14 @@ public class MenuController {
     
     @FXML
     public void mesAnnonces(){
-        System.out.println("mes annonces");
+        //System.out.println("mes annonces");
+        app.getSceneController().switchToMesAnnonces();
     }
     
     @FXML
     public void monProfil(){
-        System.out.println("profil");
+        //System.out.println("profil");
+        app.getSceneController().switchToMonProfil();
     }
     @FXML
     public void deconnexion(){

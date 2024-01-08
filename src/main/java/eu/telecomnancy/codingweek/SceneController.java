@@ -12,6 +12,7 @@ public class SceneController {
     Scene inscription;
     Scene menu;
     Scene creationAnnonce;
+    Scene mesAnnonces;
     Scene monProfil;
     Scene monAnnonce;
     BorderPane layout;
@@ -58,7 +59,13 @@ public class SceneController {
         pageLoader.setLocation(getClass().getResource("MonAnnonce.fxml"));
         pageLoader.setControllerFactory(iC->new MonAnnonceController(app));
         pageScene = new Scene(pageLoader.load());
-        this.monAnnonce = pageScene;        
+        this.monAnnonce = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("mesAnnonces.fxml"));
+        pageLoader.setControllerFactory(iC->new MesAnnoncesController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.mesAnnonces = pageScene;
         
         layout.setTop(menu.getRoot());
         setView(this.connexion);
@@ -82,15 +89,19 @@ public class SceneController {
     }
 
     public void switchToCreationAnnonce() {
-        primaryStage.setScene(this.creationAnnonce);
+        setView(this.creationAnnonce);
+    }
+
+    public void switchToMesAnnonces() {
+        setView(this.mesAnnonces);
     }
 
     public void switchToMonProfil() {
-        primaryStage.setScene(this.monProfil);
+        setView(this.monProfil);
     }
 
     public void switchToMonAnnonce() {
-        primaryStage.setScene(this.monAnnonce);
+        setView(this.monAnnonce);
     }
 
 }
