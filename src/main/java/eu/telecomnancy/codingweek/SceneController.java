@@ -11,9 +11,11 @@ public class SceneController {
     Scene connexion;
     Scene inscription;
     Scene menu;
-
-    BorderPane layout;
     Scene creationAnnonce;
+    Scene monProfil;
+    Scene monAnnonce;
+    BorderPane layout;
+
 
     public SceneController(Stage primaryStage, HelloApplication app) throws Exception {
 
@@ -45,7 +47,18 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new MenuController(app));
         pageScene = new Scene(pageLoader.load());
         this.menu = pageScene;
-        
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("MonProfil.fxml"));
+        pageLoader.setControllerFactory(iC->new MonProfilController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.monProfil = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("MonAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new MonAnnonceController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.monAnnonce = pageScene;        
         
         layout.setTop(menu.getRoot());
         setView(this.connexion);
@@ -70,6 +83,14 @@ public class SceneController {
 
     public void switchToCreationAnnonce() {
         primaryStage.setScene(this.creationAnnonce);
+    }
+
+    public void switchToMonProfil() {
+        primaryStage.setScene(this.monProfil);
+    }
+
+    public void switchToMonAnnonce() {
+        primaryStage.setScene(this.monAnnonce);
     }
 
 }
