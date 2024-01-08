@@ -9,6 +9,7 @@ public class SceneController {
     Stage primaryStage;
     Scene connexion;
     Scene inscription;
+    Scene creationAnnonce;
 
     public SceneController(Stage primaryStage, HelloApplication app) throws Exception {
 
@@ -27,6 +28,12 @@ public class SceneController {
         pageScene = new Scene(pageLoader.load());
         this.inscription = pageScene;
 
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("CreationAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new CreationAnnonceController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.creationAnnonce = pageScene;
+
         primaryStage.setScene(this.connexion);
         primaryStage.show();
     }
@@ -37,6 +44,10 @@ public class SceneController {
 
     public void switchToConnexion() {
         primaryStage.setScene(this.connexion);
+    }
+
+    public void switchToCreationAnnonce() {
+        primaryStage.setScene(this.creationAnnonce);
     }
 
 }

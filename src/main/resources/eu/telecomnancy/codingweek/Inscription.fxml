@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -14,12 +15,12 @@
          </font>
       </Label>
       <TextField fx:id="nom" layoutX="55.0" layoutY="101.0" prefHeight="32.0" prefWidth="222.0" promptText="nom" />
-      <Button fx:id="inscription" layoutX="464.0" layoutY="336.0" onAction="#inscription" mnemonicParsing="false" prefHeight="32.0" prefWidth="99.0" text="s'inscrire" />
+      <Button fx:id="inscription" layoutX="464.0" layoutY="336.0" mnemonicParsing="false" onAction="#inscription" prefHeight="32.0" prefWidth="99.0" text="s'inscrire" />
       <TextField fx:id="prenom" layoutX="55.0" layoutY="148.0" prefHeight="32.0" prefWidth="222.0" promptText="prénom" />
       <TextField fx:id="surnom" layoutX="55.0" layoutY="200.0" prefHeight="32.0" prefWidth="222.0" promptText="surnom" />
       <TextField fx:id="ville" layoutX="331.0" layoutY="99.0" prefHeight="32.0" prefWidth="222.0" promptText="ville" />
       <TextField fx:id="adresse" layoutX="331.0" layoutY="146.0" prefHeight="32.0" prefWidth="222.0" promptText="adresse" />
       <TextField fx:id="mail" layoutX="331.0" layoutY="198.0" prefHeight="32.0" prefWidth="222.0" promptText="adresse mail" />
-      <TextField fx:id="pwd" layoutX="148.0" layoutY="259.0" prefHeight="32.0" prefWidth="305.0" promptText="mot de passe" />
+      <PasswordField fx:id="pwd" layoutX="148.0" layoutY="271.0" prefHeight="32.0" prefWidth="305.0" promptText="mot de passe" />
    </children>
 </AnchorPane>
