@@ -1,0 +1,26 @@
+{
+  "UserName": {
+    "announces": 0,
+    "planning": 0,
+    "password": "Mdp",
+    "UserName": "UserName",
+    "address": "Adresse",
+    "eval": 0,
+    "city": "Ville",
+    "last_name": "Nom",
+    "first_name": "Prénom",
+    "email": "Email"
+  },
+  "Test": {
+    "announces": 0,
+    "planning": 0,
+    "password": "test",
+    "UserName": "Test",
+    "address": "TestRue",
+    "eval": 0,
+    "city": "TestVille",
+    "last_name": "Test",
+    "first_name": "Test",
+    "email": "test@test.test"
+  }
+}
