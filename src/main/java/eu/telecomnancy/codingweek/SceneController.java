@@ -2,6 +2,7 @@ package eu.telecomnancy.codingweek;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class SceneController {
@@ -9,11 +10,21 @@ public class SceneController {
     Stage primaryStage;
     Scene connexion;
     Scene inscription;
+    Scene menu;
+    Scene creationAnnonce;
+    Scene mesAnnonces;
+    Scene monProfil;
+    Scene monAnnonce;
+    Scene consulterannonce;
+    BorderPane layout;
+
 
     public SceneController(Stage primaryStage, HelloApplication app) throws Exception {
 
         this.primaryStage = primaryStage;
         //app.setSceneController(this);
+
+        this.layout = new BorderPane();
 
         FXMLLoader pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("Connexion.fxml"));
@@ -27,16 +38,83 @@ public class SceneController {
         pageScene = new Scene(pageLoader.load());
         this.inscription = pageScene;
 
-        primaryStage.setScene(this.connexion);
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("CreationAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new CreationAnnonceController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.creationAnnonce = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("menuBar.fxml"));
+        pageLoader.setControllerFactory(iC->new MenuController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.menu = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("MonProfil.fxml"));
+        pageLoader.setControllerFactory(iC->new MonProfilController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.monProfil = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("MonAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new MonAnnonceController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.monAnnonce = pageScene;  
+        
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("consulterAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new ConsulterAnnonceController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.consulterannonce = pageScene;
+        this.monAnnonce = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("mesAnnonces.fxml"));
+        pageLoader.setControllerFactory(iC->new MesAnnoncesController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.mesAnnonces = pageScene;
+        
+        layout.setTop(menu.getRoot());
+        setView(this.connexion);
+        
+        primaryStage.setScene(new Scene(layout));
         primaryStage.show();
     }
 
+    public void setView(Scene scene){
+        layout.setCenter(scene.getRoot());
+    }
+
     public void switchToInscription() {
-        primaryStage.setScene(this.inscription);
+        //primaryStage.setScene(this.inscription);
+        setView(this.inscription);
     }
 
     public void switchToConnexion() {
-        primaryStage.setScene(this.connexion);
+        //primaryStage.setScene(this.connexion);
+        setView(this.connexion);
+    }
+
+    public void switchToCreationAnnonce() {
+        setView(this.creationAnnonce);
+    }
+
+    public void switchToMesAnnonces() {
+        setView(this.mesAnnonces);
+    }
+
+    public void switchToMonProfil() {
+        setView(this.monProfil);
+    }
+
+    public void switchToMonAnnonce() {
+        setView(this.monAnnonce);
+    }
+
+    public void switchToConsulterAnnonce() {
+        //primaryStage.setScene(this.consulterannonce);
+        setView(this.consulterannonce);
     }
 
 }

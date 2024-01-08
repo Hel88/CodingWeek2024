@@ -22,6 +22,7 @@ public class ConnexionController {
         System.out.println("Connexion");
         System.out.println("Mail : " + mail.getText());
         System.out.println("Password : " + pwd.getText());
+        app.getSceneController().switchToCreationAnnonce();
     }
 
     @FXML

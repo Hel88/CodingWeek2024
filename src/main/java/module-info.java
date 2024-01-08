@@ -4,6 +4,7 @@ module eu.telecomnancy.codingweek {
     requires org.json;
     requires jbcrypt;
 
+    requires transitive javafx.graphics;
 
     opens eu.telecomnancy.codingweek to javafx.fxml;
     exports eu.telecomnancy.codingweek;

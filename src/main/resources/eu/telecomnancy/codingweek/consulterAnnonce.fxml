@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.ConsulterAnnonceController">
+   <children>
+      <Label fx:id="titre" alignment="CENTER" layoutX="96.0" layoutY="14.0" prefHeight="36.0" prefWidth="408.0" text="Titre de l'annnonce">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="user" alignment="CENTER" layoutX="104.0" layoutY="82.0" prefHeight="36.0" prefWidth="197.0" text="celui qui propose l'annonce" />
+      <Label fx:id="description" layoutX="96.0" layoutY="126.0" prefHeight="94.0" prefWidth="408.0" text="description" wrapText="true" />
+      <Button fx:id="consulter" layoutX="307.0" layoutY="82.0" mnemonicParsing="false" onAction="#consulterProfil" prefHeight="36.0" prefWidth="197.0" text="Consulter le profil" />
+      <Label alignment="CENTER" layoutX="233.0" layoutY="247.0" prefHeight="36.0" prefWidth="136.0" text="disponibilité ?" />
+      <Button fx:id="quesion" layoutX="307.0" layoutY="315.0" mnemonicParsing="false" onAction="#versMessagerie" prefHeight="36.0" prefWidth="197.0" text="Poser une question" />
+      <Button fx:id="reserver" layoutX="96.0" layoutY="315.0" mnemonicParsing="false" onAction="#reserver" prefHeight="36.0" prefWidth="197.0" text="réserver" /> 
+   </children>
+</AnchorPane>
