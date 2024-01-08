@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import org.json.JSONObject;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -50,7 +51,8 @@ public class InscriptionController {
         if (isUserNameUnique(userName)) {
             // Utilisation du nom d'utilisateur comme clé pour chaque utilisateur
             userObject.put("UserName", userName);
-            userObject.put("password", password);
+            String hashedPassword = hashPassword(password);
+            userObject.put("password", hashedPassword);
             userObject.put("email", email);
             userObject.put("last_name", lastName);
             userObject.put("first_name", firstName);
@@ -95,6 +97,11 @@ public class InscriptionController {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private String hashPassword(String password) {
+        // Utiliser BCrypt pour hasher le mot de passe
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     private void showAlert(String title, String message) {

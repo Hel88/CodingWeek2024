@@ -1,10 +1,6 @@
 package eu.telecomnancy.codingweek;
 
-import java.io.IOException;
-
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class HelloApplication extends Application {
@@ -13,11 +9,11 @@ public class HelloApplication extends Application {
     
 
     @Override
-    public void start(Stage stage) throws IOException {
-        
+    public void start(Stage stage) {
+
         try {
             this.sceneController = new SceneController(stage, this);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -30,5 +26,4 @@ public class HelloApplication extends Application {
     public SceneController getSceneController() {
         return sceneController;
     }
-
 }

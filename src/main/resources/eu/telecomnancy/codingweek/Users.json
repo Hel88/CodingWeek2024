@@ -14,13 +14,13 @@
   "Test": {
     "announces": 0,
     "planning": 0,
-    "password": "test",
+    "password": "$2a$10$SlXreCtctqPXKBbffDpoJu6uz8.tuEvkoCVD1MuTSbkLQsV/cfErG",
     "UserName": "Test",
-    "address": "TestRue",
+    "address": "Test",
     "eval": 0,
-    "city": "TestVille",
+    "city": "Test",
     "last_name": "Test",
     "first_name": "Test",
-    "email": "test@test.test"
+    "email": "Test"
   }
 }
