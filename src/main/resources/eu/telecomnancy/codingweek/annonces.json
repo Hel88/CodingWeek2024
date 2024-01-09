@@ -7,7 +7,7 @@
     "description": "string"
   },
   "11": {
-    "categorie": "catégorie",
+    "categorie": "DemandeService",
     "prix": 6,
     "referent": "referent",
     "titre": "aaaaa",
@@ -15,7 +15,7 @@
     "id": 8
   },
   "12": {
-    "categorie": "catégorie",
+    "categorie": "OffreService",
     "prix": 6,
     "referent": "referent",
     "titre": "aaaaa",
@@ -23,7 +23,7 @@
     "id": 8
   },
   "13": {
-    "categorie": "catégorie",
+    "categorie": "DemandeMateriel",
     "prix": 6,
     "referent": "referent",
     "titre": "aaaaa",
@@ -31,7 +31,7 @@
     "id": 8
   },
   "14": {
-    "categorie": "catégorie",
+    "categorie": "OffreMateriel",
     "prix": 6,
     "referent": "referent",
     "titre": "aaaaa",

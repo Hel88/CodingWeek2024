@@ -1,6 +1,11 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+
+import org.json.JSONObject;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
@@ -31,28 +36,34 @@ public class OffresEtDemandesController {
     public OffresEtDemandesController(Application app, String type) {
         this.app = app;
         this.type = type;
-        // annonces.add(new Annonce("test service", "a", "OffreService", "a", "a", "a"));
-        // annonces.add(new Annonce("test materiel", "a", "PretMateriel", "a", "a", "a"));
-        // annonces.add(new Annonce("test2 materiel", "a", "PretMateriel", "a", "a", "a"));
-        // annonces.add(new Annonce("test3 materiel", "a", "PretMateriel", "a", "a", "a"));
-        // annonces.add(new Annonce("test4 materiel", "a", "PretMateriel", "a", "a", "a"));
-        // annonces.add(new Annonce("test5 materiel", "a", "PretMateriel", "a", "a", "a"));
-        // annonces.add(new Annonce("test6 materiel", "a", "PretMateriel", "a", "a", "a"));
-        // annonces.add(new Annonce("test7 materiel", "a", "PretMateriel", "a", "a", "a"));
-        // annonces.add(new Annonce("test8 materiel", "a", "DemandeMateriel", "a", "a", "a"));
-        // annonces.add(new Annonce("test9 service", "a", "DemandeService", "a", "a", "a"));
+    
     }
 
     public void setType(String type){
         this.type = type;
     }
 
-    @FXML
-    public void detailsAnnonce(){
-        app.getSceneController().switchToConsulterAnnonce();
-    }
-
     public void initialize(){
+
+        //initialiser les annonces, lire dans le json
+        // Read existing content from users.json
+        String filePath = "src/main/resources/eu/telecomnancy/codingweek/annonces.json";
+        JSONObject existingData = new JSONObject();
+        try {
+            String fileContent = new String(Files.readAllBytes(Paths.get(filePath)));
+            existingData = new JSONObject(fileContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //parcourir le json et ajouter les annonces à la liste
+        for (int i=1;i<existingData.length();i++){
+            JSONObject annonce = existingData.getJSONObject(i+"");
+            this.annonces.add(new Annonce(i,annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent")));
+        }
+
+
+        // savoir si on doit afficher les offres ou les demandes
 
         if (type.equals("Offre")){
             serviceLabel.setText("Offres de services");
@@ -81,11 +92,6 @@ public class OffresEtDemandesController {
             titre.setPrefHeight(10);
             titre.setWrapText(true);
 
-            // Label ville = new Label(annonce.getVille());
-            // ville.setPrefWidth(150);
-            // ville.setPrefHeight(10);
-            // ville.setWrapText(true);
-
             Label prix = new Label(annonce.getPrix()+"");
             prix.setPrefWidth(100);
             prix.setPrefHeight(10);
@@ -93,13 +99,14 @@ public class OffresEtDemandesController {
 
             Button details = new Button();
             details.setText("Voir les détails");
-            details.setOnAction(e -> app.getSceneController().switchToConsulterAnnonce());
+            details.setOnAction(e -> app.getSceneController().switchToConsulterAnnonce(annonce.getId()));
 
-//            hbox.getChildren().addAll(titre, ville, prix, details);
             hbox.getChildren().addAll(titre, prix, details);
 
+            // choisir dans quelle catégorie afficher l'annonce
+
             if (type.equals("Offre")){
-                if (annonce.getCategorie().equals("PretMateriel")){
+                if (annonce.getCategorie().equals("OffreMateriel")){
                     materiel.getChildren().add(hbox);
                 }
                 else if (annonce.getCategorie().equals("OffreService")){

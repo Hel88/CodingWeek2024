@@ -145,8 +145,9 @@ public class SceneController {
         setView(this.monAnnonce);
     }
 
-    public void switchToConsulterAnnonce() {
+    public void switchToConsulterAnnonce(int id) {
         //primaryStage.setScene(this.consulterannonce);
+        System.out.println(id);
         setView(this.consulterannonce);
     }
 
