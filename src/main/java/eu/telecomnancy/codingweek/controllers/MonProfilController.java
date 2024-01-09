@@ -4,7 +4,7 @@ import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class MonProfilController {
+public class MonProfilController implements Observer {
 
     private Application app;
     @FXML
@@ -24,9 +24,23 @@ public class MonProfilController {
 
     public MonProfilController(Application app) {
         this.app = app;
+        app.addObserver(this);
+        }
+
+    @FXML
+    public void modifierProfil(){
+        app.notifyObservers();
+        app.getSceneController().switchToModifierProfil();
     }
 
+    @FXML
+    public void supprimerProfil(){
+        System.out.println("on a dit que non en fait");
+    }
+
+        @Override
     public void update(){
+        System.out.println("update monprofil");
         username.setText(app.getMainUser().getUserName());
         email.setText(app.getMainUser().getEmail());
         address.setText(app.getMainUser().getAddress());
@@ -34,16 +48,6 @@ public class MonProfilController {
         lastName.setText(app.getMainUser().getLastName());
         firstName.setText(app.getMainUser().getFirstName());
         eval.setText(app.getMainUser().getEval()+"");
-    }
-
-    @FXML
-    public void modifierProfil(){
-        app.getSceneController().switchToModifierProfil();
-    }
-
-    @FXML
-    public void supprimerProfil(){
-        System.out.println("on a dit que non en fait");
     }
     
 }
