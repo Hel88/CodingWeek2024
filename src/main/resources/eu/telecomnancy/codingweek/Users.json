@@ -1,16 +1,4 @@
 {
-  "Yann": {
-    "announces": 0,
-    "planning": 0,
-    "password": "$2a$10$9HLXreKEYLo1.49LF0xZS.ejOnw2UxDZi2YonE1f6xS9oQhdaWadO",
-    "UserName": "Yann",
-    "address": "Amphi Sud",
-    "eval": 0,
-    "city": "Nancy",
-    "last_name": "Dio",
-    "first_name": "Yann",
-    "email": "yann.tn.net"
-  },
   "UserName": {
     "announces": 0,
     "planning": 0,
@@ -26,7 +14,7 @@
   "Test": {
     "announces": 0,
     "planning": 0,
-    "password": "$2a$10$SlXreCtctqPXKBbffDpoJu6uz8.tuEvkoCVD1MuTSbkLQsV/cfErG",
+    "password": "$2a$10$v3Wc/WaPwRjrbDiGMHHlZeGjBOiv5p4BKNAPC5SYKRxA9pcC/2ZD.",
     "UserName": "Test",
     "address": "Test",
     "eval": 0,
@@ -34,17 +22,5 @@
     "last_name": "Test",
     "first_name": "Test",
     "email": "Test"
-  },
-  "Leroy Jenkins": {
-    "announces": 0,
-    "planning": 0,
-    "password": "$2a$10$B/aukAd8ta2oAtCDVpjo6uOZVEPA.4S9Y8bfS5frpAlFcCeRsBBPG",
-    "UserName": "Leroy Jenkins",
-    "address": "Pas loin",
-    "eval": 0,
-    "city": "Ici",
-    "last_name": "Jenkins",
-    "first_name": "Leroy",
-    "email": "lr@.net"
   }
 }
