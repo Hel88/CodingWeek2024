@@ -19,6 +19,8 @@ public class MonProfilController {
     private Label nom;
     @FXML
     private Label prenom;
+    @FXML
+    private Label note;
 
     public MonProfilController(Application app) {
         this.app = app;
@@ -26,11 +28,12 @@ public class MonProfilController {
 
     @FXML
     public void modifierProfil(){
-
+        app.getSceneController().switchToModifierProfil();
     }
 
     @FXML
     public void supprimerProfil(){
+        System.out.println("on a dit que non en fait");
     }
     
 }

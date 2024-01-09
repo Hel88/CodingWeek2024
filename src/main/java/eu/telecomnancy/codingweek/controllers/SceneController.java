@@ -15,6 +15,7 @@ public class SceneController {
     Scene creationAnnonce;
     Scene mesAnnonces;
     Scene monProfil;
+    Scene modifierProfil;
     Scene monAnnonce;
     Scene consulterannonce;
     Scene offres;
@@ -58,6 +59,12 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new MonProfilController(app));
         pageScene = new Scene(pageLoader.load());
         this.monProfil = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("modifierProfil.fxml"));
+        pageLoader.setControllerFactory(iC->new ModifierProfilController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.modifierProfil = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("monAnnonce.fxml"));
@@ -126,6 +133,11 @@ public class SceneController {
 
     public void switchToMonProfil() {
         setView(this.monProfil);
+    }
+
+
+    public void switchToModifierProfil() {
+        setView(this.modifierProfil);
     }
 
     public void switchToMonAnnonce(String id) {

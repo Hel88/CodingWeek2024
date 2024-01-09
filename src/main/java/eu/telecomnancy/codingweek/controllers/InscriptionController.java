@@ -37,6 +37,11 @@ public class InscriptionController {
 
     // Methods
     @FXML
+    public void versConnexion(){
+        app.getSceneController().switchToConnexion();
+    }
+
+    @FXML
     public void inscription() throws IOException {
         // Method related to the creation of a new user
 
