@@ -20,5 +20,16 @@
     "eval": 0,
     "city": "Test",
     "email": "Test"
+  },
+  "Testzr": {
+    "announces": 0,
+    "lastName": "Test",
+    "firstName": "Test",
+    "planning": 0,
+    "password": "0cbc6611f5540bd0809a388dc95a615b",
+    "address": "Test",
+    "eval": 0,
+    "city": "Test",
+    "email": "Test"
   }
 }
