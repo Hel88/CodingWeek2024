@@ -1,4 +1,4 @@
-package eu.telecomnancy.codingweek;
+package eu.telecomnancy.codingweek.utils;
 
 public class Annonce {
 

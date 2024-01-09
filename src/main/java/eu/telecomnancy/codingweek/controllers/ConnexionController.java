@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
+import eu.telecomnancy.codingweek.utils.User;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -36,7 +37,7 @@ public class ConnexionController {
         String enteredPassword = pwd.getText();
 
         // Load users from the JSON file
-        List<User> users = loadUsersFromJson("src/main/resources/eu/telecomnancy/codingweek/Users.json");
+        List<User> users = loadUsersFromJson("src/main/resources/eu/telecomnancy/codingweek/users.json");
 
         // Find the user with the entered username
         Optional<User> optionalUser = users.stream()
@@ -90,6 +91,7 @@ public class ConnexionController {
 
         return userList;
     }
+
 
     // Méthode d'aide pour créer un objet User à partir d'un objet JSONObject
     private User createUserFromJson(JSONObject userJson) {

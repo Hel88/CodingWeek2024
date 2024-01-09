@@ -2,7 +2,7 @@ package eu.telecomnancy.codingweek.controllers;
 
 import java.util.ArrayList;
 
-import eu.telecomnancy.codingweek.Annonce;
+import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
