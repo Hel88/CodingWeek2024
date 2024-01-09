@@ -91,25 +91,25 @@ public class MesAnnoncesController {
         }
 
         //parcourir le json et ajouter les annonces à la liste
-        //AJOUTER VERIF POUR QUE LES ANNONCES CORRESPONDENT AU USER CONNECTE
-
+        
         Set<String> keys = existingData.keySet();
         keys.remove("id_annonce");
         for (String key : keys){
             JSONObject annonce = existingData.getJSONObject(key);
+            
+            //AJOUTER VERIF POUR QUE LES ANNONCES CORRESPONDENT AU USER CONNECTE
+
             //System.out.println(annonce.getString("referent"));
-            //System.out.println(app.getMainUser().getUserName());
-            // if (annonce.getString("referent")==(app.getMainUser().getUserName())){
-            //     this.annonces.add(new Annonce(Integer.parseInt(key),annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
-            // }
+            //if (app.getMainUser().getUserName()!=null){
+
+                //System.out.println(app.getMainUser().getUserName());
+                //if (annonce.getString("referent")==(app.getMainUser().getUserName())){
+                    this.annonces.add(new Annonce(Integer.parseInt(key),annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
+                //}
+            }
         }
 
-        
-        // for (int i=1;i<existingData.length();i++){
-        //     JSONObject annonce = existingData.getJSONObject(i+"");
-        //     this.annonces.add(new Annonce(annonce.keys().,annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
-        // }
     }
 
 
-}
+

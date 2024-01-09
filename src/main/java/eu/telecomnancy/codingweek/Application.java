@@ -15,9 +15,9 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) {
         try {
-            this.sceneController = new SceneController(stage, this);
             this.dataUsersUtils = DataUsersUtils.getInstance();
             this.mainUser = null;
+            this.sceneController = new SceneController(stage, this);
         } catch (Exception e) {
             System.out.println("Error while loading the scene controller");
         }
