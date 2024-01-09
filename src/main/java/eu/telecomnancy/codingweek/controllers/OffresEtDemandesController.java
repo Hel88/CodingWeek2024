@@ -1,10 +1,12 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
 import eu.telecomnancy.codingweek.Application;
@@ -47,14 +49,13 @@ public class OffresEtDemandesController {
 
         //initialiser les annonces, lire dans le json
         // Read existing content from users.json
-        String filePath = "src/main/resources/eu/telecomnancy/codingweek/annonces.json";
-        JSONObject existingData = new JSONObject();
+        String filePath = null;
         try {
-            String fileContent = new String(Files.readAllBytes(Paths.get(filePath)));
-            existingData = new JSONObject(fileContent);
+            filePath = IOUtils.toString(this.getClass().getResource("annonces.json"), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+        JSONObject existingData = new JSONObject(filePath);
 
         //parcourir le json et ajouter les annonces à la liste
         for (int i=1;i<existingData.length();i++){

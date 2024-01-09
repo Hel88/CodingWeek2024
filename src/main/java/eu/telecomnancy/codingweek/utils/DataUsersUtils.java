@@ -11,17 +11,23 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class DataUsersUtils {
 
     // Fields
-    public String filePath = IOUtils.toString(getClass().getResource("users.json"), StandardCharsets.UTF_8);
+    public String filePath;
     private static DataUsersUtils instance;
-    private JSONObject data = new JSONObject();
+    private JSONObject data;
 
     // Private constructor to prevent instantiation
     private DataUsersUtils() throws IOException {
+        try {
+            filePath = IOUtils.toString(Objects.requireNonNull(getClass().getResource("users.json")), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         data = new JSONObject(filePath);
     }
 
