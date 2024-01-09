@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import eu.telecomnancy.codingweek.controllers.Observer;
 import eu.telecomnancy.codingweek.controllers.SceneController;
+import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import eu.telecomnancy.codingweek.utils.User;
 import javafx.stage.Stage;
@@ -14,7 +15,7 @@ public class Application extends javafx.application.Application {
     private DataUsersUtils dataUsersUtils;
     private User mainUser;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
-    //private Annonce annonceAffichee;
+    private Annonce annonceAffichee;
     
 
     @Override
@@ -62,11 +63,11 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    // public Annonce getAnnonceAffichee() {
-    //     return annonceAffichee;
-    // }
+    public Annonce getAnnonceAffichee() {
+        return annonceAffichee;
+    }
 
-    // public void setAnnonceAffichee(Annonce annonceAffichee) {
-    //     this.annonceAffichee = annonceAffichee;
-    // }
+    public void setAnnonceAffichee(Annonce annonceAffichee) {
+        this.annonceAffichee = annonceAffichee;
+    }
 }

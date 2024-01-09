@@ -1,10 +1,11 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class MonAnnonceController {
+public class MonAnnonceController implements Observer {
     
     private Application app;
     @FXML
@@ -14,7 +15,7 @@ public class MonAnnonceController {
     @FXML
     private Label prix;
 
-   // private Annonce annonce;
+   private Annonce annonce;
 
     
 
@@ -38,6 +39,11 @@ public class MonAnnonceController {
 
     @FXML
     public void supprimerAnnonce(){
+    }
+
+    @Override
+    public void update() {
+        annonce = app.getAnnonceAffichee();
     }
     
 }
