@@ -34,5 +34,17 @@
     "last_name": "Test",
     "first_name": "Test",
     "email": "Test"
+  },
+  "Leroy Jenkins": {
+    "announces": 0,
+    "planning": 0,
+    "password": "$2a$10$B/aukAd8ta2oAtCDVpjo6uOZVEPA.4S9Y8bfS5frpAlFcCeRsBBPG",
+    "UserName": "Leroy Jenkins",
+    "address": "Pas loin",
+    "eval": 0,
+    "city": "Ici",
+    "last_name": "Jenkins",
+    "first_name": "Leroy",
+    "email": "lr@.net"
   }
 }
