@@ -1,6 +1,8 @@
 package eu.telecomnancy.codingweek.utils;
 
 public class User {
+
+    // Fields
     private String userName;
     private String password;
     private String firstName;
@@ -32,11 +34,9 @@ public class User {
     }
 
     // Getter methods
-
     public String getUserName() {
         return userName;
     }
-
     public String getPassword() {
         return password;
     }
@@ -71,5 +71,63 @@ public class User {
 
     public int getEval() {
         return eval;
+    }
+
+
+    // Setter methods
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setAnnounces(int announces) {
+        this.announces = announces;
+    }
+
+    public void setPlanning(int planning) {
+        this.planning = planning;
+    }
+
+    public void setEval(int eval) {
+        this.eval = eval;
+    }
+
+    // toString method for better representation
+    @Override
+    public String toString() {
+        return "User{" +
+                "password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", announces=" + announces +
+                ", planning=" + planning +
+                ", eval=" + eval +
+                '}';
     }
 }
