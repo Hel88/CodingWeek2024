@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 public class InscriptionController {
 
-    private final String filePath = "src/main/resources/eu/telecomnancy/codingweek/uusers.json";
+    private final String filePath = "src/main/resources/eu/telecomnancy/codingweek/users.json";
     private Application app;
     @FXML
     private TextField passwordField;
