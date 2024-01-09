@@ -8,8 +8,9 @@ public class Annonce {
     private String description;
     private int prix;
     private String referent;
+    private boolean actif;
 
-    public Annonce(int id, String titre, String categorie, String description, int prix, String referent) {
+    public Annonce(int id, String titre, String categorie, String description, int prix, String referent, boolean actif) {
         
         this.id = id;
         this.titre = titre;
@@ -17,6 +18,7 @@ public class Annonce {
         this.description = description;
         this.prix = prix;
         this.referent = referent;
+        this.actif = actif;
 
     }
 
@@ -74,6 +76,13 @@ public class Annonce {
         this.prix = prix;
     }
 
+    public boolean getActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif=actif;
+    }
 
     
 }

@@ -28,9 +28,14 @@ public class CreationAnnonceController {
         // System.out.println("Description : " + description.getText());
         // System.out.println("Prix : " + prix.getText());
 
+        //A FAIRE: VERIFIER QUE LE PRIX EST BIEN UN INT
+
         CreerAnnonce creerAnnonce = new CreerAnnonce();
         //A FAIRE: récupérer la catégorie, le référent
-        creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), 6, "referent");
-        //System.out.println("annonce créée");
+        creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), Integer.parseInt(prix.getText()), "referent", true);
+        
+
+        app.getSceneController().switchToMesAnnonces();
+        //A FAIRE: refresh
     }
 }

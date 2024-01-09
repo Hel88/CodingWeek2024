@@ -12,7 +12,7 @@ public class CreerAnnonce {
 
     public CreerAnnonce() {}
 
-    public Annonce nouvelleAnnonce(String titre, String categorie, String description, int prix, String referent) {
+    public Annonce nouvelleAnnonce(String titre, String categorie, String description, int prix, String referent, boolean actif) {
         //crée une nouvelle annonce avec le bon id et l'ajoute au json
         
         //lecture du json
@@ -25,7 +25,7 @@ public class CreerAnnonce {
                 e.printStackTrace();
             }
         int id = existingData.length();
-        Annonce annonce = new Annonce(id, titre, categorie, description, prix, referent);
+        Annonce annonce = new Annonce(id, titre, categorie, description, prix, referent, actif);
        
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id", annonce.getId());
@@ -34,6 +34,7 @@ public class CreerAnnonce {
         jsonObject.put("description", annonce.getDescription());
         jsonObject.put("prix", annonce.getPrix());
         jsonObject.put("referent", annonce.getReferent());
+        jsonObject.put("actif", annonce.getActif());
         //ajout de l'annonce au json
         existingData.put(annonce.getId()+"", jsonObject);
 
@@ -44,7 +45,7 @@ public class CreerAnnonce {
             e.printStackTrace();
         }
 
-        return new Annonce(id, titre, categorie, description, prix, referent);
+        return annonce;
         }
 
 }
