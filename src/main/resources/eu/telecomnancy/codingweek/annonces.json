@@ -7,23 +7,5 @@
     "description": "string",
     "actif": true,
     "id": 1
-  },
-  "1": {
-    "categorie": "catégorie",
-    "prix": 5,
-    "referent": "referent",
-    "titre": "cvb,n;",
-    "description": "zsdergfbpdzé&egfbvué&'bhb",
-    "actif": true,
-    "id": 1
-  },
-  "2": {
-    "categorie": "catégorie",
-    "prix": 20,
-    "referent": "referent",
-    "titre": "tondeuse",
-    "description": "tondre gazon",
-    "actif": true,
-    "id": 2
   }
 }

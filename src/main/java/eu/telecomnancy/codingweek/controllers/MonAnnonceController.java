@@ -22,7 +22,7 @@ public class MonAnnonceController {
 
     @FXML
     public void modifierAnnonce(){
-        //app.switchToModifierAnnonce();
+        // app.getSceneController().switchToModifierAnnonce();
     }
 
     @FXML
