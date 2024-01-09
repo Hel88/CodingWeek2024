@@ -1,10 +1,14 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class SceneController {
 
@@ -103,7 +107,7 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new OffresEtDemandesController(app, "Demande"));
         pageScene = new Scene(pageLoader.load());
         this.demandes = pageScene;
-        
+
         layout.setTop(menu.getRoot());
         setView(this.connexion);
         
