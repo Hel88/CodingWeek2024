@@ -1,4 +1,4 @@
-package eu.telecomnancy.codingweek.controllers;
+package eu.telecomnancy.codingweek;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -6,8 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.json.JSONObject;
-
-import eu.telecomnancy.codingweek.Annonce;
 
 public class CreerAnnonce {
     

@@ -1,6 +1,7 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.CreerAnnonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -22,9 +23,14 @@ public class CreationAnnonceController {
 
     @FXML
     public void addAnnonce(){
-        System.out.println("Creation Annonce");
-        System.out.println("Titre : " + titre.getText());
-        System.out.println("Description : " + description.getText());
-        System.out.println("Prix : " + prix.getText());
+        // System.out.println("Creation Annonce");
+        // System.out.println("Titre : " + titre.getText());
+        // System.out.println("Description : " + description.getText());
+        // System.out.println("Prix : " + prix.getText());
+
+        CreerAnnonce creerAnnonce = new CreerAnnonce();
+        //A FAIRE: récupérer la catégorie, le référent
+        creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), 6, "referent");
+        //System.out.println("annonce créée");
     }
 }
