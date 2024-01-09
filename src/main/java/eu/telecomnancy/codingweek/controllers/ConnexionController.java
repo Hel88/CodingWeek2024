@@ -32,8 +32,9 @@ public class ConnexionController {
         String enteredPassword = pwd.getText();
 
         // Check if the username exists
-        if (app.getUserUtils().doesUserExist(enteredUsername)) {
-            if (app.getUserUtils().checkPassword(enteredUsername, enteredPassword)) {
+        if (app.getDataUsersUtils().doesUserExist(enteredUsername)) {
+            if (app.getDataUsersUtils().checkPassword(enteredUsername, enteredPassword)) {
+                app.setMainUser(app.getDataUsersUtils().getUserByUserName(enteredUsername));
                 app.getSceneController().switchToMonProfil();
             } else {
                 showAlert("Mauvais mot de passe");

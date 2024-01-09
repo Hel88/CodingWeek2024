@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 public class ConsulterAnnonceController {
 
     private Application app;
+    private String id;
     @FXML
     private Label titre;
     @FXML
@@ -16,6 +17,10 @@ public class ConsulterAnnonceController {
     
     public ConsulterAnnonceController(Application app) {
         this.app = app;
+    }
+
+    public void setId(String id){
+        this.id = id;
     }
 
     @FXML

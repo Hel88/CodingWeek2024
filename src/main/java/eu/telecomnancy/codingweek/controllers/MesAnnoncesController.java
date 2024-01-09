@@ -38,7 +38,7 @@ public class MesAnnoncesController {
 
     public void creerAnnonce(){
         app.getSceneController().switchToCreationAnnonce();
-    }
+        }
   
 
     @FXML
