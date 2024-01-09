@@ -12,18 +12,28 @@ public class MonProfilController {
     @FXML
     private Label email;
     @FXML
-    private Label adresse;
+    private Label address;
     @FXML
-    private Label ville;
+    private Label city;
     @FXML
-    private Label nom;
+    private Label lastName;
     @FXML
-    private Label prenom;
+    private Label firstName;
     @FXML
-    private Label note;
+    private Label eval;
 
     public MonProfilController(Application app) {
         this.app = app;
+    }
+
+    public void update(){
+        username.setText(app.getMainUser().getUserName());
+        email.setText(app.getMainUser().getEmail());
+        address.setText(app.getMainUser().getAddress());
+        city.setText(app.getMainUser().getCity());
+        lastName.setText(app.getMainUser().getLastName());
+        firstName.setText(app.getMainUser().getFirstName());
+        eval.setText(app.getMainUser().getEval()+"");
     }
 
     @FXML
