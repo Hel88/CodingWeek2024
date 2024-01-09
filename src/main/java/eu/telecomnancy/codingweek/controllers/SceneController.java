@@ -92,6 +92,11 @@ public class SceneController {
         setView(this.inscription);
     }
 
+    public void switchToConnexion(String userName) {
+        //primaryStage.setScene(this.inscription);
+        setView(this.connexion);
+    }
+
     public void switchToConnexion() {
         //primaryStage.setScene(this.connexion);
         setView(this.connexion);
