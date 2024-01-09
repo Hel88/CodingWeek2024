@@ -31,7 +31,15 @@ public class Application extends javafx.application.Application {
         return sceneController;
     }
 
-    public DataUsersUtils getUserUtils() {
+    public DataUsersUtils getDataUsersUtils() {
         return dataUsersUtils;
+    }
+
+    public User getMainUser() {
+        return mainUser;
+    }
+
+    public void setMainUser(User mainUser) {
+        this.mainUser = mainUser;
     }
 }

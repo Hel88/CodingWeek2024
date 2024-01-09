@@ -55,9 +55,9 @@ public class InscriptionController {
         String userName = userNameField.getText();
 
         // Check if the username is already in use
-        if (app.getUserUtils().isUserNameUnique(userName)) {
+        if (app.getDataUsersUtils().isUserNameUnique(userName)) {
             // Add the user to the JSON file
-            app.getUserUtils().addUser(userName, password, email, lastName, firstName, address, city);
+            app.getDataUsersUtils().addUser(userName, password, email, lastName, firstName, address, city);
             app.getSceneController().switchToConnexion();
         } else {
             showAlert();
