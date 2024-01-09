@@ -1,5 +1,8 @@
 package eu.telecomnancy.codingweek;
 
+import java.util.ArrayList;
+
+import eu.telecomnancy.codingweek.controllers.Observer;
 import eu.telecomnancy.codingweek.controllers.SceneController;
 import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import eu.telecomnancy.codingweek.utils.User;
@@ -10,6 +13,8 @@ public class Application extends javafx.application.Application {
     private SceneController sceneController;
     private DataUsersUtils dataUsersUtils;
     private User mainUser;
+    private ArrayList<Observer> observers = new ArrayList<Observer>();
+    //private Annonce annonceAffichee;
     
 
     @Override
@@ -42,4 +47,26 @@ public class Application extends javafx.application.Application {
     public void setMainUser(User mainUser) {
         this.mainUser = mainUser;
     }
+
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    public void notifyObservers() {
+        for (Observer obs : observers) {
+            obs.update();
+        }
+    }
+
+    // public Annonce getAnnonceAffichee() {
+    //     return annonceAffichee;
+    // }
+
+    // public void setAnnonceAffichee(Annonce annonceAffichee) {
+    //     this.annonceAffichee = annonceAffichee;
+    // }
 }

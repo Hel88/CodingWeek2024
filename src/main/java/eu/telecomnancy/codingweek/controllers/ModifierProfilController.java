@@ -3,13 +3,14 @@ package eu.telecomnancy.codingweek.controllers;
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class ModifierProfilController {
+public class ModifierProfilController implements Observer{
     
     private Application app;
     @FXML
-    private TextField username;
+    private Label username;
     @FXML
     private TextField email;
     @FXML
@@ -22,17 +23,40 @@ public class ModifierProfilController {
     private TextField prenom;
     @FXML
     private Label note;
+    @FXML
+    private TextField ancienPWD;
+    @FXML
+    private TextField nouveauPWD;
 
 
     public ModifierProfilController(Application app) {
         this.app = app;
+        app.addObserver(this);
     }
 
     @FXML
     public void validerModifProfil(){
-        //user.setUsername(username.getText());
-        //etc
+
+        app.getMainUser().setEmail(email.getText());
+        app.getMainUser().setAddress(adresse.getText());
+        app.getMainUser().setCity(ville.getText());
+        app.getMainUser().setLastName(nom.getText());
+        app.getMainUser().setFirstName(prenom.getText());
+
+        app.notifyObservers();
         app.getSceneController().switchToMonProfil();
-        System.out.println("validé");
+    }
+
+    @Override
+    public void update(){
+        System.out.println("update modifiermonprofil");
+
+        username.setText(app.getMainUser().getUserName());
+        email.setText(app.getMainUser().getEmail());
+        adresse.setText(app.getMainUser().getAddress());
+        ville.setText(app.getMainUser().getCity());
+        nom.setText(app.getMainUser().getLastName());
+        prenom.setText(app.getMainUser().getFirstName());
+        note.setText(app.getMainUser().getEval()+"");
     }
 }

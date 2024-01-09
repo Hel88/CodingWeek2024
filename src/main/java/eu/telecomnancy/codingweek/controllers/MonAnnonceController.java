@@ -1,7 +1,6 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -15,13 +14,13 @@ public class MonAnnonceController {
     @FXML
     private Label prix;
 
-    private Annonce annonce;
+   // private Annonce annonce;
 
     
 
     public MonAnnonceController(Application app) {
         this.app = app;
-        //this.annonce = 
+        //annonce = null;
     }
 
     // @FXML

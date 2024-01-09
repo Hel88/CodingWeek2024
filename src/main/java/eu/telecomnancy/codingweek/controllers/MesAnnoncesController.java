@@ -33,8 +33,9 @@ public class MesAnnoncesController {
         
     }
 
-    public void detailsAnnonce(String id){
-        app.getSceneController().switchToMonAnnonce(id);
+    public void detailsAnnonce(String annonce){
+        //app.setAnnonceAffichee(annonce);
+        app.getSceneController().switchToMonAnnonce();
     }
 
     public void creerAnnonce(){
