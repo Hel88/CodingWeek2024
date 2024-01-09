@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.json.JSONObject;
 
@@ -90,11 +91,18 @@ public class MesAnnoncesController {
 
         //parcourir le json et ajouter les annonces à la liste
         
-        System.out.println(existingData.keySet());
-        for (int i=1;i<existingData.length();i++){
-            JSONObject annonce = existingData.getJSONObject(i+"");
-            this.annonces.add(new Annonce(annonce.getInt("id"),annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
+        Set<String> keys = existingData.keySet();
+        keys.remove("id_annonce");
+        for (String key : keys){
+            JSONObject annonce = existingData.getJSONObject(key);
+            this.annonces.add(new Annonce(Integer.parseInt(key),annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
         }
+
+        
+        // for (int i=1;i<existingData.length();i++){
+        //     JSONObject annonce = existingData.getJSONObject(i+"");
+        //     this.annonces.add(new Annonce(annonce.keys().,annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
+        // }
     }
 
 

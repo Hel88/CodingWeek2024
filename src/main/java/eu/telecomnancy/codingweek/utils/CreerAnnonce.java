@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Set;
 
 import org.json.JSONObject;
 
@@ -24,11 +25,22 @@ public class CreerAnnonce {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        int id = existingData.length();
+
+        //récupération du plus grand id
+        Set<String> keys = existingData.keySet();
+        keys.remove("id_annonce");
+        int idMax = 0;
+        for (String key : keys){
+            if (Integer.parseInt(key)>idMax){
+                idMax = Integer.parseInt(key);
+            }
+        }
+
+        //int id = existingData.length();
+        int id = idMax+1;
         Annonce annonce = new Annonce(id, titre, categorie, description, prix, referent, actif);
        
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", annonce.getId());
         jsonObject.put("titre", annonce.getTitre());
         jsonObject.put("categorie", annonce.getCategorie());
         jsonObject.put("description", annonce.getDescription());
