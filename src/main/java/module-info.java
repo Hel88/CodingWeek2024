@@ -2,7 +2,7 @@ module eu.telecomnancy.codingweek {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.json;
-    requires com.calendarfx.view;
+    // requires com.calendarfx.view;
 
     requires transitive javafx.graphics;
 
