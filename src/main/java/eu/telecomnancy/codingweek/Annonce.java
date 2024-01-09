@@ -21,5 +21,16 @@ public class Annonce {
     public String getTitre() {
         return titre;
     }
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public String getPrix() {
+        return prix;
+    }
     
+    public String getVille(){
+        return lieu;
+    }
 }

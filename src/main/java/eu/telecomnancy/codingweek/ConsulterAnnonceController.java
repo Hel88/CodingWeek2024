@@ -19,19 +19,16 @@ public class ConsulterAnnonceController {
 
     @FXML
     public void versMessagerie(){
-        //app.switchToMessagerie();
+        //app.getSceneController().switchToMessagerie();
     }
 
     @FXML
     public void consulterProfil(){
-        //app.switchToProfil(user.getText());
+        app.getSceneController().switchToMonProfil();
     }
 
     @FXML
     public void reserver(){
         //TODO
     }
-
-
-    
 }
