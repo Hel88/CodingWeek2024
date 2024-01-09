@@ -36,6 +36,11 @@ public class InscriptionController {
     }
 
     @FXML
+    public void versConnexion(){
+        app.getSceneController().switchToConnexion();
+    }
+
+    @FXML
     public void inscription() {
         String password = passwordField.getText();
         String email = emailField.getText();
