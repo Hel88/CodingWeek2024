@@ -1,9 +1,9 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.Annonce;
 import java.util.ArrayList;
 
+import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,16 +31,16 @@ public class OffresEtDemandesController {
     public OffresEtDemandesController(Application app, String type) {
         this.app = app;
         this.type = type;
-        annonces.add(new Annonce("test service", "a", "OffreService", "a", "a", "a"));
-        annonces.add(new Annonce("test materiel", "a", "PretMateriel", "a", "a", "a"));
-        annonces.add(new Annonce("test2 materiel", "a", "PretMateriel", "a", "a", "a"));
-        annonces.add(new Annonce("test3 materiel", "a", "PretMateriel", "a", "a", "a"));
-        annonces.add(new Annonce("test4 materiel", "a", "PretMateriel", "a", "a", "a"));
-        annonces.add(new Annonce("test5 materiel", "a", "PretMateriel", "a", "a", "a"));
-        annonces.add(new Annonce("test6 materiel", "a", "PretMateriel", "a", "a", "a"));
-        annonces.add(new Annonce("test7 materiel", "a", "PretMateriel", "a", "a", "a"));
-        annonces.add(new Annonce("test8 materiel", "a", "DemandeMateriel", "a", "a", "a"));
-        annonces.add(new Annonce("test9 service", "a", "DemandeService", "a", "a", "a"));
+        // annonces.add(new Annonce("test service", "a", "OffreService", "a", "a", "a"));
+        // annonces.add(new Annonce("test materiel", "a", "PretMateriel", "a", "a", "a"));
+        // annonces.add(new Annonce("test2 materiel", "a", "PretMateriel", "a", "a", "a"));
+        // annonces.add(new Annonce("test3 materiel", "a", "PretMateriel", "a", "a", "a"));
+        // annonces.add(new Annonce("test4 materiel", "a", "PretMateriel", "a", "a", "a"));
+        // annonces.add(new Annonce("test5 materiel", "a", "PretMateriel", "a", "a", "a"));
+        // annonces.add(new Annonce("test6 materiel", "a", "PretMateriel", "a", "a", "a"));
+        // annonces.add(new Annonce("test7 materiel", "a", "PretMateriel", "a", "a", "a"));
+        // annonces.add(new Annonce("test8 materiel", "a", "DemandeMateriel", "a", "a", "a"));
+        // annonces.add(new Annonce("test9 service", "a", "DemandeService", "a", "a", "a"));
     }
 
     public void setType(String type){
@@ -81,12 +81,12 @@ public class OffresEtDemandesController {
             titre.setPrefHeight(10);
             titre.setWrapText(true);
 
-            Label ville = new Label(annonce.getVille());
-            ville.setPrefWidth(150);
-            ville.setPrefHeight(10);
-            ville.setWrapText(true);
+            // Label ville = new Label(annonce.getVille());
+            // ville.setPrefWidth(150);
+            // ville.setPrefHeight(10);
+            // ville.setWrapText(true);
 
-            Label prix = new Label(annonce.getPrix());
+            Label prix = new Label(annonce.getPrix()+"");
             prix.setPrefWidth(100);
             prix.setPrefHeight(10);
             prix.setWrapText(true);
@@ -95,7 +95,8 @@ public class OffresEtDemandesController {
             details.setText("Voir les détails");
             details.setOnAction(e -> app.getSceneController().switchToConsulterAnnonce());
 
-            hbox.getChildren().addAll(titre, ville, prix, details);
+//            hbox.getChildren().addAll(titre, ville, prix, details);
+            hbox.getChildren().addAll(titre, prix, details);
 
             if (type.equals("Offre")){
                 if (annonce.getCategorie().equals("PretMateriel")){

@@ -2,35 +2,78 @@ package eu.telecomnancy.codingweek.utils;
 
 public class Annonce {
 
+    private int id;
     private String titre;
-    private String description;
     private String categorie;
-    private String date;
-    private String lieu;
-    private String prix;
+    private String description;
+    private int prix;
+    private String referent;
 
-    public Annonce(String titre, String description, String categorie, String date, String lieu, String prix) {
+    public Annonce(int id, String titre, String categorie, String description, int prix, String referent) {
+        
+        this.id = id;
         this.titre = titre;
-        this.description = description;
         this.categorie = categorie;
-        this.date = date;
-        this.lieu = lieu;
+        this.description = description;
         this.prix = prix;
+        this.referent = referent;
+
+    }
+
+   
+
+
+    //Getters et setters -------------------------------
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getReferent() {
+        return referent;
+    }
+
+    public void setReferent(String referent) {
+        this.referent = referent;
     }
 
     public String getTitre() {
         return titre;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public String getCategorie() {
         return categorie;
     }
 
-    public String getPrix() {
+    public int getPrix() {
         return prix;
     }
-    
-    public String getVille(){
-        return lieu;
+
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
+    }
+
+
+    public void setPrix(int prix) {
+        this.prix = prix;
+    }
+
+
+    
 }
