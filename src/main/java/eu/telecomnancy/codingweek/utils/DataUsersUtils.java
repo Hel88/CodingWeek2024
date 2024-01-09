@@ -8,35 +8,38 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class User_utils {
+public class DataUsersUtils {
 
     // Fields
     public final static String filePath = "src/main/resources/eu/telecomnancy/codingweek/users.json";
-    private static User_utils instance;
+    private static DataUsersUtils instance;
     private JSONObject data = new JSONObject();
 
     // Private constructor to prevent instantiation
-    private User_utils() throws IOException {
+    private DataUsersUtils() throws IOException {
         String fileContent = new String(Files.readAllBytes(Paths.get(filePath)));
         data = new JSONObject(fileContent);
     }
 
     // Public method to get the instance of the singleton
-    public static synchronized User_utils getInstance() throws IOException {
+    public static synchronized DataUsersUtils getInstance() throws IOException {
         if (instance == null) {
-            instance = new User_utils();
+            instance = new DataUsersUtils();
         }
         return instance;
     }
 
+    // Methods
     public boolean isUserNameUnique(String userName) throws IOException {
         // Method related to the creation of a new user
+
         // Check if the username is already in use
         return !data.has(userName);
     }
 
     public boolean doesUserExist(String userName) throws IOException {
         // Method related to the authentication of a user
+
         // Check if the username exists
         return data.has(userName);
     }
@@ -66,6 +69,7 @@ public class User_utils {
 
     public User getUserByUserName(String userName) throws IOException {
         // Method related to the authentication of a user
+
         // Retrieve the User object from the JSON file
         JSONObject userObject = data.getJSONObject(userName);
         return new User(userName, userObject.getString("password"), userObject.getString("email"), userObject.getString("lastName"), userObject.getString("firstName"), userObject.getString("address"), userObject.getString("city"), userObject.getInt("announces"), userObject.getInt("planning"), userObject.getInt("eval"));
