@@ -109,7 +109,8 @@ public class SceneController {
         setView(this.monProfil);
     }
 
-    public void switchToMonAnnonce() {
+    public void switchToMonAnnonce(String id) {
+        System.out.println("id : "+id);
         setView(this.monAnnonce);
     }
 

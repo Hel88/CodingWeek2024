@@ -8,34 +8,50 @@
   },
   "1": {
     "categorie": "categorie1",
-    "prix": "5",
+    "prix": 5,
     "referent": "Yann",
-    "titre": "tondeuse ",
+    "titre": "prêt de tondeuse ",
     "description": "description1",
     "id": 1
   },
   "2": {
     "categorie": "categorie2",
-    "prix": "3",
+    "prix": 3,
     "referent": "Mathis",
-    "titre": "contrebasse ",
+    "titre": "cours de contrebasse ",
     "description": "blablabla",
     "id": 2
   },
   "3": {
     "categorie": "categorie1",
-    "prix": "6",
+    "prix": 6,
     "referent": "Maelle",
-    "titre": "bidule ",
+    "titre": "cours de crochet ",
     "description": "description1",
     "id": 3
   },
   "4": {
     "categorie": "categorie2",
-    "prix": "5",
+    "prix": 5,
     "referent": "Héléna",
-    "titre": "chouette ",
+    "titre": "taxi ",
     "description": "description2",
     "id": 4
+  },
+  "5": {
+    "categorie": "categorie",
+    "prix": 6,
+    "referent": "referent",
+    "titre": "prêt d'éplucheur à légumes",
+    "description": "description",
+    "id": 5
+  },
+  "6": {
+    "categorie": "categorie",
+    "prix": 6,
+    "referent": "referent",
+    "titre": "prêt d'éplucheur à légumes",
+    "description": "description",
+    "id": 6
   }
 }

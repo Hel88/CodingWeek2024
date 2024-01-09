@@ -10,7 +10,10 @@ import org.json.JSONObject;
 import eu.telecomnancy.codingweek.Annonce;
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -42,14 +45,14 @@ public class MesAnnoncesController {
         //parcourir le json et ajouter les annonces à la liste
         for (int i=1;i<existingData.length();i++){
             JSONObject annonce = existingData.getJSONObject(i+"");
-            this.annonces.add(new Annonce(annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getString("prix"), annonce.getString("referent")));
+            this.annonces.add(new Annonce(i,annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent")));
         }
 
 
     }
 
-    public void detailsAnnonce(){
-        app.getSceneController().switchToMonAnnonce();
+    public void detailsAnnonce(String id){
+        app.getSceneController().switchToMonAnnonce(id);
     }
 
     public void creerAnnonce(){
@@ -60,13 +63,26 @@ public class MesAnnoncesController {
     public void initialize(){
 
         //afficher les annonces
+        //AJOUTER VERIF POUR QUE LES ANNONCES CORRESPONDENT AU USER CONNECTE
+        
         for (Annonce annonce : this.annonces){
             HBox hbox = new HBox();
             hbox.getChildren().add(new Label(annonce.getTitre()));
-            hbox.getChildren().add(new Label(annonce.getPrix()));
-            hbox.getChildren().add(new Label(annonce.getReferent()));
+            hbox.getChildren().add(new Label(annonce.getPrix()+""));
+            Image image = new Image(getClass().getResource("images/florain.jpg").toExternalForm());
+            ImageView imagev = new ImageView(image);
+            imagev.setFitHeight(15);
+            imagev.setFitWidth(15);
+            hbox.getChildren().add(imagev);
             
-            //compléter avec les autres infos, le bouton voir détails
+            Button button = new Button();
+            button.setText("Voir les détails");
+            button.setOnAction((event) -> {
+                detailsAnnonce(annonce.getId()+"");
+            });
+            button.setId(annonce.getId()+"");
+
+            hbox.getChildren().add(button);
 
             hbox.setStyle("-fx-background-color: #eeeeee;");
             //hbox.setPrefHeight(279.0);

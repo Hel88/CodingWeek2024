@@ -43,7 +43,7 @@
                               <Insets right="20.0" />
                            </padding>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#detailsAnnonce" text="voir les détails" />
+                        <Button mnemonicParsing="false" text="voir les détails" />
                      </children>
                   </HBox>
                </children>
