@@ -21,16 +21,16 @@ public class MonAnnonceController {
 
     public MonAnnonceController(Application app) {
         this.app = app;
-        //this.annonce = 
+        annonce = null;
     }
 
-    // @FXML
-    // public void initialize(){
-    //     //gère l'affichage
-    //     titre.setText(annonce.getTitre());
-    //     description.setText(annonce.getDescription());
-    //     prix.setText(annonce.getPrix()+"");
-    // }
+    @FXML
+    public void initialize(){
+        //gère l'affichage
+        titre.setText(annonce.getTitre());
+        description.setText(annonce.getDescription());
+        prix.setText(annonce.getPrix()+"");
+    }
 
     @FXML
     public void modifierAnnonce(){

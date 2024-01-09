@@ -33,8 +33,9 @@ public class MesAnnoncesController {
         
     }
 
-    public void detailsAnnonce(String id){
-        app.getSceneController().switchToMonAnnonce(id);
+    public void detailsAnnonce(Annonce annonce){
+        app.setAnnonceAffichee(annonce);
+        app.getSceneController().switchToMonAnnonce();
     }
 
     public void creerAnnonce(){
@@ -64,7 +65,7 @@ public class MesAnnoncesController {
             Button button = new Button();
             button.setText("Voir les détails");
             button.setOnAction((event) -> {
-                detailsAnnonce(annonce.getId()+"");
+                detailsAnnonce(annonce);
             });
             button.setId(annonce.getId()+"");
             hbox.getChildren().add(button);

@@ -152,8 +152,8 @@ public class SceneController {
         setView(this.profilPublic);
     }
 
-    public void switchToMonAnnonce(String id) {
-        System.out.println("id : "+id);
+    public void switchToMonAnnonce() {
+        //System.out.println("id : "+id);
         setView(this.monAnnonce);
     }
 
