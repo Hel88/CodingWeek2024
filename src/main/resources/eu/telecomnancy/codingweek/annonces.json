@@ -1,0 +1,41 @@
+{
+  "id_annonce": {
+    "categorie": "string",
+    "prix": 1,
+    "titre": "string",
+    "referent_user": "string",
+    "description": "string"
+  },
+  "1": {
+    "categorie": "categorie1",
+    "prix": "5",
+    "referent": "Yann",
+    "titre": "tondeuse ",
+    "description": "description1",
+    "id": 1
+  },
+  "2": {
+    "categorie": "categorie2",
+    "prix": "3",
+    "referent": "Mathis",
+    "titre": "contrebasse ",
+    "description": "blablabla",
+    "id": 2
+  },
+  "3": {
+    "categorie": "categorie1",
+    "prix": "6",
+    "referent": "Maelle",
+    "titre": "bidule ",
+    "description": "description1",
+    "id": 3
+  },
+  "4": {
+    "categorie": "categorie2",
+    "prix": "5",
+    "referent": "Héléna",
+    "titre": "chouette ",
+    "description": "description2",
+    "id": 4
+  }
+}
