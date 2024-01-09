@@ -2,25 +2,12 @@
   "UserName": {
     "announces": 0,
     "planning": 0,
-    "password": "Mdp",
-    "UserName": "UserName",
+    "password": "Mdp hashé",
     "address": "Adresse",
     "eval": 0,
     "city": "Ville",
     "last_name": "Nom",
     "first_name": "Prénom",
     "email": "Email"
-  },
-  "Test": {
-    "announces": 0,
-    "planning": 0,
-    "password": "$2a$10$v3Wc/WaPwRjrbDiGMHHlZeGjBOiv5p4BKNAPC5SYKRxA9pcC/2ZD.",
-    "UserName": "Test",
-    "address": "Test",
-    "eval": 0,
-    "city": "Test",
-    "last_name": "Test",
-    "first_name": "Test",
-    "email": "Test"
   }
 }
