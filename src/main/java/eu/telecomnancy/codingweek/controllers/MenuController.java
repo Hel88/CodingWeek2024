@@ -18,7 +18,7 @@ public class MenuController {
     
     @FXML
     public void demandes(){
-        System.out.println("demandes");
+        app.getSceneController().switchToDemandes();
     }
     
     @FXML

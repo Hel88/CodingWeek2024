@@ -18,6 +18,7 @@ public class SceneController {
     Scene monAnnonce;
     Scene consulterannonce;
     Scene offres;
+    Scene demandes;
     BorderPane layout;
 
 
@@ -78,10 +79,16 @@ public class SceneController {
         this.mesAnnonces = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("offres.fxml"));
-        pageLoader.setControllerFactory(iC->new OffresController(app));
+        pageLoader.setLocation(getClass().getResource("offres_et_demandes.fxml"));
+        pageLoader.setControllerFactory(iC->new OffresEtDemandesController(app, "Offre"));
         pageScene = new Scene(pageLoader.load());
         this.offres = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("offres_et_demandes.fxml"));
+        pageLoader.setControllerFactory(iC->new OffresEtDemandesController(app, "Demande"));
+        pageScene = new Scene(pageLoader.load());
+        this.demandes = pageScene;
         
         layout.setTop(menu.getRoot());
         setView(this.connexion);
@@ -132,6 +139,10 @@ public class SceneController {
 
     public void switchToOffres() {
         setView(this.offres);
+    }
+
+    public void switchToDemandes() {
+        setView(this.demandes);
     }
 
 }
