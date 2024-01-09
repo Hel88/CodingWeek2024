@@ -39,7 +39,7 @@
     "id": 8
   },
   "15": {
-    "categorie": "catégorie",
+    "categorie": "DemandeService",
     "prix": 6,
     "referent": "referent",
     "titre": "fdsdz",
@@ -47,7 +47,7 @@
     "id": 15
   },
   "1": {
-    "categorie": "categorie1",
+    "categorie": "DemandeService",
     "prix": 5,
     "referent": "Yann",
     "titre": "prêt de tondeuse ",
@@ -55,7 +55,7 @@
     "id": 1
   },
   "2": {
-    "categorie": "categorie2",
+    "categorie": "DemandeService",
     "prix": 3,
     "referent": "Mathis",
     "titre": "cours de contrebasse ",
@@ -63,7 +63,7 @@
     "id": 2
   },
   "3": {
-    "categorie": "categorie1",
+    "categorie": "DemandeService",
     "prix": 6,
     "referent": "Maelle",
     "titre": "cours de crochet ",
@@ -71,7 +71,7 @@
     "id": 3
   },
   "4": {
-    "categorie": "categorie2",
+    "categorie": "DemandeService",
     "prix": 5,
     "referent": "Héléna",
     "titre": "taxi ",
@@ -79,7 +79,7 @@
     "id": 4
   },
   "5": {
-    "categorie": "categorie",
+    "categorie": "DemandeService",
     "prix": 6,
     "referent": "referent",
     "titre": "prêt d'éplucheur à légumes",
@@ -87,7 +87,7 @@
     "id": 5
   },
   "6": {
-    "categorie": "categorie",
+    "categorie": "DemandeService",
     "prix": 6,
     "referent": "referent",
     "titre": "prêt d'éplucheur à légumes",
@@ -95,7 +95,7 @@
     "id": 6
   },
   "7": {
-    "categorie": "catégorie",
+    "categorie": "DemandeService",
     "prix": 6,
     "referent": "referent",
     "titre": "demande de cours de sport",
@@ -103,7 +103,7 @@
     "id": 7
   },
   "8": {
-    "categorie": "catégorie",
+    "categorie": "DemandeService",
     "prix": 6,
     "referent": "referent",
     "titre": "aaaaa",
@@ -111,7 +111,7 @@
     "id": 8
   },
   "9": {
-    "categorie": "catégorie",
+    "categorie": "DemandeService",
     "prix": 6,
     "referent": "referent",
     "titre": "aaaaa",

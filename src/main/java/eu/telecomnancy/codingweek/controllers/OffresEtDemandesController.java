@@ -12,6 +12,8 @@ import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,13 +24,14 @@ public class OffresEtDemandesController {
     private String type;
     private ArrayList<Annonce> annonces = new ArrayList<Annonce>();
     @FXML
-    private AnchorPane anchorServices;
+    private VBox services;
     @FXML
-    private AnchorPane anchorMateriel;
+    private VBox materiel;
     @FXML
     private Label serviceLabel;
     @FXML
     private Label materielLabel;
+
 
 
 
@@ -74,21 +77,14 @@ public class OffresEtDemandesController {
             materielLabel.setText("Demandes de matériel");
         }
 
-        VBox materiel = new VBox();
-        materiel.setSpacing(10);
-        anchorMateriel.getChildren().add(materiel);
-
-        VBox services = new VBox();
-        services.setSpacing(10);
-        anchorServices.getChildren().add(services);
-
         //afficher les annonces
+
         for (Annonce annonce : this.annonces){
             HBox hbox = new HBox();
             hbox.setStyle("-fx-background-color: #eeeeee; prefHeight=\"279.0\"");
 
             Label titre = new Label(annonce.getTitre());
-            titre.setPrefWidth(150);
+            titre.setPrefWidth(300);
             titre.setPrefHeight(10);
             titre.setWrapText(true);
 
