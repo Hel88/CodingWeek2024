@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 public class InscriptionController {
 
-    private final String filePath = "src/main/resources/eu/telecomnancy/codingweek/uusers.json";
+    private final String filePath = "src/main/resources/eu/telecomnancy/codingweek/users.json";
     private Application app;
     @FXML
     private TextField passwordField;
@@ -81,6 +81,9 @@ public class InscriptionController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            app.getSceneController().switchToConnexion();
+
         } else {
             // Afficher une alerte si le nom d'utilisateur n'est pas unique
             showAlert("Nom d'utilisateur non unique", "Le nom d'utilisateur est déjà utilisé. Veuillez choisir un autre nom.");

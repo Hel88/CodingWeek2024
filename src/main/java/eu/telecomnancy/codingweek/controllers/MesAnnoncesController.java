@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 
-import eu.telecomnancy.codingweek.Annonce;
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

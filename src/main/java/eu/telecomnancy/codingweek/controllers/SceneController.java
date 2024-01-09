@@ -17,6 +17,8 @@ public class SceneController {
     Scene monProfil;
     Scene monAnnonce;
     Scene consulterannonce;
+    Scene offres;
+    Scene demandes;
     BorderPane layout;
 
 
@@ -68,13 +70,25 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new ConsulterAnnonceController(app));
         pageScene = new Scene(pageLoader.load());
         this.consulterannonce = pageScene;
-        this.monAnnonce = pageScene;
+        this.consulterannonce = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("mesAnnonces.fxml"));
         pageLoader.setControllerFactory(iC->new MesAnnoncesController(app));
         pageScene = new Scene(pageLoader.load());
         this.mesAnnonces = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("offres_et_demandes.fxml"));
+        pageLoader.setControllerFactory(iC->new OffresEtDemandesController(app, "Offre"));
+        pageScene = new Scene(pageLoader.load());
+        this.offres = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("offres_et_demandes.fxml"));
+        pageLoader.setControllerFactory(iC->new OffresEtDemandesController(app, "Demande"));
+        pageScene = new Scene(pageLoader.load());
+        this.demandes = pageScene;
         
         layout.setTop(menu.getRoot());
         setView(this.connexion);
@@ -90,6 +104,11 @@ public class SceneController {
     public void switchToInscription() {
         //primaryStage.setScene(this.inscription);
         setView(this.inscription);
+    }
+
+    public void switchToConnexion(String userName) {
+        //primaryStage.setScene(this.inscription);
+        setView(this.connexion);
     }
 
     public void switchToConnexion() {
@@ -117,6 +136,14 @@ public class SceneController {
     public void switchToConsulterAnnonce() {
         //primaryStage.setScene(this.consulterannonce);
         setView(this.consulterannonce);
+    }
+
+    public void switchToOffres() {
+        setView(this.offres);
+    }
+
+    public void switchToDemandes() {
+        setView(this.demandes);
     }
 
 }
