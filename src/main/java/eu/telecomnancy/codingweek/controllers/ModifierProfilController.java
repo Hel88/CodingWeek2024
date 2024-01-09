@@ -49,8 +49,6 @@ public class ModifierProfilController implements Observer{
 
     @Override
     public void update(){
-        System.out.println("update modifiermonprofil");
-
         username.setText(app.getMainUser().getUserName());
         email.setText(app.getMainUser().getEmail());
         adresse.setText(app.getMainUser().getAddress());

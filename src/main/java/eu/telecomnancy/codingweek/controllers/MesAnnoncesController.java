@@ -35,6 +35,7 @@ public class MesAnnoncesController {
 
     public void detailsAnnonce(Annonce annonce){
         app.setAnnonceAffichee(annonce);
+        app.notifyObservers();
         app.getSceneController().switchToMonAnnonce();
     }
 

@@ -21,7 +21,7 @@ public class MonAnnonceController implements Observer {
 
     public MonAnnonceController(Application app) {
         this.app = app;
-        //annonce = null;
+        app.addObserver(this);
     }
 
     // @FXML
@@ -44,6 +44,11 @@ public class MonAnnonceController implements Observer {
     @Override
     public void update() {
         annonce = app.getAnnonceAffichee();
+        if (annonce != null) {
+            titre.setText(annonce.getTitre());
+            description.setText(annonce.getDescription());
+            prix.setText(annonce.getPrix()+"");
+        }
     }
     
 }

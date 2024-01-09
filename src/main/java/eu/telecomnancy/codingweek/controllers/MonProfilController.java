@@ -40,7 +40,6 @@ public class MonProfilController implements Observer {
 
         @Override
     public void update(){
-        System.out.println("update monprofil");
         username.setText(app.getMainUser().getUserName());
         email.setText(app.getMainUser().getEmail());
         address.setText(app.getMainUser().getAddress());
