@@ -32,7 +32,8 @@ public class CreationAnnonceController {
 
         CreerAnnonce creerAnnonce = new CreerAnnonce();
         //A FAIRE: récupérer la catégorie, le référent
-        creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), Integer.parseInt(prix.getText()), "referent", true);
+        String referent = app.getMainUser().getUserName();
+        creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), Integer.parseInt(prix.getText()), referent, true);
         
 
         app.getSceneController().switchToMesAnnonces();

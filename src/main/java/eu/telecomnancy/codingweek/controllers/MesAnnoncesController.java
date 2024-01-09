@@ -46,7 +46,6 @@ public class MesAnnoncesController {
     public void initialize(){
         //gère l'affichage
 
-        //AJOUTER VERIF POUR QUE LES ANNONCES CORRESPONDENT AU USER CONNECTE
 
         synchroJson();
         
@@ -79,6 +78,8 @@ public class MesAnnoncesController {
       public void synchroJson(){
         //synchronise les annonces avec le json
 
+
+
         // Lecture dans le fichier JSON
         String filePath = "src/main/resources/eu/telecomnancy/codingweek/annonces.json";
         JSONObject existingData = new JSONObject();
@@ -95,15 +96,20 @@ public class MesAnnoncesController {
         keys.remove("id_annonce");
         for (String key : keys){
             JSONObject annonce = existingData.getJSONObject(key);
-            this.annonces.add(new Annonce(Integer.parseInt(key),annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
+            
+            //AJOUTER VERIF POUR QUE LES ANNONCES CORRESPONDENT AU USER CONNECTE
+
+            //System.out.println(annonce.getString("referent"));
+            //if (app.getMainUser().getUserName()!=null){
+
+                //System.out.println(app.getMainUser().getUserName());
+                //if (annonce.getString("referent")==(app.getMainUser().getUserName())){
+                    this.annonces.add(new Annonce(Integer.parseInt(key),annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
+                //}
+            }
         }
 
-        
-        // for (int i=1;i<existingData.length();i++){
-        //     JSONObject annonce = existingData.getJSONObject(i+"");
-        //     this.annonces.add(new Annonce(annonce.keys().,annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
-        // }
     }
 
 
-}
+
