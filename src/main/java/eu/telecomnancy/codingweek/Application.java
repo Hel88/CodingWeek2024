@@ -1,7 +1,6 @@
 package eu.telecomnancy.codingweek;
 
 import eu.telecomnancy.codingweek.controllers.SceneController;
-import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import eu.telecomnancy.codingweek.utils.User;
 import javafx.stage.Stage;
@@ -11,7 +10,7 @@ public class Application extends javafx.application.Application {
     private SceneController sceneController;
     private DataUsersUtils dataUsersUtils;
     private User mainUser;
-    private Annonce annonceAffichee;
+    //private Annonce annonceAffichee;
     
 
     @Override
@@ -45,11 +44,11 @@ public class Application extends javafx.application.Application {
         this.mainUser = mainUser;
     }
 
-    public Annonce getAnnonceAffichee() {
-        return annonceAffichee;
-    }
+    // public Annonce getAnnonceAffichee() {
+    //     return annonceAffichee;
+    // }
 
-    public void setAnnonceAffichee(Annonce annonceAffichee) {
-        this.annonceAffichee = annonceAffichee;
-    }
+    // public void setAnnonceAffichee(Annonce annonceAffichee) {
+    //     this.annonceAffichee = annonceAffichee;
+    // }
 }
