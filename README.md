@@ -77,9 +77,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<p align="center">
+<div align="center">
 <img src="images/TNDD.png" width="400">
-</p>
+</div>
 
 TelecomNancy DirectDealing est une application d’économie circulaire en ligne permettant à des personnes de prêter/emprunter du matériel (tondeuse, marteau-piqueur, épluche-légumes, etc.) et/ou de proposer/demander des services (réparation d’une fuite d’eau, leçon de piano, déménagement, etc.)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
