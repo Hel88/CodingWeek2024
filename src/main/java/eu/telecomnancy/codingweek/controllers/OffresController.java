@@ -1,5 +1,7 @@
-package eu.telecomnancy.codingweek;
+package eu.telecomnancy.codingweek.controllers;
 
+import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.Annonce;
 import java.util.ArrayList;
 
 import javafx.fxml.FXML;
@@ -11,7 +13,7 @@ import javafx.scene.layout.VBox;
 
 public class OffresController {
 
-    private HelloApplication app;
+    private Application app;
     private ArrayList<Annonce> annonces = new ArrayList<Annonce>();
     @FXML
     private AnchorPane anchorServices;
@@ -20,7 +22,7 @@ public class OffresController {
 
 
 
-    public OffresController(HelloApplication app) {
+    public OffresController(Application app) {
         this.app = app;
         annonces.add(new Annonce("test service", "a", "OffreService", "a", "a", "a"));
         annonces.add(new Annonce("test materiel", "a", "PretMateriel", "a", "a", "a"));
