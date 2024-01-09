@@ -13,7 +13,7 @@ public class MenuController {
 
     @FXML
     public void offres(){
-        System.out.println("offres");
+        app.getSceneController().switchToOffres();
     }
     
     @FXML
