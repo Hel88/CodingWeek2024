@@ -26,6 +26,7 @@ public class Application extends javafx.application.Application {
             this.sceneController = new SceneController(stage, this);
         } catch (Exception e) {
             System.out.println("Error while loading the scene controller");
+            e.printStackTrace();
         }
     }
 

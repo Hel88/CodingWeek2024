@@ -2,6 +2,7 @@ module eu.telecomnancy.codingweek {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.json;
+    requires org.apache.commons.io;
 
     requires transitive javafx.graphics;
 

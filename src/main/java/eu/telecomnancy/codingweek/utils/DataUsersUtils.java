@@ -1,24 +1,28 @@
 package eu.telecomnancy.codingweek.utils;
 
+import eu.telecomnancy.codingweek.Application;
+import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
+
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 
 public class DataUsersUtils {
 
     // Fields
-    public final static String filePath = "src/main/resources/eu/telecomnancy/codingweek/users.json";
+    public String filePath = IOUtils.toString(getClass().getResource("users.json"), StandardCharsets.UTF_8);
     private static DataUsersUtils instance;
     private JSONObject data = new JSONObject();
 
     // Private constructor to prevent instantiation
     private DataUsersUtils() throws IOException {
-        String fileContent = new String(Files.readAllBytes(Paths.get(filePath)));
-        data = new JSONObject(fileContent);
+        data = new JSONObject(filePath);
     }
 
     // Public method to get the instance of the singleton

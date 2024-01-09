@@ -39,6 +39,15 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
     implementation 'org.json:json:20231013'
+    implementation 'commons-io:commons-io:2.15.1'
+}
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": application.mainClass
+        )
+    }
 }
 
 test {
