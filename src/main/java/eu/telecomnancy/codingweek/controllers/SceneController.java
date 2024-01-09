@@ -1,10 +1,17 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import com.calendarfx.model.Calendar;
+import com.calendarfx.model.CalendarSource;
+import com.calendarfx.view.CalendarView;
 import eu.telecomnancy.codingweek.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class SceneController {
 
@@ -103,7 +110,43 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new OffresEtDemandesController(app, "Demande"));
         pageScene = new Scene(pageLoader.load());
         this.demandes = pageScene;
-        
+
+        CalendarView calendarView = new CalendarView(); // (1)
+        Calendar birthdays = new Calendar("Birthdays"); // (2)
+        Calendar holidays = new Calendar("Holidays");
+        birthdays.setStyle(Calendar.Style.STYLE1); // (3)
+        holidays.setStyle(Calendar.Style.STYLE2);
+        CalendarSource myCalendarSource = new CalendarSource("My Calendars"); // (4)
+        myCalendarSource.getCalendars().addAll(birthdays, holidays);
+        calendarView.getCalendarSources().addAll(myCalendarSource); // (5)
+        calendarView.setRequestedTime(LocalTime.now());
+        Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
+            @Override
+            public void run() {
+                while (true) {
+                    Platform.runLater(() -> {
+                        calendarView.setToday(LocalDate.now());
+                        calendarView.setTime(LocalTime.now());
+                    });
+
+                    try {
+                        // update every 10 seconds
+                        sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        };
+
+        updateTimeThread.setPriority(Thread.MIN_PRIORITY);
+        updateTimeThread.setDaemon(true);
+        updateTimeThread.start();
+
+        pageScene = new Scene(calendarView);
+        this.demandes = pageScene;
+
         layout.setTop(menu.getRoot());
         setView(this.connexion);
         
