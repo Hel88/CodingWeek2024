@@ -1,13 +1,12 @@
-package eu.telecomnancy.codingweek;
+package eu.telecomnancy.codingweek.controllers;
 
+import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 
 public class MonAnnonceController {
     
-    private HelloApplication app;
+    private Application app;
     @FXML
     private Label titre;
     @FXML
@@ -17,7 +16,7 @@ public class MonAnnonceController {
 
     
 
-    public MonAnnonceController(HelloApplication app) {
+    public MonAnnonceController(Application app) {
         this.app = app;
     }
 

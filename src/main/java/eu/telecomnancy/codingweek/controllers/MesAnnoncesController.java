@@ -1,7 +1,9 @@
-package eu.telecomnancy.codingweek;
+package eu.telecomnancy.codingweek.controllers;
 
 import java.util.ArrayList;
 
+import eu.telecomnancy.codingweek.Annonce;
+import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -12,13 +14,13 @@ public class MesAnnoncesController {
     @FXML
     private VBox VBoxAnnonces;
 
-    private HelloApplication app;
+    private Application app;
 
     private ArrayList<Annonce> annonces = new ArrayList<Annonce>();
 
     //private Annonce annonce;
 
-    public MesAnnoncesController(HelloApplication app) {
+    public MesAnnoncesController(Application app) {
         this.app = app;
 
         //initialiser les annonces, lire dans le json
@@ -41,7 +43,8 @@ public class MesAnnoncesController {
         for (Annonce annonce : this.annonces){
             HBox hbox = new HBox();
             hbox.getChildren().add(new Label(annonce.getTitre()));
-            hbox.setStyle("-fx-background-color: #eeeeee; prefHeight=\"279.0\"");
+            hbox.setStyle("-fx-background-color: #eeeeee;");
+            hbox.setPrefHeight(279.0);
             VBoxAnnonces.getChildren().add(hbox);
         }
     }

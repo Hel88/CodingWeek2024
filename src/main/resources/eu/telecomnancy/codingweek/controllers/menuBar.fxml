@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.HBox?>
 
 
-<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.MenuController">
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.MenuController">
    <children>
       <ImageView fitHeight="49.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/tondeuse-a-gazon.png" />
+            <Image url="@../images/tondeuse-a-gazon.png" />
          </image>
          <HBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

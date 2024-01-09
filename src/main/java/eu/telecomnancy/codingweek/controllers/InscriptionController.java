@@ -1,5 +1,6 @@
-package eu.telecomnancy.codingweek;
+package eu.telecomnancy.codingweek.controllers;
 
+import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -13,8 +14,8 @@ import java.nio.file.Paths;
 
 public class InscriptionController {
 
-    private final String filePath = "src/main/resources/eu/telecomnancy/codingweek/Users.json";
-    private HelloApplication app;
+    private final String filePath = "src/main/resources/eu/telecomnancy/codingweek/uusers.json";
+    private Application app;
     @FXML
     private TextField passwordField;
     @FXML
@@ -30,7 +31,7 @@ public class InscriptionController {
     @FXML
     private TextField userNameField;
 
-    public InscriptionController(HelloApplication app) {
+    public InscriptionController(Application app) {
         this.app = app;
     }
 
@@ -62,7 +63,7 @@ public class InscriptionController {
             userObject.put("announces", 0);
             userObject.put("eval", 0);
 
-            // Read existing content from Users.json
+            // Read existing content from users.json
             JSONObject existingData = new JSONObject();
             try {
                 String fileContent = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -74,7 +75,7 @@ public class InscriptionController {
             // Ajouter le nouvel objet utilisateur aux données existantes
             existingData.put(userName, userObject);
 
-            // Écrire les données mises à jour dans Users.json
+            // Écrire les données mises à jour dans users.json
             try (FileWriter fileWriter = new FileWriter(filePath)) {
                 fileWriter.write(existingData.toString(2)); // Le '2' est pour le niveau d'indentation
             } catch (IOException e) {

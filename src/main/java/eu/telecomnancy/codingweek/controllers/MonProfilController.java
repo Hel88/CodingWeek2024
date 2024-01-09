@@ -1,11 +1,12 @@
-package eu.telecomnancy.codingweek;
+package eu.telecomnancy.codingweek.controllers;
 
+import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class MonProfilController {
 
-    private HelloApplication app;
+    private Application app;
     @FXML
     private Label username;
     @FXML
@@ -19,7 +20,7 @@ public class MonProfilController {
     @FXML
     private Label prenom;
 
-    public MonProfilController(HelloApplication app) {
+    public MonProfilController(Application app) {
         this.app = app;
     }
 

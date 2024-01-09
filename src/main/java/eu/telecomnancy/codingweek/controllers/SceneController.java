@@ -1,5 +1,6 @@
-package eu.telecomnancy.codingweek;
+package eu.telecomnancy.codingweek.controllers;
 
+import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -19,7 +20,7 @@ public class SceneController {
     BorderPane layout;
 
 
-    public SceneController(Stage primaryStage, HelloApplication app) throws Exception {
+    public SceneController(Stage primaryStage, Application app) throws Exception {
 
         this.primaryStage = primaryStage;
         //app.setSceneController(this);
@@ -27,19 +28,19 @@ public class SceneController {
         this.layout = new BorderPane();
 
         FXMLLoader pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("Connexion.fxml"));
+        pageLoader.setLocation(getClass().getResource("connexion.fxml"));
         pageLoader.setControllerFactory(iC->new ConnexionController(app));
         Scene pageScene = new Scene(pageLoader.load());
         this.connexion = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("Inscription.fxml"));
+        pageLoader.setLocation(getClass().getResource("inscription.fxml"));
         pageLoader.setControllerFactory(iC->new InscriptionController(app));
         pageScene = new Scene(pageLoader.load());
         this.inscription = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("CreationAnnonce.fxml"));
+        pageLoader.setLocation(getClass().getResource("creationAnnonce.fxml"));
         pageLoader.setControllerFactory(iC->new CreationAnnonceController(app));
         pageScene = new Scene(pageLoader.load());
         this.creationAnnonce = pageScene;
@@ -51,13 +52,13 @@ public class SceneController {
         this.menu = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("MonProfil.fxml"));
+        pageLoader.setLocation(getClass().getResource("monProfil.fxml"));
         pageLoader.setControllerFactory(iC->new MonProfilController(app));
         pageScene = new Scene(pageLoader.load());
         this.monProfil = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("MonAnnonce.fxml"));
+        pageLoader.setLocation(getClass().getResource("monAnnonce.fxml"));
         pageLoader.setControllerFactory(iC->new MonAnnonceController(app));
         pageScene = new Scene(pageLoader.load());
         this.monAnnonce = pageScene;  

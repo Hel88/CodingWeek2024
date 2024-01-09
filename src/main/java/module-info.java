@@ -8,4 +8,6 @@ module eu.telecomnancy.codingweek {
 
     opens eu.telecomnancy.codingweek to javafx.fxml;
     exports eu.telecomnancy.codingweek;
+    exports eu.telecomnancy.codingweek.controllers;
+    opens eu.telecomnancy.codingweek.controllers to javafx.fxml;
 }

@@ -1,9 +1,9 @@
 package eu.telecomnancy.codingweek;
 
-import javafx.application.Application;
+import eu.telecomnancy.codingweek.controllers.SceneController;
 import javafx.stage.Stage;
 
-public class HelloApplication extends Application {
+public class Application extends javafx.application.Application {
 
     private SceneController sceneController;
     

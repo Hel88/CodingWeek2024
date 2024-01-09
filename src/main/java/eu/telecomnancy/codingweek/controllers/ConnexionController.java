@@ -1,17 +1,18 @@
-package eu.telecomnancy.codingweek;
+package eu.telecomnancy.codingweek.controllers;
 
+import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 public class ConnexionController {
 
-    private HelloApplication app;
+    private Application app;
     @FXML 
     private TextField pwd;
     @FXML
     private TextField mail;
 
-    public ConnexionController(HelloApplication app) {
+    public ConnexionController(Application app) {
         this.app = app;
 
     }
