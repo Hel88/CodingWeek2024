@@ -5,13 +5,13 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Set;
 
-import eu.telecomnancy.codingweek.utils.FileAccess;
-import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.utils.FileAccess;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,7 +22,7 @@ public class OffresEtDemandesController implements Observer{
 
     private final Application app;
     private String type;
-    private final ArrayList<Annonce> annonces = new ArrayList<Annonce>();
+    private ArrayList<Annonce> annonces = new ArrayList<Annonce>();
     @FXML
     private VBox services;
     @FXML
@@ -49,6 +49,10 @@ public class OffresEtDemandesController implements Observer{
 
     public void initialize() throws IOException {
 
+        annonces = new ArrayList<Annonce>();
+        services.getChildren().clear();
+        materiel.getChildren().clear();
+
         //initialiser les annonces, lire dans le json
         // Read existing content from users.json
         FileAccess fileAccess = new FileAccess();
@@ -58,9 +62,11 @@ public class OffresEtDemandesController implements Observer{
         JSONObject existingData = new JSONObject(fileContent);
 
         //parcourir le json et ajouter les annonces à la liste
-        for (int i=1;i<existingData.length();i++){
-            JSONObject annonce = existingData.getJSONObject(i+"");
-            this.annonces.add(new Annonce(i,annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
+        Set<String> keys = existingData.keySet();
+        keys.remove("id_annonce");
+        for (String key : keys){
+            JSONObject annonce = existingData.getJSONObject(key);
+            this.annonces.add(new Annonce(Integer.parseInt(key),annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
         }
 
 
@@ -78,6 +84,7 @@ public class OffresEtDemandesController implements Observer{
         //afficher les annonces
 
         for (Annonce annonce : this.annonces){
+
             HBox hbox = new HBox();
             hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
 
