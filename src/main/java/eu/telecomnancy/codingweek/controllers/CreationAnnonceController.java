@@ -52,6 +52,7 @@ public class CreationAnnonceController implements Observer{
     public void update(String type) {
         if (type == "annonce") {
             categorie = app.getCategorieAnnonceACreer();
+            System.out.println(app.getCategorieAnnonceACreer());
         }
     }
 }
