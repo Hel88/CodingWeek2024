@@ -43,18 +43,20 @@ public class ModifierProfilController implements Observer{
         app.getMainUser().setLastName(nom.getText());
         app.getMainUser().setFirstName(prenom.getText());
 
-        app.notifyObservers();
+        app.notifyObservers("user");
         app.getSceneController().switchToMonProfil();
     }
 
     @Override
-    public void update(){
-        username.setText(app.getMainUser().getUserName());
-        email.setText(app.getMainUser().getEmail());
-        adresse.setText(app.getMainUser().getAddress());
-        ville.setText(app.getMainUser().getCity());
-        nom.setText(app.getMainUser().getLastName());
-        prenom.setText(app.getMainUser().getFirstName());
-        note.setText(app.getMainUser().getEval()+"");
+    public void update(String type){
+        if (type == "user"){
+            username.setText(app.getMainUser().getUserName());
+            email.setText(app.getMainUser().getEmail());
+            adresse.setText(app.getMainUser().getAddress());
+            ville.setText(app.getMainUser().getCity());
+            nom.setText(app.getMainUser().getLastName());
+            prenom.setText(app.getMainUser().getFirstName());
+            note.setText(app.getMainUser().getEval()+"");
+        }
     }
 }

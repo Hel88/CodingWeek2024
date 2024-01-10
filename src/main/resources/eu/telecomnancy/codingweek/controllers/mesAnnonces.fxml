@@ -50,10 +50,10 @@
 
             <HBox prefHeight="65.0" prefWidth="561.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="41.0" prefWidth="140.0" text="Preter du matériel" textAlignment="CENTER" wrapText="true" />
-                  <Button mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="41.0" prefWidth="140.0" text="Demander du matériel" textAlignment="CENTER" wrapText="true" />
-                  <Button mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="41.0" prefWidth="140.0" text="Proposer un service" textAlignment="CENTER" wrapText="true" />
-                  <Button mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="41.0" prefWidth="140.0" text="Demander un service" textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#creerAnnonceOffreMateriel" prefHeight="41.0" prefWidth="140.0" text="Preter du matériel" textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#creerAnnonceDemandeMateriel" prefHeight="41.0" prefWidth="140.0" text="Demander du matériel" textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#creerAnnonceOffreService" prefHeight="41.0" prefWidth="140.0" text="Proposer un service" textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#creerAnnonceDemandeService" prefHeight="41.0" prefWidth="140.0" text="Demander un service" textAlignment="CENTER" wrapText="true" />
                </children>
             </HBox>
          </children>

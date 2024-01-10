@@ -20,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class OffresEtDemandesController {
+public class OffresEtDemandesController implements Observer{
 
     private Application app;
     private String type;
@@ -38,7 +38,7 @@ public class OffresEtDemandesController {
     public OffresEtDemandesController(Application app, String type) {
         this.app = app;
         this.type = type;
-    
+        app.addObserver(this);
     }
 
     public void setType(String type){
@@ -115,6 +115,13 @@ public class OffresEtDemandesController {
                     services.getChildren().add(hbox);
                 }
             }
+        }    
+    }
+
+    @Override
+    public void update(String type) {
+        if (type == "annonce"){
+            initialize();
         }
     }
 }

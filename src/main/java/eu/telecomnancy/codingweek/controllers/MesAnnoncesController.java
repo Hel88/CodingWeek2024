@@ -18,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class MesAnnoncesController {
+public class MesAnnoncesController implements Observer{
     
     @FXML
     private VBox VBoxAnnonces;
@@ -30,19 +30,43 @@ public class MesAnnoncesController {
     public MesAnnoncesController(Application app) {
         this.app = app;
         annonces = new ArrayList<Annonce>();
-        
+        app.addObserver(this);
     }
 
     public void detailsAnnonce(Annonce annonce){
         app.setAnnonceAffichee(annonce);
-        app.notifyObservers();
+        app.notifyObservers("annonce");
         app.getSceneController().switchToMonAnnonce();
     }
 
-    public void creerAnnonce(){
-        app.getSceneController().switchToCreationAnnonce();
-        }
+    // public void creerAnnonce(){
+    //     app.getSceneController().switchToCreationAnnonce();
+    // }
   
+    public void creerAnnonceDemandeService(){
+        app.setCategorieAnnonceACreer("DemandeService");
+        app.notifyObservers("annonce");
+        app.getSceneController().switchToCreationAnnonce();
+    }
+
+    public void creerAnnonceDemandeMateriel(){
+        app.setCategorieAnnonceACreer("DemandeMateriel");
+        app.notifyObservers("annonce");
+        app.getSceneController().switchToCreationAnnonce();
+    }
+
+    public void creerAnnonceOffreService(){
+        app.setCategorieAnnonceACreer("OffreService");
+        app.notifyObservers("annonce");
+        app.getSceneController().switchToCreationAnnonce();
+    }
+
+    public void creerAnnonceOffreMateriel(){
+        app.setCategorieAnnonceACreer("OffreMateriel");
+        app.notifyObservers("annonce");
+        app.getSceneController().switchToCreationAnnonce();
+    }
+
 
     @FXML
     public void initialize(){
@@ -110,6 +134,12 @@ public class MesAnnoncesController {
             }
         }
 
+        @Override
+        public void update(String type) {
+            if (type == "annonce") {
+                initialize();
+            }
+        }
     }
 
 

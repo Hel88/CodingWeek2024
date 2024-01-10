@@ -29,7 +29,7 @@ public class MonProfilController implements Observer {
 
     @FXML
     public void modifierProfil(){
-        app.notifyObservers();
+        app.notifyObservers("user");
         app.getSceneController().switchToModifierProfil();
     }
 
@@ -39,14 +39,16 @@ public class MonProfilController implements Observer {
     }
 
         @Override
-    public void update(){
-        username.setText(app.getMainUser().getUserName());
-        email.setText(app.getMainUser().getEmail());
-        address.setText(app.getMainUser().getAddress());
-        city.setText(app.getMainUser().getCity());
-        lastName.setText(app.getMainUser().getLastName());
-        firstName.setText(app.getMainUser().getFirstName());
-        eval.setText(app.getMainUser().getEval()+"");
+    public void update(String type){
+        if (type == "user"){
+            username.setText(app.getMainUser().getUserName());
+            email.setText(app.getMainUser().getEmail());
+            address.setText(app.getMainUser().getAddress());
+            city.setText(app.getMainUser().getCity());
+            lastName.setText(app.getMainUser().getLastName());
+            firstName.setText(app.getMainUser().getFirstName());
+            eval.setText(app.getMainUser().getEval()+"");
+        }
     }
     
 }

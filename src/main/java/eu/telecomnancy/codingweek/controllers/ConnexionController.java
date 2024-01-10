@@ -35,7 +35,7 @@ public class ConnexionController {
         if (app.getDataUsersUtils().doesUserExist(enteredUsername)) {
             if (app.getDataUsersUtils().checkPassword(enteredUsername, enteredPassword)) {
                 app.setMainUser(app.getDataUsersUtils().getUserByUserName(enteredUsername));
-                app.notifyObservers();
+                app.notifyObservers("user");
                 app.getSceneController().switchToMonProfil();
             } else {
                 showAlert("Mauvais mot de passe");

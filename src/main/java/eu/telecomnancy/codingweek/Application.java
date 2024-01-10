@@ -16,6 +16,7 @@ public class Application extends javafx.application.Application {
     private User mainUser;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
     private Annonce annonceAffichee;
+    private String categorieAnnonceACreer;
     
 
     @Override
@@ -58,9 +59,9 @@ public class Application extends javafx.application.Application {
         observers.remove(o);
     }
 
-    public void notifyObservers() {
+    public void notifyObservers(String type) {
         for (Observer obs : observers) {
-            obs.update();
+            obs.update(type);
         }
     }
 
@@ -70,5 +71,13 @@ public class Application extends javafx.application.Application {
 
     public void setAnnonceAffichee(Annonce annonceAffichee) {
         this.annonceAffichee = annonceAffichee;
+    }
+
+    public String getCategorieAnnonceACreer() {
+        return categorieAnnonceACreer;
+    }
+
+    public void setCategorieAnnonceACreer(String categorieAnnonceACreer) {
+        this.categorieAnnonceACreer = categorieAnnonceACreer;
     }
 }
