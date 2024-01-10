@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import eu.telecomnancy.codingweek.utils.FileAccess;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -85,22 +86,24 @@ public class RechercheController {
 
     public void rechercher(Pattern userPattern, Pattern titrePattern) throws IOException{
 
-        //initialiser les annonces, lire dans le json
-        // Read existing content from users.json
-        //initialiser les annonces, lire dans le json
-        // Read existing content from users.json
-        FileAccess fileAccess = new FileAccess();
-        String filePath = fileAccess.getPathOf("annonces.json");
-        File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-        JSONObject existingData = new JSONObject(fileContent);
+        // //initialiser les annonces, lire dans le json
+        // // Read existing content from users.json
+        // //initialiser les annonces, lire dans le json
+        // // Read existing content from users.json
+        // FileAccess fileAccess = new FileAccess();
+        // String filePath = fileAccess.getPathOf("annonces.json");
+        // File file = new File(filePath);
+        // String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        // JSONObject existingData = new JSONObject(fileContent);
 
-        //parcourir le json et ajouter les annonces à la liste
-        for (int i=1;i<existingData.length()+1;i++){
-            JSONObject annonce = existingData.getJSONObject(i+"");
-            System.out.println(annonce);
-            this.annonces.add(new Annonce(i,annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
-        }
+        // //parcourir le json et ajouter les annonces à la liste
+        // for (int i=1;i<existingData.length()+1;i++){
+        //     JSONObject annonce = existingData.getJSONObject(i+"");
+        //     System.out.println(annonce);
+        //     this.annonces.add(new Annonce(i,annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
+        // }
+
+        annonces = DataAnnoncesUtils.getInstance().getAnnonces();
 
         //matcher les annonces avec les critères de recherche et afficher celles qui correspndent
         for (Annonce annonce : this.annonces){
