@@ -16,14 +16,15 @@ public class Application extends javafx.application.Application {
     private User mainUser;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
     private Annonce annonceAffichee;
+    private String categorieAnnonceACreer;
     
 
     @Override
     public void start(Stage stage) {
         try {
+            this.sceneController = new SceneController(stage, this);
             this.dataUsersUtils = DataUsersUtils.getInstance();
             this.mainUser = null;
-            this.sceneController = new SceneController(stage, this);
         } catch (Exception e) {
             System.out.println("Error while loading the scene controller");
             e.printStackTrace();
@@ -58,9 +59,9 @@ public class Application extends javafx.application.Application {
         observers.remove(o);
     }
 
-    public void notifyObservers() {
+    public void notifyObservers(String type) {
         for (Observer obs : observers) {
-            obs.update();
+            obs.update(type);
         }
     }
 
@@ -70,5 +71,13 @@ public class Application extends javafx.application.Application {
 
     public void setAnnonceAffichee(Annonce annonceAffichee) {
         this.annonceAffichee = annonceAffichee;
+    }
+
+    public String getCategorieAnnonceACreer() {
+        return categorieAnnonceACreer;
+    }
+
+    public void setCategorieAnnonceACreer(String categorieAnnonceACreer) {
+        this.categorieAnnonceACreer = categorieAnnonceACreer;
     }
 }

@@ -5,9 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class CreationAnnonceController {
+public class CreationAnnonceController implements Observer{
     
     private Application app;
+    private String categorie;
     @FXML
     private TextField titre;
     @FXML
@@ -18,6 +19,7 @@ public class CreationAnnonceController {
 
     public CreationAnnonceController(Application app) {
         this.app = app;
+        app.addObserver(this);
     }
 
     @FXML
@@ -32,10 +34,25 @@ public class CreationAnnonceController {
         CreerAnnonce creerAnnonce = new CreerAnnonce();
         //A FAIRE: récupérer la catégorie, le référent
         String referent = app.getMainUser().getUserName();
+        creerAnnonce.nouvelleAnnonce(titre.getText(), categorie, description.getText(), Integer.parseInt(prix.getText()), referent, true);
+        
+        referent = app.getMainUser().getUserName();
+        if (app.getMainUser() == null) {
+            referent = "Anonyme";
+        }
         creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), Integer.parseInt(prix.getText()), referent, true);
         
-
+        
+        app.notifyObservers("annonce");
         app.getSceneController().switchToMesAnnonces();
         //A FAIRE: refresh
+    }
+
+    @Override
+    public void update(String type) {
+        if (type == "annonce") {
+            categorie = app.getCategorieAnnonceACreer();
+            System.out.println(app.getCategorieAnnonceACreer());
+        }
     }
 }
