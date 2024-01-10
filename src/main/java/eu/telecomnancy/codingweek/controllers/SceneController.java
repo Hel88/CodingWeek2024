@@ -30,6 +30,7 @@ public class SceneController {
     Scene demandes;
     Scene profilPublic;
     Scene calendar;
+    Scene recherche;
     Scene modifierAnnonce;
     BorderPane layout;
 
@@ -113,6 +114,12 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new OffresEtDemandesController(app, "Demande"));
         pageScene = new Scene(pageLoader.load());
         this.demandes = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("recherche.fxml"));
+        pageLoader.setControllerFactory(iC->new RechercheController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.recherche = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("modifierAnnonce.fxml"));
@@ -220,6 +227,10 @@ public class SceneController {
 
     public void switchToDemandes() {
         setView(this.demandes);
+    }
+
+    public void switchToRecherche() {
+        setView(this.recherche);
     }
 
     public void switchToModifierAnnonce(){
