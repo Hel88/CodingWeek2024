@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class ConnexionController {
+public class ConnexionController implements Observer {
 
     // Fields
     private final Application app;
@@ -19,6 +19,7 @@ public class ConnexionController {
     // Constructor
     public ConnexionController(Application app) {
         this.app = app;
+        app.addObserver(this);
     }
 
 
@@ -35,7 +36,7 @@ public class ConnexionController {
         if (app.getDataUsersUtils().doesUserExist(enteredUsername)) {
             if (app.getDataUsersUtils().checkPassword(enteredUsername, enteredPassword)) {
                 app.setMainUser(app.getDataUsersUtils().getUserByUserName(enteredUsername));
-                app.notifyObservers();
+                app.notifyObservers("user");
                 app.getSceneController().switchToMonProfil();
             } else {
                 showAlert("Mauvais mot de passe");
@@ -51,6 +52,13 @@ public class ConnexionController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void update(String str){
+        if(str.equals("connexion")){
+            userName.setText("");
+            pwd.setText("");
+        }
     }
 
     @FXML

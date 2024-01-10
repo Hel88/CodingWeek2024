@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.MesAnnoncesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.MesAnnoncesController">
    <children>
       <Label contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="578.0" text="Mes annonces" textAlignment="CENTER">
          <font>
@@ -50,10 +50,10 @@
 
             <HBox prefHeight="119.0" prefWidth="561.0">
                <children>
-                  <Button fx:id="preterMateriel" mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="50.0" text="Preter du matériel" textAlignment="CENTER" wrapText="true" />
-                  <Button fx:id="demamnderMateriel" mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="50.0" text="Demander du matériel" textAlignment="CENTER" wrapText="true" />
-                  <Button fx:id="proposerService" mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="50.0" text="Proposer un service" textAlignment="CENTER" wrapText="true" />
-                  <Button fx:id="demanderService" mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="50.0" text="Demander un service" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="preterMateriel" mnemonicParsing="false" onAction="#creerAnnonceOffreMateriel" prefHeight="41.0" prefWidth="140.0" text="Preter du matériel" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="demamnderMateriel" mnemonicParsing="false" onAction="#creerAnnonceDemandeMateriel" prefHeight="41.0" prefWidth="140.0" text="Demander du matériel" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="proposerService" mnemonicParsing="false" onAction="#creerAnnonceOffreService" prefHeight="41.0" prefWidth="140.0" text="Proposer un service" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="demanderService" mnemonicParsing="false" onAction="#creerAnnonceDemandeService" prefHeight="41.0" prefWidth="140.0" text="Demander un service" textAlignment="CENTER" wrapText="true" />
                </children>
             </HBox>
          </children>

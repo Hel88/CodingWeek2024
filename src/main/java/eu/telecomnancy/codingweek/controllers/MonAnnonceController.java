@@ -42,12 +42,14 @@ public class MonAnnonceController implements Observer {
     }
 
     @Override
-    public void update() {
-        annonce = app.getAnnonceAffichee();
-        if (annonce != null) {
-            titre.setText(annonce.getTitre());
-            description.setText(annonce.getDescription());
-            prix.setText(annonce.getPrix()+"");
+    public void update(String type) {
+        if (type == "annonce") {
+            annonce = app.getAnnonceAffichee();
+            if (annonce != null) {
+                titre.setText(annonce.getTitre());
+                description.setText(annonce.getDescription());
+                prix.setText(annonce.getPrix()+"");
+            }
         }
     }
     

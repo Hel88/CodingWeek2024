@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class ModifierProfilController implements Observer{
     
     private Application app;
@@ -35,7 +37,7 @@ public class ModifierProfilController implements Observer{
     }
 
     @FXML
-    public void validerModifProfil(){
+    public void validerModifProfil() throws IOException {
 
         app.getMainUser().setEmail(email.getText());
         app.getMainUser().setAddress(adresse.getText());
@@ -43,18 +45,28 @@ public class ModifierProfilController implements Observer{
         app.getMainUser().setLastName(nom.getText());
         app.getMainUser().setFirstName(prenom.getText());
 
-        app.notifyObservers();
+        if(!ancienPWD.getText().isEmpty() && !nouveauPWD.getText().isEmpty()){
+            if(app.getDataUsersUtils().checkPassword(app.getMainUser().getPassword(), ancienPWD.getText())){
+                app.getMainUser().setPassword(app.getDataUsersUtils().hashPassword(nouveauPWD.getText()));
+            }
+        }
+
+        app.getDataUsersUtils().updateUser(app.getMainUser());
+
+        app.notifyObservers("user");
         app.getSceneController().switchToMonProfil();
     }
 
     @Override
-    public void update(){
-        username.setText(app.getMainUser().getUserName());
-        email.setText(app.getMainUser().getEmail());
-        adresse.setText(app.getMainUser().getAddress());
-        ville.setText(app.getMainUser().getCity());
-        nom.setText(app.getMainUser().getLastName());
-        prenom.setText(app.getMainUser().getFirstName());
-        note.setText(app.getMainUser().getEval()+"");
+    public void update(String type){
+        if (type == "user"){
+            username.setText(app.getMainUser().getUserName());
+            email.setText(app.getMainUser().getEmail());
+            adresse.setText(app.getMainUser().getAddress());
+            ville.setText(app.getMainUser().getCity());
+            nom.setText(app.getMainUser().getLastName());
+            prenom.setText(app.getMainUser().getFirstName());
+            note.setText(app.getMainUser().getEval()+"");
+        }
     }
 }
