@@ -45,7 +45,6 @@ public class CreationAnnonceController implements Observer{
         
         app.notifyObservers("annonce");
         app.getSceneController().switchToMesAnnonces();
-        System.out.println("sddfgfefrfb");
         //A FAIRE: refresh
     }
 
