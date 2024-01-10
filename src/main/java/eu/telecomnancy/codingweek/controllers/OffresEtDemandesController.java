@@ -44,6 +44,7 @@ public class OffresEtDemandesController implements Observer{
     }
 
     public void consulterAnnonce(Annonce annonce){
+        //on enregistre l'annonce à afficher pour y avoir accès dans ConsulterAnnonceController
         app.setAnnonceAffichee(annonce);
         app.notifyObservers("annonce");
         app.getSceneController().switchToConsulterAnnonce(annonce.getId());
@@ -52,9 +53,12 @@ public class OffresEtDemandesController implements Observer{
     public void initialize() throws IOException {
 
         annonces = new ArrayList<Annonce>();
+
+        //vider les VBox pour éviter les doublons
         services.getChildren().clear();
         materiel.getChildren().clear();
 
+        //récupérer les annonces
         if (app.getDataAnnoncesUtils() != null) {
             this.annonces = app.getDataAnnoncesUtils().getAnnonces();
         }
@@ -110,12 +114,10 @@ public class OffresEtDemandesController implements Observer{
 
             Button details = new Button();
             details.setText("Voir les détails");
-            //details.setOnAction(e -> app.getSceneController().switchToConsulterAnnonce(annonce.getId()));
             details.setOnAction(e->{consulterAnnonce(annonce);});
             hbox.getChildren().addAll(titre, referent, hboxPrix, details);
 
             // choisir dans quelle catégorie afficher l'annonce
-
             if (type.equals("Offre")){
                 if (annonce.getCategorie().equals("OffreMateriel")){
                     materiel.getChildren().add(hbox);

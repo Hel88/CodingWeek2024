@@ -1,5 +1,7 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
@@ -50,8 +52,10 @@ public class ConsulterAnnonceController implements Observer{
         //app.getSceneController().switchToMessagerie();
     }
 
+
+
     @FXML
-    public void reserver(){
-        //TODO
+    public void reserver() throws IOException {
+        app.getDataTransactionUtils().addTransaction(String.valueOf(annonce.getId()), app.getMainUser().getUserName(), "En attente");
     }
 }

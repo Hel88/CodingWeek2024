@@ -53,7 +53,6 @@ public class CreationEtModificationAnnonceController implements Observer{
 
         app.notifyObservers("annonce");
         app.getSceneController().switchToMesAnnonces();
-        //A FAIRE: refresh
     }
 
     public void modifierAnnonce() throws IOException{
@@ -77,9 +76,9 @@ public class CreationEtModificationAnnonceController implements Observer{
     }
 
     @FXML
-    public void addAnnonce() throws IOException {
-        
-        // comme la page fxml se charge de la modification et de la création, le bouton doit changer d'action selon ce qu'on veut faire
+    public void addAnnonce() throws IOException { 
+        // comme la page fxml se charge de la modification et de la création,
+        // le bouton doit changer d'action selon ce qu'on veut faire
         if (action == "creation") {
             creerAnnonce();
         }
@@ -93,7 +92,6 @@ public class CreationEtModificationAnnonceController implements Observer{
     public void update(String type) {
         if (type == "annonce") {
             categorie = app.getCategorieAnnonceACreer();
-            System.out.println(app.getCategorieAnnonceACreer());
         }
         if (action == "modification") {
             label.setText("Modifier votre annonce");
