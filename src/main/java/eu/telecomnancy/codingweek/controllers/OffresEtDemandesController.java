@@ -1,15 +1,5 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.ArrayList;
-
-import eu.telecomnancy.codingweek.utils.FileAccess;
-import org.apache.commons.io.IOUtils;
-import org.json.JSONObject;
-
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
@@ -18,11 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class OffresEtDemandesController implements Observer{
 
     private final Application app;
     private String type;
-    private final ArrayList<Annonce> annonces = new ArrayList<Annonce>();
+    private ArrayList<Annonce> annonces = new ArrayList<Annonce>();
     @FXML
     private VBox services;
     @FXML
@@ -45,20 +38,9 @@ public class OffresEtDemandesController implements Observer{
 
     public void initialize() throws IOException {
 
-        //initialiser les annonces, lire dans le json
-        // Read existing content from users.json
-        FileAccess fileAccess = new FileAccess();
-        String filePath = fileAccess.getPathOf("annonces.json");
-        File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-        JSONObject existingData = new JSONObject(fileContent);
-
-        //parcourir le json et ajouter les annonces à la liste
-        for (int i=1;i<existingData.length();i++){
-            JSONObject annonce = existingData.getJSONObject(i+"");
-            this.annonces.add(new Annonce(i,annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
+        if (app.getDataAnnouncesUtils() != null) {
+            this.annonces = app.getDataAnnouncesUtils().getAnnonces();
         }
-
 
         // savoir si on doit afficher les offres ou les demandes
 

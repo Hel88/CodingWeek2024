@@ -31,33 +31,22 @@ public class CreationAnnonceController implements Observer{
 
     @FXML
     public void addAnnonce() throws IOException {
-        // System.out.println("Creation Annonce");
-        // System.out.println("Titre : " + titre.getText());
-        // System.out.println("Description : " + description.getText());
-        // System.out.println("Prix : " + prix.getText());
 
-
-        if (prix.getText().matches("[0-9]+") == false) {
+        // Check if the price is an integer
+        if (!prix.getText().matches("[0-9]+")) {
             messageErreur.setText("Le prix doit être un nombre entier.");
             return;
         }
 
-        if (titre.getText().length() == 0) {
+        // Check if the title is empty
+        if (titre.getText().isEmpty()) {
             messageErreur.setText("Le titre ne peut pas être vide.");
             return;
         }
 
 
-        CreerAnnonce creerAnnonce = new CreerAnnonce();
-        //A FAIRE: récupérer la catégorie, le référent
-        String referent = app.getMainUser().getUserName();
-        creerAnnonce.nouvelleAnnonce(titre.getText(), categorie, description.getText(), Integer.parseInt(prix.getText()), referent, true);
-
-        referent = app.getMainUser().getUserName();
-        if (app.getMainUser() == null) {
-            referent = "Anonyme";
-        }
-        creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), Integer.parseInt(prix.getText()), referent, true);
+        // Create the new annnounce
+        app.getDataAnnouncesUtils().addAnnonce(titre.getText(), description.getText(), prix.getText(), categorie, app.getMainUser().getUserName());
         
 
         app.notifyObservers("annonce");

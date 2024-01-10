@@ -1,27 +1,22 @@
 package eu.telecomnancy.codingweek.utils;
 
-import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Objects;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 
 public class DataUsersUtils {
 
     // Fields
-    private String filePath;
+    private final String filePath;
     private static DataUsersUtils instance;
-    private JSONObject data;
+    private final JSONObject data;
 
     // Private constructor to prevent instantiation
     private DataUsersUtils() throws IOException {

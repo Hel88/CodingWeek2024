@@ -1,17 +1,7 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Set;
-
-import org.json.JSONObject;
-
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
-import eu.telecomnancy.codingweek.utils.FileAccess;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,6 +10,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MesAnnoncesController implements Observer{
     
@@ -141,34 +134,12 @@ public class MesAnnoncesController implements Observer{
         }
     }
 
-      public void synchroJson() throws IOException {
+    public void synchroJson() throws IOException {
         //synchronise les annonces avec le json
-
-        // Lecture dans le fichier JSON
-          FileAccess fileAccess = new FileAccess();
-          String filePath = fileAccess.getPathOf("annonces.json");
-          File file = new File(filePath);
-          String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-          JSONObject existingData = new JSONObject(fileContent);
-
-        //parcourir le json et ajouter les annonces à la liste
-        
-        Set<String> keys = existingData.keySet();
-        keys.remove("id_annonce");
-        for (String key : keys){
-            JSONObject annonce = existingData.getJSONObject(key);
-            
-            //AJOUTER VERIF POUR QUE LES ANNONCES CORRESPONDENT AU USER CONNECTE
-
-            //System.out.println(annonce.getString("referent"));
-            if (app.getMainUser()!=null){
-                if (annonce.getString("referent").equals(app.getMainUser().getUserName())){
-                    System.out.println("ok");
-                    this.annonces.add(new Annonce(Integer.parseInt(key),annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
-                }
-            }
+        if (app.getMainUser() != null) {
+            this.annonces = app.getDataAnnouncesUtils().getAnnonceByUsername(app.getMainUser().getUserName());
         }
-        }
+    }
 
         @Override
         public void update(String type) {
