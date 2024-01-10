@@ -1,8 +1,13 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MonProfilController implements Observer {
 
@@ -34,8 +39,24 @@ public class MonProfilController implements Observer {
     }
 
     @FXML
-    public void supprimerProfil(){
-        System.out.println("on a dit que non en fait");
+    public void supprimerProfil() throws IOException {
+        //pop up etes-vous sûr de vouloir supprimer cette annonce ?
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Etes-vous sûr de vouloir supprimer cette annonce ?");
+        alert.showAndWait();
+
+        if (alert.getResult().getButtonData().isDefaultButton()) {
+            ArrayList<Annonce> annonces = app.getDataAnnoncesUtils().getAnnoncesByUsername(app.getMainUser().getUserName());
+            for (Annonce annonce : annonces) {
+                app.getDataAnnoncesUtils().deleteAnnonce(annonce.getId()+"");
+            }
+            app.getDataUsersUtils().deleteUser(app.getMainUser().getUserName());
+            app.setMainUser(null);
+            app.notifyObservers("connexion");
+            app.getSceneController().switchToConnexion();
+        }
     }
 
         @Override

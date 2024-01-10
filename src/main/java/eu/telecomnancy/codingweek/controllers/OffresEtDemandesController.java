@@ -1,5 +1,8 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
@@ -7,9 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class OffresEtDemandesController implements Observer{
 
@@ -42,6 +42,10 @@ public class OffresEtDemandesController implements Observer{
 
     public void initialize() throws IOException {
 
+        annonces = new ArrayList<Annonce>();
+        services.getChildren().clear();
+        materiel.getChildren().clear();
+
         if (app.getDataAnnoncesUtils() != null) {
             this.annonces = app.getDataAnnoncesUtils().getAnnonces();
         }
@@ -60,6 +64,7 @@ public class OffresEtDemandesController implements Observer{
         //afficher les annonces
 
         for (Annonce annonce : this.annonces){
+
             HBox hbox = new HBox();
             hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
 
@@ -102,12 +107,11 @@ public class OffresEtDemandesController implements Observer{
 
     @Override
     public void update(String type) {
-        if (type == "annonce"){
             try {
                 initialize();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
+        
     }
 }

@@ -1,5 +1,7 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
@@ -34,7 +36,7 @@ public class MonAnnonceController implements Observer {
     }
 
     @FXML
-    public void supprimerAnnonce(){
+    public void supprimerAnnonce() throws IOException{
         //pop up etes-vous sûr de vouloir supprimer cette annonce ?
         Alert alert = new Alert(AlertType.CONFIRMATION);
 
@@ -44,8 +46,10 @@ public class MonAnnonceController implements Observer {
         
         if (alert.getResult().getButtonData().isDefaultButton()) {
             //suppression de l'annonce
-            System.out.println("suppression de " + annonce.getTitre());
-            //TODO
+            //System.out.println("suppression de " + annonce.getTitre());
+            //System.out.println(annonce.getId()+"");
+            app.getDataAnnoncesUtils().deleteAnnonce(annonce.getId()+"");
+            app.notifyObservers("annonce");
             app.getSceneController().switchToMesAnnonces();
         }
 
