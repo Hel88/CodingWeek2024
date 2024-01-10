@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -25,18 +26,20 @@
             </VBox>
          </content>
       </ScrollPane>
-      <TextField fx:id="user" layoutX="270.0" layoutY="52.0" prefHeight="24.0" prefWidth="251.0" />
-      <Label alignment="TOP_RIGHT" layoutX="85.0" layoutY="52.0" prefHeight="24.0" prefWidth="159.0" text="par user" />
-      <TextField fx:id="categorie" layoutX="270.0" layoutY="88.0" prefHeight="24.0" prefWidth="251.0" />
-      <Label alignment="TOP_RIGHT" layoutX="85.0" layoutY="88.0" prefHeight="24.0" prefWidth="159.0" text="par categorie" />
-      <TextField fx:id="titre" layoutX="270.0" layoutY="127.0" prefHeight="24.0" prefWidth="251.0" />
-      <Label alignment="TOP_RIGHT" layoutX="85.0" layoutY="127.0" prefHeight="24.0" prefWidth="159.0" text="par titre" />
-      <Label layoutX="36.0" layoutY="164.0" prefHeight="24.0" prefWidth="251.0" text="par disponibilité ???" />
+      <TextField fx:id="user" layoutX="205.0" layoutY="58.0" prefHeight="24.0" prefWidth="251.0" />
+      <Label alignment="TOP_LEFT" layoutX="116.0" layoutY="58.0" prefHeight="24.0" prefWidth="63.0" text="par user" />
+      <TextField fx:id="titre" layoutX="205.0" layoutY="86.0" prefHeight="24.0" prefWidth="251.0" />
+      <Label alignment="TOP_LEFT" layoutX="116.0" layoutY="88.0" prefHeight="24.0" prefWidth="63.0" text="par titre" />
+      <Label layoutX="31.0" layoutY="176.0" prefHeight="24.0" prefWidth="251.0" text="par disponibilité ???" />
+      <CheckBox fx:id="offreService" layoutX="122.0" layoutY="120.0" mnemonicParsing="false" text="Offre de Service" />
+      <CheckBox fx:id="demandeService" layoutX="122.0" layoutY="146.0" mnemonicParsing="false" text="Demande de Service" />
+      <CheckBox fx:id="offreMateriel" layoutX="313.0" layoutY="120.0" mnemonicParsing="false" text="Prêt de Matériel" />
+      <CheckBox fx:id="demandeMateriel" layoutX="314.0" layoutY="146.0" mnemonicParsing="false" text="Demande de Matériel" />
       <Label alignment="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="34.0" prefWidth="578.0" text="Recherche">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="valider" layoutX="505.0" layoutY="164.0" onAction="#valider" mnemonicParsing="false" text="valider" />
+      <Button fx:id="valider" layoutX="505.0" layoutY="164.0" mnemonicParsing="false" onAction="#valider" text="valider" />
    </children>
 </AnchorPane>
