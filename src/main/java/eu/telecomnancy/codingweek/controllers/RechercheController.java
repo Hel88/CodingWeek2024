@@ -1,7 +1,9 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 import java.util.regex.Matcher;
@@ -12,6 +14,7 @@ import org.json.JSONObject;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.utils.FileAccess;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -41,8 +44,11 @@ public class RechercheController {
     }
 
     @FXML
-    public void valider(){
+    public void valider() throws IOException{
     System.out.println("valider");
+    // on réinitialise la liste des annonces et la VBox
+    this.annonces.clear();
+    resultats.getChildren().clear();
 
     Pattern userPattern = Pattern.compile(user.getText(), Pattern.CASE_INSENSITIVE);
     Pattern categoriePattern = Pattern.compile(categorie.getText(), Pattern.CASE_INSENSITIVE);
@@ -54,17 +60,17 @@ public class RechercheController {
 
     
 
-    public void rechercher(Pattern userPattern, Pattern categoriePattern, Pattern titrePattern){
+    public void rechercher(Pattern userPattern, Pattern categoriePattern, Pattern titrePattern) throws IOException{
 
         //initialiser les annonces, lire dans le json
         // Read existing content from users.json
-        String filePath = null;
-        try {
-            filePath = IOUtils.toString(this.getClass().getResource("annonces.json"), StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        JSONObject existingData = new JSONObject(filePath);
+        //initialiser les annonces, lire dans le json
+        // Read existing content from users.json
+        FileAccess fileAccess = new FileAccess();
+        String filePath = fileAccess.getPathOf("annonces.json");
+        File file = new File(filePath);
+        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        JSONObject existingData = new JSONObject(fileContent);
 
         //parcourir le json et ajouter les annonces à la liste
         for (int i=1;i<existingData.length();i++){
@@ -73,15 +79,19 @@ public class RechercheController {
         }
 
         //matcher les annonces avec les critères de recherche et afficher celles qui correspndent
-
         for (Annonce annonce : this.annonces){
             Matcher userMatcher = userPattern.matcher(annonce.getReferent());
             Matcher categorieMatcher = categoriePattern.matcher(annonce.getCategorie());
             Matcher titreMatcher = titrePattern.matcher(annonce.getTitre());
-        
-            System.out.println(annonce.getReferent() + userMatcher.find());
 
-            if (annonce.getActif() && (userMatcher.find() || annonce.getReferent()==null ) && (categorieMatcher.find() || annonce.getCategorie()==null) && (titreMatcher.find() || annonce.getTitre()==null) ){
+            // les definir avant le if parce que sinon ca marche pas (??)
+            Boolean userMatch = userMatcher.find();
+            Boolean categorieMatch = categorieMatcher.find();
+            Boolean titreMatch = titreMatcher.find();
+    
+            if (annonce.getActif() && (userMatch || annonce.getReferent()==null) && (categorieMatch || annonce.getCategorie()==null) && (titreMatch || annonce.getTitre()==null)){
+                System.out.println("on est dans le if pour l'annonce : "+annonce.getTitre());
+                
                 HBox hbox = new HBox();
                 hbox.setStyle("-fx-background-color: #eeeeee; prefHeight=\"279.0\"");
 
