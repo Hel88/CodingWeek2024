@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class ConnexionController {
+public class ConnexionController implements Observer {
 
     // Fields
     private final Application app;
@@ -19,6 +19,7 @@ public class ConnexionController {
     // Constructor
     public ConnexionController(Application app) {
         this.app = app;
+        app.addObserver(this);
     }
 
 
@@ -51,6 +52,13 @@ public class ConnexionController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void update(String str){
+        if(str.equals("connexion")){
+            userName.setText("");
+            pwd.setText("");
+        }
     }
 
     @FXML

@@ -39,7 +39,9 @@ public class MenuController {
     }
     @FXML
     public void deconnexion(){
-        System.out.println("deconnexion");
+        app.setMainUser(null);
+        app.notifyObservers("connexion");
+        app.getSceneController().switchToConnexion();
     }
 
     @FXML
