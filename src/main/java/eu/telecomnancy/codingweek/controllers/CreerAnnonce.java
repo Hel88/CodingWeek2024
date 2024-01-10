@@ -5,13 +5,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Set;
+
+import org.json.JSONObject;
 
 import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.FileAccess;
-import org.apache.commons.io.IOUtils;
-import org.json.JSONObject;
 
 public class CreerAnnonce {
     

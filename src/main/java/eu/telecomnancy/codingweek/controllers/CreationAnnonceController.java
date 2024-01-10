@@ -1,12 +1,12 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
 
 
 public class CreationAnnonceController implements Observer{
@@ -53,12 +53,6 @@ public class CreationAnnonceController implements Observer{
         String referent = app.getMainUser().getUserName();
         creerAnnonce.nouvelleAnnonce(titre.getText(), categorie, description.getText(), Integer.parseInt(prix.getText()), referent, true);
 
-        referent = app.getMainUser().getUserName();
-        if (app.getMainUser() == null) {
-            referent = "Anonyme";
-        }
-        creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), Integer.parseInt(prix.getText()), referent, true);
-        
 
         app.notifyObservers("annonce");
         app.getSceneController().switchToMesAnnonces();

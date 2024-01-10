@@ -1,17 +1,18 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
+
 import eu.telecomnancy.codingweek.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class SceneController {
 
@@ -29,6 +30,7 @@ public class SceneController {
     Scene demandes;
     Scene profilPublic;
     Scene calendar;
+    Scene modifierAnnonce;
     BorderPane layout;
 
 
@@ -112,6 +114,12 @@ public class SceneController {
         pageScene = new Scene(pageLoader.load());
         this.demandes = pageScene;
 
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("modifierAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new ModifierAnnonceController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.modifierAnnonce = pageScene;
+
         CalendarView calendarView = new CalendarView(); // (1)
         Calendar birthdays = new Calendar("Birthdays"); // (2)
         Calendar holidays = new Calendar("Holidays");
@@ -166,12 +174,10 @@ public class SceneController {
     }
 
     public void switchToConnexion(String userName) {
-        //primaryStage.setScene(this.inscription);
         setView(this.connexion);
     }
 
     public void switchToConnexion() {
-        //primaryStage.setScene(this.connexion);
         setView(this.connexion);
     }
 
@@ -193,7 +199,7 @@ public class SceneController {
     }
 
     public void switchToProfilPublic(String id) {
-        System.out.println("id : "+id);
+        //System.out.println("id : "+id);
         setView(this.profilPublic);
     }
 
@@ -204,7 +210,7 @@ public class SceneController {
 
     public void switchToConsulterAnnonce(int id) {
         //primaryStage.setScene(this.consulterannonce);
-        System.out.println(id);
+        //System.out.println(id);
         setView(this.consulterannonce);
     }
 
@@ -214,6 +220,10 @@ public class SceneController {
 
     public void switchToDemandes() {
         setView(this.demandes);
+    }
+
+    public void switchToModifierAnnonce(){
+        setView(this.modifierAnnonce);
     }
 
 }
