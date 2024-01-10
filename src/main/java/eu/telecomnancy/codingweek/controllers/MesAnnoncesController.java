@@ -72,9 +72,9 @@ public class MesAnnoncesController implements Observer{
     @FXML
     public void initialize(){
         //gère l'affichage
+        annonces = new ArrayList<Annonce>();
 
-
-        synchroJson();
+        synchroJson(); //synchronise les annonces avec le json
         
         //Affichage de chaque annonce
         
@@ -140,8 +140,6 @@ public class MesAnnoncesController implements Observer{
       public void synchroJson(){
         //synchronise les annonces avec le json
 
-
-
         // Lecture dans le fichier JSON
           String filePath = null;
           try {
@@ -161,20 +159,18 @@ public class MesAnnoncesController implements Observer{
             //AJOUTER VERIF POUR QUE LES ANNONCES CORRESPONDENT AU USER CONNECTE
 
             //System.out.println(annonce.getString("referent"));
-            //if (app.getMainUser().getUserName()!=null){
-
-                //System.out.println(app.getMainUser().getUserName());
-                //if (annonce.getString("referent")==(app.getMainUser().getUserName())){
+            if (app.getMainUser()!=null){
+                if (annonce.getString("referent").equals(app.getMainUser().getUserName())){
+                    System.out.println("ok");
                     this.annonces.add(new Annonce(Integer.parseInt(key),annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
-                //}
+                }
             }
+        }
         }
 
         @Override
         public void update(String type) {
-            if (type == "annonce") {
-                initialize();
-            }
+            initialize();
         }
     }
 

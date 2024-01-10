@@ -22,6 +22,10 @@ public class MenuController implements Observer{
         if (app.getMainUser() != null){
             username.setText(app.getMainUser().getUserName());
         }
+        else{
+            username.setText("Bienvenue, veuillez vous connecter");
+        }
+        
     }
 
     @FXML

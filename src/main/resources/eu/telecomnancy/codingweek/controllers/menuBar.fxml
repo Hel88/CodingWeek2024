@@ -37,7 +37,7 @@
       </MenuBar>
       <HBox alignment="TOP_RIGHT" prefHeight="69.0" prefWidth="448.0">
          <children>
-            <Label fx:id="username" alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="218.0" text="Username" textAlignment="CENTER" />
+            <Label fx:id="username" alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="416.0" text="Bienvenue, veuillez vous connecter" textAlignment="CENTER" />
          </children>
       </HBox>
    </children>

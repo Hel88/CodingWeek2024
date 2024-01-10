@@ -1,10 +1,10 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
 
 public class ConnexionController implements Observer {
 

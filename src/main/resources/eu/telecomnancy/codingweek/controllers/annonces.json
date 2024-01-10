@@ -10,7 +10,7 @@
   "2": {
     "categorie": "catégorie",
     "prix": 20,
-    "referent": "referent",
+    "referent": "mdp",
     "titre": "tondeuse",
     "description": "tondre gazon",
     "actif": true
