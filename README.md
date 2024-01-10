@@ -118,13 +118,28 @@ There is no prerequisites to run the project.
     ```shell
    ./gradlew build
    ```
-4. Run the project
+4. Add files/ folder
+    ```shell
+    cp -r ./Last_Release/files ./build/libs/
+    ```
+5. Run the project
     ```shell
    ./gradlew run
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+### Run .jar
+
+1. Navigate to the folder where is located the .jar file
+2. Copy/Paste the "files/" folder
+3. Run the .jar with the required modules
+    ```
+    java --module-path PATH_TO_THE_MODULES_FOLDER --add-modules=javafx.base,javafx.controls,javafx.fxml,javafx.graphics,org.json,org.apache.commons.io,com.calendarfx.view -jar codingweek-xx-x.x-SNAPSHOT.jar
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- USAGE EXAMPLES -->
