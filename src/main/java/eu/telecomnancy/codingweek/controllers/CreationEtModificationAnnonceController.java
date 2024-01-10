@@ -10,7 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 
-public class CreationAnnonceController implements Observer{
+public class CreationEtModificationAnnonceController implements Observer{
 
     private Application app;
     private String categorie;
@@ -22,22 +22,20 @@ public class CreationAnnonceController implements Observer{
     @FXML
     private TextField prix;
     @FXML
-    private Button AddAnnonce;
+    private Button addAnnonce;
     @FXML
     private Label label;
     @FXML
     private Label messageErreur;
 
 
-    public CreationAnnonceController(Application app, String action) {
+    public CreationEtModificationAnnonceController(Application app, String action) {
         this.app = app;
         this.action = action;
         app.addObserver(this);
     }
 
-    @FXML
-    public void addAnnonce() throws IOException {
-
+    public void creerAnnonce() throws IOException{
         // Check if the price is an integer
         if (!prix.getText().matches("[0-9]+")) {
             messageErreur.setText("Le prix doit être un nombre entier.");
@@ -50,18 +48,32 @@ public class CreationAnnonceController implements Observer{
             return;
         }
 
-
         // Create the new annnounce
         app.getDataAnnoncesUtils().addAnnonce(titre.getText(), description.getText(), prix.getText(), categorie, app.getMainUser().getUserName());
-        
 
         app.notifyObservers("annonce");
         app.getSceneController().switchToMesAnnonces();
         //A FAIRE: refresh
     }
 
-    public void modifierAnnonce(){
+    public void modifierAnnonce() throws IOException{
+        // Check if the price is an integer
+        if (!prix.getText().matches("[0-9]+")) {
+            messageErreur.setText("Le prix doit être un nombre entier.");
+            return;
+        }
 
+        // Check if the title is empty
+        if (titre.getText().isEmpty()) {
+            messageErreur.setText("Le titre ne peut pas être vide.");
+            return;
+        }
+
+        // Create the new annnounce
+        app.getDataAnnoncesUtils().modifyAnnonce(app.getAnnonceAffichee().getId(), titre.getText(), description.getText(), prix.getText(), app.getAnnonceAffichee().getCategorie(), app.getMainUser().getUserName(), true);
+
+        app.notifyObservers("annonce");
+        app.getSceneController().switchToMesAnnonces();
     }
 
     @FXML
@@ -83,9 +95,14 @@ public class CreationAnnonceController implements Observer{
             categorie = app.getCategorieAnnonceACreer();
             System.out.println(app.getCategorieAnnonceACreer());
         }
-        if (type == "categorie") {
+        if (action == "modification") {
             label.setText("Modifier votre annonce");
-            AddAnnonce.setText("Modifier");
+            addAnnonce.setText("Modifier");
+            if (app.getAnnonceAffichee() != null) {
+                titre.setText(app.getAnnonceAffichee().getTitre());
+                description.setText(app.getAnnonceAffichee().getDescription());
+                prix.setText(app.getAnnonceAffichee().getPrix()+"");   
+            }
         }
     }
 }

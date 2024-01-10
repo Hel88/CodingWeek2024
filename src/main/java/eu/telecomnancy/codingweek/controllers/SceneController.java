@@ -56,8 +56,8 @@ public class SceneController {
         this.inscription = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("creationAnnonce.fxml"));
-        pageLoader.setControllerFactory(iC->new CreationAnnonceController(app, "creation"));
+        pageLoader.setLocation(getClass().getResource("creation_et_modificationAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new CreationEtModificationAnnonceController(app, "creation"));
         pageScene = new Scene(pageLoader.load());
         this.creationAnnonce = pageScene;
 
@@ -123,8 +123,8 @@ public class SceneController {
         this.recherche = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("creationAnnonce.fxml"));
-        pageLoader.setControllerFactory(iC->new CreationAnnonceController(app, "modification"));
+        pageLoader.setLocation(getClass().getResource("creation_et_modificationAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new CreationEtModificationAnnonceController(app, "modification"));
         pageScene = new Scene(pageLoader.load());
         this.modifierAnnonce = pageScene;
 
