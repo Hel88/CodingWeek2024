@@ -41,10 +41,34 @@ public class MesAnnoncesController implements Observer{
         app.getSceneController().switchToMonAnnonce();
     }
 
-    public void creerAnnonce(){
-        app.getSceneController().switchToCreationAnnonce();
-        }
+    // public void creerAnnonce(){
+    //     app.getSceneController().switchToCreationAnnonce();
+    // }
   
+    public void creerAnnonceDemandeService(){
+        app.setCategorieAnnonceACreer("DemandeService");
+        app.notifyObservers();
+        app.getSceneController().switchToCreationAnnonce();
+    }
+
+    public void creerAnnonceDemandeMateriel(){
+        app.setCategorieAnnonceACreer("DemandeMateriel");
+        app.notifyObservers();
+        app.getSceneController().switchToCreationAnnonce();
+    }
+
+    public void creerAnnonceOffreService(){
+        app.setCategorieAnnonceACreer("OffreService");
+        app.notifyObservers();
+        app.getSceneController().switchToCreationAnnonce();
+    }
+
+    public void creerAnnonceOffreMateriel(){
+        app.setCategorieAnnonceACreer("OffreMateriel");
+        app.notifyObservers();
+        app.getSceneController().switchToCreationAnnonce();
+    }
+
 
     @FXML
     public void initialize(){
