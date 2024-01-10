@@ -3,6 +3,7 @@ module eu.telecomnancy.codingweek {
     requires javafx.fxml;
     requires org.json;
     requires org.apache.commons.io;
+    requires com.calendarfx.view;
 
     requires transitive javafx.graphics;
 
