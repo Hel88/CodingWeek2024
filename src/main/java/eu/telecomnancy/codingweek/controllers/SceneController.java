@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
-
+import com.calendarfx.model.Entry;
 import eu.telecomnancy.codingweek.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +41,7 @@ public class SceneController {
         //app.setSceneController(this);
 
         this.layout = new BorderPane();
+        layout.setMinSize(1000,750);
 
         FXMLLoader pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("connexion.fxml"));
@@ -121,15 +122,16 @@ public class SceneController {
         pageScene = new Scene(pageLoader.load());
         this.recherche = pageScene;
 
-        pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("modifierAnnonce.fxml"));
-        pageLoader.setControllerFactory(iC->new ModifierAnnonceController(app));
-        pageScene = new Scene(pageLoader.load());
-        this.modifierAnnonce = pageScene;
-
         CalendarView calendarView = new CalendarView(); // (1)
-        Calendar birthdays = new Calendar("Birthdays"); // (2)
+        calendarView.setShowAddCalendarButton(false);
+        calendarView.setShowPrintButton(false);
+        calendarView.setShowSearchField(false);
+        calendarView.setShowAddCalendarButton(false);
+        calendarView.setShowPageToolBarControls(false);
+        Calendar birthdays = new Calendar("Rendez-vous"); // (2)
         Calendar holidays = new Calendar("Holidays");
+        Entry<String> dentistAppointment = new Entry<>("Dentiste");
+        dentistAppointment.setCalendar(birthdays);
         birthdays.setStyle(Calendar.Style.STYLE1); // (3)
         holidays.setStyle(Calendar.Style.STYLE2);
         CalendarSource myCalendarSource = new CalendarSource("My Calendars"); // (4)
@@ -162,7 +164,7 @@ public class SceneController {
         updateTimeThread.start();
         pageScene = new Scene(calendarView);
         this.calendar = pageScene;
-        this.demandes = pageScene;
+//        this.demandes = pageScene;
 
         layout.setTop(menu.getRoot());
         setView(this.connexion);
@@ -181,10 +183,12 @@ public class SceneController {
     }
 
     public void switchToConnexion(String userName) {
+        //primaryStage.setScene(this.inscription);
         setView(this.connexion);
     }
 
     public void switchToConnexion() {
+        //primaryStage.setScene(this.connexion);
         setView(this.connexion);
     }
 
