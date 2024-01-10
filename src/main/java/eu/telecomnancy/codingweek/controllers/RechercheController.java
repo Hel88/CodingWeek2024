@@ -17,6 +17,7 @@ import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.FileAccess;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -32,11 +33,17 @@ public class RechercheController {
     @FXML
     private TextField user;
     @FXML
-    private TextField categorie;
-    @FXML
     private TextField titre;
     @FXML
     private Button valider;
+    @FXML
+    private CheckBox offreMateriel;
+    @FXML
+    private CheckBox offreService;
+    @FXML
+    private CheckBox demandeMateriel;
+    @FXML
+    private CheckBox demandeService;
 
     public RechercheController(Application app) {
         this.app = app;
@@ -51,16 +58,32 @@ public class RechercheController {
     resultats.getChildren().clear();
 
     Pattern userPattern = Pattern.compile(user.getText(), Pattern.CASE_INSENSITIVE);
-    Pattern categoriePattern = Pattern.compile(categorie.getText(), Pattern.CASE_INSENSITIVE);
     Pattern titrePattern = Pattern.compile(titre.getText(), Pattern.CASE_INSENSITIVE);
 
-    rechercher(userPattern, categoriePattern, titrePattern);
+    rechercher(userPattern, titrePattern);
 
   }
 
+    public ArrayList<String> findCategorie(){
+        ArrayList<String> categories = new ArrayList<String>();
+        if (offreMateriel.isSelected()){
+            categories.add("OffreMateriel");
+        }
+        if (offreService.isSelected()){
+            categories.add("OffreService");
+        }
+        if (demandeMateriel.isSelected()){
+            categories.add("DemandeMateriel");
+        }
+        if (demandeService.isSelected()){
+            categories.add("DemandeService");
+        }
+        return categories;
+    }
+
     
 
-    public void rechercher(Pattern userPattern, Pattern categoriePattern, Pattern titrePattern) throws IOException{
+    public void rechercher(Pattern userPattern, Pattern titrePattern) throws IOException{
 
         //initialiser les annonces, lire dans le json
         // Read existing content from users.json
@@ -81,17 +104,15 @@ public class RechercheController {
         //matcher les annonces avec les critères de recherche et afficher celles qui correspndent
         for (Annonce annonce : this.annonces){
             Matcher userMatcher = userPattern.matcher(annonce.getReferent());
-            Matcher categorieMatcher = categoriePattern.matcher(annonce.getCategorie());
             Matcher titreMatcher = titrePattern.matcher(annonce.getTitre());
 
             // les definir avant le if parce que sinon ca marche pas (??)
             Boolean userMatch = userMatcher.find();
-            Boolean categorieMatch = categorieMatcher.find();
             Boolean titreMatch = titreMatcher.find();
     
-            if (annonce.getActif() && (userMatch || annonce.getReferent()==null) && (categorieMatch || annonce.getCategorie()==null) && (titreMatch || annonce.getTitre()==null)){
-                System.out.println("on est dans le if pour l'annonce : "+annonce.getTitre());
-                
+            if (annonce.getActif() && (userMatch || annonce.getReferent()==null) && (titreMatch || annonce.getTitre()==null)
+            && (findCategorie().contains(annonce.getCategorie()) || findCategorie().isEmpty())){
+
                 HBox hbox = new HBox();
                 hbox.setStyle("-fx-background-color: #eeeeee; prefHeight=\"279.0\"");
 
