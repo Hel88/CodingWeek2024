@@ -57,7 +57,7 @@ public class SceneController {
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("creationAnnonce.fxml"));
-        pageLoader.setControllerFactory(iC->new CreationAnnonceController(app));
+        pageLoader.setControllerFactory(iC->new CreationAnnonceController(app, "creation"));
         pageScene = new Scene(pageLoader.load());
         this.creationAnnonce = pageScene;
 
@@ -121,6 +121,12 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new RechercheController(app));
         pageScene = new Scene(pageLoader.load());
         this.recherche = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("creationAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new CreationAnnonceController(app, "modification"));
+        pageScene = new Scene(pageLoader.load());
+        this.modifierAnnonce = pageScene;
 
         CalendarView calendarView = new CalendarView(); // (1)
         calendarView.setShowAddCalendarButton(false);
