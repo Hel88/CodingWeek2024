@@ -8,8 +8,11 @@ import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 
 public class OffresEtDemandesController implements Observer{
 
@@ -69,20 +72,41 @@ public class OffresEtDemandesController implements Observer{
             hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
 
             Label titre = new Label(annonce.getTitre());
-            titre.setPrefWidth(300);
+            titre.setPrefWidth(200);
             titre.setPrefHeight(10);
             titre.setWrapText(true);
 
+            Label referent = new Label(annonce.getReferent());
+            referent.setPrefWidth(100);
+            referent.setPrefHeight(10);
+            referent.setWrapText(true);
+
+
+            HBox hboxPrix = new HBox();
+
+            hboxPrix.setPrefWidth(100);
+            hboxPrix.setPrefHeight(10);
+
             Label prix = new Label(annonce.getPrix()+"");
-            prix.setPrefWidth(100);
-            prix.setPrefHeight(10);
             prix.setWrapText(true);
+            hboxPrix.getChildren().add(prix);
+
+            Image image = new Image(getClass().getResource("images/florain.jpg").toExternalForm());
+            ImageView imagev = new ImageView(image);
+            
+            Rectangle clip = new Rectangle(image.getWidth(), image.getHeight());
+            clip.setArcWidth(20); // Modifier la courbure selon vos préférences
+            clip.setArcHeight(20);
+            imagev.setClip(clip);
+            imagev.setFitHeight(18);
+            imagev.setFitWidth(18);
+            hboxPrix.getChildren().add(imagev);
 
             Button details = new Button();
             details.setText("Voir les détails");
             details.setOnAction(e -> app.getSceneController().switchToConsulterAnnonce(annonce.getId()));
 
-            hbox.getChildren().addAll(titre, prix, details);
+            hbox.getChildren().addAll(titre, referent, hboxPrix, details);
 
             // choisir dans quelle catégorie afficher l'annonce
 
