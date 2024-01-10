@@ -1,17 +1,18 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
+import com.calendarfx.model.Entry;
 import eu.telecomnancy.codingweek.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class SceneController {
 
@@ -29,6 +30,8 @@ public class SceneController {
     Scene demandes;
     Scene profilPublic;
     Scene calendar;
+    Scene recherche;
+    Scene modifierAnnonce;
     BorderPane layout;
 
 
@@ -38,6 +41,7 @@ public class SceneController {
         //app.setSceneController(this);
 
         this.layout = new BorderPane();
+        layout.setMinSize(1000,750);
 
         FXMLLoader pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("connexion.fxml"));
@@ -112,9 +116,22 @@ public class SceneController {
         pageScene = new Scene(pageLoader.load());
         this.demandes = pageScene;
 
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("recherche.fxml"));
+        pageLoader.setControllerFactory(iC->new RechercheController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.recherche = pageScene;
+
         CalendarView calendarView = new CalendarView(); // (1)
-        Calendar birthdays = new Calendar("Birthdays"); // (2)
+        calendarView.setShowAddCalendarButton(false);
+        calendarView.setShowPrintButton(false);
+        calendarView.setShowSearchField(false);
+        calendarView.setShowAddCalendarButton(false);
+        calendarView.setShowPageToolBarControls(false);
+        Calendar birthdays = new Calendar("Rendez-vous"); // (2)
         Calendar holidays = new Calendar("Holidays");
+        Entry<String> dentistAppointment = new Entry<>("Dentiste");
+        dentistAppointment.setCalendar(birthdays);
         birthdays.setStyle(Calendar.Style.STYLE1); // (3)
         holidays.setStyle(Calendar.Style.STYLE2);
         CalendarSource myCalendarSource = new CalendarSource("My Calendars"); // (4)
@@ -147,7 +164,7 @@ public class SceneController {
         updateTimeThread.start();
         pageScene = new Scene(calendarView);
         this.calendar = pageScene;
-        this.demandes = pageScene;
+//        this.demandes = pageScene;
 
         layout.setTop(menu.getRoot());
         setView(this.connexion);
@@ -193,7 +210,7 @@ public class SceneController {
     }
 
     public void switchToProfilPublic(String id) {
-        System.out.println("id : "+id);
+        //System.out.println("id : "+id);
         setView(this.profilPublic);
     }
 
@@ -204,7 +221,7 @@ public class SceneController {
 
     public void switchToConsulterAnnonce(int id) {
         //primaryStage.setScene(this.consulterannonce);
-        System.out.println(id);
+        //System.out.println(id);
         setView(this.consulterannonce);
     }
 
@@ -214,6 +231,14 @@ public class SceneController {
 
     public void switchToDemandes() {
         setView(this.demandes);
+    }
+
+    public void switchToRecherche() {
+        setView(this.recherche);
+    }
+
+    public void switchToModifierAnnonce(){
+        setView(this.modifierAnnonce);
     }
 
 }

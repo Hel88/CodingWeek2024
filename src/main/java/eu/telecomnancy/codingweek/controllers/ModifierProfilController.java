@@ -1,12 +1,11 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
 
 public class ModifierProfilController implements Observer{
     
@@ -60,6 +59,7 @@ public class ModifierProfilController implements Observer{
     @Override
     public void update(String type){
         if (type == "user"){
+            if (app.getMainUser() == null) return;
             username.setText(app.getMainUser().getUserName());
             email.setText(app.getMainUser().getEmail());
             adresse.setText(app.getMainUser().getAddress());

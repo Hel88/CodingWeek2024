@@ -3,12 +3,15 @@ package eu.telecomnancy.codingweek.controllers;
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 
 public class MenuController implements Observer{
 
 
     @FXML
     private Label username;
+    @FXML
+    private MenuBar menuBar;
 
     private Application app;
 
@@ -20,9 +23,11 @@ public class MenuController implements Observer{
     @Override
     public void update(String type) {
         if (app.getMainUser() != null){
+            menuBar.setVisible(true);
             username.setText(app.getMainUser().getUserName());
         }
         else{
+            menuBar.setVisible(false);
             username.setText("Bienvenue, veuillez vous connecter");
         }
         
@@ -30,7 +35,10 @@ public class MenuController implements Observer{
 
     @FXML
     public void initialize(){
+        menuBar.setVisible(false);
         if (app.getMainUser() != null){
+            menuBar.setVisible(true);
+
             username.setText(app.getMainUser().getUserName());
         }
     }

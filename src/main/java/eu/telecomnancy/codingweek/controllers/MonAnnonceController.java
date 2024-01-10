@@ -3,6 +3,8 @@ package eu.telecomnancy.codingweek.controllers;
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 
 public class MonAnnonceController implements Observer {
@@ -24,21 +26,27 @@ public class MonAnnonceController implements Observer {
         app.addObserver(this);
     }
 
-    // @FXML
-    // public void initialize(){
-    //     //gère l'affichage
-    //     titre.setText(annonce.getTitre());
-    //     description.setText(annonce.getDescription());
-    //     prix.setText(annonce.getPrix()+"");
-    // }
-
     @FXML
     public void modifierAnnonce(){
-        // app.getSceneController().switchToModifierAnnonce();
+        app.getSceneController().switchToModifierAnnonce();
     }
 
     @FXML
     public void supprimerAnnonce(){
+        //pop up etes-vous sûr de vouloir supprimer cette annonce ?
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Etes-vous sûr de vouloir supprimer cette annonce ?");
+        alert.showAndWait();
+        
+        if (alert.getResult().getButtonData().isDefaultButton()) {
+            //suppression de l'annonce
+            System.out.println("suppression de " + annonce.getTitre());
+            //TODO
+            app.getSceneController().switchToMesAnnonces();
+        }
+
     }
 
     @Override
