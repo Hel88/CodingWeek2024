@@ -5,6 +5,8 @@ import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
+
 public class ConsulterAnnonceController implements Observer{
 
     private Application app;
@@ -47,7 +49,7 @@ public class ConsulterAnnonceController implements Observer{
     }
 
     @FXML
-    public void reserver(){
-        //TODO
+    public void reserver() throws IOException {
+        app.getDataTransactionUtils().addTransaction(String.valueOf(annonce.getId()), app.getMainUser().getUserName(), "En attente");
     }
 }
