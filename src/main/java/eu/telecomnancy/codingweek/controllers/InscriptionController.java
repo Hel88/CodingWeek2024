@@ -58,6 +58,7 @@ public class InscriptionController {
         if (app.getDataUsersUtils().isUserNameUnique(userName)) {
             // Add the user to the JSON file
             app.getDataUsersUtils().addUser(userName, password, email, lastName, firstName, address, city);
+            app.notifyObservers();
             app.getSceneController().switchToConnexion();
         } else {
             showAlert();

@@ -34,7 +34,7 @@ public class CreationAnnonceController {
         String referent = app.getMainUser().getUserName();
         creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), Integer.parseInt(prix.getText()), referent, true);
         
-
+        app.notifyObservers();
         app.getSceneController().switchToMesAnnonces();
         //A FAIRE: refresh
     }

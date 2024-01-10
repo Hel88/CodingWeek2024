@@ -20,7 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class MesAnnoncesController {
+public class MesAnnoncesController implements Observer{
     
     @FXML
     private VBox VBoxAnnonces;
@@ -32,7 +32,7 @@ public class MesAnnoncesController {
     public MesAnnoncesController(Application app) {
         this.app = app;
         annonces = new ArrayList<Annonce>();
-        
+        app.addObserver(this);
     }
 
     public void detailsAnnonce(Annonce annonce){
@@ -112,6 +112,10 @@ public class MesAnnoncesController {
             }
         }
 
+        @Override
+        public void update() {
+            initialize();
+        }
     }
 
 
