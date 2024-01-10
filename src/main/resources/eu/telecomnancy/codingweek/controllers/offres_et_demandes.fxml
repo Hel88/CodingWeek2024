@@ -5,18 +5,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.OffresEtDemandesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.OffresEtDemandesController">
    <children>
       <Label fx:id="serviceLabel" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="578.0" text="Offres de Services" textAlignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="11.0" layoutY="59.0" maxHeight="-Infinity" vbarPolicy="AS_NEEDED" prefHeight="133.0" prefWidth="578.0">
+      <ScrollPane layoutX="11.0" layoutY="59.0" maxHeight="-Infinity" prefHeight="133.0" prefWidth="578.0" vbarPolicy="AS_NEEDED">
             <VBox fx:id="services" spacing="10.0">
                 <padding>
                   <Insets bottom="10.0" top="10.0" />
@@ -28,12 +27,13 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="14.0" layoutY="241.0" maxHeight="-Infinity" vbarPolicy="AS_NEEDED" prefHeight="142.0" prefWidth="578.0">
+      <ScrollPane layoutX="14.0" layoutY="241.0" maxHeight="-Infinity" prefHeight="142.0" prefWidth="578.0" vbarPolicy="AS_NEEDED">
             <VBox fx:id="materiel" spacing="10.0">
                 <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </VBox>
       </ScrollPane>
+      <Button fx:id="recherche" layoutX="365.0" layoutY="25.0" mnemonicParsing="false" onAction="#versRecherche" prefHeight="24.0" prefWidth="224.0" text="Rechercher par critères" />
    </children>
 </AnchorPane>

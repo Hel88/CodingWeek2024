@@ -43,6 +43,10 @@ public class OffresEtDemandesController implements Observer{
         this.type = type;
     }
 
+    public void versRecherche(){
+        app.getSceneController().switchToRecherche();
+    }
+
     public void initialize() throws IOException {
 
         //initialiser les annonces, lire dans le json

@@ -29,6 +29,7 @@ public class SceneController {
     Scene demandes;
     Scene profilPublic;
     Scene calendar;
+    Scene recherche;
     BorderPane layout;
 
 
@@ -111,6 +112,12 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new OffresEtDemandesController(app, "Demande"));
         pageScene = new Scene(pageLoader.load());
         this.demandes = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("recherche.fxml"));
+        pageLoader.setControllerFactory(iC->new RechercheController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.recherche = pageScene;
 
         CalendarView calendarView = new CalendarView(); // (1)
         Calendar birthdays = new Calendar("Birthdays"); // (2)
@@ -214,6 +221,10 @@ public class SceneController {
 
     public void switchToDemandes() {
         setView(this.demandes);
+    }
+
+    public void switchToRecherche() {
+        setView(this.recherche);
     }
 
 }
