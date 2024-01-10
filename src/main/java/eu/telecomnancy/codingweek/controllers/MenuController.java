@@ -18,7 +18,7 @@ public class MenuController implements Observer{
     }
 
     @Override
-    public void update() {
+    public void update(String type) {
         if (app.getMainUser() != null){
             username.setText(app.getMainUser().getUserName());
         }
