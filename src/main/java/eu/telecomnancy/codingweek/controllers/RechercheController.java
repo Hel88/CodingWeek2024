@@ -96,8 +96,9 @@ public class RechercheController {
         JSONObject existingData = new JSONObject(fileContent);
 
         //parcourir le json et ajouter les annonces à la liste
-        for (int i=1;i<existingData.length();i++){
+        for (int i=1;i<existingData.length()+1;i++){
             JSONObject annonce = existingData.getJSONObject(i+"");
+            System.out.println(annonce);
             this.annonces.add(new Annonce(i,annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
         }
 
