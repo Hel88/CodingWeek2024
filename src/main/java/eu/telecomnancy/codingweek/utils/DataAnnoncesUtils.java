@@ -1,13 +1,13 @@
 package eu.telecomnancy.codingweek.utils;
 
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
+
+import org.json.JSONObject;
 
 public class DataAnnoncesUtils {
 
@@ -51,9 +51,19 @@ public class DataAnnoncesUtils {
 
         // Write the new annonce in the JSON file
         data.put(String.valueOf(id), annonceObject);
-        FileWriter file = new FileWriter(filePath);
-        file.write(data.toString());
-        file.flush();
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
+    }
+
+    public void deleteAnnonce(String id) throws IOException {
+        data.remove(id);
+        // Write the updated  in the JSON file
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
     }
 
     public ArrayList<Annonce> getAnnonces() throws IOException {

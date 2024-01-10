@@ -107,12 +107,11 @@ public class OffresEtDemandesController implements Observer{
 
     @Override
     public void update(String type) {
-        if (type == "annonce"){
             try {
                 initialize();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
+        
     }
 }
