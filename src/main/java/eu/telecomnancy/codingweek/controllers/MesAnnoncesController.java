@@ -7,12 +7,11 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Set;
 
-import eu.telecomnancy.codingweek.utils.FileAccess;
-import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.utils.FileAccess;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -77,6 +76,8 @@ public class MesAnnoncesController implements Observer{
         //gère l'affichage
         annonces = new ArrayList<Annonce>();
 
+        VBoxAnnonces.getChildren().clear();
+        
         synchroJson(); //synchronise les annonces avec le json
         
         //Affichage de chaque annonce
