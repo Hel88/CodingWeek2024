@@ -19,7 +19,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </HBox.margin>
       </ImageView>
-      <MenuBar prefHeight="28.0" prefWidth="73.0">
+      <MenuBar fx:id="menuBar" prefHeight="28.0" prefWidth="73.0">
         <menus>
           <Menu mnemonicParsing="false" text="Menu">
             <items>
