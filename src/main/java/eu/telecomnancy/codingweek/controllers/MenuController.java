@@ -74,9 +74,4 @@ public class MenuController implements Observer{
         app.notifyObservers("connexion");
         app.getSceneController().switchToConnexion();
     }
-
-    @FXML
-    public void connexion(){
-        app.getSceneController().switchToConnexion();
-    }
 }
