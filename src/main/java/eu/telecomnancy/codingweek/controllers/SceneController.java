@@ -5,8 +5,9 @@ import java.time.LocalTime;
 
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
-import com.calendarfx.view.CalendarView;
 import com.calendarfx.model.Entry;
+import com.calendarfx.view.CalendarView;
+
 import eu.telecomnancy.codingweek.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +29,6 @@ public class SceneController {
     Scene consulterannonce;
     Scene offres;
     Scene demandes;
-    Scene profilPublic;
     Scene calendar;
     Scene recherche;
     Scene modifierAnnonce;
@@ -78,12 +78,6 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new ModifierProfilController(app));
         pageScene = new Scene(pageLoader.load());
         this.modifierProfil = pageScene;
-
-        pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("profilPublic.fxml"));
-        pageLoader.setControllerFactory(iC->new ProfilPublicController(app));
-        pageScene = new Scene(pageLoader.load());
-        this.profilPublic = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("monAnnonce.fxml"));
@@ -215,10 +209,6 @@ public class SceneController {
         setView(this.modifierProfil);
     }
 
-    public void switchToProfilPublic(String id) {
-        //System.out.println("id : "+id);
-        setView(this.profilPublic);
-    }
 
     public void switchToMonAnnonce() {
         //System.out.println("id : "+id);

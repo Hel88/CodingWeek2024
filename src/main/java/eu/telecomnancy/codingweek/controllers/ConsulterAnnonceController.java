@@ -14,7 +14,13 @@ public class ConsulterAnnonceController implements Observer{
     @FXML
     private Label description;
     @FXML
-    private Label user;
+    private Label name;
+    @FXML
+    private Label prix;
+    @FXML
+    private Label categorie;
+    @FXML
+    private Label lieu;
     
     public ConsulterAnnonceController(Application app) {
         this.app = app;
@@ -23,11 +29,14 @@ public class ConsulterAnnonceController implements Observer{
 
     public void initialize() {
         annonce = app.getAnnonceAffichee();
-        if (annonce != null) {
+        if (annonce == null){return;} 
             titre.setText(annonce.getTitre());
             description.setText(annonce.getDescription());
-            user.setText(annonce.getReferent());
-        }
+            name.setText(annonce.getReferent());
+            prix.setText(annonce.getPrix()+"");
+            categorie.setText(annonce.getCategorie());
+            
+        
     }
 
     public void update(String type) {
@@ -39,11 +48,6 @@ public class ConsulterAnnonceController implements Observer{
     @FXML
     public void versMessagerie(){
         //app.getSceneController().switchToMessagerie();
-    }
-
-    @FXML
-    public void consulterProfil(){
-        app.getSceneController().switchToMonProfil();
     }
 
     @FXML
