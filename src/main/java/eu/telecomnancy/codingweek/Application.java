@@ -1,11 +1,16 @@
 package eu.telecomnancy.codingweek;
 
+import java.io.File;
 import java.util.ArrayList;
 
+import com.calendarfx.model.Calendar;
+import com.calendarfx.view.CalendarView;
 import eu.telecomnancy.codingweek.controllers.Observer;
 import eu.telecomnancy.codingweek.controllers.SceneController;
+import eu.telecomnancy.codingweek.save.Serialize;
 import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.DataUsersUtils;
+import eu.telecomnancy.codingweek.utils.FileAccess;
 import eu.telecomnancy.codingweek.utils.User;
 import javafx.stage.Stage;
 
@@ -16,7 +21,6 @@ public class Application extends javafx.application.Application {
     private User mainUser;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
     private Annonce annonceAffichee;
-    
 
     @Override
     public void start(Stage stage) {

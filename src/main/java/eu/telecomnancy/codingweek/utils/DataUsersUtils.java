@@ -4,6 +4,7 @@ import eu.telecomnancy.codingweek.Application;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -12,23 +13,24 @@ import java.security.NoSuchAlgorithmException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 
 public class DataUsersUtils {
 
     // Fields
-    public String filePath;
+    private String filePath;
     private static DataUsersUtils instance;
     private JSONObject data;
 
     // Private constructor to prevent instantiation
     private DataUsersUtils() throws IOException {
-        try {
-            filePath = IOUtils.toString(Objects.requireNonNull(getClass().getResource("users.json")), StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        data = new JSONObject(filePath);
+        FileAccess fileAccess = new FileAccess();
+        this.filePath = fileAccess.getPathOf("users.json");
+        File file = new File(filePath);
+        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        data = new JSONObject(fileContent);
     }
 
     // Public method to get the instance of the singleton

@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class CreationAnnonceController {
     
     private Application app;
@@ -21,7 +23,7 @@ public class CreationAnnonceController {
     }
 
     @FXML
-    public void addAnnonce(){
+    public void addAnnonce() throws IOException {
         // System.out.println("Creation Annonce");
         // System.out.println("Titre : " + titre.getText());
         // System.out.println("Description : " + description.getText());

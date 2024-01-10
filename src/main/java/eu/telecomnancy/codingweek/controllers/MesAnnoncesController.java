@@ -1,5 +1,6 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -7,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Set;
 
+import eu.telecomnancy.codingweek.utils.FileAccess;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
@@ -47,7 +49,7 @@ public class MesAnnoncesController {
   
 
     @FXML
-    public void initialize(){
+    public void initialize() throws IOException {
         //gère l'affichage
 
 
@@ -79,19 +81,17 @@ public class MesAnnoncesController {
         }
     }
 
-      public void synchroJson(){
+      public void synchroJson() throws IOException {
         //synchronise les annonces avec le json
 
 
 
         // Lecture dans le fichier JSON
-          String filePath = null;
-          try {
-              filePath = IOUtils.toString(this.getClass().getResource("annonces.json"), StandardCharsets.UTF_8);
-          } catch (IOException e) {
-              throw new RuntimeException(e);
-          }
-          JSONObject existingData = new JSONObject(filePath);
+          FileAccess fileAccess = new FileAccess();
+          String filePath = fileAccess.getPathOf("annonces.json");
+          File file = new File(filePath);
+          String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+          JSONObject existingData = new JSONObject(fileContent);
 
         //parcourir le json et ajouter les annonces à la liste
         

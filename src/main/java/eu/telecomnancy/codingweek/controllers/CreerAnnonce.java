@@ -1,5 +1,6 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -8,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.Set;
 
 import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.utils.FileAccess;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
@@ -16,17 +18,15 @@ public class CreerAnnonce {
 
     public CreerAnnonce() {}
 
-    public Annonce nouvelleAnnonce(String titre, String categorie, String description, int prix, String referent, boolean actif) {
+    public Annonce nouvelleAnnonce(String titre, String categorie, String description, int prix, String referent, boolean actif) throws IOException {
         //crée une nouvelle annonce avec le bon id et l'ajoute au json
         
         //lecture du json
-        String filePath = null;
-        try {
-            filePath = IOUtils.toString(this.getClass().getResource("annonces.json"), StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        JSONObject existingData = new JSONObject(filePath);
+        FileAccess fileAccess = new FileAccess();
+        String filePath = fileAccess.getPathOf("annonces.json");
+        File file = new File(filePath);
+        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        JSONObject existingData = new JSONObject(fileContent);
 
         //récupération du plus grand id
         Set<String> keys = existingData.keySet();
@@ -53,11 +53,9 @@ public class CreerAnnonce {
         existingData.put(annonce.getId()+"", jsonObject);
 
         //Écrire les données mises à jour dans users.json
-        try (FileWriter fileWriter = new FileWriter(filePath)) {
-            fileWriter.write(existingData.toString(2)); // Le '2' est pour le niveau d'indentation
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileWriter fileWriter = new FileWriter(filePath);
+        fileWriter.write(existingData.toString(2)); // Le '2' est pour le niveau d'indentation
+        fileWriter.flush();
 
         return annonce;
         }
