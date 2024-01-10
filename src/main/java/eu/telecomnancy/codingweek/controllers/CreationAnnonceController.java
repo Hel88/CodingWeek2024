@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -13,30 +14,28 @@ public class CreationAnnonceController implements Observer{
 
     private Application app;
     private String categorie;
+    private String action;
     @FXML
     private TextField titre;
     @FXML
     private TextArea description;
     @FXML
     private TextField prix;
-
+    @FXML
+    private Button AddAnnonce;
+    @FXML
+    private Label label;
     @FXML
     private Label messageErreur;
 
 
-    public CreationAnnonceController(Application app) {
+    public CreationAnnonceController(Application app, String action) {
         this.app = app;
+        this.action = action;
         app.addObserver(this);
     }
 
-    @FXML
-    public void addAnnonce() throws IOException {
-        // System.out.println("Creation Annonce");
-        // System.out.println("Titre : " + titre.getText());
-        // System.out.println("Description : " + description.getText());
-        // System.out.println("Prix : " + prix.getText());
-
-
+    public void creerAnnonce() throws NumberFormatException, IOException{
         if (prix.getText().matches("[0-9]+") == false) {
             messageErreur.setText("Le prix doit être un nombre entier.");
             return;
@@ -59,11 +58,32 @@ public class CreationAnnonceController implements Observer{
         //A FAIRE: refresh
     }
 
+    public void modifierAnnonce(){
+
+    }
+
+    @FXML
+    public void addAnnonce() throws IOException {
+        
+        // comme la page fxml se charge de la modification et de la création, le bouton doit changer d'action selon ce qu'on veut faire
+        if (action == "creation") {
+            creerAnnonce();
+        }
+        else if (action == "modification") {
+            modifierAnnonce();
+        }
+
+    }
+
     @Override
     public void update(String type) {
         if (type == "annonce") {
             categorie = app.getCategorieAnnonceACreer();
             System.out.println(app.getCategorieAnnonceACreer());
+        }
+        if (type == "categorie") {
+            label.setText("Modifier votre annonce");
+            AddAnnonce.setText("Modifier");
         }
     }
 }
