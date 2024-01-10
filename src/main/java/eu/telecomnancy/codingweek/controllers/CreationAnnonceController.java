@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class CreationAnnonceController {
+
 public class CreationAnnonceController implements Observer{
 
     private Application app;
