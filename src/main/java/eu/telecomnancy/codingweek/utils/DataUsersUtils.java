@@ -1,17 +1,16 @@
 package eu.telecomnancy.codingweek.utils;
 
-import eu.telecomnancy.codingweek.Application;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Objects;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -87,7 +86,7 @@ public class DataUsersUtils {
         return new User(userName, userObject.getString("password"), userObject.getString("email"), userObject.getString("lastName"), userObject.getString("firstName"), userObject.getString("address"), userObject.getString("city"), userObject.getInt("announces"), userObject.getInt("planning"), userObject.getInt("eval"));
     }
 
-    private String hashPassword(String password) {
+    public String hashPassword(String password) {
         try {
             // Create MessageDigest instance for MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -98,10 +97,10 @@ public class DataUsersUtils {
             // Get the hash's bytes
             byte[] bytes = md.digest();
 
-            // This bytes[] has bytes in decimal format. Convert it to hexadecimal format
+            // These bytes[] has bytes in decimal format. Convert it to hexadecimal format
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < bytes.length; i++) {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            for (byte aByte : bytes) {
+                sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
             }
 
             // Get complete hashed password in hex format
@@ -116,5 +115,25 @@ public class DataUsersUtils {
         User user = getUserByUserName(userName);
         String hashedPassword = hashPassword(password);
         return user.getPassword().equals(hashedPassword);
+    }
+
+    public void updateUser(User User) throws IOException {
+        // Method related to the modification of a user
+
+        // Create a JSON object with user information
+        JSONObject userObject = new JSONObject();
+        userObject.put("password", User.getPassword());
+        userObject.put("email", User.getEmail());
+        userObject.put("lastName", User.getLastName());
+        userObject.put("firstName", User.getFirstName());
+        userObject.put("address", User.getAddress());
+        userObject.put("city", User.getCity());
+        userObject.put("announces", User.getAnnounces());
+
+        // Add the user to the JSON file
+        data.put(User.getUserName(), userObject);
+        FileWriter file = new FileWriter(filePath);
+        file.write(data.toString());
+        file.flush();
     }
 }

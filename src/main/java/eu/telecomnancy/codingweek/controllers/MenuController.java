@@ -2,15 +2,38 @@ package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
-public class MenuController {
+public class MenuController implements Observer{
+
+
+    @FXML
+    private Label username;
 
     private Application app;
 
     public MenuController(Application app) {
         this.app = app;
+        app.addObserver(this);
     }
 
+    @Override
+    public void update(String type) {
+        if (app.getMainUser() != null){
+            username.setText(app.getMainUser().getUserName());
+        }
+        else{
+            username.setText("Bienvenue, veuillez vous connecter");
+        }
+        
+    }
+
+    @FXML
+    public void initialize(){
+        if (app.getMainUser() != null){
+            username.setText(app.getMainUser().getUserName());
+        }
+    }
     @FXML
     public void offres(){
         app.getSceneController().switchToOffres();
@@ -39,6 +62,13 @@ public class MenuController {
     }
     @FXML
     public void deconnexion(){
-        System.out.println("deconnexion");
+        app.setMainUser(null);
+        app.notifyObservers("connexion");
+        app.getSceneController().switchToConnexion();
+    }
+
+    @FXML
+    public void connexion(){
+        app.getSceneController().switchToConnexion();
     }
 }

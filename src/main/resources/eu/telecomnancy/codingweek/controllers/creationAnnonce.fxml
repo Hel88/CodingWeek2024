@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="376.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.CreationAnnonceController">
+<AnchorPane prefHeight="376.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.CreationAnnonceController">
    <children>
       <Label alignment="CENTER" layoutX="162.0" layoutY="14.0" prefHeight="46.0" prefWidth="277.0" text="Nouvelle annonce">
          <font>
@@ -17,7 +17,8 @@
       <Button fx:id="addAnnonce" layoutX="445.0" layoutY="315.0" mnemonicParsing="false" onAction="#addAnnonce" prefHeight="27.0" prefWidth="120.0" text="Mettre en ligne" />
       <TextField fx:id="titre" layoutX="59.0" layoutY="89.0" promptText="titre" />
       <TextField fx:id="prix" layoutX="59.0" layoutY="120.0" promptText="prix" />
-      <TextArea fx:id="description" layoutX="277.0" layoutY="80.0" prefHeight="200.0" prefWidth="262.0" promptText="description" />
-      <Button layoutX="65.0" layoutY="215.0" mnemonicParsing="false" text="choisir la disponibilité" />
+      <TextArea fx:id="description" layoutX="277.0" layoutY="80.0" prefHeight="200.0" prefWidth="262.0" promptText="description" wrapText="true" />
+      <Button layoutX="59.0" layoutY="255.0" mnemonicParsing="false" text="choisir la disponibilité" />
+      <Label fx:id="messageErreur" layoutX="59.0" layoutY="164.0" prefHeight="72.0" prefWidth="170.0" text=" " wrapText="true" />
    </children>
 </AnchorPane>

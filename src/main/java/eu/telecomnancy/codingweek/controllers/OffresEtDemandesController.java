@@ -3,8 +3,6 @@ package eu.telecomnancy.codingweek.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import eu.telecomnancy.codingweek.utils.FileAccess;
@@ -16,17 +14,14 @@ import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class OffresEtDemandesController {
+public class OffresEtDemandesController implements Observer{
 
-    private Application app;
+    private final Application app;
     private String type;
-    private ArrayList<Annonce> annonces = new ArrayList<Annonce>();
+    private final ArrayList<Annonce> annonces = new ArrayList<Annonce>();
     @FXML
     private VBox services;
     @FXML
@@ -40,7 +35,7 @@ public class OffresEtDemandesController {
     public OffresEtDemandesController(Application app, String type) {
         this.app = app;
         this.type = type;
-    
+        app.addObserver(this);
     }
 
     public void setType(String type){
@@ -115,6 +110,13 @@ public class OffresEtDemandesController {
                     services.getChildren().add(hbox);
                 }
             }
+        }    
+    }
+
+    @Override
+    public void update(String type) {
+        if (type == "annonce"){
+            initialize();
         }
     }
 }

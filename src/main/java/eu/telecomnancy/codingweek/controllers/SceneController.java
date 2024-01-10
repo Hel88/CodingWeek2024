@@ -29,7 +29,6 @@ public class SceneController {
     Scene demandes;
     Scene profilPublic;
     Scene calendar;
-    public CalendarView calendrier;
     BorderPane layout;
 
 
@@ -114,9 +113,6 @@ public class SceneController {
         this.demandes = pageScene;
 
         CalendarView calendarView = new CalendarView(); // (1)
-        calendarView.setShowDeveloperConsole(true);
-        calendarView.setShowAddCalendarButton(false);
-        calendarView.setShowPrintButton(false);
         Calendar birthdays = new Calendar("Birthdays"); // (2)
         Calendar holidays = new Calendar("Holidays");
         birthdays.setStyle(Calendar.Style.STYLE1); // (3)
@@ -151,8 +147,7 @@ public class SceneController {
         updateTimeThread.start();
         pageScene = new Scene(calendarView);
         this.calendar = pageScene;
-        this.calendrier = calendarView;
-//        this.demandes = pageScene;
+        this.demandes = pageScene;
 
         layout.setTop(menu.getRoot());
         setView(this.connexion);
