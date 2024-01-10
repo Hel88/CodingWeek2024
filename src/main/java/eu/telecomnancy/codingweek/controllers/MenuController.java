@@ -2,15 +2,34 @@ package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
-public class MenuController {
+public class MenuController implements Observer{
+
+
+    @FXML
+    private Label username;
 
     private Application app;
 
     public MenuController(Application app) {
         this.app = app;
+        app.addObserver(this);
     }
 
+    @Override
+    public void update() {
+        if (app.getMainUser() != null){
+            username.setText(app.getMainUser().getUserName());
+        }
+    }
+
+    @FXML
+    public void initialize(){
+        if (app.getMainUser() != null){
+            username.setText(app.getMainUser().getUserName());
+        }
+    }
     @FXML
     public void offres(){
         app.getSceneController().switchToOffres();

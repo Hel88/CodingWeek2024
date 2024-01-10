@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 
 public class MesAnnoncesController {
     
@@ -55,24 +56,59 @@ public class MesAnnoncesController {
         
         for (Annonce annonce : this.annonces){
             HBox hbox = new HBox();
-            hbox.getChildren().add(new Label(annonce.getTitre()));
-            hbox.getChildren().add(new Label(annonce.getPrix()+""));
+
+            hbox.setPrefWidth(600);
+
+            HBox hboxGauche = new HBox();
+            HBox hboxCentre = new HBox();
+            HBox hboxDroite = new HBox();
+
+            hbox.getChildren().add(hboxGauche);
+            hbox.getChildren().add(hboxCentre);
+            hbox.getChildren().add(hboxDroite);
+
+            hboxGauche.setPrefWidth(300);
+            hboxCentre.setPrefWidth(100);
+            hboxDroite.setPrefWidth(150);
+            
+            Label titrelabel = new Label(annonce.getTitre());
+            titrelabel.setStyle("-fx-font-weight: bold;");
+            hboxGauche.getChildren().add(titrelabel);
+
+            hboxGauche.getChildren().add(new Label("   "));
+
+            Label categorie = new Label(annonce.getCategorie());
+            categorie.setStyle("-fx-text-fill: gray;");
+            hboxGauche.getChildren().add(categorie);
+
+            Label prix = new Label("Prix: ");
+            prix.setStyle("-fx-text-fill: gray;");
+
+            hboxCentre.getChildren().add(prix);
+            hboxCentre.getChildren().add(new Label(annonce.getPrix()+""));
             Image image = new Image(getClass().getResource("images/florain.jpg").toExternalForm());
             ImageView imagev = new ImageView(image);
-            imagev.setFitHeight(15);
-            imagev.setFitWidth(15);
-            hbox.getChildren().add(imagev);
             
+            Rectangle clip = new Rectangle(image.getWidth(), image.getHeight());
+            clip.setArcWidth(20); // Modifier la courbure selon vos préférences
+            clip.setArcHeight(20);
+            imagev.setClip(clip);
+            imagev.setFitHeight(18);
+            imagev.setFitWidth(18);
+
+
+            hboxCentre.getChildren().add(imagev);
+
             Button button = new Button();
             button.setText("Voir les détails");
             button.setOnAction((event) -> {
                 detailsAnnonce(annonce);
             });
             button.setId(annonce.getId()+"");
-            hbox.getChildren().add(button);
-
+            hboxDroite.getChildren().add(button);
+            
             hbox.setStyle("-fx-background-color: #eeeeee;");
-            //hbox.setPrefHeight(279.0);synchroJson
+            hbox.setSpacing(10);
             VBoxAnnonces.getChildren().add(hbox);
         }
     }
