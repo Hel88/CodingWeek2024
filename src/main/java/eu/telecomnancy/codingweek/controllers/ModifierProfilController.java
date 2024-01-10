@@ -3,8 +3,9 @@ package eu.telecomnancy.codingweek.controllers;
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 public class ModifierProfilController implements Observer{
     
@@ -35,13 +36,21 @@ public class ModifierProfilController implements Observer{
     }
 
     @FXML
-    public void validerModifProfil(){
+    public void validerModifProfil() throws IOException {
 
         app.getMainUser().setEmail(email.getText());
         app.getMainUser().setAddress(adresse.getText());
         app.getMainUser().setCity(ville.getText());
         app.getMainUser().setLastName(nom.getText());
         app.getMainUser().setFirstName(prenom.getText());
+
+        if(!ancienPWD.getText().isEmpty() && !nouveauPWD.getText().isEmpty()){
+            if(app.getDataUsersUtils().checkPassword(app.getMainUser().getPassword(), ancienPWD.getText())){
+                app.getMainUser().setPassword(app.getDataUsersUtils().hashPassword(nouveauPWD.getText()));
+            }
+        }
+
+        app.getDataUsersUtils().updateUser(app.getMainUser());
 
         app.notifyObservers();
         app.getSceneController().switchToMonProfil();

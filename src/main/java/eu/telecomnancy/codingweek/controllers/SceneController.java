@@ -147,7 +147,7 @@ public class SceneController {
         updateTimeThread.start();
         pageScene = new Scene(calendarView);
         this.calendar = pageScene;
-//        this.demandes = pageScene;
+        this.demandes = pageScene;
 
         layout.setTop(menu.getRoot());
         setView(this.connexion);

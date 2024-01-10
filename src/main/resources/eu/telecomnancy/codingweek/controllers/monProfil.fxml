@@ -15,8 +15,8 @@
       </Label>
       <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="70.0" prefHeight="34.0" prefWidth="199.0" text="username" />
       <Label fx:id="lastName" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="135.0" prefHeight="34.0" prefWidth="199.0" text="Nom" />
-      <Label fx:id="firstName" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="169.0" prefHeight="34.0" prefWidth="199.0" text="Prénom" />
-      <Label fx:id="email" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="219.0" prefHeight="34.0" prefWidth="199.0" text="email" />
+      <Label fx:id="firstName" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="219.0" prefHeight="34.0" prefWidth="199.0" text="Prénom" />
+      <Label fx:id="email" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="169.0" prefHeight="34.0" prefWidth="199.0" text="email" />
       <Label fx:id="address" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="267.0" prefHeight="34.0" prefWidth="199.0" text="adresse" />
       <Label fx:id="city" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="301.0" prefHeight="34.0" prefWidth="199.0" text="Ville" />
       <Button layoutX="358.0" layoutY="236.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="147.0" text="Voir mon planning" />
