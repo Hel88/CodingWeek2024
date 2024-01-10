@@ -43,6 +43,12 @@ public class OffresEtDemandesController implements Observer{
         app.getSceneController().switchToRecherche();
     }
 
+    public void consulterAnnonce(Annonce annonce){
+        app.setAnnonceAffichee(annonce);
+        app.notifyObservers("annonce");
+        app.getSceneController().switchToConsulterAnnonce(annonce.getId());
+    }
+
     public void initialize() throws IOException {
 
         annonces = new ArrayList<Annonce>();
@@ -104,8 +110,8 @@ public class OffresEtDemandesController implements Observer{
 
             Button details = new Button();
             details.setText("Voir les détails");
-            details.setOnAction(e -> app.getSceneController().switchToConsulterAnnonce(annonce.getId()));
-
+            //details.setOnAction(e -> app.getSceneController().switchToConsulterAnnonce(annonce.getId()));
+            details.setOnAction(e->{consulterAnnonce(annonce);});
             hbox.getChildren().addAll(titre, referent, hboxPrix, details);
 
             // choisir dans quelle catégorie afficher l'annonce

@@ -1,13 +1,14 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class ConsulterAnnonceController {
+public class ConsulterAnnonceController implements Observer{
 
     private Application app;
-    private String id;
+    private Annonce annonce;
     @FXML
     private Label titre;
     @FXML
@@ -17,10 +18,22 @@ public class ConsulterAnnonceController {
     
     public ConsulterAnnonceController(Application app) {
         this.app = app;
+        app.addObserver(this);
     }
 
-    public void setId(String id){
-        this.id = id;
+    public void initialize() {
+        annonce = app.getAnnonceAffichee();
+        if (annonce != null) {
+            titre.setText(annonce.getTitre());
+            description.setText(annonce.getDescription());
+            user.setText(annonce.getReferent());
+        }
+    }
+
+    public void update(String type) {
+        if (type == "annonce") {
+            initialize();
+        }
     }
 
     @FXML
