@@ -31,11 +31,17 @@ public class CreationAnnonceController {
 
         CreerAnnonce creerAnnonce = new CreerAnnonce();
         //A FAIRE: récupérer la catégorie, le référent
-        String referent = app.getMainUser().getUserName();
-        creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), Integer.parseInt(prix.getText()), referent, true);
+        if (app.getMainUser() == null) {
+            String referent = "Anonyme";
+        }
+        else{
+            String referent = app.getMainUser().getUserName();
+            creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), Integer.parseInt(prix.getText()), referent, true);
+        }
         
-
+        System.out.println("dcvfzddvffe");
         app.getSceneController().switchToMesAnnonces();
+        System.out.println("sddfgfefrfb");
         //A FAIRE: refresh
     }
 }
