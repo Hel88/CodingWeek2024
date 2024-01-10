@@ -66,6 +66,26 @@ public class DataAnnoncesUtils {
         }
     }
 
+    public void modifyAnnonce(int id, String titre, String description, String prix, String categorie, String referent, boolean actif) throws IOException {
+        // Method related to the modification of an annonce
+        
+        // Create a JSON object with user information
+        JSONObject annonceObject = new JSONObject();
+        annonceObject.put("titre", titre);
+        annonceObject.put("description", description);
+        annonceObject.put("prix", prix);
+        annonceObject.put("categorie", categorie);
+        annonceObject.put("referent", referent);
+        annonceObject.put("actif", actif);
+
+        // Write the new annonce in the JSON file
+        data.put(String.valueOf(id), annonceObject);
+        FileWriter file = new FileWriter(filePath);
+        file.write(data.toString());
+        file.flush();
+
+    }
+
     public ArrayList<Annonce> getAnnonces() throws IOException {
         // Method related to the display of the annonces
 

@@ -131,4 +131,14 @@ public class DataUsersUtils {
         file.write(data.toString());
         file.flush();
     }
+
+    public void deleteUser(String userName) throws IOException {
+        // Method related to the deletion of a user
+
+        // Remove the user from the JSON file
+        data.remove(userName);
+        FileWriter file = new FileWriter(filePath);
+        file.write(data.toString());
+        file.flush();
+    }
 }
