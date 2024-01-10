@@ -9,33 +9,33 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
-public class DataAnnouncesUtils {
+public class DataAnnoncesUtils {
 
     // Fields
     private final String filePath;
-    private static DataAnnouncesUtils instance;
+    private static DataAnnoncesUtils instance;
     private final JSONObject data;
 
     // Private constructor to prevent instantiation
-    private DataAnnouncesUtils() throws IOException {
+    private DataAnnoncesUtils() throws IOException {
         FileAccess fileAccess = new FileAccess();
-        this.filePath = fileAccess.getPathOf("announces.json");
+        this.filePath = fileAccess.getPathOf("annonces.json");
         File file = new File(filePath);
         String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
         data = new JSONObject(fileContent);
     }
 
     // Public method to get the instance of the singleton
-    public static synchronized DataAnnouncesUtils getInstance() throws IOException {
+    public static synchronized DataAnnoncesUtils getInstance() throws IOException {
         if (instance == null) {
-            instance = new DataAnnouncesUtils();
+            instance = new DataAnnoncesUtils();
         }
         return instance;
     }
 
     // Methods
     public void addAnnonce(String titre, String description, String prix, String categorie, String referent) throws IOException {
-        // Method related to the creation of a new announce
+        // Method related to the creation of a new annonce
 
         // Create a JSON object with user information
         JSONObject annonceObject = new JSONObject();
@@ -46,10 +46,10 @@ public class DataAnnouncesUtils {
         annonceObject.put("referent", referent);
         annonceObject.put("actif", true);
 
-        // Get the id of the new announce
+        // Get the id of the new annonce
         int id = newId();
 
-        // Write the new announce in the JSON file
+        // Write the new annonce in the JSON file
         data.put(String.valueOf(id), annonceObject);
         FileWriter file = new FileWriter(filePath);
         file.write(data.toString());
@@ -57,7 +57,7 @@ public class DataAnnouncesUtils {
     }
 
     public ArrayList<Annonce> getAnnonces() throws IOException {
-        // Method related to the display of the announces
+        // Method related to the display of the annonces
 
         ArrayList<Annonce> annonces = new ArrayList<>();
 
@@ -69,12 +69,12 @@ public class DataAnnouncesUtils {
         return annonces;
     }
 
-    public ArrayList<Annonce> getAnnonceByUsername(String username) throws IOException {
-        // Method related to the display of the announces of a user
+    public ArrayList<Annonce> getAnnoncesByUsername(String username) throws IOException {
+        // Method related to the display of the annonces of a user
 
         ArrayList<Annonce> annonces = new ArrayList<>();
 
-        // Get the announces of the user
+        // Get the annonces of the user
         for (String key : data.keySet()) {
             JSONObject annonce = data.getJSONObject(key);
             if (annonce.getString("referent").equals(username)) {
@@ -85,9 +85,9 @@ public class DataAnnouncesUtils {
     }
 
     private int newId() {
-        // Method related to the creation of a new announce
+        // Method related to the creation of a new annonce
 
-        // Get the id of the last announce
+        // Get the id of the last annonce
         int id = 0;
         for (String key : data.keySet()) {
             int currentId = Integer.parseInt(key);
@@ -96,7 +96,7 @@ public class DataAnnouncesUtils {
             }
         }
 
-        // Return the id of the new announce
+        // Return the id of the new annonce
         return id + 1;
     }
 }

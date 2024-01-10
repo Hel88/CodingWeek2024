@@ -38,8 +38,8 @@ public class OffresEtDemandesController implements Observer{
 
     public void initialize() throws IOException {
 
-        if (app.getDataAnnouncesUtils() != null) {
-            this.annonces = app.getDataAnnouncesUtils().getAnnonces();
+        if (app.getDataAnnoncesUtils() != null) {
+            this.annonces = app.getDataAnnoncesUtils().getAnnonces();
         }
 
         // savoir si on doit afficher les offres ou les demandes

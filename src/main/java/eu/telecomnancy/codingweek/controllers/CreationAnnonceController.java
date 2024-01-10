@@ -46,7 +46,7 @@ public class CreationAnnonceController implements Observer{
 
 
         // Create the new annnounce
-        app.getDataAnnouncesUtils().addAnnonce(titre.getText(), description.getText(), prix.getText(), categorie, app.getMainUser().getUserName());
+        app.getDataAnnoncesUtils().addAnnonce(titre.getText(), description.getText(), prix.getText(), categorie, app.getMainUser().getUserName());
         
 
         app.notifyObservers("annonce");

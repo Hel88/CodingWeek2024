@@ -3,7 +3,7 @@ package eu.telecomnancy.codingweek;
 import eu.telecomnancy.codingweek.controllers.Observer;
 import eu.telecomnancy.codingweek.controllers.SceneController;
 import eu.telecomnancy.codingweek.utils.Annonce;
-import eu.telecomnancy.codingweek.utils.DataAnnouncesUtils;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import eu.telecomnancy.codingweek.utils.User;
 import javafx.stage.Stage;
@@ -14,7 +14,7 @@ public class Application extends javafx.application.Application {
 
     private SceneController sceneController;
     private DataUsersUtils dataUsersUtils;
-    private DataAnnouncesUtils dataAnnouncesUtils;
+    private DataAnnoncesUtils dataAnnoncesUtils;
     private User mainUser;
     private final ArrayList<Observer> observers = new ArrayList<Observer>();
     private Annonce annonceAffichee;
@@ -26,8 +26,8 @@ public class Application extends javafx.application.Application {
         try {
             this.sceneController = new SceneController(stage, this);
             this.dataUsersUtils = DataUsersUtils.getInstance();
-            this.dataAnnouncesUtils = DataAnnouncesUtils.getInstance();
-            System.out.println(dataAnnouncesUtils.getAnnonces());
+            this.dataAnnoncesUtils = DataAnnoncesUtils.getInstance();
+            System.out.println(dataAnnoncesUtils.getAnnonces());
             this.mainUser = null;
         } catch (Exception e) {
             System.out.println("Error while loading the scene controller");
@@ -46,8 +46,8 @@ public class Application extends javafx.application.Application {
     public DataUsersUtils getDataUsersUtils() {
         return dataUsersUtils;
     }
-    public DataAnnouncesUtils getDataAnnouncesUtils() {
-        return dataAnnouncesUtils;
+    public DataAnnoncesUtils getDataAnnoncesUtils() {
+        return dataAnnoncesUtils;
     }
 
     public User getMainUser() {

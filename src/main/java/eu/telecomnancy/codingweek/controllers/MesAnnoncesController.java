@@ -137,7 +137,7 @@ public class MesAnnoncesController implements Observer{
     public void synchroJson() throws IOException {
         //synchronise les annonces avec le json
         if (app.getMainUser() != null) {
-            this.annonces = app.getDataAnnouncesUtils().getAnnonceByUsername(app.getMainUser().getUserName());
+            this.annonces = app.getDataAnnoncesUtils().getAnnoncesByUsername(app.getMainUser().getUserName());
         }
     }
 
