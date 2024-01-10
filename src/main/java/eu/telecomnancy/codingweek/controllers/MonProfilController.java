@@ -41,6 +41,7 @@ public class MonProfilController implements Observer {
         @Override
     public void update(String type){
         if (type == "user"){
+            if (app.getMainUser() == null) return;
             username.setText(app.getMainUser().getUserName());
             email.setText(app.getMainUser().getEmail());
             address.setText(app.getMainUser().getAddress());
