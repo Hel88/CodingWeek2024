@@ -19,9 +19,9 @@
          </font>
       </Label>
       
-      <VBox layoutX="23.0" layoutY="59.0" prefHeight="279.0" prefWidth="561.0" spacing="10.0">
+      <VBox layoutX="23.0" layoutY="59.0" prefHeight="319.0" prefWidth="561.0" spacing="10.0">
          <children>
-            <ScrollPane>
+            <ScrollPane prefHeight="289.0" prefWidth="561.0">
             <VBox fx:id="VBoxAnnonces" spacing="10.0">
                   
 
@@ -48,12 +48,12 @@
                </children>
             </HBox>
 
-            <HBox prefHeight="65.0" prefWidth="561.0" spacing="10.0">
+            <HBox prefHeight="119.0" prefWidth="561.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="41.0" prefWidth="140.0" text="Preter du matériel" textAlignment="CENTER" wrapText="true" />
-                  <Button mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="41.0" prefWidth="140.0" text="Demander du matériel" textAlignment="CENTER" wrapText="true" />
-                  <Button mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="41.0" prefWidth="140.0" text="Proposer un service" textAlignment="CENTER" wrapText="true" />
-                  <Button mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="41.0" prefWidth="140.0" text="Demander un service" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="preterMateriel" mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="50.0" text="Preter du matériel" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="demamnderMateriel" mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="50.0" text="Demander du matériel" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="proposerService" mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="50.0" text="Proposer un service" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="demanderService" mnemonicParsing="false" onAction="#creerAnnonce" prefHeight="50.0" text="Demander un service" textAlignment="CENTER" wrapText="true" />
                </children>
             </HBox>
          </children>

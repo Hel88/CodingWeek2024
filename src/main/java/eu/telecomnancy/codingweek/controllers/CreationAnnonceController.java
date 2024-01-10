@@ -39,9 +39,7 @@ public class CreationAnnonceController {
             creerAnnonce.nouvelleAnnonce(titre.getText(), "catégorie", description.getText(), Integer.parseInt(prix.getText()), referent, true);
         }
         
-        System.out.println("dcvfzddvffe");
         app.getSceneController().switchToMesAnnonces();
-        System.out.println("sddfgfefrfb");
         //A FAIRE: refresh
     }
 }
