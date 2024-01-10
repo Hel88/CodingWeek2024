@@ -30,15 +30,13 @@ public class MesAnnoncesController implements Observer{
     }
 
     public void detailsAnnonce(Annonce annonce){
+        //on enregistre l'annonce à afficher pour y avoir accès dans ConsulterAnnonceController
         app.setAnnonceAffichee(annonce);
         app.notifyObservers("annonce");
         app.getSceneController().switchToMonAnnonce();
     }
 
-    // public void creerAnnonce(){
-    //     app.getSceneController().switchToCreationAnnonce();
-    // }
-  
+    //les différentes méthodes pour créer une annonce en fonction du bouton sur lequel on a cliqué
     public void creerAnnonceDemandeService(){
         app.setCategorieAnnonceACreer("DemandeService");
         app.notifyObservers("annonce");

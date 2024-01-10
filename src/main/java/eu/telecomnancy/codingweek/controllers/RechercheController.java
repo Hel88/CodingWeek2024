@@ -53,11 +53,11 @@ public class RechercheController {
 
     @FXML
     public void valider() throws IOException{
-    System.out.println("valider");
-    // on réinitialise la liste des annonces et la VBox
+    // on réinitialise la liste des annonces et la VBox pour ne pas les afficher en double à chaque clic sur valider
     this.annonces.clear();
     resultats.getChildren().clear();
 
+    // on définit les patterns à rechercher dans les annonces
     Pattern userPattern = Pattern.compile(user.getText(), Pattern.CASE_INSENSITIVE);
     Pattern titrePattern = Pattern.compile(titre.getText(), Pattern.CASE_INSENSITIVE);
 
@@ -66,6 +66,7 @@ public class RechercheController {
   }
 
     public ArrayList<String> findCategorie(){
+        // on définit les catégories à rechercher dans les annonces
         ArrayList<String> categories = new ArrayList<String>();
         if (offreMateriel.isSelected()){
             categories.add("OffreMateriel");
@@ -103,7 +104,10 @@ public class RechercheController {
         //     this.annonces.add(new Annonce(i,annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
         // }
 
-        annonces = DataAnnoncesUtils.getInstance().getAnnonces();
+        // On charge toutes les annonces
+        if (app.getDataAnnoncesUtils() != null) {
+            this.annonces = app.getDataAnnoncesUtils().getAnnonces();
+        }
 
         //matcher les annonces avec les critères de recherche et afficher celles qui correspndent
         for (Annonce annonce : this.annonces){
@@ -114,9 +118,12 @@ public class RechercheController {
             Boolean userMatch = userMatcher.find();
             Boolean titreMatch = titreMatcher.find();
     
+            //condition pour trouver les bonnes annonces
             if (annonce.getActif() && (userMatch || annonce.getReferent()==null) && (titreMatch || annonce.getTitre()==null)
             && (findCategorie().contains(annonce.getCategorie()) || findCategorie().isEmpty())){
 
+
+                //on affiche dynamiquement les annonces concernées dans la Vbox resultats
                 HBox hbox = new HBox();
                 hbox.setStyle("-fx-background-color: #eeeeee; prefHeight=\"279.0\"");
 

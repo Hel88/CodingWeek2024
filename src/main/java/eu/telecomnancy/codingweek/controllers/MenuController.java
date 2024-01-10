@@ -33,6 +33,7 @@ public class MenuController implements Observer{
         
     }
 
+    // mettre le menu sur les scènes si on est connecté
     @FXML
     public void initialize(){
         menuBar.setVisible(false);
@@ -42,6 +43,8 @@ public class MenuController implements Observer{
             username.setText(app.getMainUser().getUserName());
         }
     }
+
+    // switch vers la scène correspondant au bouton cliqué
     @FXML
     public void offres(){
         app.getSceneController().switchToOffres();
@@ -59,13 +62,11 @@ public class MenuController implements Observer{
     
     @FXML
     public void mesAnnonces(){
-        //System.out.println("mes annonces");
         app.getSceneController().switchToMesAnnonces();
     }
     
     @FXML
     public void monProfil(){
-        //System.out.println("profil");
         app.getSceneController().switchToMonProfil();
     }
     @FXML

@@ -59,7 +59,7 @@ public class MonProfilController implements Observer {
         }
     }
 
-        @Override
+    @Override
     public void update(String type){
         if (type == "user"){
             if (app.getMainUser() == null) return;

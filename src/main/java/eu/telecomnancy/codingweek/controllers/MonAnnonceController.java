@@ -30,6 +30,7 @@ public class MonAnnonceController implements Observer {
 
     @FXML
     public void modifierAnnonce(){
+        //on passe l'annonce à modifier à l'application
         app.setAnnonceAffichee(annonce);
         app.notifyObservers("annonce");
         app.getSceneController().switchToModifierAnnonce();
