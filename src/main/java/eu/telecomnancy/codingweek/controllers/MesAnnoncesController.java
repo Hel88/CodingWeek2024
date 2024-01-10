@@ -3,6 +3,7 @@ package eu.telecomnancy.codingweek.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -170,7 +171,11 @@ public class MesAnnoncesController implements Observer{
 
         @Override
         public void update(String type) {
-            initialize();
+            try {
+                initialize();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

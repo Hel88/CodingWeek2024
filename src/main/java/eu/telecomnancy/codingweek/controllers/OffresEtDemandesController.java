@@ -3,6 +3,7 @@ package eu.telecomnancy.codingweek.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 import eu.telecomnancy.codingweek.utils.FileAccess;
@@ -74,7 +75,7 @@ public class OffresEtDemandesController implements Observer{
 
         for (Annonce annonce : this.annonces){
             HBox hbox = new HBox();
-            hbox.setStyle("-fx-background-color: #eeeeee; prefHeight=\"279.0\"");
+            hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
 
             Label titre = new Label(annonce.getTitre());
             titre.setPrefWidth(300);
@@ -116,7 +117,11 @@ public class OffresEtDemandesController implements Observer{
     @Override
     public void update(String type) {
         if (type == "annonce"){
-            initialize();
+            try {
+                initialize();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
