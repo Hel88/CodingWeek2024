@@ -104,8 +104,7 @@ public class MesAnnoncesController implements Observer{
       public void synchroJson(){
         //synchronise les annonces avec le json
 
-
-
+        
         // Lecture dans le fichier JSON
           String filePath = null;
           try {
