@@ -84,16 +84,16 @@ public class MonProfilController implements Observer {
         app.getSceneController().calendarSwitchPreparation();
 
         // adding the user's calendar
-        app.getSceneController().calendarSwitchAddCalendarWithStyle(id, Calendar.Style.STYLE1);
+        app.getSceneController().calendarSwitchAddCalendarWithStyle(id, Calendar.Style.STYLE1, true);
         app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
 
         // adding Annonces and Transactions to the calendar
         ArrayList<Annonce> annonces = app.getDataAnnoncesUtils().getAnnoncesByUsername(app.getMainUser().getUserName());
         for (Annonce annonce : annonces) {
-            app.getSceneController().calendarSwitchAddCalendarWithStyle(annonce.getPlanning(), Calendar.Style.STYLE2);
+            app.getSceneController().calendarSwitchAddCalendarWithStyle(annonce.getPlanning(), Calendar.Style.STYLE2, true);
             ArrayList<Transaction> transactions = app.getDataTransactionUtils().getTransactionsByAnnonce(annonce);
             for (Transaction transaction : transactions) {
-                app.getSceneController().calendarSwitchAddCalendarWithStyle(transaction.getPlanning(), Calendar.Style.STYLE3);
+                app.getSceneController().calendarSwitchAddCalendarWithStyle(transaction.getPlanning(), Calendar.Style.STYLE3, false);
             }
         }
 
