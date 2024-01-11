@@ -83,14 +83,14 @@ public class DataCalendarUtils {
                 liste.add(infos);
                 toAdd.add(entry);
             }
-            System.out.println("toAdd : " + toAdd);
-            System.out.println("liste : " + liste);
+//            System.out.println("toAdd : " + toAdd);
+//            System.out.println("liste : " + liste);
             List<Entry<?>> reallyToAdd = new ArrayList<>();
             for (Entry<?> entry : toAdd) {
-                System.out.println("Boucle 2");
+//                System.out.println("Boucle 2");
                 Entry<?> minEntry = entry;
                 for (Entry<?> entry2 : calendar.findEntries(entry.getTitle())) {
-                    System.out.println("Boucle 3");
+//                    System.out.println("Boucle 3");
                     if (String.valueOf(entry.isFullDay()).equals(String.valueOf(entry2.isFullDay())) && entry.getStartTime().equals(entry2.getStartTime()) && entry.getEndTime().equals(entry2.getEndTime()) && entry.getZoneId().equals(entry2.getZoneId()) && String.valueOf(entry.isRecurring()).equals(String.valueOf(entry2.isRecurring())) && entry.getRecurrenceRule().equals(entry2.getRecurrenceRule())) {
                         if(entry.getStartDate().isBefore(entry2.getStartDate())){
                             minEntry = entry;
