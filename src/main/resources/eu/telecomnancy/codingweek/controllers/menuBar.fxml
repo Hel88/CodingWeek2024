@@ -34,6 +34,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#mesTransactions" text="Mes transactions" />
                   <MenuItem mnemonicParsing="false" onAction="#monProfil" text="Mon profil" />
                   <MenuItem mnemonicParsing="false" onAction="#deconnexion" text="Se déconnecter" />
+                <MenuItem mnemonicParsing="false" onAction="#allReports" text="Reports" />
             </items>
           </Menu>
         </menus>

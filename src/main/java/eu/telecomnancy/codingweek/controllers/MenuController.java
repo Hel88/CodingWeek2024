@@ -92,7 +92,13 @@ public class MenuController implements Observer{
         app.getSceneController().switchToMesTransactions();
     }
 
+    @FXML
     public void report() {
         app.getSceneController().switchToReportBug();
+    }
+
+    @FXML
+    public void allReports(){
+        app.getSceneController().switchToAllReports();
     }
 }

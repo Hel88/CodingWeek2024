@@ -1,6 +1,7 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
@@ -33,7 +34,11 @@ public class ReportBugController implements Observer {
             app.getDataReportUtils().addReport(username, message.getText(), date());
         }
 
-        app.getSceneController().switchToConnexion();
+        if (app.getMainUser() != null) {
+            app.getSceneController().switchToMonProfil();
+        } else {
+            app.getSceneController().switchToConnexion();
+        }
     }
 
     private String date() {
