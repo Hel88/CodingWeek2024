@@ -11,17 +11,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.MesAnnoncesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.MesAnnoncesController">
    <children>
-      <Label contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="578.0" text="Mes annonces" textAlignment="CENTER">
+      <Label contentDisplay="CENTER" layoutX="23.0" layoutY="-4.0" prefHeight="45.0" prefWidth="561.0" text="Mes annonces" textAlignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
       
-      <VBox layoutX="23.0" layoutY="59.0" prefHeight="319.0" prefWidth="561.0" spacing="10.0">
+      <VBox layoutX="23.0" layoutY="39.0" prefHeight="351.0" prefWidth="561.0" spacing="2.0">
          <children>
-            <ScrollPane prefHeight="289.0" prefWidth="561.0">
+            <ScrollPane prefHeight="125.0" prefWidth="561.0">
             <VBox fx:id="VBoxAnnonces" spacing="10.0">
                   
 
@@ -32,7 +32,7 @@
    </ScrollPane>
             <HBox prefHeight="14.0" prefWidth="561.0">
                <children>
-                  <ImageView fitHeight="26.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="20.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/plus.png" />
                      </image>
@@ -48,7 +48,7 @@
                </children>
             </HBox>
 
-            <HBox prefHeight="119.0" prefWidth="561.0">
+            <HBox prefHeight="42.0" prefWidth="561.0">
                <children>
                   <Button fx:id="preterMateriel" mnemonicParsing="false" onAction="#creerAnnonceOffreMateriel" prefHeight="41.0" prefWidth="140.0" text="Preter du matériel" textAlignment="CENTER" wrapText="true" />
                   <Button fx:id="demamnderMateriel" mnemonicParsing="false" onAction="#creerAnnonceDemandeMateriel" prefHeight="41.0" prefWidth="140.0" text="Demander du matériel" textAlignment="CENTER" wrapText="true" />
@@ -56,6 +56,18 @@
                   <Button fx:id="demanderService" mnemonicParsing="false" onAction="#creerAnnonceDemandeService" prefHeight="41.0" prefWidth="140.0" text="Demander un service" textAlignment="CENTER" wrapText="true" />
                </children>
             </HBox>
+            <Label prefHeight="36.0" prefWidth="592.0" text="Mes transactions">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ScrollPane prefHeight="125.0" prefWidth="561.0">
+               <VBox fx:id="reservations" spacing="10.0">
+                  <padding>
+                     <Insets bottom="10.0" top="10.0" />
+                  </padding>
+                </VBox>
+            </ScrollPane>  
          </children>
          <opaqueInsets>
             <Insets />

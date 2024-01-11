@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.utils.Transaction;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,9 +24,12 @@ public class MesAnnoncesController implements Observer{
 
     private ArrayList<Annonce> annonces;
 
+    private ArrayList<Transaction> transactions;
+
     public MesAnnoncesController(Application app) {
         this.app = app;
         annonces = new ArrayList<Annonce>();
+        transactions = new ArrayList<Transaction>();
         app.addObserver(this);
     }
 
@@ -72,7 +76,6 @@ public class MesAnnoncesController implements Observer{
         synchroJson(); //synchronise les annonces avec le json
         
         //Affichage de chaque annonce
-        
         for (Annonce annonce : this.annonces){
             HBox hbox = new HBox();
 
@@ -116,7 +119,6 @@ public class MesAnnoncesController implements Observer{
             imagev.setFitHeight(18);
             imagev.setFitWidth(18);
 
-
             hboxCentre.getChildren().add(imagev);
 
             Button button = new Button();
@@ -131,12 +133,56 @@ public class MesAnnoncesController implements Observer{
             hbox.setSpacing(10);
             VBoxAnnonces.getChildren().add(hbox);
         }
+
+        //affichage de chaque transaction
+
+        for (Transaction transaction : this.transactions){
+            System.out.println("transaction");
+            System.out.println(transaction);
+            HBox hbox = new HBox();
+            hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
+
+            Label id = new Label("(id : " + transaction.getId() + ")");
+            id.setPrefWidth(50);
+            id.setPrefHeight(10);
+            id.setWrapText(true);
+
+            Label client = new Label(transaction.getIdClient()+"");
+            client.setPrefWidth(200);
+            client.setPrefHeight(10);
+            client.setWrapText(true);
+
+            Label status = new Label(transaction.getStatus());
+            status.setPrefWidth(200);
+            status.setPrefHeight(10);
+            status.setWrapText(true);
+
+            hbox.getChildren().addAll(status, client, id);
+
+            if (transaction.getStatus().equals("En attente")) {
+                hbox.setStyle("-fx-background-color: #DAA520; prefHeight:\"279.0\"");
+            }
+            else if (transaction.getStatus().equals("Acceptée")) {
+                hbox.setStyle("-fx-background-color: #00FF00; prefHeight:\"279.0\"");
+            }
+            else if (transaction.getStatus().equals("Refusée")) {
+                hbox.setStyle("-fx-background-color: #FF0000; prefHeight:\"279.0\"");
+            }
+
+            VBoxAnnonces.getChildren().add(hbox);
+            }
+        
     }
 
     public void synchroJson() throws IOException {
         //synchronise les annonces avec le json
+        //synchrinuse les transacitons avec le json
         if (app.getMainUser() != null) {
             this.annonces = app.getDataAnnoncesUtils().getAnnoncesByUsername(app.getMainUser().getUserName());
+        //     this.transactions = app.getDataTransactionUtils().getTransactionsByUser(app.getMainUser());
+        //     System.out.println("getTransactionsByUser");
+        //     System.out.println(app.getMainUser());
+        //     System.out.println(app.getDataTransactionUtils().getTransactionsByUser(app.getMainUser()));
         }
     }
 
