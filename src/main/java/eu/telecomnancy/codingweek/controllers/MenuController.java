@@ -1,6 +1,7 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -89,5 +90,9 @@ public class MenuController implements Observer{
     public void mesTransactions(){
         app.notifyObservers("transactions");
         app.getSceneController().switchToMesTransactions();
+    }
+
+    public void report() {
+        app.getSceneController().switchToReportBug();
     }
 }

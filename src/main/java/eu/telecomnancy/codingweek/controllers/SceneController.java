@@ -43,6 +43,7 @@ public class SceneController {
     Scene mesTransactions;
     Scene noterUser;
     Scene userEvaluations;
+    Scene reportBug;
     BorderPane layout;
     CalendarView calendarView;
     CalendarSource myCalendarSource;
@@ -157,12 +158,18 @@ public class SceneController {
         pageScene = new Scene(pageLoader.load());
         this.mesTransactions = pageScene;
 
-
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("userEvaluations.fxml"));
         pageLoader.setControllerFactory(iC->new UserEvaluationsController(app));
         pageScene = new Scene(pageLoader.load());
         this.userEvaluations = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("reportBug.fxml"));
+        pageLoader.setControllerFactory(iC->new ReportBugController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.reportBug = pageScene;
+
 
         // on crée un calendrier
         calendarView = new CalendarView(); // (1)
@@ -279,14 +286,16 @@ public class SceneController {
         setView(this.modifierAnnonce);
     }
 
-   
-
     public void switchToNoterUser(Annonce annonce){
         setView(this.noterUser);
     }
 
     public void switchToUserEvaluations(String userName){
         setView(this.userEvaluations);
+    }
+
+    public void switchToReportBug(){
+        setView(this.reportBug);
     }
 
     public void switchToCalendar() throws IOException {
