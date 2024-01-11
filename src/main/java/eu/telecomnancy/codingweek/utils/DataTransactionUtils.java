@@ -2,6 +2,8 @@ package eu.telecomnancy.codingweek.utils;
 
 import com.calendarfx.model.Calendar;
 import org.json.JSONObject;
+import java.util.Scanner;
+
 
 import java.io.File;
 import java.io.FileWriter;
@@ -48,6 +50,22 @@ public class DataTransactionUtils {
         return transactions;
     }
 
+    public ArrayList<Transaction> getTransactionsByUser(User user) throws IOException {
+        // Method related to the display of the transactions of a user
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        // Get the transactions of the user
+        Scanner scanner = new Scanner(user.getTransactionsReferent());
+        scanner.useDelimiter(",");
+        while (scanner.hasNext()) {
+            String id = scanner.next();
+            JSONObject transaction = data.getJSONObject(id);
+            transactions.add(new Transaction(Integer.parseInt(id), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status")));
+        }
+        return transactions;
+    }
+
     public ArrayList<Transaction> getTransactionsByAnnonce(Annonce annonce) throws IOException {
         // Method related to the display of the transactions of a user
 
@@ -85,7 +103,8 @@ public class DataTransactionUtils {
         }
 
         // Add the transaction to the user
-        DataUsersUtils.getInstance().addTransactionToUser(DataAnnoncesUtils.getInstance().getAnnonce(Integer.parseInt(idAnnonce)).getReferent(), id);
+        DataUsersUtils.getInstance().addTransactionReferentToUser(DataAnnoncesUtils.getInstance().getAnnonce(Integer.parseInt(idAnnonce)).getReferent(), id);
+        DataUsersUtils.getInstance().addTransactionClientToUser(idClient, id);
     }
 
     private int newId() {
@@ -103,4 +122,31 @@ public class DataTransactionUtils {
         // Return the id of the new annonce
         return id + 1;
     }
+
+    public void accepterTransaction(Transaction transaction) throws IOException {
+        // Method related to the acceptance of a transaction
+
+        // Update the status of the transaction
+        JSONObject transactionObject = data.getJSONObject(String.valueOf(transaction.getId()));
+        transactionObject.put("status", "Acceptée");
+        data.put(String.valueOf(transaction.getId()), transactionObject);
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
+    }
+
+    public void refuserTransaction(Transaction transaction) throws IOException {
+        // Method related to the refusal of a transaction
+
+        // Update the status of the transaction
+        JSONObject transactionObject = data.getJSONObject(String.valueOf(transaction.getId()));
+        transactionObject.put("status", "Refusée");
+        data.put(String.valueOf(transaction.getId()), transactionObject);
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
+    }
+
 }

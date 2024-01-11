@@ -11,9 +11,11 @@ public class User {
     private String address;
     private String city;
     private String annonces;
-    private String transactions;
+    private String transactionsReferent;
+    private String transactionsClient;
     private int planning;
     private int eval;
+    private int solde;
 
     // Default constructor (needed for JSON deserialization)
     public User() {
@@ -21,7 +23,7 @@ public class User {
 
     // Constructor with parameters
     public User(String userName, String password, String firstName, String lastName, String email,
-                String address, String city, String annonces, String transactions, int planning, int eval) {
+                String address, String city, String annonces, String transactionsReferent, String transactionsClient, int planning, int eval, int solde) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
@@ -30,9 +32,11 @@ public class User {
         this.address = address;
         this.city = city;
         this.annonces = annonces;
-        this.transactions = transactions;
+        this.transactionsReferent = transactionsReferent;
+        this.transactionsClient = transactionsClient;
         this.planning = planning;
         this.eval = eval;
+        this.solde = solde;
     }
 
     // Getter methods
@@ -67,8 +71,12 @@ public class User {
         return annonces;
     }
 
-    public String getTransactions() {
-        return transactions;
+    public String getTransactionsReferent() {
+        return transactionsReferent;
+    }
+
+    public String getTransactionsClient() {
+        return transactionsClient;
     }
 
     public int getPlanning() {
@@ -77,6 +85,10 @@ public class User {
 
     public int getEval() {
         return eval;
+    }
+
+    public int getSolde() {
+        return solde;
     }
 
 
@@ -113,8 +125,12 @@ public class User {
         this.annonces = annonces;
     }
 
-    public void setTransactions(String transactions) {
-        this.transactions = transactions;
+    public void setTransactionsReferent(String transactionsReferent) {
+        this.transactionsReferent = transactionsReferent;
+    }
+
+    public void setTransactionsClient(String transactionsClient) {
+        this.transactionsClient = transactionsClient;
     }
 
     public void setPlanning(int planning) {
@@ -123,6 +139,10 @@ public class User {
 
     public void setEval(int eval) {
         this.eval = eval;
+    }
+
+    public void setSolde(int solde) {
+        this.solde = solde;
     }
 
     // toString method for better representation
@@ -136,9 +156,11 @@ public class User {
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", announces=" + annonces +
-                ", transactions=" + transactions +
+                ", transactionsReferent=" + transactionsReferent +
+                ", transactionsClient=" + transactionsClient +
                 ", planning=" + planning +
                 ", eval=" + eval +
+                ", solde=" + solde +
                 '}';
     }
 }

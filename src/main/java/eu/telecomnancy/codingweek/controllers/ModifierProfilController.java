@@ -1,12 +1,12 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+import java.util.Objects;
+
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
-import java.util.Objects;
 
 public class ModifierProfilController implements Observer{
     
@@ -81,6 +81,7 @@ public class ModifierProfilController implements Observer{
             nom.setText(app.getMainUser().getLastName());
             prenom.setText(app.getMainUser().getFirstName());
             note.setText(app.getMainUser().getEval()+"");
+            //ajouter maj solde
         }
     }
 }

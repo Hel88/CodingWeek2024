@@ -64,11 +64,14 @@ public class DataUsersUtils {
         userObject.put("address", address);
         userObject.put("city", city);
         userObject.put("annonces", "");
+        userObject.put("transactionsReferent", "");
+        userObject.put("transactionsClient", "");
         userObject.put("transactions", "");
         // Create a calendar for the user
         DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
         userObject.put("planning", String.valueOf(dataCalendarUtils.store(new Calendar("Agenda de "+ userName))));
         userObject.put("eval", 0);
+        userObject.put("solde", 0);
 
         // Add the user to the JSON file
         data.put(userName, userObject);
@@ -82,7 +85,7 @@ public class DataUsersUtils {
 
         // Retrieve the User object from the JSON file
         JSONObject userObject = data.getJSONObject(userName);
-        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactions"), userObject.getInt("planning"), userObject.getInt("eval"));
+        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactionsReferent"), userObject.getString("transactionsClient"), userObject.getInt("planning"), userObject.getInt("eval"), userObject.getInt("solde"));
     }
 
     public String hashPassword(String password) {
@@ -128,9 +131,11 @@ public class DataUsersUtils {
         userObject.put("address", User.getAddress());
         userObject.put("city", User.getCity());
         userObject.put("annonces", User.getAnnonces());
-        userObject.put("transactions", User.getTransactions());
+        userObject.put("transactionsReferent", User.getTransactionsReferent());
+        userObject.put("transactionsClient", User.getTransactionsClient());
         userObject.put("planning", User.getPlanning());
         userObject.put("eval", User.getEval());
+        userObject.put("solde", User.getSolde());
 
         // Add the user to the JSON file
         data.put(User.getUserName(), userObject);
@@ -171,16 +176,30 @@ public class DataUsersUtils {
         updateUser(user);
     }
 
-    public void addTransactionToUser(String referent, int id) throws IOException {
+    public void addTransactionReferentToUser(String referent, int id) throws IOException {
         User user = getUserByUserName(referent);
-        String transactions = user.getTransactions();
+        String transactions = user.getTransactionsReferent();
         if (transactions.isEmpty()) {
             transactions = String.valueOf(id);
         } else {
-            transactions = transactions + ", " + id;
+            transactions = transactions + "," + id;
         }
 
-        user.setTransactions(transactions);
+        user.setTransactionsReferent(transactions);
+
+        updateUser(user);
+    }
+
+    public void addTransactionClientToUser(String client, int id) throws IOException {
+        User user = getUserByUserName(client);
+        String transactions = user.getTransactionsClient();
+        if (transactions.isEmpty()) {
+            transactions = String.valueOf(id);
+        } else {
+            transactions = transactions + "," + id;
+        }
+
+        user.setTransactionsClient(transactions);
 
         updateUser(user);
     }
