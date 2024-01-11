@@ -1,13 +1,14 @@
 package eu.telecomnancy.codingweek.utils;
 
 public class Report {
+    private int id;
     private String referent;
     private String message;
     private String time;
 
     public Report() {}
 
-    public Report(String referent, String message, String time) {
+    public Report(String referent, String message, String time, int id) {
         this.referent = referent;
         this.message = message;
         this.time = time;
@@ -35,5 +36,9 @@ public class Report {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public int getId() {
+        return id;
     }
 }

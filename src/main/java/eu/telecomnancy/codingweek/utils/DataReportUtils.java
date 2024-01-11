@@ -58,7 +58,7 @@ public class DataReportUtils {
             String referent = reportObject.getString("referent");
             String message = reportObject.getString("message");
             String time = reportObject.getString("time");
-            reports.add(new Report(referent, message, time));
+            reports.add(new Report(referent, message, time, Integer.parseInt(key)));
         }
         return reports;
     }
@@ -71,7 +71,7 @@ public class DataReportUtils {
             if (referentReport.equals(referent)) {
                 String message = reportObject.getString("message");
                 String time = reportObject.getString("time");
-                reports.add(new Report(referent, message, time));
+                reports.add(new Report(referent, message, time, Integer.parseInt(key)));
             }
         }
         return reports;
