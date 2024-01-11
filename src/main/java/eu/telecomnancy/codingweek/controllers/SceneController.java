@@ -9,8 +9,6 @@ import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
 import com.calendarfx.view.DateControl;
-import com.calendarfx.model.Entry;
-import com.calendarfx.view.CalendarView;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
@@ -40,6 +38,7 @@ public class SceneController {
     Scene calendar;
     Scene recherche;
     Scene modifierAnnonce;
+    Scene mesTransactions;
     BorderPane layout;
     CalendarView calendarView;
     CalendarSource myCalendarSource;
@@ -133,6 +132,12 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new CreationEtModificationAnnonceController(app, "modification"));
         pageScene = new Scene(pageLoader.load());
         this.modifierAnnonce = pageScene;
+        
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("mesTransactions.fxml"));
+        pageLoader.setControllerFactory(iC->new MesTransactionsController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.mesTransactions = pageScene;
 
 
         // on crée un calendrier
@@ -280,6 +285,10 @@ public class SceneController {
 
     public void switchToModifierAnnonce(){
         setView(this.modifierAnnonce);
+    }
+
+    public void switchToMesTransactions(){
+        setView(this.mesTransactions);
     }
 
     public void switchToCalendar(int id) throws IOException {
