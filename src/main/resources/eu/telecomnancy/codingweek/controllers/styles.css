@@ -8,4 +8,18 @@
     -fx-background-position: center center;
 }
 
+.LabelViolet {
+    -fx-font-weight: bold;
+    -fx-text-fill: #791370;
+}
+
+.ButtonOrange:hover{
+    -fx-background-color: #FFA500;
+    -fx-background-radius: 20;
+}
+
+.ButtonArrondi{
+    -fx-background-radius: 30;
+}
+
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +14,8 @@ xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
 fx:controller="eu.telecomnancy.codingweek.controllers.OffresEtDemandesController"
 stylesheets="@styles.css" styleClass="AnchorPane">
    <children>
-      <Label fx:id="serviceLabel" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="578.0" text="Offres de Services" textAlignment="CENTER">
+      <Label fx:id="serviceLabel" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="578.0" text="Offres de Services" textAlignment="CENTER"
+      styleClass="LabelViolet" >
          <font>
             <Font size="30.0" />
          </font>
@@ -25,7 +27,8 @@ stylesheets="@styles.css" styleClass="AnchorPane">
                </padding>
             </VBox>
       </ScrollPane>
-      <Label fx:id="materielLabel" layoutX="14.0" layoutY="196.0" prefHeight="45.0" prefWidth="578.0" text="Prêt de Matériel">
+      <Label fx:id="materielLabel" layoutX="14.0" layoutY="196.0" prefHeight="45.0" prefWidth="578.0" text="Prêt de Matériel"
+      styleClass="LabelViolet" >
          <font>
             <Font size="30.0" />
          </font>
@@ -37,6 +40,10 @@ stylesheets="@styles.css" styleClass="AnchorPane">
                </padding>
             </VBox>
       </ScrollPane>
-      <Button fx:id="recherche" layoutX="365.0" layoutY="25.0" mnemonicParsing="false" onAction="#versRecherche" prefHeight="24.0" prefWidth="224.0" text="Rechercher par critères" />
+      <Button fx:id="recherche" layoutX="365.0" layoutY="25.0" mnemonicParsing="false" onAction="#versRecherche" prefHeight="24.0" prefWidth="224.0" text="Rechercher par critères" >
+         <styleClass>
+            <String fx:value="ButtonOrange" />
+            <String fx:value="ButtonArrondi" />
+         </styleClass> </Button>
    </children>
 </AnchorPane>

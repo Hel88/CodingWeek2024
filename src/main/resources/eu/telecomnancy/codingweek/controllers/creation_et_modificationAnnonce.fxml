@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -12,12 +13,17 @@ xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
 fx:controller="eu.telecomnancy.codingweek.controllers.CreationEtModificationAnnonceController"
 stylesheets="@styles.css" styleClass="AnchorPane">
    <children>
-      <Label fx:id="label" alignment="CENTER" layoutX="52.0" layoutY="14.0" prefHeight="46.0" prefWidth="497.0" text="Nouvelle annonce">
+      <Label fx:id="label" alignment="CENTER" layoutX="52.0" layoutY="14.0" prefHeight="46.0" prefWidth="497.0" text="Nouvelle annonce"
+      styleClass="LabelViolet" >
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="addAnnonce" layoutX="445.0" layoutY="315.0" mnemonicParsing="false" onAction="#addAnnonce" prefHeight="27.0" prefWidth="120.0" text="Mettre en ligne" />
+      <Button fx:id="addAnnonce" layoutX="445.0" layoutY="315.0" mnemonicParsing="false" onAction="#addAnnonce" prefHeight="27.0" prefWidth="120.0" text="Mettre en ligne" >
+      <styleClass>
+            <String fx:value="ButtonOrange" />
+            <String fx:value="ButtonArrondi" />
+         </styleClass></Button>
       <TextField fx:id="titre" layoutX="59.0" layoutY="89.0" promptText="titre" />
       <TextField fx:id="prix" layoutX="59.0" layoutY="120.0" promptText="prix" />
       <TextArea fx:id="description" layoutX="277.0" layoutY="80.0" prefHeight="200.0" prefWidth="262.0" promptText="description" wrapText="true" />
