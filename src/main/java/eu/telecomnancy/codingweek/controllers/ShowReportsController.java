@@ -1,9 +1,11 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.DataReportUtils;
 import eu.telecomnancy.codingweek.utils.Report;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -26,6 +28,13 @@ public class ShowReportsController implements Observer {
         public ShowReportsController(Application app) {
             this.app = app;
             app.addObserver(this);
+        }
+
+        public void consulterReport(Report report){
+            //on enregistre l'annonce à afficher pour y avoir accès dans ConsulterAnnonceController
+            app.setReportAffiche(report);
+            app.notifyObservers("report");
+//            app.getSceneController().switchToConsulterReport(report.getId());
         }
 
         public void initialize() throws IOException {
@@ -58,17 +67,21 @@ public class ShowReportsController implements Observer {
                 referent.setWrapText(true);
 
 
-                HBox hboxPrix = new HBox();
+                HBox hboxReport = new HBox();
 
-                hboxPrix.setPrefWidth(100);
-                hboxPrix.setPrefHeight(10);
+                hboxReport.setPrefWidth(100);
+                hboxReport.setPrefHeight(10);
 
-                Label prix = new Label(report.getTime());
-                prix.setWrapText(true);
-                hboxPrix.getChildren().add(prix);
+                Label time = new Label(report.getTime());
+                time.setWrapText(true);
+                hboxReport.getChildren().add(time);
 
-                hboxPrix.getChildren();
-                hbox.getChildren().addAll(titre, referent, hboxPrix);
+                hboxReport.getChildren();
+
+                Button details = new Button();
+                details.setText("Voir les détails");
+                details.setOnAction(e->{consulterReport(report);});
+                hbox.getChildren().addAll(titre, referent, hboxReport, details);
 
                 signalements.getChildren().add(hbox);
             }
