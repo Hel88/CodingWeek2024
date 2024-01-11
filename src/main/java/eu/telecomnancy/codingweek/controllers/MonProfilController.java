@@ -1,6 +1,10 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import com.calendarfx.model.Calendar;
+
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
@@ -8,11 +12,6 @@ import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-
-import java.io.IOException;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class MonProfilController implements Observer {
 
@@ -68,12 +67,12 @@ public class MonProfilController implements Observer {
     public void update(String type){
         if (type == "user"){
             if (app.getMainUser() == null) return;
-            username.setText(app.getMainUser().getUserName());
-            email.setText(app.getMainUser().getEmail());
-            address.setText(app.getMainUser().getAddress());
-            city.setText(app.getMainUser().getCity());
-            lastName.setText(app.getMainUser().getLastName());
-            firstName.setText(app.getMainUser().getFirstName());
+            username.setText("username: "+app.getMainUser().getUserName());
+            firstName.setText("firstname: "+app.getMainUser().getFirstName());
+            lastName.setText("lastname: "+app.getMainUser().getLastName());
+            email.setText("mail: "+app.getMainUser().getEmail());
+            address.setText("addresse: "+app.getMainUser().getAddress());
+            city.setText("city: "+app.getMainUser().getCity());
             eval.setText(app.getMainUser().getEval()+"");
         }
     }
