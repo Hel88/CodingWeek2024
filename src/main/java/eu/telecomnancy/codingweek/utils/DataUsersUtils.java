@@ -71,7 +71,7 @@ public class DataUsersUtils {
         DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
         userObject.put("planning", String.valueOf(dataCalendarUtils.store(new Calendar("Agenda de "+ userName))));
         userObject.put("eval", 0);
-        userObject.put("solde", 0);
+        userObject.put("solde", 100);
 
         // Add the user to the JSON file
         data.put(userName, userObject);
