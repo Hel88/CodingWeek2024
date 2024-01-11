@@ -1,13 +1,14 @@
 package eu.telecomnancy.codingweek.utils;
 
+import com.calendarfx.model.Calendar;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
-
-import org.json.JSONObject;
 
 public class DataAnnoncesUtils {
 
@@ -45,6 +46,7 @@ public class DataAnnoncesUtils {
         annonceObject.put("categorie", categorie);
         annonceObject.put("referent", referent);
         annonceObject.put("actif", true);
+        annonceObject.put("planning", String.valueOf(DataCalendarUtils.getInstance().store(new Calendar("Annonce : " + titre + " - " + referent))));
 
         // Get the id of the new annonce
         int id = newId();
@@ -66,7 +68,7 @@ public class DataAnnoncesUtils {
         }
     }
 
-    public void modifyAnnonce(int id, String titre, String description, String prix, String categorie, String referent, boolean actif) throws IOException {
+    public void modifyAnnonce(int id, String titre, String description, String prix, String categorie, String referent, boolean actif, int idCalendar) throws IOException {
         // Method related to the modification of an annonce
         
         // Create a JSON object with user information
@@ -77,6 +79,7 @@ public class DataAnnoncesUtils {
         annonceObject.put("categorie", categorie);
         annonceObject.put("referent", referent);
         annonceObject.put("actif", actif);
+        annonceObject.put("planning", idCalendar);
 
         // Write the new annonce in the JSON file
         data.put(String.valueOf(id), annonceObject);

@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -17,69 +16,43 @@
          </font>
       </Label>
       <Button fx:id="reserver" layoutX="202.0" layoutY="342.0" mnemonicParsing="false" onAction="#reserver" prefHeight="36.0" prefWidth="197.0" text="réserver" />
-      <HBox layoutX="84.0" layoutY="255.0" prefHeight="50.0" prefWidth="437.0">
+      <HBox layoutX="37.0" layoutY="96.0" prefHeight="189.0" prefWidth="528.0">
          <children>
-            <VBox prefHeight="41.0" prefWidth="245.0">
+            <VBox prefHeight="119.0" prefWidth="241.0">
                <children>
-                  <HBox prefHeight="36.0" prefWidth="197.0">
+                  <HBox prefHeight="160.0" prefWidth="222.0">
                      <children>
-                        <Label prefHeight="40.0" prefWidth="130.0" text="Heure de début: " />
-                        <TextField fx:id="heureDebut" prefHeight="40.0" prefWidth="80.0" />
+                        <Label alignment="TOP_LEFT" prefHeight="103.0" prefWidth="83.0" text="Description:" textFill="#adadad" wrapText="true" />
+                        <Label fx:id="description" alignment="TOP_LEFT" prefHeight="189.0" prefWidth="138.0" wrapText="true" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="45.0" prefWidth="200.0">
+                  <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="40.0" prefWidth="130.0" text="Heure de fin: " />
-                        <TextField fx:id="heureFin" prefHeight="40.0" prefWidth="80.0" />
+                        <Label alignment="TOP_LEFT" prefHeight="78.0" prefWidth="223.0" text="Prix:" textFill="#adadad" wrapText="true" />
+                        <Label fx:id="prix" alignment="TOP_LEFT" prefHeight="45.0" prefWidth="278.0" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="62.0" text="Lieu: " textFill="#adadad" />
+                        <Label fx:id="lieu" alignment="TOP_LEFT" prefHeight="42.0" prefWidth="167.0" wrapText="true" />
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <HBox prefHeight="36.0" prefWidth="126.0">
+            <Separator orientation="VERTICAL" prefHeight="195.0" prefWidth="42.0" />
+            <VBox prefHeight="195.0" prefWidth="253.0">
                <children>
-                  <Label prefHeight="16.0" prefWidth="45.0" text="Date:" />
-                  <TextField fx:id="date" prefHeight="25.0" prefWidth="82.0" />
-               </children>
-            </HBox>
-         </children>
-      </HBox>
-      <HBox layoutX="79.0" layoutY="119.0" prefHeight="100.0" prefWidth="472.0">
-         <children>
-            <VBox prefHeight="100.0" prefWidth="248.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="83.0" prefWidth="253.0">
                      <children>
-                        <Label prefHeight="78.0" prefWidth="223.0" text="Description:" textFill="#adadad" wrapText="true" />
-                        <Label fx:id="description" prefHeight="61.0" prefWidth="276.0" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label prefHeight="78.0" prefWidth="223.0" text="Prix:" textFill="#adadad" wrapText="true" />
-                        <Label fx:id="prix" prefHeight="83.0" prefWidth="247.0" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="62.0" text="Lieu: " textFill="#adadad" />
-                        <Label fx:id="lieu" prefHeight="42.0" prefWidth="167.0" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <VBox prefHeight="100.0" prefWidth="280.0">
-               <children>
-                  <HBox prefHeight="47.0" prefWidth="249.0">
-                     <children>
-                        <Label prefHeight="102.0" prefWidth="215.0" text="Proposé par: " textFill="#adadad" />
-                        <Label fx:id="name" prefHeight="68.0" prefWidth="250.0" wrapText="true" />
+                        <Label alignment="TOP_LEFT" prefHeight="83.0" prefWidth="88.0" text="Proposé par: " textFill="#adadad" />
+                        <Label fx:id="name" alignment="TOP_LEFT" prefHeight="167.0" prefWidth="135.0" wrapText="true" />
                      </children>
                   </HBox>
                   <HBox prefHeight="48.0" prefWidth="249.0">
                      <children>
                         <Label text="Email: " textFill="#adadad" />
-                        <Label fx:id="email" />
+                        <Label fx:id="email" alignment="TOP_LEFT" prefHeight="49.0" prefWidth="185.0" wrapText="true" />
                      </children>
                   </HBox>
                   <HBox prefHeight="53.0" prefWidth="249.0">
@@ -91,6 +64,7 @@
             </VBox>
          </children>
       </HBox>
-      <Label fx:id="categorie" alignment="CENTER" layoutX="190.0" layoutY="50.0" prefHeight="25.0" prefWidth="212.0" text="catégorie" textAlignment="CENTER" textFill="#adadad" wrapText="true" /> 
+      <Label fx:id="categorie" alignment="CENTER" layoutX="190.0" layoutY="50.0" prefHeight="25.0" prefWidth="212.0" text="catégorie" textAlignment="CENTER" textFill="#adadad" wrapText="true" />
+      <Button onAction="#choisirDispo" layoutX="133.0" layoutY="304.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="326.0" text="Selectionner une disponibilité" /> 
    </children>
 </AnchorPane>

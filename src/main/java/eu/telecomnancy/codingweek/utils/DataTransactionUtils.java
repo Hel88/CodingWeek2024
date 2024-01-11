@@ -1,5 +1,6 @@
 package eu.telecomnancy.codingweek.utils;
 
+import com.calendarfx.model.Calendar;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -71,6 +72,7 @@ public class DataTransactionUtils {
         transactionObject.put("idAnnonce", idAnnonce);
         transactionObject.put("idClient", idClient);
         transactionObject.put("status", status);
+        transactionObject.put("planning", String.valueOf(DataCalendarUtils.getInstance().store(new Calendar("Transaction : " + idAnnonce + " - " + idClient))));
 
         // Get the id of the new transaction
         int id = newId();

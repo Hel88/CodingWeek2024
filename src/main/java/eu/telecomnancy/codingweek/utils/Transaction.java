@@ -7,6 +7,7 @@ public class Transaction {
     private int idAnnonce;
     private String idClient;
     private String status;
+    private int planning;
 
     // Constructor
     public Transaction(int id, int idAnnonce, String idClient, String status) {
@@ -33,6 +34,10 @@ public class Transaction {
         return status;
     }
 
+    public int getPlanning() {
+        return planning;
+    }
+
 
     // Setters
     public void setId(int id) {
@@ -49,6 +54,10 @@ public class Transaction {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setPlanning(int planning) {
+        this.planning = planning;
     }
 
     // Methods
