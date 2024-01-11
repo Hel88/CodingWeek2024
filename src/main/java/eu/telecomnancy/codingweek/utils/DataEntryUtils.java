@@ -61,9 +61,6 @@ public class DataEntryUtils {
         entryObject.put("starttime", entry.getStartTime().toString());
         entryObject.put("endtime", entry.getEndTime().toString());
         entryObject.put("zoneid", entry.getZoneId().toString());
-        entryObject.put("recurring", entry.isRecurring());
-        entryObject.put("rrule", entry.getRecurrenceRule());
-        entryObject.put("recurrenceid", entry.getRecurrenceId());
         String id = newID();
         data.put(id, entryObject);
         FileWriter file = new FileWriter(filePath);
@@ -101,9 +98,6 @@ public class DataEntryUtils {
         LocalTime localTime2 = LocalTime.parse(endTime);
         ZoneId zoneId = ZoneId.of(entryObject.getString("zoneid"));
         entry.setInterval(localDate, localTime, localDate2, localTime2, zoneId);
-        if (entryObject.getBoolean("recurring")) {
-            entry.setRecurrenceRule(entryObject.getString("rrule"));
-        }
         return entry;
     }
 
