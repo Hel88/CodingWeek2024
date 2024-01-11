@@ -10,7 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.RechercheController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="600.0" 
+xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="eu.telecomnancy.codingweek.controllers.RechercheController"
+stylesheets="@styles.css" styleClass="AnchorPane">
    <children>
       <Label layoutX="14.0" layoutY="224.0" prefHeight="45.0" prefWidth="578.0" text="Résultats">
          <font>

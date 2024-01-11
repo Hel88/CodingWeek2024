@@ -11,7 +11,10 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="eu.telecomnancy.codingweek.controllers.NoterUserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
+xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+fx:controller="eu.telecomnancy.codingweek.controllers.NoterUserController"
+stylesheets="@styles.css" styleClass="AnchorPane">
    <children>
       <VBox layoutX="17.0" prefHeight="400.0" prefWidth="566.0" spacing="10.0">
          <children>

@@ -1,0 +1,11 @@
+/* styles.css */
+
+/* Style pour le titre de la fenêtre */
+.AnchorPane {
+    -fx-background-image: url('images/fond.png');
+    -fx-background-repeat: stretch; /* ou repeat si vous voulez répéter l'image */
+    -fx-background-size: contain; /* ou contain pour ajuster la taille */
+    -fx-background-position: center center;
+}
+
+
