@@ -39,7 +39,8 @@ public class Application extends javafx.application.Application {
 
     public static void main(String[] args) throws IOException {
         launch();
-        sceneController.calendarSave();
+        CalendarDisplay calendarDisplay = new CalendarDisplay(sceneController);
+        calendarDisplay.calendarSave();
         List<Integer> calendars = sceneController.getCalendarList();
 //        System.out.println(calendars);
     }

@@ -1,6 +1,7 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.CalendarDisplay;
 import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,9 +55,10 @@ public class CreationEtModificationAnnonceController implements Observer{
 
         app.notifyObservers("annonce");
         int id = DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning();
-        app.getSceneController().calendarSwitchPreparation();
-        app.getSceneController().calendarSwitchAddCalendar(id, true);
-        app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
+        CalendarDisplay calendarDisplay = new CalendarDisplay(app.getSceneController());
+        calendarDisplay.calendarSwitchPreparation();
+        calendarDisplay.calendarSwitchAddCalendar(id, true);
+        calendarDisplay.calendarSwitchSetCurrentCalendarToDefault();
         app.getSceneController().switchToCalendar();
     }
 
@@ -77,9 +79,10 @@ public class CreationEtModificationAnnonceController implements Observer{
         int idAnnonce = app.getDataAnnoncesUtils().modifyAnnonce(app.getAnnonceAffichee().getId(), titre.getText(), description.getText(), prix.getText(), app.getAnnonceAffichee().getCategorie(), app.getMainUser().getUserName(), true, app.getAnnonceAffichee().getPlanning());
 
         app.notifyObservers("annonce");
-        app.getSceneController().calendarSwitchPreparation();
-        app.getSceneController().calendarSwitchAddCalendar(DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning(), true);
-        app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
+        CalendarDisplay calendarDisplay = new CalendarDisplay(app.getSceneController());
+        calendarDisplay.calendarSwitchPreparation();
+        calendarDisplay.calendarSwitchAddCalendar(DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning(), true);
+        calendarDisplay.calendarSwitchSetCurrentCalendarToDefault();
         app.getSceneController().switchToCalendar();
     }
 

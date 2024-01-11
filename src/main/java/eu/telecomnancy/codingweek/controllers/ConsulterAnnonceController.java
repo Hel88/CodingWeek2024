@@ -5,10 +5,7 @@ import java.io.IOException;
 import com.calendarfx.model.Calendar;
 
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.Annonce;
-import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
-import eu.telecomnancy.codingweek.utils.DataTransactionUtils;
-import eu.telecomnancy.codingweek.utils.User;
+import eu.telecomnancy.codingweek.utils.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -84,11 +81,12 @@ public class ConsulterAnnonceController implements Observer{
         int idTransac = app.getDataTransactionUtils().addTransaction(String.valueOf(annonce.getId()), app.getMainUser().getUserName(), "En attente");
         app.notifyObservers("transactions");
         app.setMainUser(app.getDataUsersUtils().getUserByUserName(app.getMainUser().getUserName()));
-        app.getSceneController().calendarSwitchPreparation();
-        app.getSceneController().calendarSwitchAddCalendarWithStyle(DataTransactionUtils.getInstance().getTransaction(idTransac).getPlanning(), Calendar.Style.STYLE1, true);
-        app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
+        CalendarDisplay calendarDisplay = new CalendarDisplay(app.getSceneController());
+        calendarDisplay.calendarSwitchPreparation();
+        calendarDisplay.calendarSwitchAddCalendarWithStyle(DataTransactionUtils.getInstance().getTransaction(idTransac).getPlanning(), Calendar.Style.STYLE1, true);
+        calendarDisplay.calendarSwitchSetCurrentCalendarToDefault();
 
-        app.getSceneController().calendarSwitchAddCalendarWithStyle(DataAnnoncesUtils.getInstance().getAnnonce(DataTransactionUtils.getInstance().getTransaction(idTransac).getIdAnnonce()).getPlanning(), Calendar.Style.STYLE5, false);
+        calendarDisplay.calendarSwitchAddCalendarWithStyle(DataAnnoncesUtils.getInstance().getAnnonce(DataTransactionUtils.getInstance().getTransaction(idTransac).getIdAnnonce()).getPlanning(), Calendar.Style.STYLE5, false);
 
         app.getSceneController().switchToCalendar();
     }

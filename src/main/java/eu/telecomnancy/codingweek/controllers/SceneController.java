@@ -288,75 +288,45 @@ public class SceneController {
         setView(this.userEvaluations);
     }
 
-    public void calendarSave() throws IOException {
-        if(currentCalendarList != null) {
-            DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
-            for(Calendar calendar : currentCalendarList) {
-                dataCalendarUtils.store(calendar);
-            }
-        }
-    }
-
-    public void calendarSwitchPreparation() throws IOException {
-        calendarSave();
-
-        myCalendarSource.getCalendars().clear();
-        calendarView.getCalendarSources().clear();
-        calendarView.setDefaultCalendarProvider(new Callback<DateControl, Calendar>() {
-            @Override
-            public Calendar call(DateControl param) {
-                return null;
-            }
-        });
-    }
-
-    public void calendarSwitchSetCurrentCalendarToDefault() throws IOException {
-        defaultCalendar = currentCalendar;
-        calendarView.setDefaultCalendarProvider(new Callback<DateControl, Calendar>() {
-            @Override
-            public Calendar call(DateControl param) {
-                return defaultCalendar;
-            }
-        });
-    }
-
-    public void calendarSwitchAddCalendar(int id, boolean save) throws IOException {
-        Calendar calendar = DataCalendarUtils.getInstance().load(id);
-        calendarList.add(id);
-
-        currentCalendar = calendar;
-        DataCalendarUtils.getInstance().reload(currentCalendar);
-
-        if (save) {
-            currentCalendarList.add(currentCalendar);
-        }
-
-        myCalendarSource.getCalendars().addAll(currentCalendar);
-    }
-
-    public void calendarSwitchAddCalendarWithStyle(int id, Calendar.Style style, boolean save) throws IOException {
-        Calendar calendar = DataCalendarUtils.getInstance().load(id);
-        calendar.setStyle(style);
-        calendarList.add(id);
-
-        currentCalendar = calendar;
-        DataCalendarUtils.getInstance().reload(currentCalendar);
-
-        if (save) {
-            currentCalendarList.add(currentCalendar);
-        }
-
-        myCalendarSource.getCalendars().addAll(currentCalendar);
-    }
-
     public void switchToCalendar() throws IOException {
         calendarView.setRequestedTime(LocalTime.now());
         calendarView.getCalendarSources().addAll(myCalendarSource);
         setView(this.calendar);
     }
 
-    public Calendar getCurrentCalendar() {
+    public List<Calendar> getCurrentCalendarList(){
+        return currentCalendarList;
+    }
+
+    public CalendarSource getMyCalendarSource(){
+        return myCalendarSource;
+    }
+
+    public CalendarView getCalendarView(){
+        return calendarView;
+    }
+
+    public Calendar getCurrentCalendar(){
         return currentCalendar;
     }
 
+    public Calendar getDefaultCalendar(){
+        return defaultCalendar;
+    }
+
+    public void setDefaultCalendar(Calendar calendar){
+        defaultCalendar = calendar;
+    }
+
+    public void setCurrentCalendar(Calendar calendar){
+        currentCalendar = calendar;
+    }
+
+    public void setCurrentCalendarList(List<Calendar> calendars){
+        currentCalendarList = calendars;
+    }
+
+    public void getCurrentCalendarList(List<Calendar> calendars){
+        currentCalendarList = calendars;
+    }
 }

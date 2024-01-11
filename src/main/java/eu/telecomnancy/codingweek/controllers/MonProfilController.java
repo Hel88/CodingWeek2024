@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.calendarfx.model.Calendar;
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.utils.CalendarDisplay;
 import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import eu.telecomnancy.codingweek.utils.Transaction;
 import javafx.fxml.FXML;
@@ -81,19 +82,20 @@ public class MonProfilController implements Observer {
     public void displayPlanning() throws IOException {
         DataUsersUtils dataUsersUtils = DataUsersUtils.getInstance();
         int id = dataUsersUtils.getCalendarOf(app.getMainUser().getUserName());
-        app.getSceneController().calendarSwitchPreparation();
+        CalendarDisplay calendarDisplay = new CalendarDisplay(app.getSceneController());
+        calendarDisplay.calendarSwitchPreparation();
 
         // adding the user's calendar
-        app.getSceneController().calendarSwitchAddCalendarWithStyle(id, Calendar.Style.STYLE1, true);
-        app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
+        calendarDisplay.calendarSwitchAddCalendarWithStyle(id, Calendar.Style.STYLE1, true);
+        calendarDisplay.calendarSwitchSetCurrentCalendarToDefault();
 
         // adding Annonces and Transactions to the calendar
         ArrayList<Annonce> annonces = app.getDataAnnoncesUtils().getAnnoncesByUsername(app.getMainUser().getUserName());
         for (Annonce annonce : annonces) {
-            app.getSceneController().calendarSwitchAddCalendarWithStyle(annonce.getPlanning(), Calendar.Style.STYLE2, true);
+            calendarDisplay.calendarSwitchAddCalendarWithStyle(annonce.getPlanning(), Calendar.Style.STYLE2, true);
             ArrayList<Transaction> transactions = app.getDataTransactionUtils().getTransactionsByAnnonce(annonce);
             for (Transaction transaction : transactions) {
-                app.getSceneController().calendarSwitchAddCalendarWithStyle(transaction.getPlanning(), Calendar.Style.STYLE3, false);
+                calendarDisplay.calendarSwitchAddCalendarWithStyle(transaction.getPlanning(), Calendar.Style.STYLE3, false);
             }
         }
 
