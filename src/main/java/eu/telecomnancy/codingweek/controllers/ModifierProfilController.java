@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ModifierProfilController implements Observer{
     
@@ -71,7 +72,7 @@ public class ModifierProfilController implements Observer{
 
     @Override
     public void update(String type){
-        if (type == "user"){
+        if (Objects.equals(type, "user")){
             if (app.getMainUser() == null) return;
             username.setText(app.getMainUser().getUserName());
             email.setText(app.getMainUser().getEmail());

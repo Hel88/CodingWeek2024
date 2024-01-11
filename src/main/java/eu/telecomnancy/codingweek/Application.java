@@ -1,14 +1,14 @@
 package eu.telecomnancy.codingweek;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.calendarfx.model.Calendar;
 
 import eu.telecomnancy.codingweek.controllers.Observer;
 import eu.telecomnancy.codingweek.controllers.SceneController;
 import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
+import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
 import eu.telecomnancy.codingweek.utils.DataTransactionUtils;
 import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import eu.telecomnancy.codingweek.utils.User;
@@ -33,7 +33,6 @@ public class Application extends javafx.application.Application {
             this.dataUsersUtils = DataUsersUtils.getInstance();
             this.dataAnnoncesUtils = DataAnnoncesUtils.getInstance();
             this.dataTransactionUtils = DataTransactionUtils.getInstance();
-            System.out.println(dataAnnoncesUtils.getAnnonces());
             this.mainUser = null;
         } catch (Exception e) {
             System.out.println("Error while loading the scene controller");
@@ -41,9 +40,14 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         launch();
-        List<Calendar> calendars = sceneController.getCalendarList();
+        if(sceneController.getCurrentCalendar() != null) {
+            DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
+            dataCalendarUtils.store(sceneController.getCurrentCalendar());
+        }
+        List<Integer> calendars = sceneController.getCalendarList();
+        System.out.println(calendars);
     }
 
     public SceneController getSceneController() {

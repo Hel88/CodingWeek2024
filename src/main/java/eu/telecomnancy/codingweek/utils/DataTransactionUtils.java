@@ -1,5 +1,6 @@
 package eu.telecomnancy.codingweek.utils;
 
+import com.calendarfx.model.Calendar;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -7,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
+
 
 public class DataTransactionUtils {
 
@@ -32,6 +35,34 @@ public class DataTransactionUtils {
         return instance;
     }
 
+    public ArrayList<Transaction> getTransactions() throws IOException {
+        // Method related to the display of the transactions
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        // Get the transactions
+        for (String key : data.keySet()) {
+            JSONObject transaction = data.getJSONObject(key);
+            transactions.add(new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status")));
+        }
+        return transactions;
+    }
+
+    public ArrayList<Transaction> getTransactionsByAnnonce(Annonce annonce) throws IOException {
+        // Method related to the display of the transactions of a user
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        // Get the transactions of the user
+        for (String key : data.keySet()) {
+            JSONObject transaction = data.getJSONObject(key);
+            if (transaction.getString("idAnnonce").equals(annonce.getId()+"")) {
+                transactions.add(new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status")));
+            }
+        }
+        return transactions;
+    }
+
     // Methods
     public void addTransaction(String idAnnonce, String idClient, String status) throws IOException {
         // Method related to the creation of a new transaction
@@ -41,6 +72,7 @@ public class DataTransactionUtils {
         transactionObject.put("idAnnonce", idAnnonce);
         transactionObject.put("idClient", idClient);
         transactionObject.put("status", status);
+        transactionObject.put("planning", String.valueOf(DataCalendarUtils.getInstance().store(new Calendar("Transaction : " + idAnnonce + " - " + idClient))));
 
         // Get the id of the new transaction
         int id = newId();
@@ -51,6 +83,9 @@ public class DataTransactionUtils {
             file.write(data.toString());
             file.flush();
         }
+
+        // Add the transaction to the user
+        DataUsersUtils.getInstance().addTransactionToUser(DataAnnoncesUtils.getInstance().getAnnonce(Integer.parseInt(idAnnonce)).getReferent(), id);
     }
 
     private int newId() {

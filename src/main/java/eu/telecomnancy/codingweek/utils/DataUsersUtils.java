@@ -1,5 +1,7 @@
 package eu.telecomnancy.codingweek.utils;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,8 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import org.json.JSONObject;
 
 
 public class DataUsersUtils {
@@ -62,7 +62,8 @@ public class DataUsersUtils {
         userObject.put("firstName", firstName);
         userObject.put("address", address);
         userObject.put("city", city);
-        userObject.put("announces", 0);
+        userObject.put("annonces", "");
+        userObject.put("transactions", "");
         userObject.put("planning", planning);
         userObject.put("eval", 0);
 
@@ -78,7 +79,7 @@ public class DataUsersUtils {
 
         // Retrieve the User object from the JSON file
         JSONObject userObject = data.getJSONObject(userName);
-        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getInt("announces"), userObject.getInt("planning"), userObject.getInt("eval"));
+        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactions"), userObject.getInt("planning"), userObject.getInt("eval"));
     }
 
     public String hashPassword(String password) {
@@ -123,7 +124,8 @@ public class DataUsersUtils {
         userObject.put("firstName", User.getFirstName());
         userObject.put("address", User.getAddress());
         userObject.put("city", User.getCity());
-        userObject.put("announces", User.getAnnounces());
+        userObject.put("annonces", User.getAnnonces());
+        userObject.put("transactions", User.getTransactions());
         userObject.put("planning", User.getPlanning());
         userObject.put("eval", User.getEval());
 
@@ -150,5 +152,33 @@ public class DataUsersUtils {
         // Create a JSON object with user information
         JSONObject userObject = data.getJSONObject(userName);
         return userObject.getInt("planning");
+    }
+
+    public void addAnnonceToUser(String referent, int id) throws IOException {
+        User user = getUserByUserName(referent);
+        String annonces = user.getAnnonces();
+        if (annonces.isEmpty()) {
+            annonces = String.valueOf(id);
+        } else {
+            annonces = annonces + ", " + id;
+        }
+
+        user.setAnnonces(annonces);
+
+        updateUser(user);
+    }
+
+    public void addTransactionToUser(String referent, int id) throws IOException {
+        User user = getUserByUserName(referent);
+        String transactions = user.getTransactions();
+        if (transactions.isEmpty()) {
+            transactions = String.valueOf(id);
+        } else {
+            transactions = transactions + ", " + id;
+        }
+
+        user.setTransactions(transactions);
+
+        updateUser(user);
     }
 }

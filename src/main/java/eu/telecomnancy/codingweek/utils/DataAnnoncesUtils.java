@@ -1,13 +1,15 @@
 package eu.telecomnancy.codingweek.utils;
 
+import com.calendarfx.model.Calendar;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
-
-import org.json.JSONObject;
+import java.util.Scanner;
 
 public class DataAnnoncesUtils {
 
@@ -45,6 +47,7 @@ public class DataAnnoncesUtils {
         annonceObject.put("categorie", categorie);
         annonceObject.put("referent", referent);
         annonceObject.put("actif", true);
+        annonceObject.put("planning", String.valueOf(DataCalendarUtils.getInstance().store(new Calendar("Annonce : " + titre + " - " + referent))));
 
         // Get the id of the new annonce
         int id = newId();
@@ -55,6 +58,9 @@ public class DataAnnoncesUtils {
             file.write(data.toString());
             file.flush();
         }
+
+        // Add the annonce to the user
+        DataUsersUtils.getInstance().addAnnonceToUser(referent, id);
     }
 
     public void deleteAnnonce(String id) throws IOException {
@@ -66,7 +72,7 @@ public class DataAnnoncesUtils {
         }
     }
 
-    public void modifyAnnonce(int id, String titre, String description, String prix, String categorie, String referent, boolean actif) throws IOException {
+    public void modifyAnnonce(int id, String titre, String description, String prix, String categorie, String referent, boolean actif, int idCalendar) throws IOException {
         // Method related to the modification of an annonce
         
         // Create a JSON object with user information
@@ -77,6 +83,7 @@ public class DataAnnoncesUtils {
         annonceObject.put("categorie", categorie);
         annonceObject.put("referent", referent);
         annonceObject.put("actif", actif);
+        annonceObject.put("planning", idCalendar);
 
         // Write the new annonce in the JSON file
         data.put(String.valueOf(id), annonceObject);
@@ -94,23 +101,32 @@ public class DataAnnoncesUtils {
         // Get the announces
         for (String key : data.keySet()) {
             JSONObject annonce = data.getJSONObject(key);
-            annonces.add(new Annonce(Integer.parseInt(key), annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
+            annonces.add(new Annonce(Integer.parseInt(key), annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif"), annonce.getInt("planning")));
         }
         return annonces;
+    }
+
+    public Annonce getAnnonce(int id) throws IOException {
+        // Method related to the display of the annonces
+
+        JSONObject annonce = data.getJSONObject(String.valueOf(id));
+        return new Annonce(id, annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif"), annonce.getInt("planning"));
     }
 
     public ArrayList<Annonce> getAnnoncesByUsername(String username) throws IOException {
         // Method related to the display of the annonces of a user
 
         ArrayList<Annonce> annonces = new ArrayList<>();
+        User user = DataUsersUtils.getInstance().getUserByUserName(username);
 
-        // Get the annonces of the user
-        for (String key : data.keySet()) {
-            JSONObject annonce = data.getJSONObject(key);
-            if (annonce.getString("referent").equals(username)) {
-                annonces.add(new Annonce(Integer.parseInt(key), annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif")));
-            }
+        Scanner scanner = new Scanner(user.getAnnonces());
+        scanner.useDelimiter(",");
+        while (scanner.hasNext()) {
+            String id = scanner.next();
+            JSONObject annonce = data.getJSONObject(id);
+            annonces.add(new Annonce(Integer.parseInt(id), annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif"), annonce.getInt("planning")));
         }
+
         return annonces;
     }
 

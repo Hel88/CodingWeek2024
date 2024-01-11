@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.nio.file.Files.readAllBytes;
@@ -61,39 +62,64 @@ public class DataCalendarUtils {
         // Check if it exists
         try {
             int idCalendar = Integer.parseInt(calendar.getShortName());
-            JSONObject calendarObject = new JSONObject();
-            calendarObject.put("titre", calendar.getName());
-            StringBuilder entries = new StringBuilder();
-            for (Entry<?> entry : calendar.findEntries("")) {
-                DataEntryUtils dataEntryUtils = DataEntryUtils.getInstance();
-                int id = dataEntryUtils.store(entry);
-                entries.append(String.valueOf(id)).append(",");
-            }
-            calendarObject.put("entries", entries.toString());
-            data.put(String.valueOf(idCalendar), calendarObject);
-            FileWriter file = new FileWriter(filePath);
-            file.write(data.toString());
-            file.flush();
-            return idCalendar;
-
+            return save(idCalendar, calendar);
         }
         catch (NumberFormatException e) {
             int idCalendar = newID();
-            JSONObject calendarObject = new JSONObject();
-            calendarObject.put("titre", calendar.getName());
-            StringBuilder entries = new StringBuilder();
-            for (Entry<?> entry : calendar.findEntries("")) {
-                DataEntryUtils dataEntryUtils = DataEntryUtils.getInstance();
-                int id = dataEntryUtils.store(entry);
-                entries.append(String.valueOf(id)).append(",");
-            }
-            calendarObject.put("entries", entries.toString());
-            data.put(String.valueOf(idCalendar), calendarObject);
-            FileWriter file = new FileWriter(filePath);
-            file.write(data.toString());
-            file.flush();
-            return idCalendar;
+            return save(idCalendar, calendar);
         }
+    }
+
+    private int save(int idCalendar, Calendar calendar) throws IOException {
+        JSONObject calendarObject = new JSONObject();
+        calendarObject.put("titre", calendar.getName());
+        StringBuilder entries = new StringBuilder();
+        List<List<String>> liste = new ArrayList<>(new ArrayList<>());
+        List<Entry<?>> toAdd = new ArrayList<>();
+        for (Entry<?> entry : calendar.findEntries("")) {
+            List<String> infos = new ArrayList<>();
+            infos.add(entry.getTitle());
+            infos.add(String.valueOf(entry.isFullDay()));
+            infos.add(entry.getStartTime().toString());
+            infos.add(entry.getEndTime().toString());
+            infos.add(entry.getZoneId().toString());
+            infos.add(String.valueOf(entry.isRecurring()));
+            infos.add(entry.getRecurrenceRule());
+            if (liste.contains(infos)) {
+                continue;
+            }
+            liste.add(infos);
+            toAdd.add(entry);
+        }
+        List<Entry<?>> reallyToAdd = new ArrayList<>();
+        for (Entry<?> entry : toAdd) {
+            Entry<?> minEntry = entry;
+            for (Entry<?> entry2 : calendar.findEntries(entry.getTitle())) {
+                if (String.valueOf(entry.isFullDay()).equals(String.valueOf(entry2.isFullDay())) && entry.getStartTime().equals(entry2.getStartTime()) && entry.getEndTime().equals(entry2.getEndTime()) && entry.getZoneId().equals(entry2.getZoneId()) && String.valueOf(entry.isRecurring()).equals(String.valueOf(entry2.isRecurring()))) {
+                    if(entry.isRecurring()) {
+                        if (!entry.getRecurrenceRule().equals(entry2.getRecurrenceRule())) {
+                            continue;
+                        }
+                    }
+                    if (minEntry.getStartDate().isAfter(entry2.getStartDate())) {
+                        minEntry = entry2;
+                    }
+                }
+            }
+            if(!reallyToAdd.contains(minEntry)){
+                reallyToAdd.add(minEntry);
+            }
+        }
+        for (Entry<?> entry : reallyToAdd) {
+            int id = DataEntryUtils.getInstance().store(entry);
+            entries.append(String.valueOf(id)).append(",");
+        }
+        calendarObject.put("entries", entries.toString());
+        data.put(String.valueOf(idCalendar), calendarObject);
+        FileWriter file = new FileWriter(filePath);
+        file.write(data.toString());
+        file.flush();
+        return idCalendar;
     }
 
     private int newID() {
@@ -119,5 +145,9 @@ public class DataCalendarUtils {
             Entry<?> entry = dataEntryUtils.load(Integer.parseInt(entryId));
             calendar.addEntry(entry);
         }
+    }
+
+    public int getId(Calendar calendar) throws IOException {
+        return this.store(calendar);
     }
 }

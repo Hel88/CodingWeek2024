@@ -22,7 +22,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" layoutX="187.0" layoutY="68.0" prefHeight="44.0" prefWidth="228.0" text="username">
+      <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" layoutX="187.0" layoutY="68.0" prefHeight="44.0" prefWidth="228.0" text="Nom d'utilisateur">
          <font>
             <Font size="16.0" />
          </font></Label>

@@ -43,7 +43,7 @@ public class SceneController {
     BorderPane layout;
     CalendarView calendarView;
     CalendarSource myCalendarSource;
-    List<Calendar> calendarList = new java.util.ArrayList<Calendar>();
+    List<Integer> calendarList = new java.util.ArrayList<Integer>();
     Calendar currentCalendar;
 
 
@@ -52,7 +52,7 @@ public class SceneController {
         this.primaryStage = primaryStage;
 
         this.layout = new BorderPane();
-        layout.setMinSize(1000,750);
+        layout.setMinSize(1000,850);
 
         // on charge toutes les scènes et on les associe à leur controller
         FXMLLoader pageLoader = new FXMLLoader();
@@ -142,8 +142,8 @@ public class SceneController {
         calendarView.setShowSearchField(false);
         calendarView.setShowAddCalendarButton(false);
         calendarView.setShowPageToolBarControls(false);
-        calendarView.setShowSourceTray(false);
-        calendarView.setShowSourceTrayButton(false);
+//        calendarView.setShowSourceTray(false);
+//        calendarView.setShowSourceTrayButton(false);
 
 //        Calendar holidays = new Calendar("Holidays");
 //        Entry<String> dentistAppointment = new Entry<>("Dentiste");
@@ -210,7 +210,6 @@ public class SceneController {
 
 
 
-
         // on définit la scene de base : on affiche la page de connexion au lancement de l'application
         layout.setTop(menu.getRoot());
         setView(this.connexion);
@@ -223,7 +222,7 @@ public class SceneController {
         layout.setCenter(scene.getRoot());
     }
 
-    public List<Calendar> getCalendarList(){
+    public List<Integer> getCalendarList(){
         return calendarList;
     }
 
@@ -283,17 +282,18 @@ public class SceneController {
         setView(this.modifierAnnonce);
     }
 
-    public void switchToCalendar(Calendar calendar) throws IOException {
+    public void switchToCalendar(int id) throws IOException {
         if(currentCalendar != null) {
             DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
             dataCalendarUtils.store(currentCalendar);
         }
-        calendarList.add(calendar);
-        currentCalendar = calendar;
+        Calendar calendar = DataCalendarUtils.getInstance().load(id);
         DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
+        calendarList.add(id);
+        currentCalendar = calendar;
         dataCalendarUtils.reload(currentCalendar);
         myCalendarSource.getCalendars().clear();
-        myCalendarSource.getCalendars().add(currentCalendar);
+        myCalendarSource.getCalendars().addAll(currentCalendar);
         calendarView.getCalendarSources().clear();
         Callback<DateControl,Calendar> test = calendarView.getDefaultCalendarProvider();
         calendarView.setDefaultCalendarProvider(new Callback<DateControl, Calendar>() {
@@ -304,6 +304,10 @@ public class SceneController {
         });
         calendarView.getCalendarSources().addAll(myCalendarSource);
         setView(this.calendar);
+    }
+
+    public Calendar getCurrentCalendar() {
+        return currentCalendar;
     }
 
 }

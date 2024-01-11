@@ -67,23 +67,20 @@ public class MonProfilController implements Observer {
     public void update(String type){
         if (type == "user"){
             if (app.getMainUser() == null) return;
-            username.setText("username: "+app.getMainUser().getUserName());
-            firstName.setText("firstname: "+app.getMainUser().getFirstName());
-            lastName.setText("lastname: "+app.getMainUser().getLastName());
-            email.setText("mail: "+app.getMainUser().getEmail());
-            address.setText("addresse: "+app.getMainUser().getAddress());
-            city.setText("city: "+app.getMainUser().getCity());
+            username.setText("Nom d'utilisateur: "+app.getMainUser().getUserName());
+            firstName.setText("Prénom: "+app.getMainUser().getFirstName());
+            lastName.setText("Nom: "+app.getMainUser().getLastName());
+            email.setText("email: "+app.getMainUser().getEmail());
+            address.setText("adresse: "+app.getMainUser().getAddress());
+            city.setText("Ville: "+app.getMainUser().getCity());
             eval.setText(app.getMainUser().getEval()+"");
         }
     }
 
     @FXML
     public void displayPlanning() throws IOException {
-        app.notifyObservers("user");
         DataUsersUtils dataUsersUtils = DataUsersUtils.getInstance();
         int id = dataUsersUtils.getCalendarOf(app.getMainUser().getUserName());
-        DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
-        Calendar calendar = dataCalendarUtils.load(id);
-        app.getSceneController().switchToCalendar(calendar);
+        app.getSceneController().switchToCalendar(id);
     }
 }
