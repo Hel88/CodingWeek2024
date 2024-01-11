@@ -49,12 +49,25 @@ public class ModifierProfilController implements Observer{
             if(app.getDataUsersUtils().checkPassword(app.getMainUser().getUserName(), ancienPWD.getText())){
                 app.getMainUser().setPassword(app.getDataUsersUtils().hashPassword(nouveauPWD.getText()));
             }
+            else {
+                showAlert("Le nom d'utilisateur n'existe pas");
+                return;
+            }
         }
+
 
         app.getDataUsersUtils().updateUser(app.getMainUser());
 
         app.notifyObservers("user");
         app.getSceneController().switchToMonProfil();
+    }
+
+    private void showAlert(String message){
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @Override

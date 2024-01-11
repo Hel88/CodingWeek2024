@@ -78,7 +78,7 @@ public class DataUsersUtils {
 
         // Retrieve the User object from the JSON file
         JSONObject userObject = data.getJSONObject(userName);
-        return new User(userName, userObject.getString("password"), userObject.getString("email"), userObject.getString("lastName"), userObject.getString("firstName"), userObject.getString("address"), userObject.getString("city"), userObject.getInt("announces"), userObject.getInt("planning"), userObject.getInt("eval"));
+        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getInt("announces"), userObject.getInt("planning"), userObject.getInt("eval"));
     }
 
     public String hashPassword(String password) {
