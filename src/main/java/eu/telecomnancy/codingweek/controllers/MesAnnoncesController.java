@@ -175,6 +175,8 @@ public class MesAnnoncesController implements Observer{
                 if (alert.getResult().getButtonData().isDefaultButton()) {
                     try {
                         app.getDataTransactionUtils().accepterTransaction(transaction);
+                        app.setMainUser(app.getDataUsersUtils().getUserByUserName(app.getMainUser().getUserName()));
+                        app.notifyObservers("user");
                         initialize();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -242,10 +244,7 @@ public class MesAnnoncesController implements Observer{
         //synchrinuse les transacitons avec le json
         if (app.getMainUser() != null) {
             this.annonces = app.getDataAnnoncesUtils().getAnnoncesByUsername(app.getMainUser().getUserName());
-            this.transactions = app.getDataTransactionUtils().getTransactionsByUser(app.getMainUser());
-            System.out.println("getTransactionsByUser");
-            System.out.println(app.getMainUser());
-            System.out.println(app.getDataTransactionUtils().getTransactionsByUser(app.getMainUser()));
+            this.transactions = app.getDataTransactionUtils().getTransactionsByRefentUser(app.getMainUser());
         }
     }
 

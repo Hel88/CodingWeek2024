@@ -1,5 +1,8 @@
 package eu.telecomnancy.codingweek.utils;
 
+import com.calendarfx.model.Calendar;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,8 +10,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import org.json.JSONObject;
 
 
 public class DataUsersUtils {
@@ -50,7 +51,7 @@ public class DataUsersUtils {
         return data.has(userName);
     }
 
-    public void addUser(String userName, String password, String email, String lastName, String firstName, String address, String city, String planning) throws IOException {
+    public void addUser(String userName, String password, String email, String lastName, String firstName, String address, String city) throws IOException {
         // Method related to the creation of a new user
 
         // Create a JSON object with user information
@@ -65,7 +66,10 @@ public class DataUsersUtils {
         userObject.put("annonces", "");
         userObject.put("transactionsReferent", "");
         userObject.put("transactionsClient", "");
-        userObject.put("planning", planning);
+        userObject.put("transactions", "");
+        // Create a calendar for the user
+        DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
+        userObject.put("planning", String.valueOf(dataCalendarUtils.store(new Calendar("Agenda de "+ userName))));
         userObject.put("eval", 0);
         userObject.put("solde", 0);
 

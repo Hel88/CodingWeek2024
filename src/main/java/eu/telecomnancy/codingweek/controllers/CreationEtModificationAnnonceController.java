@@ -53,7 +53,11 @@ public class CreationEtModificationAnnonceController implements Observer{
         int idAnnonce = app.getDataAnnoncesUtils().addAnnonce(titre.getText(), description.getText(), prix.getText(), categorie, app.getMainUser().getUserName());
 
         app.notifyObservers("annonce");
-        app.getSceneController().switchToCalendar(DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning());
+        int id = DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning();
+        app.getSceneController().calendarSwitchPreparation();
+        app.getSceneController().calendarSwitchAddCalendar(id);
+        app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
+        app.getSceneController().switchToCalendar();
     }
 
     public void modifierAnnonce() throws IOException{
@@ -73,7 +77,10 @@ public class CreationEtModificationAnnonceController implements Observer{
         int idAnnonce = app.getDataAnnoncesUtils().modifyAnnonce(app.getAnnonceAffichee().getId(), titre.getText(), description.getText(), prix.getText(), app.getAnnonceAffichee().getCategorie(), app.getMainUser().getUserName(), true, app.getAnnonceAffichee().getPlanning());
 
         app.notifyObservers("annonce");
-        app.getSceneController().switchToCalendar(DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning());
+        app.getSceneController().calendarSwitchPreparation();
+        app.getSceneController().calendarSwitchAddCalendar(DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning());
+        app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
+        app.getSceneController().switchToCalendar();
     }
 
     @FXML
