@@ -1,14 +1,13 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
-import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import eu.telecomnancy.codingweek.utils.DataTransactionUtils;
 import eu.telecomnancy.codingweek.utils.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
-import java.io.IOException;
 
 public class ConsulterAnnonceController implements Observer{
 
@@ -67,6 +66,12 @@ public class ConsulterAnnonceController implements Observer{
         System.out.println("choisir dispo");
         //calendrier de mathis
         
+    }
+
+    @FXML
+    public void voirEvaluations(){
+        app.notifyObservers("evaluations");
+        app.getSceneController().switchToUserEvaluations(annonce.getReferent());
     }
 
 

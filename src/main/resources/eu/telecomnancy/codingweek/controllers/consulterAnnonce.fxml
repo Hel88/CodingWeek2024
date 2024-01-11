@@ -55,11 +55,7 @@
                         <Label fx:id="email" alignment="TOP_LEFT" prefHeight="49.0" prefWidth="185.0" wrapText="true" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="53.0" prefWidth="249.0">
-                     <children>
-                        <Label fx:id="evaluation" prefHeight="31.0" prefWidth="244.0" />
-                     </children>
-                  </HBox>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#voirEvaluations" text="Voir les évaluations" />
                </children>
             </VBox>
          </children>
