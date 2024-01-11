@@ -58,12 +58,8 @@ public class InscriptionController {
 
         // Check if the username is already in use
         if (app.getDataUsersUtils().isUserNameUnique(userName)) {
-            // Create a calendar for the user
-            DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
-            Calendar calendar = new Calendar("Agenda de "+ userName);
-            int id = dataCalendarUtils.store(calendar);
             // Add the user to the JSON file
-            app.getDataUsersUtils().addUser(userName, password, email, lastName, firstName, address, city, String.valueOf(id));
+            app.getDataUsersUtils().addUser(userName, password, email, lastName, firstName, address, city);
             app.notifyObservers("user");
             app.getSceneController().switchToConnexion();
         } else {
