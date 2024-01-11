@@ -9,6 +9,7 @@ public class Annonce {
     private int prix;
     private String referent;
     private boolean actif;
+    private int planning;
 
     public Annonce(int id, String titre, String categorie, String description, int prix, String referent, boolean actif) {
         
@@ -59,6 +60,10 @@ public class Annonce {
         return prix;
     }
 
+    public int getPlanning() {
+        return planning;
+    }
+
     public void setTitre(String titre) {
         this.titre = titre;
     }
@@ -84,5 +89,7 @@ public class Annonce {
         this.actif=actif;
     }
 
-    
+    public void setPlanning(int planning) {
+        this.planning = planning;
+    }
 }

@@ -1,11 +1,12 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class ModifierProfilController implements Observer{
     
@@ -45,10 +46,15 @@ public class ModifierProfilController implements Observer{
         app.getMainUser().setFirstName(prenom.getText());
 
         if(!ancienPWD.getText().isEmpty() && !nouveauPWD.getText().isEmpty()){
-            if(app.getDataUsersUtils().checkPassword(app.getMainUser().getPassword(), ancienPWD.getText())){
+            if(app.getDataUsersUtils().checkPassword(app.getMainUser().getUserName(), ancienPWD.getText())){
                 app.getMainUser().setPassword(app.getDataUsersUtils().hashPassword(nouveauPWD.getText()));
             }
+            else {
+                showAlert("Le nom d'utilisateur n'existe pas");
+                return;
+            }
         }
+
 
         app.getDataUsersUtils().updateUser(app.getMainUser());
 
@@ -56,9 +62,17 @@ public class ModifierProfilController implements Observer{
         app.getSceneController().switchToMonProfil();
     }
 
+    private void showAlert(String message){
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     @Override
     public void update(String type){
-        if (type == "user"){
+        if (Objects.equals(type, "user")){
             if (app.getMainUser() == null) return;
             username.setText(app.getMainUser().getUserName());
             email.setText(app.getMainUser().getEmail());

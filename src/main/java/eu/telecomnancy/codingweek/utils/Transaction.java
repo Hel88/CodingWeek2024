@@ -5,11 +5,12 @@ public class Transaction {
     // Fields
     private int id;
     private int idAnnonce;
-    private int idClient;
+    private String idClient;
     private String status;
+    private int planning;
 
     // Constructor
-    public Transaction(int id, int idAnnonce, int idClient, String status) {
+    public Transaction(int id, int idAnnonce, String idClient, String status) {
         this.id = id;
         this.idAnnonce = idAnnonce;
         this.idClient = idClient;
@@ -25,12 +26,16 @@ public class Transaction {
         return idAnnonce;
     }
 
-    public int getIdClient() {
+    public String getIdClient() {
         return idClient;
     }
 
     public String getStatus() {
         return status;
+    }
+
+    public int getPlanning() {
+        return planning;
     }
 
 
@@ -43,12 +48,16 @@ public class Transaction {
         this.idAnnonce = idAnnonce;
     }
 
-    public void setIdClient(int idClient) {
+    public void setIdClient(String idClient) {
         this.idClient = idClient;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setPlanning(int planning) {
+        this.planning = planning;
     }
 
     // Methods

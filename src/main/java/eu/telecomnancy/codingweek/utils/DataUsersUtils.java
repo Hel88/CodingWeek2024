@@ -78,7 +78,20 @@ public class DataUsersUtils {
 
         // Retrieve the User object from the JSON file
         JSONObject userObject = data.getJSONObject(userName);
-        return new User(userName, userObject.getString("password"), userObject.getString("email"), userObject.getString("lastName"), userObject.getString("firstName"), userObject.getString("address"), userObject.getString("city"), userObject.getInt("announces"), userObject.getInt("planning"), userObject.getInt("eval"));
+        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getInt("announces"), userObject.getInt("planning"), userObject.getInt("eval"));
+    }
+
+    public User getUserById(String id) throws IOException {
+        // Method related to the authentication of a user
+
+        // Retrieve the User object from the JSON file
+        for (String key : data.keySet()) {
+            JSONObject userObject = data.getJSONObject(key);
+            if (key == id) {
+                return new User(key, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getInt("announces"), userObject.getInt("planning"), userObject.getInt("eval"));
+            }
+        }
+        return null;
     }
 
     public String hashPassword(String password) {
