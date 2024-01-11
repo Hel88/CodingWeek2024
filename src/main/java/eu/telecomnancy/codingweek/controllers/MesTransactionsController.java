@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import eu.telecomnancy.codingweek.utils.Transaction;
 import eu.telecomnancy.codingweek.utils.User;
 import javafx.fxml.FXML;
@@ -63,17 +64,19 @@ public class MesTransactionsController implements Observer{
                     if (transaction.getStatus().equals("Acceptée")){
                         //si la transaction est validée, on peut la noter
                         Button noterButton = new Button("Noter");
-                        //Associer action pour noter la transaction
-                        // noterButton.setOnAction(e -> {
-                        //     try {
-                        //         app.getDataTransactionUtils().noter(transaction.getId());
-                        //     } catch (IOException e1) {
-                        //         e1.printStackTrace();
-                        //     }
-                        // });
+                        noterButton.setOnAction(e -> {
+                            try {
+                                app.getSceneController().switchToNoterUser(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getReferent());
+                                app.getDataTransactionUtils().noterTransaction(transaction);
+                                app.notifyObservers("transactions");
+                            } catch (IOException e1) {
+                                // TODO Auto-generated catch block
+                                e1.printStackTrace();
+                            }
+                        });
                         hboxDroite.getChildren().add(noterButton);
                     }
-                   
+
 
                 }
             } catch (IOException e) {

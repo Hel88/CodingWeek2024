@@ -75,6 +75,8 @@ public class ConsulterAnnonceController implements Observer{
     @FXML
     public void reserver() throws IOException {
         int idTransac = app.getDataTransactionUtils().addTransaction(String.valueOf(annonce.getId()), app.getMainUser().getUserName(), "En attente");
+        app.notifyObservers("transactions");
+        app.setMainUser(app.getDataUsersUtils().getUserByUserName(app.getMainUser().getUserName()));
         app.getSceneController().calendarSwitchPreparation();
         app.getSceneController().calendarSwitchAddCalendarWithStyle(DataTransactionUtils.getInstance().getTransaction(idTransac).getPlanning(), Calendar.Style.STYLE1, true);
         app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();

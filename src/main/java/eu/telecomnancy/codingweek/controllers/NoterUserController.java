@@ -48,7 +48,7 @@ public class NoterUserController {
 
     @FXML
     public void noter(){
-        app.getSceneController().switchToMesAnnonces();
+        app.getSceneController().switchToMesTransactions();
             Integer note = note();
             String leCommentaireSaMere = this.commentaire.getText();
     }
