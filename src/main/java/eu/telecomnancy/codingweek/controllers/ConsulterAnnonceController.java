@@ -36,21 +36,21 @@ public class ConsulterAnnonceController implements Observer{
     public void initialize() {
         annonce = app.getAnnonceAffichee();
         if (annonce == null){return;} 
-            titre.setText(annonce.getTitre());
-            description.setText(annonce.getDescription());
-            name.setText(annonce.getReferent());
-            prix.setText(annonce.getPrix()+"");
-            categorie.setText(annonce.getCategorie());
+        titre.setText(annonce.getTitre());
+        description.setText(annonce.getDescription());
+        name.setText(annonce.getReferent());
+        prix.setText(annonce.getPrix()+"");
+        categorie.setText(annonce.getCategorie());
 
-            try {
-                User user = app.getDataUsersUtils().getUserByUserName(annonce.getReferent());
-                lieu.setText(user.getCity());
-                email.setText(user.getEmail()); 
-                name.setText(user.getFirstName()+" "+user.getLastName()+" ("+user.getUserName()+")");
-                
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            User user = app.getDataUsersUtils().getUserByUserName(annonce.getReferent());
+            lieu.setText(user.getCity());
+            email.setText(user.getEmail());
+            name.setText(user.getFirstName()+" "+user.getLastName()+" ("+user.getUserName()+")");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
             
         
     }
