@@ -2,6 +2,8 @@ package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
+import eu.telecomnancy.codingweek.utils.DataTransactionUtils;
 import eu.telecomnancy.codingweek.utils.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -71,6 +73,10 @@ public class ConsulterAnnonceController implements Observer{
 
     @FXML
     public void reserver() throws IOException {
-        app.getDataTransactionUtils().addTransaction(String.valueOf(annonce.getId()), app.getMainUser().getUserName(), "En attente");
+        int idTransac = app.getDataTransactionUtils().addTransaction(String.valueOf(annonce.getId()), app.getMainUser().getUserName(), "En attente");
+        app.getSceneController().calendarSwitchPreparation();
+        app.getSceneController().calendarSwitchAddCalendar(DataTransactionUtils.getInstance().getTransaction(idTransac).getPlanning());
+        app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
+        app.getSceneController().switchToCalendar();
     }
 }
