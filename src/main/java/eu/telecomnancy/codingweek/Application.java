@@ -42,10 +42,7 @@ public class Application extends javafx.application.Application {
 
     public static void main(String[] args) throws IOException {
         launch();
-        if(sceneController.getCurrentCalendar() != null) {
-            DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
-            dataCalendarUtils.store(sceneController.getCurrentCalendar());
-        }
+        sceneController.calendarSave();
         List<Integer> calendars = sceneController.getCalendarList();
 //        System.out.println(calendars);
     }

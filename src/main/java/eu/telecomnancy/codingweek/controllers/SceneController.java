@@ -10,12 +10,10 @@ import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
 import com.calendarfx.view.DateControl;
-import com.calendarfx.model.Entry;
-import com.calendarfx.view.CalendarView;
+
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
-import eu.telecomnancy.codingweek.utils.User;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -163,14 +161,7 @@ public class SceneController {
 //        calendarView.setShowSourceTray(false);
 //        calendarView.setShowSourceTrayButton(false);
 
-//        Calendar holidays = new Calendar("Holidays");
-//        Entry<String> dentistAppointment = new Entry<>("Dentiste");
-//        dentistAppointment.setCalendar(birthdays);
-//        birthdays.setStyle(Calendar.Style.STYLE1); // (3)
-//        holidays.setStyle(Calendar.Style.STYLE2);
-        myCalendarSource = new CalendarSource("My Calendars"); // (4)
-//        myCalendarSource.getCalendars().addAll(holidays);
-//        calendarView.getCalendarSources().addAll(myCalendarSource); // (5)
+        myCalendarSource = new CalendarSource("My Calendars");
         calendarView.setRequestedTime(LocalTime.now());
 
         Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
@@ -198,34 +189,6 @@ public class SceneController {
         updateTimeThread.start();
         pageScene = new Scene(calendarView);
         this.calendar = pageScene;
-
-
-
-
-
-//        System.out.println("Hello world");
-//        Calendar birthdays = new Calendar("Rendez-vous"); // (2)
-//        Entry<String> dentistAppointment = new Entry<>("Dentiste");
-//        birthdays.addEntry(dentistAppointment);
-//        Entry<String> dentistAppointment2 = new Entry<>("Dentiste2");
-//        birthdays.addEntry(dentistAppointment2);
-//        List<Entry<?>> result = birthdays.findEntries("");
-//        System.out.println(result);
-//        DataEntryUtils dataCalendarUtils = null;
-//        dataCalendarUtils = DataEntryUtils.getInstance();
-//        if (dataCalendarUtils != null) {
-//            dataCalendarUtils.store(result);
-//        }
-//        else {
-//            System.out.println("dataCalendarUtils is null");
-//        }
-//        Entry<String> event =  dataCalendarUtils.load(1);
-//        Calendar test = new Calendar("test");
-//        test.addEntry(event);
-//        myCalendarSource.getCalendars().addAll(birthdays, test);
-//        calendarView.getCalendarSources().addAll(myCalendarSource); // (5)
-//        calendarView.setRequestedTime(LocalTime.now());
-
 
 
         // on définit la scene de base : on affiche la page de connexion au lancement de l'application
