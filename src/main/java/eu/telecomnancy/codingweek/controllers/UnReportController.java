@@ -39,11 +39,17 @@ public class UnReportController implements Observer{
         message.setText(report.getMessage());
         date.setText(report.getTime());
 
+        if(userName.getText().equals("")){
+            userName.setText("Anonyme");
+            email.setText("Anonyme");
+            fullName.setText("Anonyme");
+            return;
+        }
+
         try {
             User user = app.getDataUsersUtils().getUserByUserName(report.getReferent());
             email.setText(user.getEmail());
             fullName.setText(user.getFirstName()+" "+user.getLastName()+" ("+user.getUserName()+")");
-
         } catch (IOException e) {
             e.printStackTrace();
         }
