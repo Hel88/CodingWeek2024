@@ -63,6 +63,7 @@ public class DataUsersUtils {
         userObject.put("address", address);
         userObject.put("city", city);
         userObject.put("annonces", "");
+        userObject.put("transactions", "");
         userObject.put("planning", planning);
         userObject.put("eval", 0);
 
@@ -124,6 +125,7 @@ public class DataUsersUtils {
         userObject.put("address", User.getAddress());
         userObject.put("city", User.getCity());
         userObject.put("annonces", User.getAnnonces());
+        userObject.put("transactions", User.getTransactions());
         userObject.put("planning", User.getPlanning());
         userObject.put("eval", User.getEval());
 
