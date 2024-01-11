@@ -3,6 +3,7 @@ package eu.telecomnancy.codingweek.controllers;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.calendarfx.model.Calendar;
@@ -49,6 +50,7 @@ public class SceneController {
     List<Integer> calendarList = new java.util.ArrayList<Integer>();
     Calendar currentCalendar;
     Calendar defaultCalendar;
+    List<Calendar> currentCalendarList = new ArrayList<>();
 
 
     public SceneController(Stage primaryStage, Application app) throws Exception {
@@ -305,10 +307,12 @@ public class SceneController {
         setView(this.noterUser);
     }
 
-   public void calendarSave() throws IOException {
-        if(currentCalendar != null) {
+    public void calendarSave() throws IOException {
+        if(currentCalendarList != null) {
             DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
-            dataCalendarUtils.store(currentCalendar);
+            for(Calendar calendar : currentCalendarList) {
+                dataCalendarUtils.store(calendar);
+            }
         }
     }
 
@@ -335,27 +339,31 @@ public class SceneController {
         });
     }
 
-    public void calendarSwitchAddCalendar(int id) throws IOException {
-        calendarSave();
-
+    public void calendarSwitchAddCalendar(int id, boolean save) throws IOException {
         Calendar calendar = DataCalendarUtils.getInstance().load(id);
         calendarList.add(id);
 
         currentCalendar = calendar;
         DataCalendarUtils.getInstance().reload(currentCalendar);
 
+        if (save) {
+            currentCalendarList.add(currentCalendar);
+        }
+
         myCalendarSource.getCalendars().addAll(currentCalendar);
     }
 
-    public void calendarSwitchAddCalendarWithStyle(int id, Calendar.Style style) throws IOException {
-        calendarSave();
-
+    public void calendarSwitchAddCalendarWithStyle(int id, Calendar.Style style, boolean save) throws IOException {
         Calendar calendar = DataCalendarUtils.getInstance().load(id);
         calendar.setStyle(style);
         calendarList.add(id);
 
         currentCalendar = calendar;
         DataCalendarUtils.getInstance().reload(currentCalendar);
+
+        if (save) {
+            currentCalendarList.add(currentCalendar);
+        }
 
         myCalendarSource.getCalendars().addAll(currentCalendar);
     }
