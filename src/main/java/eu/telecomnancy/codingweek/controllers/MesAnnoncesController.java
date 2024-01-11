@@ -7,6 +7,8 @@ import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.Transaction;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -19,6 +21,8 @@ public class MesAnnoncesController implements Observer{
     
     @FXML
     private VBox VBoxAnnonces;
+    @FXML
+    private VBox reservations;
 
     private Application app;
 
@@ -72,6 +76,7 @@ public class MesAnnoncesController implements Observer{
         annonces = new ArrayList<Annonce>();
 
         VBoxAnnonces.getChildren().clear();
+        reservations.getChildren().clear();
         
         synchroJson(); //synchronise les annonces avec le json
         
@@ -137,9 +142,8 @@ public class MesAnnoncesController implements Observer{
         //affichage de chaque transaction
 
         for (Transaction transaction : this.transactions){
-            System.out.println("transaction");
-            System.out.println(transaction);
             HBox hbox = new HBox();
+            hbox.setSpacing(10);
             hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
 
             Label id = new Label("(id : " + transaction.getId() + ")");
@@ -153,14 +157,55 @@ public class MesAnnoncesController implements Observer{
             client.setWrapText(true);
 
             Label status = new Label(transaction.getStatus());
-            status.setPrefWidth(200);
+            status.setPrefWidth(100);
             status.setPrefHeight(10);
             status.setWrapText(true);
+
+            Button accepter = new Button();
+            accepter.setText("Accepter");
+            accepter.setOnAction((event) -> {
+                //pop up etes-vous sûr de vouloir accepter cette annonce ?
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Etes-vous sûr de vouloir accepter cette annonce ?");
+                alert.showAndWait();
+                
+                if (alert.getResult().getButtonData().isDefaultButton()) {
+                    try {
+                        app.getDataTransactionUtils().accepterTransaction(transaction);
+                        initialize();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+
+            Button refuser = new Button();
+            refuser.setText("Refuser");
+            refuser.setOnAction((event) -> {
+                //pop up etes-vous sûr de vouloir refuser cette annonce ?
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Etes-vous sûr de vouloir refuser cette annonce ?");
+                alert.showAndWait();
+                
+                if (alert.getResult().getButtonData().isDefaultButton()) {
+                    try {
+                        app.getDataTransactionUtils().refuserTransaction(transaction);
+                        initialize();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
 
             hbox.getChildren().addAll(status, client, id);
 
             if (transaction.getStatus().equals("En attente")) {
                 hbox.setStyle("-fx-background-color: #DAA520; prefHeight:\"279.0\"");
+                hbox.getChildren().addAll(accepter, refuser);
             }
             else if (transaction.getStatus().equals("Acceptée")) {
                 hbox.setStyle("-fx-background-color: #00FF00; prefHeight:\"279.0\"");
@@ -169,7 +214,7 @@ public class MesAnnoncesController implements Observer{
                 hbox.setStyle("-fx-background-color: #FF0000; prefHeight:\"279.0\"");
             }
 
-            VBoxAnnonces.getChildren().add(hbox);
+            reservations.getChildren().add(hbox);
             }
         
     }
@@ -179,10 +224,10 @@ public class MesAnnoncesController implements Observer{
         //synchrinuse les transacitons avec le json
         if (app.getMainUser() != null) {
             this.annonces = app.getDataAnnoncesUtils().getAnnoncesByUsername(app.getMainUser().getUserName());
-        //     this.transactions = app.getDataTransactionUtils().getTransactionsByUser(app.getMainUser());
-        //     System.out.println("getTransactionsByUser");
-        //     System.out.println(app.getMainUser());
-        //     System.out.println(app.getDataTransactionUtils().getTransactionsByUser(app.getMainUser()));
+            this.transactions = app.getDataTransactionUtils().getTransactionsByUser(app.getMainUser());
+            System.out.println("getTransactionsByUser");
+            System.out.println(app.getMainUser());
+            System.out.println(app.getDataTransactionUtils().getTransactionsByUser(app.getMainUser()));
         }
     }
 
