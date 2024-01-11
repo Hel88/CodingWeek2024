@@ -35,9 +35,9 @@ public class DataNoteUtils {
     }
 
     // Methods
-    public void addNote(int id, int note, String Commentaire, String usernameReferent, String usernameClient, int annonceId) throws IOException {
+    public void addNote(int note, String Commentaire, String usernameReferent, String usernameClient, int annonceId) throws IOException {
         // Method related to the creation of a new note
-
+        int id = newId();
         // Create a JSON object with note information
         JSONObject noteObject = new JSONObject();
         noteObject.put("id", id);
@@ -82,5 +82,21 @@ public class DataNoteUtils {
             notes.add(new Note(Integer.parseInt(id), note.getInt("note"), note.getString("Commentaire"), note.getString("usernameReferent"), note.getString("usernameClient"), note.getInt("annonceId")));
         }
         return notes;
+    }
+
+    private int newId() {
+        // Method related to the creation of a new annonce
+
+        // Get the id of the last annonce
+        int id = 0;
+        for (String key : data.keySet()) {
+            int currentId = Integer.parseInt(key);
+            if (currentId > id) {
+                id = currentId;
+            }
+        }
+
+        // Return the id of the new annonce
+        return id + 1;
     }
 }
