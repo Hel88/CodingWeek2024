@@ -177,6 +177,7 @@ public class MesAnnoncesController implements Observer{
                         app.getDataTransactionUtils().accepterTransaction(transaction);
                         app.setMainUser(app.getDataUsersUtils().getUserByUserName(app.getMainUser().getUserName()));
                         app.notifyObservers("user");
+                        app.notifyObservers("transactions");
                         initialize();
                     } catch (IOException e) {
                         throw new RuntimeException(e);

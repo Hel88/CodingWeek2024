@@ -68,7 +68,7 @@ public class MesTransactionsController implements Observer{
                             try {
                                 app.getSceneController().switchToNoterUser(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getReferent());
                                 app.getDataTransactionUtils().noterTransaction(transaction);
-                                app.notifyObservers("transaction");
+                                app.notifyObservers("transactions");
                             } catch (IOException e1) {
                                 // TODO Auto-generated catch block
                                 e1.printStackTrace();
@@ -76,7 +76,7 @@ public class MesTransactionsController implements Observer{
                         });
                         hboxDroite.getChildren().add(noterButton);
                     }
-                   
+
 
                 }
             } catch (IOException e) {
