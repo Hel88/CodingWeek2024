@@ -114,6 +114,7 @@ public class DataAnnoncesUtils {
         return annonces;
     }
 
+
     private int newId() {
         // Method related to the creation of a new annonce
 
