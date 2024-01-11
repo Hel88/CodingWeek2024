@@ -47,7 +47,7 @@ public class OffresEtDemandesController implements Observer{
         //on enregistre l'annonce à afficher pour y avoir accès dans ConsulterAnnonceController
         app.setAnnonceAffichee(annonce);
         app.notifyObservers("annonce");
-        app.getSceneController().switchToConsulterAnnonce(annonce.getId());
+        app.getSceneController().switchToConsulterAnnonce();
     }
 
     public void initialize() throws IOException {

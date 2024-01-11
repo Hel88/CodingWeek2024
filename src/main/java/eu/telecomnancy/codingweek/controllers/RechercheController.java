@@ -137,7 +137,7 @@ public class RechercheController {
 
                 Button details = new Button();
                 details.setText("Voir les détails");
-                details.setOnAction(e -> app.getSceneController().switchToConsulterAnnonce(annonce.getId()));
+                details.setOnAction(e -> app.getSceneController().switchToConsulterAnnonce());
 
                 hbox.getChildren().addAll(titre, prix, details);
 

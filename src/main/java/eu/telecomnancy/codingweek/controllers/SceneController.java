@@ -42,6 +42,7 @@ public class SceneController {
     Scene userEvaluations;
     Scene reportBug;
     Scene showReports;
+    Scene unReport;
     BorderPane layout;
     CalendarView calendarView;
     CalendarSource myCalendarSource;
@@ -105,7 +106,6 @@ public class SceneController {
         pageLoader.setLocation(getClass().getResource("consulterAnnonce.fxml"));
         pageLoader.setControllerFactory(iC->new ConsulterAnnonceController(app));
         pageScene = new Scene(pageLoader.load());
-        this.consulterAnnonce = pageScene;
         this.consulterAnnonce = pageScene;
 
         pageLoader = new FXMLLoader();
@@ -174,6 +174,11 @@ public class SceneController {
         pageScene = new Scene(pageLoader.load());
         this.showReports = pageScene;
 
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("unReport.fxml"));
+        pageLoader.setControllerFactory(iC->new UnReportController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.unReport = pageScene;
 
         // on crée un calendrier
         calendarView = new CalendarView(); // (1)
@@ -273,7 +278,7 @@ public class SceneController {
         setView(this.monAnnonce);
     }
 
-    public void switchToConsulterAnnonce(int id) {
+    public void switchToConsulterAnnonce() {
         setView(this.consulterAnnonce);
     }
 
@@ -303,6 +308,10 @@ public class SceneController {
 
     public void switchToReportBug(){
         setView(this.reportBug);
+    }
+
+    public void switchToConsulterReport(){
+        setView(this.unReport);
     }
 
     public void switchToCalendar() throws IOException {

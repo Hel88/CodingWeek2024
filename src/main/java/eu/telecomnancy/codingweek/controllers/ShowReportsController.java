@@ -34,7 +34,7 @@ public class ShowReportsController implements Observer {
             //on enregistre l'annonce à afficher pour y avoir accès dans ConsulterAnnonceController
             app.setReportAffiche(report);
             app.notifyObservers("report");
-//            app.getSceneController().switchToConsulterReport(report.getId());
+            app.getSceneController().switchToConsulterReport();
         }
 
         public void initialize() throws IOException {
