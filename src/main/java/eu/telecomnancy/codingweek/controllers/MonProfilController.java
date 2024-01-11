@@ -1,8 +1,13 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import com.calendarfx.model.Calendar;
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
+import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+
+import java.io.IOException;
 
 public class MonProfilController implements Observer {
 
@@ -51,5 +56,14 @@ public class MonProfilController implements Observer {
             eval.setText(app.getMainUser().getEval()+"");
         }
     }
-    
+
+    @FXML
+    public void displayPlanning() throws IOException {
+        app.notifyObservers("user");
+        DataUsersUtils dataUsersUtils = DataUsersUtils.getInstance();
+        int id = dataUsersUtils.getCalendarOf(app.getMainUser().getUserName());
+        DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
+        Calendar calendar = dataCalendarUtils.load(id);
+        app.getSceneController().switchToCalendar(calendar);
+    }
 }

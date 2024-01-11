@@ -19,7 +19,7 @@
       <Label fx:id="email" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="169.0" prefHeight="34.0" prefWidth="199.0" text="email" />
       <Label fx:id="address" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="267.0" prefHeight="34.0" prefWidth="199.0" text="adresse" />
       <Label fx:id="city" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="301.0" prefHeight="34.0" prefWidth="199.0" text="Ville" />
-      <Button layoutX="358.0" layoutY="236.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="147.0" text="Voir mon planning" />
+      <Button onAction="#displayPlanning" layoutX="358.0" layoutY="236.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="147.0" text="Voir/Modifier mon planning" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="320.0" layoutY="135.0" prefHeight="34.0" prefWidth="221.0" text="Note donnée par les utilisateurs" />
       <Label fx:id="eval" alignment="CENTER" layoutX="405.0" layoutY="174.0" prefHeight="24.0" prefWidth="52.0" text="note" />
       <Button fx:id="modifier" layoutX="439.0" layoutY="325.0" onAction="#modifierProfil" mnemonicParsing="false" prefHeight="34.0" prefWidth="135.0" text="Modifier Profil" />

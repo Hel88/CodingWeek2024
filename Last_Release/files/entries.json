@@ -1,0 +1,15 @@
+{
+  "1":  {
+    "titre": "TestStore",
+    "id":0,
+    "fullday":1,
+    "startdate":"2024-01-10",
+    "enddate":"2024-01-10",
+    "starttime":"12:00",
+    "endtime":"13:00",
+    "zoneid":"Europe/Paris",
+    "recurring" : false,
+    "rrule" : null,
+    "recurrenceid" : "e"
+    }
+}

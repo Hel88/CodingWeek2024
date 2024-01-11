@@ -1,5 +1,6 @@
 package eu.telecomnancy.codingweek;
 
+import com.calendarfx.model.Calendar;
 import eu.telecomnancy.codingweek.controllers.Observer;
 import eu.telecomnancy.codingweek.controllers.SceneController;
 import eu.telecomnancy.codingweek.utils.Annonce;
@@ -9,10 +10,11 @@ import eu.telecomnancy.codingweek.utils.User;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Application extends javafx.application.Application {
 
-    private SceneController sceneController;
+    private static SceneController sceneController;
     private DataUsersUtils dataUsersUtils;
     private DataAnnoncesUtils dataAnnoncesUtils;
     private User mainUser;
@@ -24,7 +26,7 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) {
         try {
-            this.sceneController = new SceneController(stage, this);
+            sceneController = new SceneController(stage, this);
             this.dataUsersUtils = DataUsersUtils.getInstance();
             this.dataAnnoncesUtils = DataAnnoncesUtils.getInstance();
             System.out.println(dataAnnoncesUtils.getAnnonces());
@@ -37,13 +39,14 @@ public class Application extends javafx.application.Application {
 
     public static void main(String[] args) {
         launch();
+        List<Calendar> calendars = sceneController.getCalendarList();
     }
 
     public SceneController getSceneController() {
         return sceneController;
     }
 
-    public DataUsersUtils getDataUsersUtils() {
+    public DataUsersUtils   getDataUsersUtils() {
         return dataUsersUtils;
     }
     public DataAnnoncesUtils getDataAnnoncesUtils() {

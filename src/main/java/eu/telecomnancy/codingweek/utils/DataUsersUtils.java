@@ -50,7 +50,7 @@ public class DataUsersUtils {
         return data.has(userName);
     }
 
-    public void addUser(String userName, String password, String email, String lastName, String firstName, String address, String city) throws IOException {
+    public void addUser(String userName, String password, String email, String lastName, String firstName, String address, String city, String planning) throws IOException {
         // Method related to the creation of a new user
 
         // Create a JSON object with user information
@@ -63,7 +63,7 @@ public class DataUsersUtils {
         userObject.put("address", address);
         userObject.put("city", city);
         userObject.put("announces", 0);
-        userObject.put("planning", 0);
+        userObject.put("planning", planning);
         userObject.put("eval", 0);
 
         // Add the user to the JSON file
@@ -130,5 +130,13 @@ public class DataUsersUtils {
         FileWriter file = new FileWriter(filePath);
         file.write(data.toString());
         file.flush();
+    }
+
+    public int getCalendarOf(String userName) throws IOException {
+        // Method related to the modification of a user
+
+        // Create a JSON object with user information
+        JSONObject userObject = data.getJSONObject(userName);
+        return userObject.getInt("planning");
     }
 }
