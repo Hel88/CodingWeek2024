@@ -19,6 +19,7 @@ public class ReportBugController implements Observer {
 
     public ReportBugController(Application app) {
         this.app = app;
+        app.addObserver(this);
     }
 
     public void update(String str) {}
