@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.MonProfilController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.MonProfilController">
    <children>
       <Label alignment="CENTER" layoutX="198.0" layoutY="27.0" prefHeight="34.0" prefWidth="205.0" text="Mon Profil">
          <font>
@@ -19,10 +18,10 @@
       <Label fx:id="email" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="169.0" prefHeight="34.0" prefWidth="199.0" text="email" />
       <Label fx:id="address" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="267.0" prefHeight="34.0" prefWidth="199.0" text="adresse" />
       <Label fx:id="city" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="301.0" prefHeight="34.0" prefWidth="199.0" text="Ville" />
-      <Button onAction="#displayPlanning" layoutX="358.0" layoutY="236.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="147.0" text="Voir/Modifier mon planning" />
+      <Button layoutX="321.0" layoutY="236.0" mnemonicParsing="false" onAction="#displayPlanning" prefHeight="34.0" prefWidth="221.0" text="Voir/Modifier mon planning" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="320.0" layoutY="135.0" prefHeight="34.0" prefWidth="221.0" text="Note donnée par les utilisateurs" />
       <Label fx:id="eval" alignment="CENTER" layoutX="405.0" layoutY="174.0" prefHeight="24.0" prefWidth="52.0" text="note" />
-      <Button fx:id="modifier" layoutX="439.0" layoutY="325.0" onAction="#modifierProfil" mnemonicParsing="false" prefHeight="34.0" prefWidth="135.0" text="Modifier Profil" />
-      <Button fx:id="supprimer" layoutX="287.0" layoutY="325.0" onAction="#supprimerProfil" mnemonicParsing="false" prefHeight="34.0" prefWidth="135.0" text="Supprimer Profil" />
+      <Button fx:id="modifier" layoutX="439.0" layoutY="325.0" mnemonicParsing="false" onAction="#modifierProfil" prefHeight="34.0" prefWidth="135.0" text="Modifier Profil" />
+      <Button fx:id="supprimer" layoutX="287.0" layoutY="325.0" mnemonicParsing="false" onAction="#supprimerProfil" prefHeight="34.0" prefWidth="135.0" text="Supprimer Profil" />
    </children>
 </AnchorPane>

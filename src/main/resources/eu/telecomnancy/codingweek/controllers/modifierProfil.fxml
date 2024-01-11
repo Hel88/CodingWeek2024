@@ -2,11 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.ModifierProfilController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.ModifierProfilController">
    <children>
       <Label alignment="CENTER" layoutX="120.0" layoutY="24.0" prefHeight="34.0" prefWidth="367.0" text="Modifier mon profil">
          <font>
@@ -23,8 +24,8 @@
       <Label fx:id="username" alignment="CENTER" layoutX="204.0" layoutY="79.0" prefHeight="24.0" prefWidth="199.0" text="username" />
       <Label alignment="CENTER" layoutX="324.0" layoutY="241.0" prefHeight="24.0" prefWidth="214.0" text="modifier le mot de passe :" />
       <Button layoutX="346.0" layoutY="183.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="170.0" text="Modifier mon planning" />
-      <TextField fx:id="ancienPWD" layoutX="332.0" layoutY="277.0" prefHeight="24.0" prefWidth="199.0" promptText="ancien mot de passe" />
-      <TextField fx:id="nouveauPWD" layoutX="331.0" layoutY="311.0" prefHeight="24.0" prefWidth="199.0" promptText="nouveau mot de passe" />
+      <PasswordField fx:id="ancienPWD" layoutX="331.0" layoutY="277.0" prefHeight="24.0" prefWidth="199.0" promptText="ancien mot de passe" />
+      <PasswordField fx:id="nouveauPWD" layoutX="331.0" layoutY="311.0" prefHeight="24.0" prefWidth="199.0" promptText="nouveau mot de passe" />
       <Button fx:id="validerModifications" layoutX="449.0" layoutY="352.0" mnemonicParsing="false" onAction="#validerModifProfil" prefHeight="34.0" prefWidth="135.0" text="Valider" />
    </children>
 </AnchorPane>
