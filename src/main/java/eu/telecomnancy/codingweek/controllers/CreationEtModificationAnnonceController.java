@@ -79,6 +79,7 @@ public class CreationEtModificationAnnonceController implements Observer{
         app.notifyObservers("annonce");
         app.getSceneController().calendarSwitchPreparation();
         app.getSceneController().calendarSwitchAddCalendar(DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning());
+        app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
         app.getSceneController().switchToCalendar();
     }
 

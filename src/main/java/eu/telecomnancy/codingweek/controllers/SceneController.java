@@ -43,7 +43,7 @@ public class SceneController {
     CalendarSource myCalendarSource;
     List<Integer> calendarList = new java.util.ArrayList<Integer>();
     Calendar currentCalendar;
-
+    Calendar defaultCalendar;
 
     public SceneController(Stage primaryStage, Application app) throws Exception {
 
@@ -301,10 +301,11 @@ public class SceneController {
     }
 
     public void calendarSwitchSetCurrentCalendarToDefault() throws IOException {
+        defaultCalendar = currentCalendar;
         calendarView.setDefaultCalendarProvider(new Callback<DateControl, Calendar>() {
             @Override
             public Calendar call(DateControl param) {
-                return currentCalendar;
+                return defaultCalendar;
             }
         });
     }
