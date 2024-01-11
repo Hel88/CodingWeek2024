@@ -1,5 +1,7 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -47,10 +49,10 @@ public class NoterUserController {
     }
 
     @FXML
-    public void noter(){
+    public void noter() throws IOException{
         app.getSceneController().switchToMesTransactions();
-            Integer note = note();
-            String leCommentaireSaMere = this.commentaire.getText();
+        app.getDataNoteUtils().addNote(note(), commentaire.getText(),app.getAnnonceAffichee().getReferent() , app.getMainUser().getUserName()+"", app.getAnnonceAffichee().getId());
+        app.notifyObservers("note");
     }
 
 

@@ -66,7 +66,8 @@ public class MesTransactionsController implements Observer{
                         Button noterButton = new Button("Noter");
                         noterButton.setOnAction(e -> {
                             try {
-                                app.getSceneController().switchToNoterUser(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getReferent());
+                                app.setAnnonceAffichee(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()));
+                                app.getSceneController().switchToNoterUser(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()));
                                 app.getDataTransactionUtils().noterTransaction(transaction);
                                 app.notifyObservers("transactions");
                             } catch (IOException e1) {

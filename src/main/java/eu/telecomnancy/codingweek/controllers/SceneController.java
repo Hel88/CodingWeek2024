@@ -12,6 +12,7 @@ import com.calendarfx.view.CalendarView;
 import com.calendarfx.view.DateControl;
 
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -280,7 +281,7 @@ public class SceneController {
 
    
 
-    public void switchToNoterUser(String idUser){
+    public void switchToNoterUser(Annonce annonce){
         setView(this.noterUser);
     }
 
