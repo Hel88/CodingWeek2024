@@ -30,12 +30,12 @@ public class DataReportUtils {
         return instance;
     }
 
-    public void addReport(String username, String description, int date) throws IOException {
+    public void addReport(String username, String description, String date) throws IOException {
         int id = newId();
         JSONObject reportObject = new JSONObject();
         reportObject.put("referent", username);
         reportObject.put("message", description);
-        reportObject.put("timestamp", date);
+        reportObject.put("time", date);
         data.put(Integer.toString(id), reportObject);
         try (FileWriter file = new FileWriter(filePath)) {
             file.write(data.toString());
@@ -49,8 +49,8 @@ public class DataReportUtils {
             JSONObject reportObject = data.getJSONObject(key);
             String referent = reportObject.getString("referent");
             String message = reportObject.getString("message");
-            int timestamp = reportObject.getInt("timestamp");
-            reports.add(new Report(referent, message, timestamp));
+            String time = reportObject.getString("time");
+            reports.add(new Report(referent, message, time));
         }
         return reports;
     }
@@ -62,8 +62,8 @@ public class DataReportUtils {
             String referentReport = reportObject.getString("referent");
             if (referentReport.equals(referent)) {
                 String message = reportObject.getString("message");
-                int timestamp = reportObject.getInt("timestamp");
-                reports.add(new Report(referent, message, timestamp));
+                String time = reportObject.getString("time");
+                reports.add(new Report(referent, message, time));
             }
         }
         return reports;

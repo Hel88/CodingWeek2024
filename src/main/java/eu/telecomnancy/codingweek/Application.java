@@ -16,6 +16,7 @@ public class Application extends javafx.application.Application {
     private DataAnnoncesUtils dataAnnoncesUtils;
     private DataTransactionUtils dataTransactionUtils;
     private DataNoteUtils dataNoteUtils;
+    private DataReportUtils dataReportUtils;
     private User mainUser;
     private final ArrayList<Observer> observers = new ArrayList<Observer>();
     private Annonce annonceAffichee;
@@ -30,6 +31,7 @@ public class Application extends javafx.application.Application {
             this.dataAnnoncesUtils = DataAnnoncesUtils.getInstance();
             this.dataTransactionUtils = DataTransactionUtils.getInstance();
             this.dataNoteUtils = DataNoteUtils.getInstance();
+            this.dataReportUtils = DataReportUtils.getInstance();
             this.mainUser = null;
         } catch (Exception e) {
             System.out.println("Error while loading the scene controller");
@@ -57,6 +59,9 @@ public class Application extends javafx.application.Application {
     }
     public DataNoteUtils getDataNoteUtils() {
         return dataNoteUtils;
+    }
+    public DataReportUtils getDataReportUtils() {
+        return dataReportUtils;
     }
 
     public User getMainUser() {

@@ -3,14 +3,14 @@ package eu.telecomnancy.codingweek.utils;
 public class Report {
     private String referent;
     private String message;
-    private int timestamp;
+    private String time;
 
     public Report() {}
 
-    public Report(String referent, String message, int timestamp) {
+    public Report(String referent, String message, String time) {
         this.referent = referent;
         this.message = message;
-        this.timestamp = timestamp;
+        this.time = time;
     }
 
     public String getReferent() {
@@ -29,11 +29,11 @@ public class Report {
         this.message = message;
     }
 
-    public int getTimestamp() {
-        return timestamp;
+    public String getTime() {
+        return time;
     }
 
-    public void setTimestamp(int timestamp) {
-        this.timestamp = timestamp;
+    public void setTime(String time) {
+        this.time = time;
     }
 }

@@ -4,6 +4,10 @@ import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class ReportBugController implements Observer {
 
     private final Application app;
@@ -19,7 +23,22 @@ public class ReportBugController implements Observer {
     public void update(String str) {}
 
     @FXML
-    public void sendReport() {
+    public void sendReport() throws IOException {
+        try {
+            String username = app.getMainUser().getUserName();
+            app.getDataReportUtils().addReport(username, message.getText(), date());
+        }
+        catch (Exception e) {
+            String username = "";
+            app.getDataReportUtils().addReport(username, message.getText(), date());
+        }
+
         app.getSceneController().switchToConnexion();
+    }
+
+    private String date() {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return sdf.format(cal.getTime());
     }
 }
