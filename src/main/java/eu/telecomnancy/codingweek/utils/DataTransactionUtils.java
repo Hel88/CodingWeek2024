@@ -134,6 +134,16 @@ public class DataTransactionUtils {
             file.write(data.toString());
             file.flush();
         }
+
+        // Upadate the solde of the client
+        User client = DataUsersUtils.getInstance().getUserByUserName(transaction.getIdClient());
+        client.setSolde(client.getSolde() - DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getPrix());
+        DataUsersUtils.getInstance().updateUser(client);
+
+        // Upadate the solde of the referent
+        User referent = DataUsersUtils.getInstance().getUserByUserName(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getReferent());
+        referent.setSolde(referent.getSolde() + DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getPrix());
+        DataUsersUtils.getInstance().updateUser(referent);
     }
 
     public void refuserTransaction(Transaction transaction) throws IOException {

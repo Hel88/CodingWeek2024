@@ -1,5 +1,7 @@
 package eu.telecomnancy.codingweek.utils;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,8 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import org.json.JSONObject;
 
 
 public class DataUsersUtils {
@@ -67,7 +67,7 @@ public class DataUsersUtils {
         userObject.put("transactionsClient", "");
         userObject.put("planning", planning);
         userObject.put("eval", 0);
-        userObject.put("solde", 0);
+        userObject.put("solde", 100);
 
         // Add the user to the JSON file
         data.put(userName, userObject);

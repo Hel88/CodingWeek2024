@@ -1,8 +1,5 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.Transaction;
@@ -16,6 +13,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MesAnnoncesController implements Observer{
     
@@ -174,6 +174,8 @@ public class MesAnnoncesController implements Observer{
                 if (alert.getResult().getButtonData().isDefaultButton()) {
                     try {
                         app.getDataTransactionUtils().accepterTransaction(transaction);
+                        app.setMainUser(app.getDataUsersUtils().getUserByUserName(app.getMainUser().getUserName()));
+                        app.notifyObservers("user");
                         initialize();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -225,9 +227,6 @@ public class MesAnnoncesController implements Observer{
         if (app.getMainUser() != null) {
             this.annonces = app.getDataAnnoncesUtils().getAnnoncesByUsername(app.getMainUser().getUserName());
             this.transactions = app.getDataTransactionUtils().getTransactionsByUser(app.getMainUser());
-            System.out.println("getTransactionsByUser");
-            System.out.println(app.getMainUser());
-            System.out.println(app.getDataTransactionUtils().getTransactionsByUser(app.getMainUser()));
         }
     }
 
