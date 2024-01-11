@@ -160,7 +160,7 @@ public class DataUsersUtils {
         if (annonces.isEmpty()) {
             annonces = String.valueOf(id);
         } else {
-            annonces = annonces + ", " + id;
+            annonces = annonces + "," + id;
         }
 
         user.setAnnonces(annonces);
