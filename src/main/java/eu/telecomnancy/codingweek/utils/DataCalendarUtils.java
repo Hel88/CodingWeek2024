@@ -110,12 +110,10 @@ public class DataCalendarUtils {
                 reallyToAdd.add(minEntry);
             }
         }
-        System.out.println("reallyToAdd : " + reallyToAdd);
         for (Entry<?> entry : reallyToAdd) {
             int id = DataEntryUtils.getInstance().store(entry);
             entries.append(String.valueOf(id)).append(",");
         }
-        System.out.println(entries.toString());
         calendarObject.put("entries", entries.toString());
         data.put(String.valueOf(idCalendar), calendarObject);
         FileWriter file = new FileWriter(filePath);

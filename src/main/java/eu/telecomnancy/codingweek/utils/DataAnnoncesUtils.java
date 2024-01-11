@@ -36,7 +36,7 @@ public class DataAnnoncesUtils {
     }
 
     // Methods
-    public void addAnnonce(String titre, String description, String prix, String categorie, String referent) throws IOException {
+    public int addAnnonce(String titre, String description, String prix, String categorie, String referent) throws IOException {
         // Method related to the creation of a new annonce
 
         // Create a JSON object with user information
@@ -61,6 +61,7 @@ public class DataAnnoncesUtils {
 
         // Add the annonce to the user
         DataUsersUtils.getInstance().addAnnonceToUser(referent, id);
+        return id;
     }
 
     public void deleteAnnonce(String id) throws IOException {
@@ -72,7 +73,7 @@ public class DataAnnoncesUtils {
         }
     }
 
-    public void modifyAnnonce(int id, String titre, String description, String prix, String categorie, String referent, boolean actif, int idCalendar) throws IOException {
+    public int modifyAnnonce(int id, String titre, String description, String prix, String categorie, String referent, boolean actif, int idCalendar) throws IOException {
         // Method related to the modification of an annonce
         
         // Create a JSON object with user information
@@ -91,6 +92,7 @@ public class DataAnnoncesUtils {
         file.write(data.toString());
         file.flush();
 
+        return id;
     }
 
     public ArrayList<Annonce> getAnnonces() throws IOException {
