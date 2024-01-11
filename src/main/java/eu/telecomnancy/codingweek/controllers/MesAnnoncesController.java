@@ -204,19 +204,6 @@ public class MesAnnoncesController implements Observer{
                 }
             });
 
-            Button noter = new Button();
-            noter.setText("Noter");
-            noter.setOnAction(e -> {
-                try {
-                    app.getSceneController().switchToNoterUser(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getReferent());
-                    app.getDataTransactionUtils().noterTransaction(transaction);
-                    app.notifyObservers("transaction");
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-            });
-
             hbox.getChildren().addAll(status, client, id);
 
             if (transaction.getStatus().equals("En attente")) {
@@ -225,7 +212,6 @@ public class MesAnnoncesController implements Observer{
             }
             else if (transaction.getStatus().equals("Acceptée")) {
                 hbox.setStyle("-fx-background-color: #00FF00; prefHeight:\"279.0\"");
-                hbox.getChildren().addAll(noter);
             }
             else if (transaction.getStatus().equals("Refusée")) {
                 hbox.setStyle("-fx-background-color: #FF0000; prefHeight:\"279.0\"");
