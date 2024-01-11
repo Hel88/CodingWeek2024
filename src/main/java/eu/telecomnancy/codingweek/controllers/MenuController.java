@@ -84,4 +84,10 @@ public class MenuController implements Observer{
         app.notifyObservers("connexion");
         app.getSceneController().switchToConnexion();
     }
+
+    @FXML
+    public void mesTransactions(){
+        app.notifyObservers("transactions");
+        app.getSceneController().switchToMesTransactions();
+    }
 }

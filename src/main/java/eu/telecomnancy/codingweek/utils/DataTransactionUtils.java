@@ -50,13 +50,39 @@ public class DataTransactionUtils {
         return transactions;
     }
 
-    public ArrayList<Transaction> getTransactionsByUser(User user) throws IOException {
+    public Transaction getTransaction(int id) throws IOException {
+        // Method related to the display of the transactions
+
+        // Get the transactions
+        JSONObject transaction = data.getJSONObject(String.valueOf(id));
+        Transaction retour = new Transaction(id, transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status"));
+        retour.setPlanning(transaction.getInt("planning"));
+        return retour;
+    }
+
+    public ArrayList<Transaction> getTransactionsByRefentUser(User user) throws IOException {
         // Method related to the display of the transactions of a user
 
         ArrayList<Transaction> transactions = new ArrayList<>();
 
         // Get the transactions of the user
         Scanner scanner = new Scanner(user.getTransactionsReferent());
+        scanner.useDelimiter(",");
+        while (scanner.hasNext()) {
+            String id = scanner.next();
+            JSONObject transaction = data.getJSONObject(id);
+            transactions.add(new Transaction(Integer.parseInt(id), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status")));
+        }
+        return transactions;
+    }
+
+    public ArrayList<Transaction> getTransactionsByClientUser(User user) throws IOException {
+        // Method related to the display of the transactions of a user
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        // Get the transactions of the user
+        Scanner scanner = new Scanner(user.getTransactionsClient());
         scanner.useDelimiter(",");
         while (scanner.hasNext()) {
             String id = scanner.next();
@@ -75,14 +101,16 @@ public class DataTransactionUtils {
         for (String key : data.keySet()) {
             JSONObject transaction = data.getJSONObject(key);
             if (transaction.getString("idAnnonce").equals(annonce.getId()+"")) {
-                transactions.add(new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status")));
+                Transaction temp = new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status"));
+                temp.setPlanning(transaction.getInt("planning"));
+                transactions.add(temp);
             }
         }
         return transactions;
     }
 
     // Methods
-    public void addTransaction(String idAnnonce, String idClient, String status) throws IOException {
+    public int addTransaction(String idAnnonce, String idClient, String status) throws IOException {
         // Method related to the creation of a new transaction
 
         // Create a JSON object with user information
@@ -105,6 +133,7 @@ public class DataTransactionUtils {
         // Add the transaction to the user
         DataUsersUtils.getInstance().addTransactionReferentToUser(DataAnnoncesUtils.getInstance().getAnnonce(Integer.parseInt(idAnnonce)).getReferent(), id);
         DataUsersUtils.getInstance().addTransactionClientToUser(idClient, id);
+        return id;
     }
 
     private int newId() {
@@ -134,16 +163,6 @@ public class DataTransactionUtils {
             file.write(data.toString());
             file.flush();
         }
-
-        // Upadate the solde of the client
-        User client = DataUsersUtils.getInstance().getUserByUserName(transaction.getIdClient());
-        client.setSolde(client.getSolde() - DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getPrix());
-        DataUsersUtils.getInstance().updateUser(client);
-
-        // Upadate the solde of the referent
-        User referent = DataUsersUtils.getInstance().getUserByUserName(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getReferent());
-        referent.setSolde(referent.getSolde() + DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getPrix());
-        DataUsersUtils.getInstance().updateUser(referent);
     }
 
     public void refuserTransaction(Transaction transaction) throws IOException {
@@ -159,4 +178,16 @@ public class DataTransactionUtils {
         }
     }
 
+    public void noterTransaction(Transaction transaction) throws IOException {
+        // Method related to the note of a transaction
+
+        // Update the status of the transaction
+        JSONObject transactionObject = data.getJSONObject(String.valueOf(transaction.getId()));
+        transactionObject.put("status", "Notée");
+        data.put(String.valueOf(transaction.getId()), transactionObject);
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
+    }
 }
