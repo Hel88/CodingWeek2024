@@ -46,7 +46,6 @@ public class Application extends javafx.application.Application {
     public SceneController getSceneController() {
         return sceneController;
     }
-
     public DataUsersUtils   getDataUsersUtils() {
         return dataUsersUtils;
     }
