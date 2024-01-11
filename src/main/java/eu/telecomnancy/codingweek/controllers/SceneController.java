@@ -1,19 +1,25 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
+import com.calendarfx.view.CalendarView;
+import com.calendarfx.view.DateControl;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.CalendarView;
 
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class SceneController {
 
@@ -35,6 +41,10 @@ public class SceneController {
     Scene recherche;
     Scene modifierAnnonce;
     BorderPane layout;
+    CalendarView calendarView;
+    CalendarSource myCalendarSource;
+    List<Calendar> calendarList = new java.util.ArrayList<Calendar>();
+    Calendar currentCalendar;
 
 
     public SceneController(Stage primaryStage, Application app) throws Exception {
@@ -126,21 +136,23 @@ public class SceneController {
 
 
         // on crée un calendrier
-        CalendarView calendarView = new CalendarView(); // (1)
+        calendarView = new CalendarView(); // (1)
         calendarView.setShowAddCalendarButton(false);
         calendarView.setShowPrintButton(false);
         calendarView.setShowSearchField(false);
         calendarView.setShowAddCalendarButton(false);
         calendarView.setShowPageToolBarControls(false);
-        Calendar birthdays = new Calendar("Rendez-vous"); // (2)
-        Calendar holidays = new Calendar("Holidays");
-        Entry<String> dentistAppointment = new Entry<>("Dentiste");
-        dentistAppointment.setCalendar(birthdays);
-        birthdays.setStyle(Calendar.Style.STYLE1); // (3)
-        holidays.setStyle(Calendar.Style.STYLE2);
-        CalendarSource myCalendarSource = new CalendarSource("My Calendars"); // (4)
-        myCalendarSource.getCalendars().addAll(birthdays, holidays);
-        calendarView.getCalendarSources().addAll(myCalendarSource); // (5)
+        calendarView.setShowSourceTray(false);
+        calendarView.setShowSourceTrayButton(false);
+
+//        Calendar holidays = new Calendar("Holidays");
+//        Entry<String> dentistAppointment = new Entry<>("Dentiste");
+//        dentistAppointment.setCalendar(birthdays);
+//        birthdays.setStyle(Calendar.Style.STYLE1); // (3)
+//        holidays.setStyle(Calendar.Style.STYLE2);
+        myCalendarSource = new CalendarSource("My Calendars"); // (4)
+//        myCalendarSource.getCalendars().addAll(holidays);
+//        calendarView.getCalendarSources().addAll(myCalendarSource); // (5)
         calendarView.setRequestedTime(LocalTime.now());
 
         Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
@@ -169,6 +181,36 @@ public class SceneController {
         pageScene = new Scene(calendarView);
         this.calendar = pageScene;
 
+
+
+
+
+//        System.out.println("Hello world");
+//        Calendar birthdays = new Calendar("Rendez-vous"); // (2)
+//        Entry<String> dentistAppointment = new Entry<>("Dentiste");
+//        birthdays.addEntry(dentistAppointment);
+//        Entry<String> dentistAppointment2 = new Entry<>("Dentiste2");
+//        birthdays.addEntry(dentistAppointment2);
+//        List<Entry<?>> result = birthdays.findEntries("");
+//        System.out.println(result);
+//        DataEntryUtils dataCalendarUtils = null;
+//        dataCalendarUtils = DataEntryUtils.getInstance();
+//        if (dataCalendarUtils != null) {
+//            dataCalendarUtils.store(result);
+//        }
+//        else {
+//            System.out.println("dataCalendarUtils is null");
+//        }
+//        Entry<String> event =  dataCalendarUtils.load(1);
+//        Calendar test = new Calendar("test");
+//        test.addEntry(event);
+//        myCalendarSource.getCalendars().addAll(birthdays, test);
+//        calendarView.getCalendarSources().addAll(myCalendarSource); // (5)
+//        calendarView.setRequestedTime(LocalTime.now());
+
+
+
+
         // on définit la scene de base : on affiche la page de connexion au lancement de l'application
         layout.setTop(menu.getRoot());
         setView(this.connexion);
@@ -179,6 +221,10 @@ public class SceneController {
 
     public void setView(Scene scene){
         layout.setCenter(scene.getRoot());
+    }
+
+    public List<Calendar> getCalendarList(){
+        return calendarList;
     }
 
 
@@ -235,6 +281,29 @@ public class SceneController {
 
     public void switchToModifierAnnonce(){
         setView(this.modifierAnnonce);
+    }
+
+    public void switchToCalendar(Calendar calendar) throws IOException {
+        if(currentCalendar != null) {
+            DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
+            dataCalendarUtils.store(currentCalendar);
+        }
+        calendarList.add(calendar);
+        currentCalendar = calendar;
+        DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
+        dataCalendarUtils.reload(currentCalendar);
+        myCalendarSource.getCalendars().clear();
+        myCalendarSource.getCalendars().add(currentCalendar);
+        calendarView.getCalendarSources().clear();
+        Callback<DateControl,Calendar> test = calendarView.getDefaultCalendarProvider();
+        calendarView.setDefaultCalendarProvider(new Callback<DateControl, Calendar>() {
+            @Override
+            public Calendar call(DateControl param) {
+                return currentCalendar;
+            }
+        });
+        calendarView.getCalendarSources().addAll(myCalendarSource);
+        setView(this.calendar);
     }
 
 }

@@ -1,7 +1,9 @@
 package eu.telecomnancy.codingweek.controllers;
 
 
+import com.calendarfx.model.Calendar;
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -56,8 +58,12 @@ public class InscriptionController {
 
         // Check if the username is already in use
         if (app.getDataUsersUtils().isUserNameUnique(userName)) {
+            // Create a calendar for the user
+            DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
+            Calendar calendar = new Calendar(userName);
+            int id = dataCalendarUtils.store(calendar);
             // Add the user to the JSON file
-            app.getDataUsersUtils().addUser(userName, password, email, lastName, firstName, address, city);
+            app.getDataUsersUtils().addUser(userName, password, email, lastName, firstName, address, city, String.valueOf(id));
             app.notifyObservers("user");
             app.getSceneController().switchToConnexion();
         } else {
