@@ -207,7 +207,8 @@ public class MesAnnoncesController implements Observer{
             noter.setOnAction(e -> {
                 try {
                     app.getSceneController().switchToNoterUser(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getReferent());
-                    transaction.setStatus("Notée");
+                    app.getDataTransactionUtils().noterTransaction(transaction);
+                    app.notifyObservers("transaction");
                 } catch (IOException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
