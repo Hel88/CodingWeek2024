@@ -1,14 +1,14 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.calendarfx.model.Calendar;
-
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
-import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
 import eu.telecomnancy.codingweek.utils.DataUsersUtils;
+import eu.telecomnancy.codingweek.utils.Transaction;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -81,6 +81,23 @@ public class MonProfilController implements Observer {
     public void displayPlanning() throws IOException {
         DataUsersUtils dataUsersUtils = DataUsersUtils.getInstance();
         int id = dataUsersUtils.getCalendarOf(app.getMainUser().getUserName());
-        app.getSceneController().switchToCalendar(id);
+        app.getSceneController().calendarSwitchPreparation();
+
+        // adding the user's calendar
+        app.getSceneController().calendarSwitchAddCalendarWithStyle(id, Calendar.Style.STYLE1);
+        app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
+
+        // adding Annonces and Transactions to the calendar
+        ArrayList<Annonce> annonces = app.getDataAnnoncesUtils().getAnnoncesByUsername(app.getMainUser().getUserName());
+        for (Annonce annonce : annonces) {
+            app.getSceneController().calendarSwitchAddCalendarWithStyle(annonce.getPlanning(), Calendar.Style.STYLE2);
+            ArrayList<Transaction> transactions = app.getDataTransactionUtils().getTransactionsByAnnonce(annonce);
+            for (Transaction transaction : transactions) {
+                app.getSceneController().calendarSwitchAddCalendarWithStyle(transaction.getPlanning(), Calendar.Style.STYLE3);
+            }
+        }
+
+
+        app.getSceneController().switchToCalendar();
     }
 }
