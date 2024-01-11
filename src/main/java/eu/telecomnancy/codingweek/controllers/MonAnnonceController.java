@@ -4,19 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.Annonce;
-import eu.telecomnancy.codingweek.utils.Transaction;
-import eu.telecomnancy.codingweek.utils.User;
+import eu.telecomnancy.codingweek.global.Annonce;
+import eu.telecomnancy.codingweek.global.Transaction;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 
 public class MonAnnonceController implements Observer {
     

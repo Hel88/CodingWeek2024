@@ -1,4 +1,6 @@
-package eu.telecomnancy.codingweek.utils;
+package eu.telecomnancy.codingweek.global;
+
+import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 
 import java.io.IOException;
 

@@ -1,14 +1,12 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.Report;
-import eu.telecomnancy.codingweek.utils.User;
+import eu.telecomnancy.codingweek.global.Report;
+import eu.telecomnancy.codingweek.global.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class UnReportController implements Observer{
 

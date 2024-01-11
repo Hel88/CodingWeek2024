@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.Annonce;
-import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
-import eu.telecomnancy.codingweek.utils.Transaction;
+import eu.telecomnancy.codingweek.global.Annonce;
+import eu.telecomnancy.codingweek.global.Transaction;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

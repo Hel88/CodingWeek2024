@@ -2,12 +2,15 @@ package eu.telecomnancy.codingweek;
 
 import eu.telecomnancy.codingweek.controllers.Observer;
 import eu.telecomnancy.codingweek.controllers.SceneController;
+import eu.telecomnancy.codingweek.global.Annonce;
+import eu.telecomnancy.codingweek.global.CalendarDisplay;
+import eu.telecomnancy.codingweek.global.Report;
+import eu.telecomnancy.codingweek.global.User;
 import eu.telecomnancy.codingweek.utils.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Application extends javafx.application.Application {
 

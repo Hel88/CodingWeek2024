@@ -11,7 +11,7 @@ import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
 
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.global.Annonce;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

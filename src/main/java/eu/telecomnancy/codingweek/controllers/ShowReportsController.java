@@ -1,9 +1,8 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.Annonce;
 import eu.telecomnancy.codingweek.utils.DataReportUtils;
-import eu.telecomnancy.codingweek.utils.Report;
+import eu.telecomnancy.codingweek.global.Report;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

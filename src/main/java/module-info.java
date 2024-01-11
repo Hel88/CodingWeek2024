@@ -13,4 +13,6 @@ module eu.telecomnancy.codingweek {
     opens eu.telecomnancy.codingweek.controllers to javafx.fxml;
     exports eu.telecomnancy.codingweek.utils;
     opens eu.telecomnancy.codingweek.utils to javafx.fxml;
+    exports eu.telecomnancy.codingweek.global;
+    opens eu.telecomnancy.codingweek.global to javafx.fxml;
 }

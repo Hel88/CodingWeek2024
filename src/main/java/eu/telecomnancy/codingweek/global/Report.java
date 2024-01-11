@@ -1,4 +1,4 @@
-package eu.telecomnancy.codingweek.utils;
+package eu.telecomnancy.codingweek.global;
 
 public class Report {
     private int id;

@@ -2,6 +2,7 @@ package eu.telecomnancy.codingweek.utils;
 
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.Entry;
+import eu.telecomnancy.codingweek.global.FileAccess;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -9,13 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.nio.file.Files.readAllBytes;
 
 
 public class DataCalendarUtils {

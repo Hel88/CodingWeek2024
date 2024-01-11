@@ -1,6 +1,10 @@
 package eu.telecomnancy.codingweek.utils;
 
 import com.calendarfx.model.Calendar;
+import eu.telecomnancy.codingweek.global.Annonce;
+import eu.telecomnancy.codingweek.global.FileAccess;
+import eu.telecomnancy.codingweek.global.Transaction;
+import eu.telecomnancy.codingweek.global.User;
 import org.json.JSONObject;
 import java.util.Scanner;
 

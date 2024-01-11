@@ -1,15 +1,14 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.calendarfx.model.Calendar;
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.Annonce;
-import eu.telecomnancy.codingweek.utils.CalendarDisplay;
+import eu.telecomnancy.codingweek.global.Annonce;
+import eu.telecomnancy.codingweek.global.CalendarDisplay;
 import eu.telecomnancy.codingweek.utils.DataUsersUtils;
-import eu.telecomnancy.codingweek.utils.Transaction;
+import eu.telecomnancy.codingweek.global.Transaction;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;

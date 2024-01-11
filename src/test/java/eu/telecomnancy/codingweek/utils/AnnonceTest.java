@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import eu.telecomnancy.codingweek.global.Annonce;
 import org.junit.jupiter.api.Test;
 
 

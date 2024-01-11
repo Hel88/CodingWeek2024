@@ -1,5 +1,8 @@
 package eu.telecomnancy.codingweek.utils;
 
+import eu.telecomnancy.codingweek.global.FileAccess;
+import eu.telecomnancy.codingweek.global.Report;
+import eu.telecomnancy.codingweek.global.User;
 import org.json.JSONObject;
 
 import java.io.File;

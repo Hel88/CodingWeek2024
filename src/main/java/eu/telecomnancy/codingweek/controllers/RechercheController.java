@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.global.Annonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;

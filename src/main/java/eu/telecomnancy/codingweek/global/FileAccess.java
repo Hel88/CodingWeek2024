@@ -1,4 +1,4 @@
-package eu.telecomnancy.codingweek.utils;
+package eu.telecomnancy.codingweek.global;
 
 import java.io.File;
 import java.io.IOException;

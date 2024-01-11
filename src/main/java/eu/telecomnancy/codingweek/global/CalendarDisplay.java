@@ -1,8 +1,9 @@
-package eu.telecomnancy.codingweek.utils;
+package eu.telecomnancy.codingweek.global;
 
 import com.calendarfx.model.Calendar;
 import com.calendarfx.view.DateControl;
 import eu.telecomnancy.codingweek.controllers.SceneController;
+import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
 import javafx.util.Callback;
 
 import java.io.IOException;

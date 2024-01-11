@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
-import eu.telecomnancy.codingweek.utils.Transaction;
-import eu.telecomnancy.codingweek.utils.User;
+import eu.telecomnancy.codingweek.global.Transaction;
+import eu.telecomnancy.codingweek.global.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
