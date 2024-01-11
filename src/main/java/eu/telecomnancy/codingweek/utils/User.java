@@ -10,7 +10,7 @@ public class User {
     private String email;
     private String address;
     private String city;
-    private int announces;
+    private String annonces;
     private int planning;
     private int eval;
 
@@ -20,7 +20,7 @@ public class User {
 
     // Constructor with parameters
     public User(String userName, String password, String firstName, String lastName, String email,
-                String address, String city, int announces, int planning, int eval) {
+                String address, String city, String annonces, int planning, int eval) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
@@ -28,7 +28,7 @@ public class User {
         this.email = email;
         this.address = address;
         this.city = city;
-        this.announces = announces;
+        this.annonces = annonces;
         this.planning = planning;
         this.eval = eval;
     }
@@ -61,8 +61,9 @@ public class User {
         return city;
     }
 
-    public int getAnnounces() {
-        return announces;
+    public String getAnnonces() {
+        System.out.println(annonces);
+        return annonces;
     }
 
     public int getPlanning() {
@@ -103,8 +104,8 @@ public class User {
         this.city = city;
     }
 
-    public void setAnnounces(int announces) {
-        this.announces = announces;
+    public void setAnnonces(String annonces) {
+        this.annonces = annonces;
     }
 
     public void setPlanning(int planning) {
@@ -125,7 +126,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
-                ", announces=" + announces +
+                ", announces=" + annonces +
                 ", planning=" + planning +
                 ", eval=" + eval +
                 '}';
