@@ -1,13 +1,13 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 
 public class CreationEtModificationAnnonceController implements Observer{
@@ -69,7 +69,7 @@ public class CreationEtModificationAnnonceController implements Observer{
         }
 
         // Create the new annnounce
-        app.getDataAnnoncesUtils().modifyAnnonce(app.getAnnonceAffichee().getId(), titre.getText(), description.getText(), prix.getText(), app.getAnnonceAffichee().getCategorie(), app.getMainUser().getUserName(), true);
+        app.getDataAnnoncesUtils().modifyAnnonce(app.getAnnonceAffichee().getId(), titre.getText(), description.getText(), prix.getText(), app.getAnnonceAffichee().getCategorie(), app.getMainUser().getUserName(), true, app.getAnnonceAffichee().getPlanning());
 
         app.notifyObservers("annonce");
         app.getSceneController().switchToMesAnnonces();
