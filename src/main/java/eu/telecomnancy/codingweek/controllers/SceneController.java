@@ -9,17 +9,14 @@ import java.util.List;
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
-import com.calendarfx.view.DateControl;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
-import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 public class SceneController {
 
@@ -34,7 +31,7 @@ public class SceneController {
     Scene monProfil;
     Scene modifierProfil;
     Scene monAnnonce;
-    Scene consulterannonce;
+    Scene consulterAnnonce;
     Scene offres;
     Scene demandes;
     Scene calendar;
@@ -44,6 +41,7 @@ public class SceneController {
     Scene noterUser;
     Scene userEvaluations;
     Scene reportBug;
+    Scene showReports;
     BorderPane layout;
     CalendarView calendarView;
     CalendarSource myCalendarSource;
@@ -107,8 +105,8 @@ public class SceneController {
         pageLoader.setLocation(getClass().getResource("consulterAnnonce.fxml"));
         pageLoader.setControllerFactory(iC->new ConsulterAnnonceController(app));
         pageScene = new Scene(pageLoader.load());
-        this.consulterannonce = pageScene;
-        this.consulterannonce = pageScene;
+        this.consulterAnnonce = pageScene;
+        this.consulterAnnonce = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("mesAnnonces.fxml"));
@@ -169,6 +167,12 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new ReportBugController(app));
         pageScene = new Scene(pageLoader.load());
         this.reportBug = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("showReports.fxml"));
+        pageLoader.setControllerFactory(iC->new ShowReportsController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.showReports = pageScene;
 
 
         // on crée un calendrier
@@ -253,6 +257,9 @@ public class SceneController {
         setView(this.monProfil);
     }
 
+    public void switchToAllReports() {
+        setView(this.showReports);
+    }
 
     public void switchToModifierProfil() {
         setView(this.modifierProfil);
@@ -267,7 +274,7 @@ public class SceneController {
     }
 
     public void switchToConsulterAnnonce(int id) {
-        setView(this.consulterannonce);
+        setView(this.consulterAnnonce);
     }
 
     public void switchToOffres() {

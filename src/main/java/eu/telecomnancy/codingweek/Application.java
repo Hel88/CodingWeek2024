@@ -20,6 +20,7 @@ public class Application extends javafx.application.Application {
     private User mainUser;
     private final ArrayList<Observer> observers = new ArrayList<Observer>();
     private Annonce annonceAffichee;
+    private Report reportAffiche;
     private String categorieAnnonceACreer;
 
 
@@ -100,5 +101,13 @@ public class Application extends javafx.application.Application {
 
     public void setCategorieAnnonceACreer(String categorieAnnonceACreer) {
         this.categorieAnnonceACreer = categorieAnnonceACreer;
+    }
+
+    public Report getReportAffiche() {
+        return reportAffiche;
+    }
+
+    public void setReportAffiche(Report reportAffiche) {
+        this.reportAffiche = reportAffiche;
     }
 }

@@ -43,7 +43,15 @@ public class DataReportUtils {
         }
     }
 
-    public ArrayList<Report> getReports() throws IOException {
+    public ArrayList<Report> getReports(User user) throws IOException {
+        try {
+            boolean isAdmin = user.getIsAdmin();
+            if(!isAdmin) {
+                return new ArrayList<Report>();
+            }
+        } catch (Exception e) {
+            return new ArrayList<Report>();
+        }
         ArrayList<Report> reports = new ArrayList<Report>();
         for (String key : data.keySet()) {
             JSONObject reportObject = data.getJSONObject(key);

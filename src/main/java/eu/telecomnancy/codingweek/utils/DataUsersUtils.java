@@ -137,6 +137,7 @@ public class DataUsersUtils {
         userObject.put("planning", User.getPlanning());
         userObject.put("eval", User.getEval());
         userObject.put("solde", User.getSolde());
+        userObject.put("isAdmin", User.getIsAdmin());
 
         // Add the user to the JSON file
         data.put(User.getUserName(), userObject);

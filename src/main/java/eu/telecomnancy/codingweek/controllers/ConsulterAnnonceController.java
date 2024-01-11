@@ -62,13 +62,6 @@ public class ConsulterAnnonceController implements Observer{
     }
 
     @FXML
-    public void choisirDispo(){
-        System.out.println("choisir dispo");
-        //calendrier de mathis
-        
-    }
-
-    @FXML
     public void voirEvaluations(){
         app.notifyObservers("evaluations");
         app.getSceneController().switchToUserEvaluations(annonce.getReferent());
