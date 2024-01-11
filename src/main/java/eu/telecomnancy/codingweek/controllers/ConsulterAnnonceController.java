@@ -1,26 +1,50 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class ConsulterAnnonceController {
+public class ConsulterAnnonceController implements Observer{
 
     private Application app;
-    private String id;
+    private Annonce annonce;
     @FXML
     private Label titre;
     @FXML
     private Label description;
     @FXML
-    private Label user;
+    private Label name;
+    @FXML
+    private Label prix;
+    @FXML
+    private Label categorie;
+    @FXML
+    private Label lieu;
     
     public ConsulterAnnonceController(Application app) {
         this.app = app;
+        app.addObserver(this);
     }
 
-    public void setId(String id){
-        this.id = id;
+    public void initialize() {
+        annonce = app.getAnnonceAffichee();
+        if (annonce == null){return;} 
+            titre.setText(annonce.getTitre());
+            description.setText(annonce.getDescription());
+            name.setText(annonce.getReferent());
+            prix.setText(annonce.getPrix()+"");
+            categorie.setText(annonce.getCategorie());
+            
+        
+    }
+
+    public void update(String type) {
+        if (type == "annonce") {
+            initialize();
+        }
     }
 
     @FXML
@@ -28,13 +52,10 @@ public class ConsulterAnnonceController {
         //app.getSceneController().switchToMessagerie();
     }
 
-    @FXML
-    public void consulterProfil(){
-        app.getSceneController().switchToMonProfil();
-    }
+
 
     @FXML
-    public void reserver(){
-        //TODO
+    public void reserver() throws IOException {
+        app.getDataTransactionUtils().addTransaction(String.valueOf(annonce.getId()), app.getMainUser().getUserName(), "En attente");
     }
 }

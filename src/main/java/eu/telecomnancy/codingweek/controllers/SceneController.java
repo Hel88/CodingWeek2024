@@ -5,8 +5,9 @@ import java.time.LocalTime;
 
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
-import com.calendarfx.view.CalendarView;
 import com.calendarfx.model.Entry;
+import com.calendarfx.view.CalendarView;
+
 import eu.telecomnancy.codingweek.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ import javafx.stage.Stage;
 
 public class SceneController {
 
+    // On a besoin de la primaryStage pour changer de scene
+    // On définit toutes les scenes pour pouvoir définir les changements de scenes
     Stage primaryStage;
     Scene connexion;
     Scene inscription;
@@ -28,7 +31,6 @@ public class SceneController {
     Scene consulterannonce;
     Scene offres;
     Scene demandes;
-    Scene profilPublic;
     Scene calendar;
     Scene recherche;
     Scene modifierAnnonce;
@@ -38,11 +40,11 @@ public class SceneController {
     public SceneController(Stage primaryStage, Application app) throws Exception {
 
         this.primaryStage = primaryStage;
-        //app.setSceneController(this);
 
         this.layout = new BorderPane();
         layout.setMinSize(1000,750);
 
+        // on charge toutes les scènes et on les associe à leur controller
         FXMLLoader pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("connexion.fxml"));
         pageLoader.setControllerFactory(iC->new ConnexionController(app));
@@ -56,8 +58,8 @@ public class SceneController {
         this.inscription = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("creationAnnonce.fxml"));
-        pageLoader.setControllerFactory(iC->new CreationAnnonceController(app));
+        pageLoader.setLocation(getClass().getResource("creation_et_modificationAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new CreationEtModificationAnnonceController(app, "creation"));
         pageScene = new Scene(pageLoader.load());
         this.creationAnnonce = pageScene;
 
@@ -78,12 +80,6 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new ModifierProfilController(app));
         pageScene = new Scene(pageLoader.load());
         this.modifierProfil = pageScene;
-
-        pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("profilPublic.fxml"));
-        pageLoader.setControllerFactory(iC->new ProfilPublicController(app));
-        pageScene = new Scene(pageLoader.load());
-        this.profilPublic = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("monAnnonce.fxml"));
@@ -122,6 +118,14 @@ public class SceneController {
         pageScene = new Scene(pageLoader.load());
         this.recherche = pageScene;
 
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("creation_et_modificationAnnonce.fxml"));
+        pageLoader.setControllerFactory(iC->new CreationEtModificationAnnonceController(app, "modification"));
+        pageScene = new Scene(pageLoader.load());
+        this.modifierAnnonce = pageScene;
+
+
+        // on crée un calendrier
         CalendarView calendarView = new CalendarView(); // (1)
         calendarView.setShowAddCalendarButton(false);
         calendarView.setShowPrintButton(false);
@@ -164,8 +168,8 @@ public class SceneController {
         updateTimeThread.start();
         pageScene = new Scene(calendarView);
         this.calendar = pageScene;
-//        this.demandes = pageScene;
 
+        // on définit la scene de base : on affiche la page de connexion au lancement de l'application
         layout.setTop(menu.getRoot());
         setView(this.connexion);
         
@@ -177,18 +181,17 @@ public class SceneController {
         layout.setCenter(scene.getRoot());
     }
 
+
+    // on définit les méthodes pour changer de scene
     public void switchToInscription() {
-        //primaryStage.setScene(this.inscription);
         setView(this.inscription);
     }
 
     public void switchToConnexion(String userName) {
-        //primaryStage.setScene(this.inscription);
         setView(this.connexion);
     }
 
     public void switchToConnexion() {
-        //primaryStage.setScene(this.connexion);
         setView(this.connexion);
     }
 
@@ -209,19 +212,12 @@ public class SceneController {
         setView(this.modifierProfil);
     }
 
-    public void switchToProfilPublic(String id) {
-        //System.out.println("id : "+id);
-        setView(this.profilPublic);
-    }
 
     public void switchToMonAnnonce() {
-        //System.out.println("id : "+id);
         setView(this.monAnnonce);
     }
 
     public void switchToConsulterAnnonce(int id) {
-        //primaryStage.setScene(this.consulterannonce);
-        //System.out.println(id);
         setView(this.consulterannonce);
     }
 

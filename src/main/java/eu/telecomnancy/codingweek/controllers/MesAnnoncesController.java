@@ -1,5 +1,8 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
 import javafx.fxml.FXML;
@@ -10,9 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class MesAnnoncesController implements Observer{
     
@@ -30,15 +30,13 @@ public class MesAnnoncesController implements Observer{
     }
 
     public void detailsAnnonce(Annonce annonce){
+        //on enregistre l'annonce à afficher pour y avoir accès dans ConsulterAnnonceController
         app.setAnnonceAffichee(annonce);
         app.notifyObservers("annonce");
         app.getSceneController().switchToMonAnnonce();
     }
 
-    // public void creerAnnonce(){
-    //     app.getSceneController().switchToCreationAnnonce();
-    // }
-  
+    //les différentes méthodes pour créer une annonce en fonction du bouton sur lequel on a cliqué
     public void creerAnnonceDemandeService(){
         app.setCategorieAnnonceACreer("DemandeService");
         app.notifyObservers("annonce");
@@ -107,6 +105,7 @@ public class MesAnnoncesController implements Observer{
 
             hboxCentre.getChildren().add(prix);
             hboxCentre.getChildren().add(new Label(annonce.getPrix()+""));
+            
             Image image = new Image(getClass().getResource("images/florain.jpg").toExternalForm());
             ImageView imagev = new ImageView(image);
             

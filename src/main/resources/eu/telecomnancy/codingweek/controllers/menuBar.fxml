@@ -29,7 +29,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#mesAnnonces" text="Mes annonces" />
                   <MenuItem mnemonicParsing="false" onAction="#monProfil" text="Mon profil" />
                   <MenuItem mnemonicParsing="false" onAction="#deconnexion" text="Se déconnecter" />
-                  <MenuItem mnemonicParsing="false" onAction="#connexion" text="Se connecter" />
 
             </items>
           </Menu>
