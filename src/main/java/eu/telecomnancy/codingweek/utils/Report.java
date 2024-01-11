@@ -7,6 +7,12 @@ public class Report {
 
     public Report() {}
 
+    public Report(String referent, String message, int timestamp) {
+        this.referent = referent;
+        this.message = message;
+        this.timestamp = timestamp;
+    }
+
     public String getReferent() {
         return referent;
     }

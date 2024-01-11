@@ -50,11 +50,7 @@ public class DataReportUtils {
             String referent = reportObject.getString("referent");
             String message = reportObject.getString("message");
             int timestamp = reportObject.getInt("timestamp");
-            Report report = new Report();
-            report.setReferent(referent);
-            report.setMessage(message);
-            report.setTimestamp(timestamp);
-            reports.add(report);
+            reports.add(new Report(referent, message, timestamp));
         }
         return reports;
     }
@@ -67,11 +63,7 @@ public class DataReportUtils {
             if (referentReport.equals(referent)) {
                 String message = reportObject.getString("message");
                 int timestamp = reportObject.getInt("timestamp");
-                Report report = new Report();
-                report.setReferent(referent);
-                report.setMessage(message);
-                report.setTimestamp(timestamp);
-                reports.add(report);
+                reports.add(new Report(referent, message, timestamp));
             }
         }
         return reports;
