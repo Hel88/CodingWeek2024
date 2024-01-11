@@ -61,8 +61,10 @@ public class ConsulterAnnonceController implements Observer{
     }
 
     @FXML
-    public void versMessagerie(){
-        //app.getSceneController().switchToMessagerie();
+    public void choisirDispo(){
+        System.out.println("choisir dispo");
+        //calendrier de mathis
+        
     }
 
 
