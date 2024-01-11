@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
+
 
 public class DataTransactionUtils {
 
@@ -30,6 +32,34 @@ public class DataTransactionUtils {
             instance = new DataTransactionUtils();
         }
         return instance;
+    }
+
+    public ArrayList<Transaction> getTransactions() throws IOException {
+        // Method related to the display of the transactions
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        // Get the transactions
+        for (String key : data.keySet()) {
+            JSONObject transaction = data.getJSONObject(key);
+            transactions.add(new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status")));
+        }
+        return transactions;
+    }
+
+    public ArrayList<Transaction> getTransactionsByAnnonce(Annonce annonce) throws IOException {
+        // Method related to the display of the transactions of a user
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        // Get the transactions of the user
+        for (String key : data.keySet()) {
+            JSONObject transaction = data.getJSONObject(key);
+            if (transaction.getString("idAnnonce").equals(annonce.getId()+"")) {
+                transactions.add(new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status")));
+            }
+        }
+        return transactions;
     }
 
     // Methods
