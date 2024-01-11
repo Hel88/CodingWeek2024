@@ -47,7 +47,7 @@ public class Application extends javafx.application.Application {
             dataCalendarUtils.store(sceneController.getCurrentCalendar());
         }
         List<Integer> calendars = sceneController.getCalendarList();
-        System.out.println(calendars);
+//        System.out.println(calendars);
     }
 
     public SceneController getSceneController() {

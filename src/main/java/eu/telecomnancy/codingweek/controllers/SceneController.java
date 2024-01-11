@@ -44,6 +44,7 @@ public class SceneController {
     CalendarSource myCalendarSource;
     List<Integer> calendarList = new java.util.ArrayList<Integer>();
     Calendar currentCalendar;
+    Calendar defaultCalendar;
 
 
     public SceneController(Stage primaryStage, Application app) throws Exception {
@@ -132,7 +133,7 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new CreationEtModificationAnnonceController(app, "modification"));
         pageScene = new Scene(pageLoader.load());
         this.modifierAnnonce = pageScene;
-        
+
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("mesTransactions.fxml"));
         pageLoader.setControllerFactory(iC->new MesTransactionsController(app));
@@ -291,26 +292,63 @@ public class SceneController {
         setView(this.mesTransactions);
     }
 
-    public void switchToCalendar(int id) throws IOException {
+    public void calendarSave() throws IOException {
         if(currentCalendar != null) {
             DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
             dataCalendarUtils.store(currentCalendar);
         }
-        Calendar calendar = DataCalendarUtils.getInstance().load(id);
-        DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
-        calendarList.add(id);
-        currentCalendar = calendar;
-        dataCalendarUtils.reload(currentCalendar);
+    }
+
+    public void calendarSwitchPreparation() throws IOException {
+        calendarSave();
+
         myCalendarSource.getCalendars().clear();
-        myCalendarSource.getCalendars().addAll(currentCalendar);
         calendarView.getCalendarSources().clear();
-        Callback<DateControl,Calendar> test = calendarView.getDefaultCalendarProvider();
         calendarView.setDefaultCalendarProvider(new Callback<DateControl, Calendar>() {
             @Override
             public Calendar call(DateControl param) {
-                return currentCalendar;
+                return null;
             }
         });
+    }
+
+    public void calendarSwitchSetCurrentCalendarToDefault() throws IOException {
+        defaultCalendar = currentCalendar;
+        calendarView.setDefaultCalendarProvider(new Callback<DateControl, Calendar>() {
+            @Override
+            public Calendar call(DateControl param) {
+                return defaultCalendar;
+            }
+        });
+    }
+
+    public void calendarSwitchAddCalendar(int id) throws IOException {
+        calendarSave();
+
+        Calendar calendar = DataCalendarUtils.getInstance().load(id);
+        calendarList.add(id);
+
+        currentCalendar = calendar;
+        DataCalendarUtils.getInstance().reload(currentCalendar);
+
+        myCalendarSource.getCalendars().addAll(currentCalendar);
+    }
+
+    public void calendarSwitchAddCalendarWithStyle(int id, Calendar.Style style) throws IOException {
+        calendarSave();
+
+        Calendar calendar = DataCalendarUtils.getInstance().load(id);
+        calendar.setStyle(style);
+        calendarList.add(id);
+
+        currentCalendar = calendar;
+        DataCalendarUtils.getInstance().reload(currentCalendar);
+
+        myCalendarSource.getCalendars().addAll(currentCalendar);
+    }
+
+    public void switchToCalendar() throws IOException {
+        calendarView.setRequestedTime(LocalTime.now());
         calendarView.getCalendarSources().addAll(myCalendarSource);
         setView(this.calendar);
     }

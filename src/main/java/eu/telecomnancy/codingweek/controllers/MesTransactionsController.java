@@ -25,16 +25,13 @@ public class MesTransactionsController implements Observer{
     @Override
     public void update(String type) {
         if (type.equals("transactions")){
-            System.out.println("------------------------");
             VBoxTransactions.getChildren().clear();
             //ajouter les transactions à la VBox
             try {
                 User user = app.getMainUser();
                 //System.out.println(user.getUserName());
                 ArrayList<Transaction> transactions = app.getDataTransactionUtils().getTransactionsByClientUser(user);
-                System.out.println(transactions.size());
                 for (Transaction transaction : transactions){
-                    System.out.println(transaction.getId());
                     HBox hboxGauche = new HBox();
                     HBox hboxDroite = new HBox();
                     HBox hboxCentre = new HBox();

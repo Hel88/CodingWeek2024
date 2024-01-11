@@ -227,9 +227,6 @@ public class MesAnnoncesController implements Observer{
         if (app.getMainUser() != null) {
             this.annonces = app.getDataAnnoncesUtils().getAnnoncesByUsername(app.getMainUser().getUserName());
             this.transactions = app.getDataTransactionUtils().getTransactionsByRefentUser(app.getMainUser());
-            System.out.println("getTransactionsByRefentUser");
-            System.out.println(app.getMainUser());
-            System.out.println(app.getDataTransactionUtils().getTransactionsByRefentUser(app.getMainUser()));
         }
     }
 
