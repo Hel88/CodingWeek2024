@@ -7,6 +7,7 @@ import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Transaction;
 import eu.telecomnancy.codingweek.utils.User;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -58,6 +59,21 @@ public class MesTransactionsController implements Observer{
 
                     Label referent = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getReferent());
                     hboxCentre.getChildren().add(referent);
+
+                    if (transaction.getStatus().equals("Acceptée")){
+                        //si la transaction est validée, on peut la noter
+                        Button noterButton = new Button("Noter");
+                        //Associer action pour noter la transaction
+                        // noterButton.setOnAction(e -> {
+                        //     try {
+                        //         app.getDataTransactionUtils().noter(transaction.getId());
+                        //     } catch (IOException e1) {
+                        //         e1.printStackTrace();
+                        //     }
+                        // });
+                        hboxDroite.getChildren().add(noterButton);
+                    }
+                   
 
                 }
             } catch (IOException e) {
