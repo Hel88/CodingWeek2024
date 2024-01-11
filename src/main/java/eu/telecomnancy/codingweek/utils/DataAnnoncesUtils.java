@@ -106,6 +106,13 @@ public class DataAnnoncesUtils {
         return annonces;
     }
 
+    public Annonce getAnnonce(int id) throws IOException {
+        // Method related to the display of the annonces
+
+        JSONObject annonce = data.getJSONObject(String.valueOf(id));
+        return new Annonce(id, annonce.getString("titre"), annonce.getString("categorie"), annonce.getString("description"), annonce.getInt("prix"), annonce.getString("referent"), annonce.getBoolean("actif"), annonce.getInt("planning"));
+    }
+
     public ArrayList<Annonce> getAnnoncesByUsername(String username) throws IOException {
         // Method related to the display of the annonces of a user
 

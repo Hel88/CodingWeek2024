@@ -83,6 +83,9 @@ public class DataTransactionUtils {
             file.write(data.toString());
             file.flush();
         }
+
+        // Add the transaction to the user
+        DataUsersUtils.getInstance().addTransactionToUser(DataAnnoncesUtils.getInstance().getAnnonce(Integer.parseInt(idAnnonce)).getReferent(), id);
     }
 
     private int newId() {

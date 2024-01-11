@@ -78,7 +78,7 @@ public class DataUsersUtils {
 
         // Retrieve the User object from the JSON file
         JSONObject userObject = data.getJSONObject(userName);
-        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getInt("planning"), userObject.getInt("eval"));
+        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactions"), userObject.getInt("planning"), userObject.getInt("eval"));
     }
 
     public String hashPassword(String password) {
@@ -162,6 +162,20 @@ public class DataUsersUtils {
         }
 
         user.setAnnonces(annonces);
+
+        updateUser(user);
+    }
+
+    public void addTransactionToUser(String referent, int id) throws IOException {
+        User user = getUserByUserName(referent);
+        String transactions = user.getTransactions();
+        if (transactions.isEmpty()) {
+            transactions = String.valueOf(id);
+        } else {
+            transactions = transactions + ", " + id;
+        }
+
+        user.setTransactions(transactions);
 
         updateUser(user);
     }
