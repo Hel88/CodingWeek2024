@@ -9,6 +9,8 @@ import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
 import com.calendarfx.view.DateControl;
+import com.calendarfx.model.Entry;
+import com.calendarfx.view.CalendarView;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
@@ -125,6 +127,12 @@ public class SceneController {
         this.demandes = pageScene;
 
         pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("mesTransactions.fxml"));
+        pageLoader.setControllerFactory(iC->new MesTransactionsController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.mesTransactions = pageScene;
+
+        pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("recherche.fxml"));
         pageLoader.setControllerFactory(iC->new RechercheController(app));
         pageScene = new Scene(pageLoader.load());
@@ -135,6 +143,12 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new CreationEtModificationAnnonceController(app, "modification"));
         pageScene = new Scene(pageLoader.load());
         this.modifierAnnonce = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("noterUser.fxml"));
+        pageLoader.setControllerFactory(iC->new NoterUserController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.noterUser = pageScene;
 
 
         // on crée un calendrier
@@ -259,6 +273,9 @@ public class SceneController {
         setView(this.modifierProfil);
     }
 
+    public void switchToMesTransactions(){
+        setView(this.mesTransactions);
+    }
 
     public void switchToMonAnnonce() {
         setView(this.monAnnonce);
@@ -288,11 +305,7 @@ public class SceneController {
         setView(this.noterUser);
     }
 
-    public void switchToMesTransactions(){
-        setView(this.mesTransactions);
-    }
-
-    public void calendarSave() throws IOException {
+   public void calendarSave() throws IOException {
         if(currentCalendar != null) {
             DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
             dataCalendarUtils.store(currentCalendar);
