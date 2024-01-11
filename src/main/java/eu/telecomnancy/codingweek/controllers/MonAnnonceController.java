@@ -77,9 +77,7 @@ public class MonAnnonceController implements Observer {
         if (app.getDataAnnoncesUtils() != null) {
             this.transactions = app.getDataTransactionUtils().getTransactionsByAnnonce(annonce);
         }
-
-        System.out.println(transactions);
-
+        
         //afficher les transactions
 
         for (Transaction transaction : this.transactions){
