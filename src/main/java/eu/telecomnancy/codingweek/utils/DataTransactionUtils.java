@@ -48,6 +48,21 @@ public class DataTransactionUtils {
         return transactions;
     }
 
+    // public ArrayList<Transaction> getTransactionsByUser(User user) throws IOException {
+    //     // Method related to the display of the transactions of a user
+
+    //     ArrayList<Transaction> transactions = new ArrayList<>();
+
+    //     // Get the transactions of the user
+    //     for (String key : data.keySet()) {
+    //         JSONObject transaction = data.getJSONObject(key);
+    //         if ((user.getAnnouncesToString()).contains(transaction.getString("idAnnonce"))) {
+    //             transactions.add(new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status")));
+    //         }
+    //     }
+    //     return transactions;
+    // }
+
     public ArrayList<Transaction> getTransactionsByAnnonce(Annonce annonce) throws IOException {
         // Method related to the display of the transactions of a user
 

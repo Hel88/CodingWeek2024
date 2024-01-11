@@ -18,7 +18,6 @@
       <TextField fx:id="titre" layoutX="59.0" layoutY="89.0" promptText="titre" />
       <TextField fx:id="prix" layoutX="59.0" layoutY="120.0" promptText="prix" />
       <TextArea fx:id="description" layoutX="277.0" layoutY="80.0" prefHeight="200.0" prefWidth="262.0" promptText="description" wrapText="true" />
-      <Button layoutX="59.0" layoutY="255.0" mnemonicParsing="false" text="choisir la disponibilité" />
       <Label fx:id="messageErreur" layoutX="59.0" layoutY="164.0" prefHeight="72.0" prefWidth="170.0" text=" " wrapText="true" />
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -49,10 +50,10 @@ public class CreationEtModificationAnnonceController implements Observer{
         }
 
         // Create the new annnounce
-        app.getDataAnnoncesUtils().addAnnonce(titre.getText(), description.getText(), prix.getText(), categorie, app.getMainUser().getUserName());
+        int idAnnonce = app.getDataAnnoncesUtils().addAnnonce(titre.getText(), description.getText(), prix.getText(), categorie, app.getMainUser().getUserName());
 
         app.notifyObservers("annonce");
-        app.getSceneController().switchToMesAnnonces();
+        app.getSceneController().switchToCalendar(DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning());
     }
 
     public void modifierAnnonce() throws IOException{
@@ -69,10 +70,10 @@ public class CreationEtModificationAnnonceController implements Observer{
         }
 
         // Create the new annnounce
-        app.getDataAnnoncesUtils().modifyAnnonce(app.getAnnonceAffichee().getId(), titre.getText(), description.getText(), prix.getText(), app.getAnnonceAffichee().getCategorie(), app.getMainUser().getUserName(), true, app.getAnnonceAffichee().getPlanning());
+        int idAnnonce = app.getDataAnnoncesUtils().modifyAnnonce(app.getAnnonceAffichee().getId(), titre.getText(), description.getText(), prix.getText(), app.getAnnonceAffichee().getCategorie(), app.getMainUser().getUserName(), true, app.getAnnonceAffichee().getPlanning());
 
         app.notifyObservers("annonce");
-        app.getSceneController().switchToMesAnnonces();
+        app.getSceneController().switchToCalendar(DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning());
     }
 
     @FXML
