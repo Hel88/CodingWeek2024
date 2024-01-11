@@ -1,21 +1,14 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.ArrayList;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.io.IOUtils;
-import org.json.JSONObject;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
-import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
-import eu.telecomnancy.codingweek.utils.FileAccess;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -35,6 +28,8 @@ public class RechercheController {
     private TextField user;
     @FXML
     private TextField titre;
+    @FXML
+    private TextField ville;
     @FXML
     private Button valider;
     @FXML
@@ -60,8 +55,9 @@ public class RechercheController {
     // on définit les patterns à rechercher dans les annonces
     Pattern userPattern = Pattern.compile(user.getText(), Pattern.CASE_INSENSITIVE);
     Pattern titrePattern = Pattern.compile(titre.getText(), Pattern.CASE_INSENSITIVE);
+    Pattern villePattern = Pattern.compile(ville.getText(), Pattern.CASE_INSENSITIVE);
 
-    rechercher(userPattern, titrePattern);
+    rechercher(userPattern, titrePattern, villePattern);
 
   }
 
@@ -85,19 +81,19 @@ public class RechercheController {
 
     
 
-    public void rechercher(Pattern userPattern, Pattern titrePattern) throws IOException{
+    public void rechercher(Pattern userPattern, Pattern titrePattern, Pattern villePattern) throws IOException{
 
-        // //initialiser les annonces, lire dans le json
-        // // Read existing content from users.json
-        // //initialiser les annonces, lire dans le json
-        // // Read existing content from users.json
+        // initialiser les annonces, lire dans le json
+        // Read existing content from users.json
+        // initialiser les annonces, lire dans le json
+        // Read existing content from users.json
         // FileAccess fileAccess = new FileAccess();
         // String filePath = fileAccess.getPathOf("annonces.json");
         // File file = new File(filePath);
         // String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
         // JSONObject existingData = new JSONObject(fileContent);
 
-        // //parcourir le json et ajouter les annonces à la liste
+        // parcourir le json et ajouter les annonces à la liste
         // for (int i=1;i<existingData.length()+1;i++){
         //     JSONObject annonce = existingData.getJSONObject(i+"");
         //     System.out.println(annonce);
@@ -113,19 +109,21 @@ public class RechercheController {
         for (Annonce annonce : this.annonces){
             Matcher userMatcher = userPattern.matcher(annonce.getReferent());
             Matcher titreMatcher = titrePattern.matcher(annonce.getTitre());
+            Matcher villeMatcher = villePattern.matcher(annonce.getVille());
 
             // les definir avant le if parce que sinon ca marche pas (??)
-            Boolean userMatch = userMatcher.find();
-            Boolean titreMatch = titreMatcher.find();
+            boolean userMatch = userMatcher.find();
+            boolean titreMatch = titreMatcher.find();
+            boolean villeMatch = villeMatcher.find();
     
             //condition pour trouver les bonnes annonces
-            if (annonce.getActif() && (userMatch || annonce.getReferent()==null) && (titreMatch || annonce.getTitre()==null)
+            if (annonce.getActif() && (userMatch || annonce.getReferent()==null) && (titreMatch || annonce.getTitre()==null) && (villeMatch || annonce.getVille()==null)
             && (findCategorie().contains(annonce.getCategorie()) || findCategorie().isEmpty())){
 
 
                 //on affiche dynamiquement les annonces concernées dans la Vbox resultats
                 HBox hbox = new HBox();
-                hbox.setStyle("-fx-background-color: #eeeeee; prefHeight=\"279.0\"");
+                hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
 
                 Label titre = new Label(annonce.getTitre());
                 titre.setPrefWidth(300);

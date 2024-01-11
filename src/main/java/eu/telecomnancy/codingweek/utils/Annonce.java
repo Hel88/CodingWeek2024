@@ -1,5 +1,7 @@
 package eu.telecomnancy.codingweek.utils;
 
+import java.io.IOException;
+
 public class Annonce {
 
     private int id;
@@ -38,6 +40,10 @@ public class Annonce {
 
     public String getReferent() {
         return referent;
+    }
+
+    public String getVille() throws IOException {
+        return DataUsersUtils.getInstance().getUserByUserName(referent).getCity();
     }
 
     public void setReferent(String referent) {
