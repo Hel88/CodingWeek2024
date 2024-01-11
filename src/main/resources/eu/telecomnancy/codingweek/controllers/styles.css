@@ -1,0 +1,56 @@
+/* styles.css */
+
+/* Style pour le titre de la fenêtre */
+.AnchorPane {
+    -fx-background-image: url('images/fond.png');
+    -fx-background-repeat: stretch; /* ou repeat si vous voulez répéter l'image */
+    -fx-background-size: contain; /* ou contain pour ajuster la taille */
+    -fx-background-position: center center;
+}
+
+.LabelViolet {
+    -fx-font-weight: bold;
+    -fx-text-fill: #791370;
+}
+
+.ButtonOrange:hover{
+    -fx-background-color: #FFA500;
+    -fx-background-radius: 20;
+}
+
+.ButtonArrondi{
+    -fx-background-radius: 30;
+}
+
+
+/* MENU BAR + Top-level MENU BUTTONS */
+/*** The menu bar itself ***/    
+.menu-bar {
+    -fx-background-color: #ffd381;
+}
+
+/*** Top-level menu itself (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color: #FFA500;
+}
+
+/*** Top-level menu's label (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover > .label,
+.menu-bar > .container > .menu-button:focused > .label,
+.menu-bar > .container > .menu-button:showing > .label {
+    -fx-text-fill: #000000;
+}
+
+/* MENU ITEM (children of a MENU BUTTON) */
+
+/*** The item itself (hovered / focused) ***/    
+.menu-item:focused, .menu-item:hovered {
+    -fx-background-color: #FFA500; 
+}
+
+/*** The item's label (hovered / focused) ***/  
+.menu-item:focused .label, .menu-item:hovered .label {
+    -fx-text-fill: #000000;
+}

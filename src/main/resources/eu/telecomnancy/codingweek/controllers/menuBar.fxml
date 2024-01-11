@@ -23,7 +23,7 @@
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
         </Button>
-       <MenuBar fx:id="menuBar" prefHeight="28.0" prefWidth="92.0">
+       <MenuBar fx:id="menuBar" prefHeight="28.0" prefWidth="72.0">
         <menus>
           <Menu mnemonicParsing="false" text="Menu">
             <items>
@@ -38,8 +38,11 @@
             </items>
           </Menu>
         </menus>
+         <HBox.margin>
+            <Insets top="12.0" />
+         </HBox.margin>
       </MenuBar>
-      <HBox alignment="TOP_RIGHT" prefHeight="69.0" prefWidth="740.0">
+      <HBox alignment="TOP_RIGHT" prefHeight="69.0" prefWidth="617.0">
          <children>
             <VBox prefHeight="69.0" prefWidth="363.0">
                <children>

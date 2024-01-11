@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -11,11 +12,15 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="eu.telecomnancy.codingweek.controllers.NoterUserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
+xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+fx:controller="eu.telecomnancy.codingweek.controllers.NoterUserController"
+stylesheets="@styles.css" styleClass="AnchorPane">
    <children>
       <VBox layoutX="17.0" prefHeight="400.0" prefWidth="566.0" spacing="10.0">
          <children>
-            <Label alignment="CENTER" prefHeight="51.0" prefWidth="601.0" text="Noter l'utilisateur">
+            <Label alignment="CENTER" prefHeight="51.0" prefWidth="601.0" text="Noter l'utilisateur"
+            styleClass="LabelViolet" >
                <font>
                   <Font size="24.0" />
                </font>
@@ -49,6 +54,10 @@
                <VBox.margin>
                   <Insets left="500.0" />
                </VBox.margin>
+               <styleClass>
+                  <String fx:value="ButtonOrange" />
+                  <String fx:value="ButtonArrondi" />
+               </styleClass>
             </Button>
          </children>
       </VBox>

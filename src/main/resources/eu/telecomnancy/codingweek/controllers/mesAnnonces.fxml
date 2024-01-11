@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -11,9 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.MesAnnoncesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
+xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="eu.telecomnancy.codingweek.controllers.MesAnnoncesController"
+stylesheets="@styles.css" styleClass="AnchorPane">
    <children>
-      <Label contentDisplay="CENTER" layoutX="23.0" layoutY="-4.0" prefHeight="45.0" prefWidth="561.0" text="Mes annonces" textAlignment="CENTER">
+      <Label contentDisplay="CENTER" layoutX="23.0" layoutY="-4.0" prefHeight="45.0" prefWidth="561.0" text="Mes annonces" textAlignment="CENTER"
+      styleClass="LabelViolet" >
          <font>
             <Font size="30.0" />
          </font>
@@ -50,13 +55,30 @@
 
             <HBox prefHeight="42.0" prefWidth="561.0">
                <children>
-                  <Button fx:id="preterMateriel" mnemonicParsing="false" onAction="#creerAnnonceOffreMateriel" prefHeight="41.0" prefWidth="140.0" text="Preter du matériel" textAlignment="CENTER" wrapText="true" />
-                  <Button fx:id="demamnderMateriel" mnemonicParsing="false" onAction="#creerAnnonceDemandeMateriel" prefHeight="41.0" prefWidth="140.0" text="Demander du matériel" textAlignment="CENTER" wrapText="true" />
-                  <Button fx:id="proposerService" mnemonicParsing="false" onAction="#creerAnnonceOffreService" prefHeight="41.0" prefWidth="140.0" text="Proposer un service" textAlignment="CENTER" wrapText="true" />
-                  <Button fx:id="demanderService" mnemonicParsing="false" onAction="#creerAnnonceDemandeService" prefHeight="41.0" prefWidth="140.0" text="Demander un service" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="preterMateriel" mnemonicParsing="false" onAction="#creerAnnonceOffreMateriel" prefHeight="41.0" prefWidth="140.0" text="Preter du matériel" textAlignment="CENTER" wrapText="true" >
+                     <styleClass>
+                        <String fx:value="ButtonOrange" />
+                        <String fx:value="ButtonArrondi" />
+                     </styleClass></Button>
+                  <Button fx:id="demamnderMateriel" mnemonicParsing="false" onAction="#creerAnnonceDemandeMateriel" prefHeight="41.0" prefWidth="140.0" text="Demander du matériel" textAlignment="CENTER" wrapText="true" >
+                     <styleClass>
+                        <String fx:value="ButtonOrange" />
+                        <String fx:value="ButtonArrondi" />
+                     </styleClass></Button>
+                  <Button fx:id="proposerService" mnemonicParsing="false" onAction="#creerAnnonceOffreService" prefHeight="41.0" prefWidth="140.0" text="Proposer un service" textAlignment="CENTER" wrapText="true" >
+                     <styleClass>
+                        <String fx:value="ButtonOrange" />
+                        <String fx:value="ButtonArrondi" />
+                     </styleClass></Button>
+                  <Button fx:id="demanderService" mnemonicParsing="false" onAction="#creerAnnonceDemandeService" prefHeight="41.0" prefWidth="140.0" text="Demander un service" textAlignment="CENTER" wrapText="true" >
+                     <styleClass>
+                        <String fx:value="ButtonOrange" />
+                        <String fx:value="ButtonArrondi" />
+                     </styleClass></Button>
                </children>
             </HBox>
-            <Label prefHeight="36.0" prefWidth="592.0" text="Réponses à mes annonces">
+            <Label prefHeight="36.0" prefWidth="592.0" text="Réponses à mes annonces"
+            styleClass="LabelViolet" >
                <font>
                   <Font size="30.0" />
                </font>
