@@ -178,4 +178,16 @@ public class DataTransactionUtils {
         }
     }
 
+    public void noterTransaction(Transaction transaction) throws IOException {
+        // Method related to the note of a transaction
+
+        // Update the status of the transaction
+        JSONObject transactionObject = data.getJSONObject(String.valueOf(transaction.getId()));
+        transactionObject.put("status", "Notée");
+        data.put(String.valueOf(transaction.getId()), transactionObject);
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
+    }
 }

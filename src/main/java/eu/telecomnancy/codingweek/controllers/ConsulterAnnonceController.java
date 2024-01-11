@@ -2,8 +2,11 @@ package eu.telecomnancy.codingweek.controllers;
 
 import java.io.IOException;
 
+import com.calendarfx.model.Calendar;
+
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import eu.telecomnancy.codingweek.utils.DataTransactionUtils;
 import eu.telecomnancy.codingweek.utils.User;
 import javafx.fxml.FXML;
@@ -79,9 +82,14 @@ public class ConsulterAnnonceController implements Observer{
     @FXML
     public void reserver() throws IOException {
         int idTransac = app.getDataTransactionUtils().addTransaction(String.valueOf(annonce.getId()), app.getMainUser().getUserName(), "En attente");
+        app.notifyObservers("transactions");
+        app.setMainUser(app.getDataUsersUtils().getUserByUserName(app.getMainUser().getUserName()));
         app.getSceneController().calendarSwitchPreparation();
-        app.getSceneController().calendarSwitchAddCalendar(DataTransactionUtils.getInstance().getTransaction(idTransac).getPlanning());
+        app.getSceneController().calendarSwitchAddCalendarWithStyle(DataTransactionUtils.getInstance().getTransaction(idTransac).getPlanning(), Calendar.Style.STYLE1, true);
         app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
+
+        app.getSceneController().calendarSwitchAddCalendarWithStyle(DataAnnoncesUtils.getInstance().getAnnonce(DataTransactionUtils.getInstance().getTransaction(idTransac).getIdAnnonce()).getPlanning(), Calendar.Style.STYLE5, false);
+
         app.getSceneController().switchToCalendar();
     }
 }

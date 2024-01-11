@@ -55,7 +55,7 @@ public class CreationEtModificationAnnonceController implements Observer{
         app.notifyObservers("annonce");
         int id = DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning();
         app.getSceneController().calendarSwitchPreparation();
-        app.getSceneController().calendarSwitchAddCalendar(id);
+        app.getSceneController().calendarSwitchAddCalendar(id, true);
         app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
         app.getSceneController().switchToCalendar();
     }
@@ -78,7 +78,7 @@ public class CreationEtModificationAnnonceController implements Observer{
 
         app.notifyObservers("annonce");
         app.getSceneController().calendarSwitchPreparation();
-        app.getSceneController().calendarSwitchAddCalendar(DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning());
+        app.getSceneController().calendarSwitchAddCalendar(DataAnnoncesUtils.getInstance().getAnnonce(idAnnonce).getPlanning(), true);
         app.getSceneController().calendarSwitchSetCurrentCalendarToDefault();
         app.getSceneController().switchToCalendar();
     }

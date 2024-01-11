@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.Annonce;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import eu.telecomnancy.codingweek.utils.Transaction;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -176,6 +177,7 @@ public class MesAnnoncesController implements Observer{
                         app.getDataTransactionUtils().accepterTransaction(transaction);
                         app.setMainUser(app.getDataUsersUtils().getUserByUserName(app.getMainUser().getUserName()));
                         app.notifyObservers("user");
+                        app.notifyObservers("transactions");
                         initialize();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -214,6 +216,9 @@ public class MesAnnoncesController implements Observer{
             }
             else if (transaction.getStatus().equals("Refusée")) {
                 hbox.setStyle("-fx-background-color: #FF0000; prefHeight:\"279.0\"");
+            }
+            else if (transaction.getStatus().equals("Notée")) {
+                hbox.setStyle("-fx-background-color: #0000FF; prefHeight:\"279.0\"");
             }
 
             reservations.getChildren().add(hbox);

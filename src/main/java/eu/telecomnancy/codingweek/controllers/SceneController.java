@@ -3,6 +3,7 @@ package eu.telecomnancy.codingweek.controllers;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.calendarfx.model.Calendar;
@@ -39,6 +40,7 @@ public class SceneController {
     Scene recherche;
     Scene modifierAnnonce;
     Scene mesTransactions;
+    Scene noterUser;
     Scene userEvaluations;
     BorderPane layout;
     CalendarView calendarView;
@@ -46,6 +48,7 @@ public class SceneController {
     List<Integer> calendarList = new java.util.ArrayList<Integer>();
     Calendar currentCalendar;
     Calendar defaultCalendar;
+    List<Calendar> currentCalendarList = new ArrayList<>();
 
 
     public SceneController(Stage primaryStage, Application app) throws Exception {
@@ -124,6 +127,12 @@ public class SceneController {
         this.demandes = pageScene;
 
         pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("mesTransactions.fxml"));
+        pageLoader.setControllerFactory(iC->new MesTransactionsController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.mesTransactions = pageScene;
+
+        pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("recherche.fxml"));
         pageLoader.setControllerFactory(iC->new RechercheController(app));
         pageScene = new Scene(pageLoader.load());
@@ -134,6 +143,12 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new CreationEtModificationAnnonceController(app, "modification"));
         pageScene = new Scene(pageLoader.load());
         this.modifierAnnonce = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("noterUser.fxml"));
+        pageLoader.setControllerFactory(iC->new NoterUserController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.noterUser = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("mesTransactions.fxml"));
@@ -148,7 +163,6 @@ public class SceneController {
         pageScene = new Scene(pageLoader.load());
         this.userEvaluations = pageScene;
 
-
         // on crée un calendrier
         calendarView = new CalendarView(); // (1)
         calendarView.setShowAddCalendarButton(false);
@@ -159,14 +173,7 @@ public class SceneController {
 //        calendarView.setShowSourceTray(false);
 //        calendarView.setShowSourceTrayButton(false);
 
-//        Calendar holidays = new Calendar("Holidays");
-//        Entry<String> dentistAppointment = new Entry<>("Dentiste");
-//        dentistAppointment.setCalendar(birthdays);
-//        birthdays.setStyle(Calendar.Style.STYLE1); // (3)
-//        holidays.setStyle(Calendar.Style.STYLE2);
-        myCalendarSource = new CalendarSource("My Calendars"); // (4)
-//        myCalendarSource.getCalendars().addAll(holidays);
-//        calendarView.getCalendarSources().addAll(myCalendarSource); // (5)
+        myCalendarSource = new CalendarSource("My Calendars");
         calendarView.setRequestedTime(LocalTime.now());
 
         Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
@@ -194,34 +201,6 @@ public class SceneController {
         updateTimeThread.start();
         pageScene = new Scene(calendarView);
         this.calendar = pageScene;
-
-
-
-
-
-//        System.out.println("Hello world");
-//        Calendar birthdays = new Calendar("Rendez-vous"); // (2)
-//        Entry<String> dentistAppointment = new Entry<>("Dentiste");
-//        birthdays.addEntry(dentistAppointment);
-//        Entry<String> dentistAppointment2 = new Entry<>("Dentiste2");
-//        birthdays.addEntry(dentistAppointment2);
-//        List<Entry<?>> result = birthdays.findEntries("");
-//        System.out.println(result);
-//        DataEntryUtils dataCalendarUtils = null;
-//        dataCalendarUtils = DataEntryUtils.getInstance();
-//        if (dataCalendarUtils != null) {
-//            dataCalendarUtils.store(result);
-//        }
-//        else {
-//            System.out.println("dataCalendarUtils is null");
-//        }
-//        Entry<String> event =  dataCalendarUtils.load(1);
-//        Calendar test = new Calendar("test");
-//        test.addEntry(event);
-//        myCalendarSource.getCalendars().addAll(birthdays, test);
-//        calendarView.getCalendarSources().addAll(myCalendarSource); // (5)
-//        calendarView.setRequestedTime(LocalTime.now());
-
 
 
         // on définit la scene de base : on affiche la page de connexion au lancement de l'application
@@ -271,6 +250,9 @@ public class SceneController {
         setView(this.modifierProfil);
     }
 
+    public void switchToMesTransactions(){
+        setView(this.mesTransactions);
+    }
 
     public void switchToMonAnnonce() {
         setView(this.monAnnonce);
@@ -296,8 +278,10 @@ public class SceneController {
         setView(this.modifierAnnonce);
     }
 
-    public void switchToMesTransactions(){
-        setView(this.mesTransactions);
+   
+
+    public void switchToNoterUser(String idUser){
+        setView(this.noterUser);
     }
 
     public void switchToUserEvaluations(String userName){
@@ -305,9 +289,11 @@ public class SceneController {
     }
 
     public void calendarSave() throws IOException {
-        if(currentCalendar != null) {
+        if(currentCalendarList != null) {
             DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
-            dataCalendarUtils.store(currentCalendar);
+            for(Calendar calendar : currentCalendarList) {
+                dataCalendarUtils.store(calendar);
+            }
         }
     }
 
@@ -334,27 +320,31 @@ public class SceneController {
         });
     }
 
-    public void calendarSwitchAddCalendar(int id) throws IOException {
-        calendarSave();
-
+    public void calendarSwitchAddCalendar(int id, boolean save) throws IOException {
         Calendar calendar = DataCalendarUtils.getInstance().load(id);
         calendarList.add(id);
 
         currentCalendar = calendar;
         DataCalendarUtils.getInstance().reload(currentCalendar);
 
+        if (save) {
+            currentCalendarList.add(currentCalendar);
+        }
+
         myCalendarSource.getCalendars().addAll(currentCalendar);
     }
 
-    public void calendarSwitchAddCalendarWithStyle(int id, Calendar.Style style) throws IOException {
-        calendarSave();
-
+    public void calendarSwitchAddCalendarWithStyle(int id, Calendar.Style style, boolean save) throws IOException {
         Calendar calendar = DataCalendarUtils.getInstance().load(id);
         calendar.setStyle(style);
         calendarList.add(id);
 
         currentCalendar = calendar;
         DataCalendarUtils.getInstance().reload(currentCalendar);
+
+        if (save) {
+            currentCalendarList.add(currentCalendar);
+        }
 
         myCalendarSource.getCalendars().addAll(currentCalendar);
     }
