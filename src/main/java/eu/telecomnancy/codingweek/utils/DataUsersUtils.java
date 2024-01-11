@@ -1,7 +1,5 @@
 package eu.telecomnancy.codingweek.utils;
 
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,6 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import org.json.JSONObject;
 
 
 public class DataUsersUtils {
@@ -67,6 +67,7 @@ public class DataUsersUtils {
         userObject.put("transactionsClient", "");
         userObject.put("planning", planning);
         userObject.put("eval", 0);
+        userObject.put("solde", 0);
 
         // Add the user to the JSON file
         data.put(userName, userObject);
@@ -80,7 +81,7 @@ public class DataUsersUtils {
 
         // Retrieve the User object from the JSON file
         JSONObject userObject = data.getJSONObject(userName);
-        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactionsReferent"), userObject.getString("transactionsClient"), userObject.getInt("planning"), userObject.getInt("eval"));
+        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactionsReferent"), userObject.getString("transactionsClient"), userObject.getInt("planning"), userObject.getInt("eval"), userObject.getInt("solde"));
     }
 
     public String hashPassword(String password) {
@@ -130,6 +131,7 @@ public class DataUsersUtils {
         userObject.put("transactionsClient", User.getTransactionsClient());
         userObject.put("planning", User.getPlanning());
         userObject.put("eval", User.getEval());
+        userObject.put("solde", User.getSolde());
 
         // Add the user to the JSON file
         data.put(User.getUserName(), userObject);

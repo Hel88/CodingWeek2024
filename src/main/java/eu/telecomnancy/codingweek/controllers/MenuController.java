@@ -4,12 +4,20 @@ import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.layout.HBox;
 
 public class MenuController implements Observer{
 
 
     @FXML
     private Label username;
+
+    @FXML
+    private Label solde;
+
+    @FXML
+    private HBox hboxSolde;
+
     @FXML
     private MenuBar menuBar;
 
@@ -24,11 +32,15 @@ public class MenuController implements Observer{
     public void update(String type) {
         if (app.getMainUser() != null){
             menuBar.setVisible(true);
+            hboxSolde.setVisible(true);
             username.setText(app.getMainUser().getUserName());
+            solde.setText(app.getMainUser().getSolde()+"");
         }
         else{
             menuBar.setVisible(false);
+            hboxSolde.setVisible(false);
             username.setText("Bienvenue, veuillez vous connecter");
+            
         }
         
     }
@@ -37,11 +49,8 @@ public class MenuController implements Observer{
     @FXML
     public void initialize(){
         menuBar.setVisible(false);
-        if (app.getMainUser() != null){
-            menuBar.setVisible(true);
-
-            username.setText(app.getMainUser().getUserName());
-        }
+        hboxSolde.setVisible(false);
+        
     }
 
     // switch vers la scène correspondant au bouton cliqué
