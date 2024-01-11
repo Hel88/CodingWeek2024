@@ -10,9 +10,12 @@ import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
 import com.calendarfx.view.DateControl;
+import com.calendarfx.model.Entry;
+import com.calendarfx.view.CalendarView;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
+import eu.telecomnancy.codingweek.utils.User;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -40,6 +43,7 @@ public class SceneController {
     Scene recherche;
     Scene modifierAnnonce;
     Scene mesTransactions;
+    Scene noterUser;
     BorderPane layout;
     CalendarView calendarView;
     CalendarSource myCalendarSource;
@@ -125,6 +129,12 @@ public class SceneController {
         this.demandes = pageScene;
 
         pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("mesTransactions.fxml"));
+        pageLoader.setControllerFactory(iC->new MesTransactionsController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.mesTransactions = pageScene;
+
+        pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("recherche.fxml"));
         pageLoader.setControllerFactory(iC->new RechercheController(app));
         pageScene = new Scene(pageLoader.load());
@@ -137,10 +147,10 @@ public class SceneController {
         this.modifierAnnonce = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("mesTransactions.fxml"));
-        pageLoader.setControllerFactory(iC->new MesTransactionsController(app));
+        pageLoader.setLocation(getClass().getResource("noterUser.fxml"));
+        pageLoader.setControllerFactory(iC->new NoterUserController(app));
         pageScene = new Scene(pageLoader.load());
-        this.mesTransactions = pageScene;
+        this.noterUser = pageScene;
 
 
         // on crée un calendrier
@@ -265,6 +275,9 @@ public class SceneController {
         setView(this.modifierProfil);
     }
 
+    public void switchToMesTransactions(){
+        setView(this.mesTransactions);
+    }
 
     public void switchToMonAnnonce() {
         setView(this.monAnnonce);
@@ -290,8 +303,8 @@ public class SceneController {
         setView(this.modifierAnnonce);
     }
 
-    public void switchToMesTransactions(){
-        setView(this.mesTransactions);
+    public void switchToNoterUser(String idUser){
+        setView(this.noterUser);
     }
 
     public void calendarSave() throws IOException {
