@@ -85,7 +85,8 @@ public class DataTransactionUtils {
         }
 
         // Add the transaction to the user
-        DataUsersUtils.getInstance().addTransactionToUser(DataAnnoncesUtils.getInstance().getAnnonce(Integer.parseInt(idAnnonce)).getReferent(), id);
+        DataUsersUtils.getInstance().addTransactionReferentToUser(DataAnnoncesUtils.getInstance().getAnnonce(Integer.parseInt(idAnnonce)).getReferent(), id);
+        DataUsersUtils.getInstance().addTransactionClientToUser(idClient, id);
     }
 
     private int newId() {
