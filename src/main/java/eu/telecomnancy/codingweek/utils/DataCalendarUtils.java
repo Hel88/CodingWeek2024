@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.nio.file.Files.readAllBytes;
@@ -64,11 +65,51 @@ public class DataCalendarUtils {
             JSONObject calendarObject = new JSONObject();
             calendarObject.put("titre", calendar.getName());
             StringBuilder entries = new StringBuilder();
+            List<List<String>> liste = new ArrayList<>(new ArrayList<>());
+            List<Entry<?>> toAdd = new ArrayList<>();
             for (Entry<?> entry : calendar.findEntries("")) {
-                DataEntryUtils dataEntryUtils = DataEntryUtils.getInstance();
-                int id = dataEntryUtils.store(entry);
+                System.out.println("Boucle 1");
+                List<String> infos = new ArrayList<>();
+                infos.add(entry.getTitle());
+                infos.add(String.valueOf(entry.isFullDay()));
+                infos.add(entry.getStartTime().toString());
+                infos.add(entry.getEndTime().toString());
+                infos.add(entry.getZoneId().toString());
+                infos.add(String.valueOf(entry.isRecurring()));
+                infos.add(entry.getRecurrenceRule());
+                if (liste.contains(infos)) {
+                    continue;
+                }
+                liste.add(infos);
+                toAdd.add(entry);
+            }
+            System.out.println("toAdd : " + toAdd);
+            System.out.println("liste : " + liste);
+            List<Entry<?>> reallyToAdd = new ArrayList<>();
+            for (Entry<?> entry : toAdd) {
+                System.out.println("Boucle 2");
+                Entry<?> minEntry = entry;
+                for (Entry<?> entry2 : calendar.findEntries(entry.getTitle())) {
+                    System.out.println("Boucle 3");
+                    if (String.valueOf(entry.isFullDay()).equals(String.valueOf(entry2.isFullDay())) && entry.getStartTime().equals(entry2.getStartTime()) && entry.getEndTime().equals(entry2.getEndTime()) && entry.getZoneId().equals(entry2.getZoneId()) && String.valueOf(entry.isRecurring()).equals(String.valueOf(entry2.isRecurring())) && entry.getRecurrenceRule().equals(entry2.getRecurrenceRule())) {
+                        if(entry.getStartDate().isBefore(entry2.getStartDate())){
+                            minEntry = entry;
+                        }
+                        else{
+                            minEntry = entry2;
+                        }
+                    }
+                }
+                if(!reallyToAdd.contains(minEntry)){
+                    reallyToAdd.add(minEntry);
+                }
+            }
+            System.out.println("reallyToAdd : " + reallyToAdd);
+            for (Entry<?> entry : reallyToAdd) {
+                int id = DataEntryUtils.getInstance().store(entry);
                 entries.append(String.valueOf(id)).append(",");
             }
+            System.out.println(entries.toString());
             calendarObject.put("entries", entries.toString());
             data.put(String.valueOf(idCalendar), calendarObject);
             FileWriter file = new FileWriter(filePath);
@@ -78,6 +119,7 @@ public class DataCalendarUtils {
 
         }
         catch (NumberFormatException e) {
+            System.out.println("New calendar");
             int idCalendar = newID();
             JSONObject calendarObject = new JSONObject();
             calendarObject.put("titre", calendar.getName());
@@ -119,5 +161,9 @@ public class DataCalendarUtils {
             Entry<?> entry = dataEntryUtils.load(Integer.parseInt(entryId));
             calendar.addEntry(entry);
         }
+    }
+
+    public int getId(Calendar calendar) throws IOException {
+        return this.store(calendar);
     }
 }

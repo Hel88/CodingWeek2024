@@ -79,11 +79,8 @@ public class MonProfilController implements Observer {
 
     @FXML
     public void displayPlanning() throws IOException {
-        app.notifyObservers("user");
         DataUsersUtils dataUsersUtils = DataUsersUtils.getInstance();
         int id = dataUsersUtils.getCalendarOf(app.getMainUser().getUserName());
-        DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
-        Calendar calendar = dataCalendarUtils.load(id);
-        app.getSceneController().switchToCalendar(calendar);
+        app.getSceneController().switchToCalendar(id);
     }
 }
