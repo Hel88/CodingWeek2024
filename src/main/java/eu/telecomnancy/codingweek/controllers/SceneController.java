@@ -14,6 +14,7 @@ import com.calendarfx.view.CalendarView;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
+import eu.telecomnancy.codingweek.utils.User;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -40,6 +41,7 @@ public class SceneController {
     Scene calendar;
     Scene recherche;
     Scene modifierAnnonce;
+    Scene noterUser;
     BorderPane layout;
     CalendarView calendarView;
     CalendarSource myCalendarSource;
@@ -133,6 +135,12 @@ public class SceneController {
         pageLoader.setControllerFactory(iC->new CreationEtModificationAnnonceController(app, "modification"));
         pageScene = new Scene(pageLoader.load());
         this.modifierAnnonce = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("noterUser.fxml"));
+        pageLoader.setControllerFactory(iC->new NoterUserController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.noterUser = pageScene;
 
 
         // on crée un calendrier
@@ -280,6 +288,10 @@ public class SceneController {
 
     public void switchToModifierAnnonce(){
         setView(this.modifierAnnonce);
+    }
+
+    public void switchToNoterUser(String idUser){
+        setView(this.noterUser);
     }
 
     public void switchToCalendar(int id) throws IOException {
