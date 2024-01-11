@@ -1,18 +1,13 @@
 package eu.telecomnancy.codingweek;
 
+import eu.telecomnancy.codingweek.controllers.Observer;
+import eu.telecomnancy.codingweek.controllers.SceneController;
+import eu.telecomnancy.codingweek.utils.*;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import eu.telecomnancy.codingweek.controllers.Observer;
-import eu.telecomnancy.codingweek.controllers.SceneController;
-import eu.telecomnancy.codingweek.utils.Annonce;
-import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
-import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
-import eu.telecomnancy.codingweek.utils.DataTransactionUtils;
-import eu.telecomnancy.codingweek.utils.DataUsersUtils;
-import eu.telecomnancy.codingweek.utils.User;
-import javafx.stage.Stage;
 
 public class Application extends javafx.application.Application {
 
@@ -20,6 +15,7 @@ public class Application extends javafx.application.Application {
     private DataUsersUtils dataUsersUtils;
     private DataAnnoncesUtils dataAnnoncesUtils;
     private DataTransactionUtils dataTransactionUtils;
+    private DataNoteUtils dataNoteUtils;
     private User mainUser;
     private final ArrayList<Observer> observers = new ArrayList<Observer>();
     private Annonce annonceAffichee;
@@ -33,6 +29,7 @@ public class Application extends javafx.application.Application {
             this.dataUsersUtils = DataUsersUtils.getInstance();
             this.dataAnnoncesUtils = DataAnnoncesUtils.getInstance();
             this.dataTransactionUtils = DataTransactionUtils.getInstance();
+            this.dataNoteUtils = DataNoteUtils.getInstance();
             this.mainUser = null;
         } catch (Exception e) {
             System.out.println("Error while loading the scene controller");
@@ -62,6 +59,9 @@ public class Application extends javafx.application.Application {
     }
     public DataTransactionUtils getDataTransactionUtils() {
         return dataTransactionUtils;
+    }
+    public DataNoteUtils getDataNoteUtils() {
+        return dataNoteUtils;
     }
 
     public User getMainUser() {

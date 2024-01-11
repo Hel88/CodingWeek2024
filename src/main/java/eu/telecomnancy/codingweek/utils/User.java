@@ -14,7 +14,7 @@ public class User {
     private String transactionsReferent;
     private String transactionsClient;
     private int planning;
-    private int eval;
+    private String eval;
     private int solde;
 
     // Default constructor (needed for JSON deserialization)
@@ -23,7 +23,7 @@ public class User {
 
     // Constructor with parameters
     public User(String userName, String password, String firstName, String lastName, String email,
-                String address, String city, String annonces, String transactionsReferent, String transactionsClient, int planning, int eval, int solde) {
+                String address, String city, String annonces, String transactionsReferent, String transactionsClient, int planning, String eval, int solde) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
@@ -83,7 +83,7 @@ public class User {
         return planning;
     }
 
-    public int getEval() {
+    public String getEval() {
         return eval;
     }
 
@@ -137,7 +137,7 @@ public class User {
         this.planning = planning;
     }
 
-    public void setEval(int eval) {
+    public void setEval(String eval) {
         this.eval = eval;
     }
 

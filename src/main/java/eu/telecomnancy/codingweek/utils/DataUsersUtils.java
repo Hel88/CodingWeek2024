@@ -70,7 +70,7 @@ public class DataUsersUtils {
         // Create a calendar for the user
         DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
         userObject.put("planning", String.valueOf(dataCalendarUtils.store(new Calendar("Agenda de "+ userName))));
-        userObject.put("eval", 0);
+        userObject.put("eval", "");
         userObject.put("solde", 100);
 
         // Add the user to the JSON file
@@ -85,7 +85,7 @@ public class DataUsersUtils {
 
         // Retrieve the User object from the JSON file
         JSONObject userObject = data.getJSONObject(userName);
-        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactionsReferent"), userObject.getString("transactionsClient"), userObject.getInt("planning"), userObject.getInt("eval"), userObject.getInt("solde"));
+        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactionsReferent"), userObject.getString("transactionsClient"), userObject.getInt("planning"), userObject.getString("eval"), userObject.getInt("solde"));
     }
 
     public String hashPassword(String password) {
