@@ -1,11 +1,11 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 public class ModifierProfilController implements Observer{
     
@@ -45,7 +45,7 @@ public class ModifierProfilController implements Observer{
         app.getMainUser().setFirstName(prenom.getText());
 
         if(!ancienPWD.getText().isEmpty() && !nouveauPWD.getText().isEmpty()){
-            if(app.getDataUsersUtils().checkPassword(app.getMainUser().getPassword(), ancienPWD.getText())){
+            if(app.getDataUsersUtils().checkPassword(app.getMainUser().getUserName(), ancienPWD.getText())){
                 app.getMainUser().setPassword(app.getDataUsersUtils().hashPassword(nouveauPWD.getText()));
             }
         }
