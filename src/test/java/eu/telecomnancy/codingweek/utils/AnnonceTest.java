@@ -41,17 +41,21 @@ public class AnnonceTest {
         try {
             DataAnnoncesUtils dataAnnoncesUtils = DataAnnoncesUtils.getInstance();
             int nbAnnonces = dataAnnoncesUtils.getAnnonces().size();
+
+            String username = "testuser";
+            DataUsersUtils dataUsersUtils = DataUsersUtils.getInstance();
+            dataUsersUtils.addUser(username, "", "null", "null", "null", "null", "null", "0");
             
             // //ajout d'une annonce
-            dataAnnoncesUtils.addAnnonce("Annonce test junit", "---", "10", "---", "sdcsqkldkf");
-            // assertEquals(nbAnnonces + 1, dataAnnoncesUtils.getAnnonces().size());
+            dataAnnoncesUtils.addAnnonce("Annonce test junit", "---", "10", "---", username);
+            
+            
+            ArrayList<Annonce> annonces = dataAnnoncesUtils.getAnnoncesByUsername(username);
+            assertEquals(1,annonces.size());
 
-            // ArrayList<Annonce> annonces = dataAnnoncesUtils.getAnnoncesByUsername("testUser");
-            // assertEquals(1,annonces.size());
-
-            // //suppression de l'annonce
-            // dataAnnoncesUtils.deleteAnnonce(annonces.get(0).getId()+"");
-            // assertEquals(nbAnnonces, dataAnnoncesUtils.getAnnonces().size());
+            //suppression de l'annonce
+            dataAnnoncesUtils.deleteAnnonce(annonces.get(0).getId()+"");
+            assertEquals(nbAnnonces, dataAnnoncesUtils.getAnnonces().size());
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,7 +63,7 @@ public class AnnonceTest {
     }
 
     @Test
-    public void testGetAnnoncesBUsername(){
+    public void testGetAnnoncesByUsername(){
         //ajout (et suppression) d'annonces de users différents, vérification du nombre d'annonces
         try {
             DataAnnoncesUtils dataAnnoncesUtils = DataAnnoncesUtils.getInstance();
@@ -90,22 +94,25 @@ public class AnnonceTest {
     public void modifyAnnonce(){
         try{
 
+            DataUsersUtils dataUsersUtils = DataUsersUtils.getInstance();
             DataAnnoncesUtils dataAnnoncesUtils = DataAnnoncesUtils.getInstance();
             int nbAnnonces = dataAnnoncesUtils.getAnnonces().size();
+            String username = "testUser";
             //ajout d'une annonce
-            dataAnnoncesUtils.addAnnonce("Annonce test junit", "---", "10", "---", "testUser");
+            dataUsersUtils.addUser(username, "", "null", "null", "null", "null", "null", "0");
+            dataAnnoncesUtils.addAnnonce("Annonce test junit", "---", "10", "---", username);
             assertEquals(nbAnnonces + 1, dataAnnoncesUtils.getAnnonces().size());
+            Annonce annonce = dataAnnoncesUtils.getAnnoncesByUsername(username).get(0);
+            //modification de l'annonce
+            dataAnnoncesUtils.modifyAnnonce(annonce.getId(), "Annonce test junit", "changement", "10", "---", username, false, 0);
+            assertEquals("changement", dataAnnoncesUtils.getAnnoncesByUsername(username).get(0).getDescription());
+            //suppression de l'annonce
+            dataAnnoncesUtils.deleteAnnonce(annonce.getId()+"");
+            assertEquals(nbAnnonces, dataAnnoncesUtils.getAnnonces().size());
 
         }catch(IOException e){
             e.printStackTrace();
         }
     }
-    @Test
-    public void testGetAnnonces(){
-
-    }
-
-
-
 
 }
