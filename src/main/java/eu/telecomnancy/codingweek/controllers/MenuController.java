@@ -72,6 +72,8 @@ public class MenuController implements Observer{
     
     @FXML
     public void mesAnnonces(){
+        app.notifyObservers("annonces");
+        app.notifyObservers("transactions");
         app.getSceneController().switchToMesAnnonces();
     }
     

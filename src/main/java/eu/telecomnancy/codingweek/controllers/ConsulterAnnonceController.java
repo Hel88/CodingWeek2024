@@ -76,6 +76,7 @@ public class ConsulterAnnonceController implements Observer{
     public void reserver() throws IOException {
         int idTransac = app.getDataTransactionUtils().addTransaction(String.valueOf(annonce.getId()), app.getMainUser().getUserName(), "En attente");
         app.notifyObservers("transactions");
+        app.notifyObservers("user");
         app.setMainUser(app.getDataUsersUtils().getUserByUserName(app.getMainUser().getUserName()));
         CalendarDisplay calendarDisplay = new CalendarDisplay(app.getSceneController());
         calendarDisplay.calendarSwitchPreparation();
