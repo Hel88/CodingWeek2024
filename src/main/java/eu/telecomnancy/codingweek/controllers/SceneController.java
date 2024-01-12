@@ -328,6 +328,14 @@ public class SceneController {
         setView(this.consulterReport);
     }
 
+    public void switchToMessageries(){
+        setView(this.messageries);
+    }
+
+    public void switchToConsulterMessagerie(){
+        setView(this.consulterMessagerie);
+    }
+
     public void switchToCalendar() throws IOException {
         calendarView.setRequestedTime(LocalTime.now());
         calendarView.getCalendarSources().addAll(myCalendarSource);
