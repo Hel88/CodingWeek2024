@@ -95,6 +95,22 @@ public class User {
         return eval;
     }
 
+    public int getMoyenne() {
+        int moyenne = 0;
+        int nb = 0;
+        String[] evals = eval.split(",");
+        for (String e : evals) {
+            if (!e.equals("")) {
+                moyenne += Integer.parseInt(e);
+                nb++;
+            }
+        }
+        if (nb == 0) {
+            return 0;
+        }
+        return moyenne / nb;
+    }
+
     public int getSolde() {
         return solde;
     }
