@@ -90,6 +90,7 @@ public class ConsulterConversationController implements Observer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        app.setConversationsAffichee(app.getDataConversationsUtils().getConversationById(String.valueOf(conversations.getId())));
         app.notifyObservers("conversation");
         app.notifyObservers("consulterConversation");
         app.getSceneController().switchToConsulterMessagerie();

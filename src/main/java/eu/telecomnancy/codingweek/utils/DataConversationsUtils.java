@@ -58,7 +58,7 @@ public class DataConversationsUtils {
 
     public void addIdMessagesToConversation(int id, String idMessages) throws IOException {
         JSONObject conversationObject = data.getJSONObject(Integer.toString(id));
-        if(!idMessages.equals("")) {
+        if(!conversationObject.getString("idMessages").equals("")) {
             idMessages = conversationObject.getString("idMessages") + "," + idMessages;
         }
         conversationObject.put("idMessages", idMessages);
@@ -105,6 +105,15 @@ public class DataConversationsUtils {
             conversations.add(new Conversations(id, user1, user2, idMessages));
         }
         return conversations;
+    }
+
+    public Conversations getConversationById(String id) {
+        JSONObject conversationObject = data.getJSONObject(id);
+        int idConversation = conversationObject.getInt("id");
+        String user1 = conversationObject.getString("user1");
+        String user2 = conversationObject.getString("user2");
+        String idMessages = conversationObject.getString("idMessages");
+        return new Conversations(idConversation, user1, user2, idMessages);
     }
 
     public ArrayList<Messages> getMessagesFromConversation(Conversations conversations) throws IOException {
