@@ -224,6 +224,7 @@ public class SceneController {
         layout.setTop(menu.getRoot());
         setView(this.connexion);
         
+        primaryStage.setTitle("TelecomNancy DirectDealing");
         primaryStage.setScene(new Scene(layout));
         primaryStage.show();
     }
