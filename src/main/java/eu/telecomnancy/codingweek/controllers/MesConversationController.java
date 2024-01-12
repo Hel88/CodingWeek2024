@@ -2,10 +2,10 @@ package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
 
-public class ConversationController implements Observer {
+public class MesConversationController implements Observer {
     private Application app;
 
-    public ConversationController(Application app) {
+    public MesConversationController(Application app) {
         this.app = app;
         app.addObserver(this);
     }
