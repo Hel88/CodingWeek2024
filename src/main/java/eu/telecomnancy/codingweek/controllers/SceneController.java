@@ -41,8 +41,10 @@ public class SceneController {
     Scene noterUser;
     Scene userEvaluations;
     Scene reportBug;
-    Scene showReports;
-    Scene unReport;
+    Scene reports;
+    Scene consulterReport;
+    Scene messageries;
+    Scene consulterMessagerie;
     BorderPane layout;
     CalendarView calendarView;
     CalendarSource myCalendarSource;
@@ -163,22 +165,22 @@ public class SceneController {
         this.userEvaluations = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("reportBug.fxml"));
+        pageLoader.setLocation(getClass().getResource("pageReport.fxml"));
         pageLoader.setControllerFactory(iC->new ReportBugController(app));
         pageScene = new Scene(pageLoader.load());
         this.reportBug = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("showReports.fxml"));
+        pageLoader.setLocation(getClass().getResource("reports.fxml"));
         pageLoader.setControllerFactory(iC->new ReportsController(app));
         pageScene = new Scene(pageLoader.load());
-        this.showReports = pageScene;
+        this.reports = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("unReport.fxml"));
+        pageLoader.setLocation(getClass().getResource("consulterReport.fxml"));
         pageLoader.setControllerFactory(iC->new ConsulterReportController(app));
         pageScene = new Scene(pageLoader.load());
-        this.unReport = pageScene;
+        this.consulterReport = pageScene;
 
         // on crée un calendrier
         calendarView = new CalendarView(); // (1)
@@ -263,7 +265,7 @@ public class SceneController {
     }
 
     public void switchToAllReports() {
-        setView(this.showReports);
+        setView(this.reports);
     }
 
     public void switchToModifierProfil() {
@@ -311,7 +313,7 @@ public class SceneController {
     }
 
     public void switchToConsulterReport(){
-        setView(this.unReport);
+        setView(this.consulterReport);
     }
 
     public void switchToCalendar() throws IOException {
