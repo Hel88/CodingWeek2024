@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 
-public class UnReportController implements Observer{
+public class ConsulterReportController implements Observer{
 
     private Application app;
     private Report report;
@@ -25,7 +25,7 @@ public class UnReportController implements Observer{
     private Label fullName;
 
 
-    public UnReportController(Application app) {
+    public ConsulterReportController(Application app) {
         this.app = app;
         app.addObserver(this);
     }

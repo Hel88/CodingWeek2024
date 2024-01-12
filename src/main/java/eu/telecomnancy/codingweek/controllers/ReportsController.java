@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ShowReportsController implements Observer {
+public class ReportsController implements Observer {
 
 
         private Application app;
@@ -24,7 +24,7 @@ public class ShowReportsController implements Observer {
         private Label boxLabel;
 
 
-        public ShowReportsController(Application app) {
+        public ReportsController(Application app) {
             this.app = app;
             app.addObserver(this);
         }
