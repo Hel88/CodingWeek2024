@@ -61,6 +61,14 @@ public class ConsulterConversationController implements Observer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        VBoxMessages.getChildren().clear();
+
+        for (Messages message : messages) {
+            Label label = new Label();
+            label.setText(message.getMessage());
+            VBoxMessages.getChildren().add(label);
+        }
     }
 
     @Override
