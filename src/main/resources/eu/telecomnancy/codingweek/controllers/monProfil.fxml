@@ -44,6 +44,6 @@
             <String fx:value="ButtonOrange" />
             <String fx:value="ButtonArrondi" />
          </styleClass></Button>
-      <Button layoutX="304.0" layoutY="259.0" mnemonicParsing="false" onAction="#voirEvaluations" prefHeight="25.0" prefWidth="165.0" text="Voir les évaluations" />
+      <Button layoutX="304.0" layoutY="259.0" mnemonicParsing="false" onAction="#voirEvaluations" prefHeight="44.0" prefWidth="228.0" text="Voir les évaluations laissées par les utilisateurs" wrapText="true" />
    </children>
 </AnchorPane>

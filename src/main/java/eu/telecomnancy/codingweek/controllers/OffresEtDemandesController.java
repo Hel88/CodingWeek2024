@@ -101,7 +101,7 @@ public class OffresEtDemandesController implements Observer{
             prix.setWrapText(true);
             hboxPrix.getChildren().add(prix);
 
-            Image image = new Image(getClass().getResource("images/florain.jpg").toExternalForm());
+            Image image = new Image(getClass().getResource("images/florain.png").toExternalForm());
             ImageView imagev = new ImageView(image);
             
             Rectangle clip = new Rectangle(image.getWidth(), image.getHeight());

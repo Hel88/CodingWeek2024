@@ -114,7 +114,7 @@ public class MesAnnoncesController implements Observer{
             hboxCentre.getChildren().add(prix);
             hboxCentre.getChildren().add(new Label(annonce.getPrix()+""));
             
-            Image image = new Image(getClass().getResource("images/florain.jpg").toExternalForm());
+            Image image = new Image(getClass().getResource("images/florain.png").toExternalForm());
             ImageView imagev = new ImageView(image);
             
             Rectangle clip = new Rectangle(image.getWidth(), image.getHeight());
