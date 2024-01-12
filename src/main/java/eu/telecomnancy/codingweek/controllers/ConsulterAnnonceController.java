@@ -8,7 +8,8 @@ import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Annonce;
 import eu.telecomnancy.codingweek.global.CalendarDisplay;
 import eu.telecomnancy.codingweek.global.User;
-import eu.telecomnancy.codingweek.utils.*;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
+import eu.telecomnancy.codingweek.utils.DataTransactionUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -66,8 +67,13 @@ public class ConsulterAnnonceController implements Observer{
 
     @FXML
     public void voirEvaluations(){
-        app.notifyObservers("evaluations");
-        app.getSceneController().switchToUserEvaluations(annonce.getReferent());
+        try {
+            User userEvalue = app.getDataUsersUtils().getUserByUserName(annonce.getReferent());
+            app.setUserEvalue(userEvalue);
+            app.notifyObservers("evaluations");
+            app.getSceneController().switchToUserEvaluations(annonce.getReferent());
+        } catch (Exception e) {
+        }
     }
 
 
