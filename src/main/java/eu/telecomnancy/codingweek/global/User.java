@@ -17,6 +17,7 @@ public class User {
     private String eval;
     private int solde;
     private boolean isAdmin;
+    private String idConversations;
 
     // Default constructor (needed for JSON deserialization)
     public User() {
@@ -24,7 +25,7 @@ public class User {
 
     // Constructor with parameters
     public User(String userName, String password, String firstName, String lastName, String email,
-                String address, String city, String annonces, String transactionsReferent, String transactionsClient, int planning, String eval, int solde, boolean isAdmin) {
+                String address, String city, String annonces, String transactionsReferent, String transactionsClient, int planning, String eval, int solde, boolean isAdmin, String idConversations) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
@@ -39,6 +40,7 @@ public class User {
         this.eval = eval;
         this.solde = solde;
         this.isAdmin = isAdmin;
+        this.idConversations = idConversations;
     }
 
     // Getter methods
@@ -95,6 +97,10 @@ public class User {
 
     public int getSolde() {
         return solde;
+    }
+
+    public String getIdConversations() {
+        return idConversations;
     }
 
 
@@ -155,6 +161,10 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
+    public void setIdConversations(String idConversations) {
+        this.idConversations = idConversations;
+    }
+
     // toString method for better representation
     @Override
     public String toString() {
@@ -172,6 +182,7 @@ public class User {
                 ", eval=" + eval +
                 ", solde=" + solde +
                 ", isAdmin=" + isAdmin +
+                ", idConversations=" + idConversations +
                 '}';
     }
 }

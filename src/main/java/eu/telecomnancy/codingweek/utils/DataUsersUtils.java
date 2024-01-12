@@ -88,7 +88,7 @@ public class DataUsersUtils {
 
         // Retrieve the User object from the JSON file
         JSONObject userObject = data.getJSONObject(userName);
-        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactionsReferent"), userObject.getString("transactionsClient"), userObject.getInt("planning"), userObject.getString("eval"), userObject.getInt("solde"), userObject.getBoolean("isAdmin"));
+        return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactionsReferent"), userObject.getString("transactionsClient"), userObject.getInt("planning"), userObject.getString("eval"), userObject.getInt("solde"), userObject.getBoolean("isAdmin"), userObject.getString("idConversations"));
     }
 
     public String hashPassword(String password) {
@@ -140,6 +140,7 @@ public class DataUsersUtils {
         userObject.put("eval", User.getEval());
         userObject.put("solde", User.getSolde());
         userObject.put("isAdmin", User.getIsAdmin());
+        userObject.put("idConversations", User.getIdConversations());
 
         // Add the user to the JSON file
         data.put(User.getUserName(), userObject);
