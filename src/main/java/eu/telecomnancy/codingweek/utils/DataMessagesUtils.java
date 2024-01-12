@@ -89,6 +89,20 @@ public class DataMessagesUtils {
         return messages;
     }
 
+    public Messages getMessageById(int id) throws IOException {
+        for (String key : data.keySet()) {
+            JSONObject messageObject = data.getJSONObject(key);
+            int idMessage = messageObject.getInt("id");
+            if (idMessage == id) {
+                String message = messageObject.getString("message");
+                String username = messageObject.getString("username");
+                int idConversation = messageObject.getInt("idConversation");
+                return new Messages(id, message, username, idConversation);
+            }
+        }
+        return null;
+    }
+
     public int newId() {
         int id = 0;
         for (String key : data.keySet()) {

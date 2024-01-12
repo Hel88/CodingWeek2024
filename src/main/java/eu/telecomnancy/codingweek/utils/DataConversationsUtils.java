@@ -1,9 +1,6 @@
 package eu.telecomnancy.codingweek.utils;
 
-import eu.telecomnancy.codingweek.global.Conversations;
-import eu.telecomnancy.codingweek.global.FileAccess;
-import eu.telecomnancy.codingweek.global.Note;
-import eu.telecomnancy.codingweek.global.User;
+import eu.telecomnancy.codingweek.global.*;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -104,6 +101,15 @@ public class DataConversationsUtils {
             conversations.add(new Conversations(id, user1, user2, idMessages));
         }
         return conversations;
+    }
+
+    public ArrayList<Messages> getMessagesFromConversation(Conversations conversations) throws IOException {
+        ArrayList<Messages> messages = new ArrayList<>();
+        String[] idMessages = conversations.getIdMessages().split(",");
+        for (String idMessage : idMessages) {
+            messages.add(DataMessagesUtils.getInstance().getMessageById(Integer.parseInt(idMessage)));
+        }
+        return messages;
     }
 
     public ArrayList<Conversations> getConversationsByUser(String username) throws IOException {
