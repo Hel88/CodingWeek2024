@@ -9,70 +9,86 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
-xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="eu.telecomnancy.codingweek.controllers.ConsulterAnnonceController"
-stylesheets="@styles.css" styleClass="AnchorPane">
-   <children>
-      <Label fx:id="titre" alignment="CENTER" layoutX="96.0" layoutY="14.0" prefHeight="36.0" prefWidth="408.0" text="Titre de l'annonce"
-      styleClass="LabelViolet">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Button fx:id="reserver" layoutX="202.0" layoutY="342.0" mnemonicParsing="false" onAction="#reserver" prefHeight="36.0" prefWidth="197.0" text="réserver" >
-      <styleClass>
-            <String fx:value="ButtonOrange" />
-            <String fx:value="ButtonArrondi" />
-         </styleClass></Button>
-      <HBox layoutX="37.0" layoutY="96.0" prefHeight="189.0" prefWidth="528.0">
-         <children>
-            <VBox prefHeight="119.0" prefWidth="241.0">
-               <children>
-                  <HBox prefHeight="160.0" prefWidth="222.0">
-                     <children>
-                        <Label alignment="TOP_LEFT" prefHeight="103.0" prefWidth="83.0" text="Description:" textFill="#adadad" wrapText="true" />
-                        <Label fx:id="description" alignment="TOP_LEFT" prefHeight="189.0" prefWidth="138.0" wrapText="true" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label alignment="TOP_LEFT" prefHeight="78.0" prefWidth="223.0" text="Prix:" textFill="#adadad" wrapText="true" />
-                        <Label fx:id="prix" alignment="TOP_LEFT" prefHeight="45.0" prefWidth="278.0" wrapText="true" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="62.0" text="Lieu: " textFill="#adadad" />
-                        <Label fx:id="lieu" alignment="TOP_LEFT" prefHeight="42.0" prefWidth="167.0" wrapText="true" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <Separator orientation="VERTICAL" prefHeight="195.0" prefWidth="42.0" />
-            <VBox prefHeight="195.0" prefWidth="253.0">
-               <children>
-                  <HBox prefHeight="83.0" prefWidth="253.0">
-                     <children>
-                        <Label alignment="TOP_LEFT" prefHeight="83.0" prefWidth="88.0" text="Proposé par: " textFill="#adadad" />
-                        <Label fx:id="name" alignment="TOP_LEFT" prefHeight="167.0" prefWidth="135.0" wrapText="true" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="48.0" prefWidth="249.0">
-                     <children>
-                        <Label text="Email: " textFill="#adadad" />
-                        <Label fx:id="email" alignment="TOP_LEFT" prefHeight="49.0" prefWidth="185.0" wrapText="true" />
-                     </children>
-                  </HBox>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#voirEvaluations" text="Voir les évaluations" >
-                     <styleClass>
-                        <String fx:value="ButtonOrange" />
-                        <String fx:value="ButtonArrondi" />
-                     </styleClass></Button>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <Label fx:id="categorie" alignment="CENTER" layoutX="190.0" layoutY="50.0" prefHeight="25.0" prefWidth="212.0" text="catégorie" textAlignment="CENTER" textFill="#adadad" wrapText="true" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="eu.telecomnancy.codingweek.controllers.ConsulterAnnonceController"
+            stylesheets="@styles.css" styleClass="AnchorPane">
+    <children>
+        <Label fx:id="titre" alignment="CENTER" layoutX="96.0" layoutY="14.0" prefHeight="36.0" prefWidth="408.0"
+               text="Titre de l'annonce"
+               styleClass="LabelViolet">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <Button fx:id="reserver" layoutX="202.0" layoutY="342.0" mnemonicParsing="false" onAction="#reserver"
+                prefHeight="36.0" prefWidth="197.0" text="réserver">
+            <styleClass>
+                <String fx:value="ButtonOrange"/>
+                <String fx:value="ButtonArrondi"/>
+            </styleClass>
+        </Button>
+        <HBox layoutX="37.0" layoutY="96.0" prefHeight="189.0" prefWidth="528.0">
+            <children>
+                <VBox prefHeight="119.0" prefWidth="241.0">
+                    <children>
+                        <HBox prefHeight="160.0" prefWidth="222.0">
+                            <children>
+                                <Label alignment="TOP_LEFT" prefHeight="103.0" prefWidth="83.0" text="Description:"
+                                       textFill="#adadad" wrapText="true"/>
+                                <Label fx:id="description" alignment="TOP_LEFT" prefHeight="189.0" prefWidth="138.0"
+                                       wrapText="true"/>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Label alignment="TOP_LEFT" prefHeight="78.0" prefWidth="223.0" text="Prix:"
+                                       textFill="#adadad" wrapText="true"/>
+                                <Label fx:id="prix" alignment="TOP_LEFT" prefHeight="45.0" prefWidth="278.0"
+                                       wrapText="true"/>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="62.0" text="Lieu: "
+                                       textFill="#adadad"/>
+                                <Label fx:id="lieu" alignment="TOP_LEFT" prefHeight="42.0" prefWidth="167.0"
+                                       wrapText="true"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <Separator orientation="VERTICAL" prefHeight="195.0" prefWidth="42.0"/>
+                <VBox prefHeight="195.0" prefWidth="253.0">
+                    <children>
+                        <HBox prefHeight="83.0" prefWidth="253.0">
+                            <children>
+                                <Label alignment="TOP_LEFT" prefHeight="83.0" prefWidth="88.0" text="Proposé par: "
+                                       textFill="#adadad"/>
+                                <Label fx:id="name" alignment="TOP_LEFT" prefHeight="167.0" prefWidth="135.0"
+                                       wrapText="true"/>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="48.0" prefWidth="249.0">
+                            <children>
+                                <Label text="Email: " textFill="#adadad"/>
+                                <Label fx:id="email" alignment="TOP_LEFT" prefHeight="49.0" prefWidth="185.0"
+                                       wrapText="true"/>
+                            </children>
+                        </HBox>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#voirEvaluations"
+                                text="Voir les évaluations">
+                            <styleClass>
+                                <String fx:value="ButtonOrange"/>
+                                <String fx:value="ButtonArrondi"/>
+                            </styleClass>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <Label fx:id="categorie" alignment="CENTER" layoutX="190.0" layoutY="50.0" prefHeight="25.0" prefWidth="212.0"
+               text="catégorie" textAlignment="CENTER" textFill="#adadad" wrapText="true"/>
+    </children>
 </AnchorPane>
