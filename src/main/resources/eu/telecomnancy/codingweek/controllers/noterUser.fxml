@@ -12,61 +12,54 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0"
-            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="eu.telecomnancy.codingweek.controllers.NoterUserController"
-            stylesheets="@styles.css" styleClass="AnchorPane">
-    <children>
-        <VBox layoutX="17.0" prefHeight="400.0" prefWidth="566.0" spacing="10.0">
-            <children>
-                <Label alignment="CENTER" prefHeight="51.0" prefWidth="601.0" text="Noter l'utilisateur"
-                       styleClass="LabelViolet">
-                    <font>
-                        <Font size="24.0"/>
-                    </font>
-                </Label>
-                <Label alignment="CENTER" prefHeight="48.0" prefWidth="707.0" text="username">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                </Label>
-                <HBox prefHeight="52.0" prefWidth="600.0">
-                    <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="158.0" text="Note :       ">
-                            <font>
-                                <Font size="16.0"/>
-                            </font>
-                        </Label>
-                        <CheckBox fx:id="un" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0"
-                                  prefWidth="66.0" text="1"/>
-                        <CheckBox fx:id="deux" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0"
-                                  prefWidth="66.0" text="2"/>
-                        <CheckBox fx:id="trois" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0"
-                                  prefWidth="66.0" text="3"/>
-                        <CheckBox fx:id="quatre" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0"
-                                  prefWidth="66.0" text="4"/>
-                        <CheckBox fx:id="cinq" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0"
-                                  prefWidth="66.0" text="5"/>
-                    </children>
-                </HBox>
-                <Label alignment="CENTER" prefHeight="29.0" prefWidth="566.0" text="Commentaire :">
-                    <font>
-                        <Font size="16.0"/>
-                    </font>
-                </Label>
-                <TextArea fx:id="commentaire" prefHeight="129.0" prefWidth="566.0"/>
-                <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#noter" prefHeight="24.0"
-                        prefWidth="72.0" text="Noter">
-                    <VBox.margin>
-                        <Insets left="500.0"/>
-                    </VBox.margin>
-                    <styleClass>
-                        <String fx:value="ButtonOrange"/>
-                        <String fx:value="ButtonArrondi"/>
-                    </styleClass>
-                </Button>
-            </children>
-        </VBox>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
+xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+fx:controller="eu.telecomnancy.codingweek.controllers.NoterUserController"
+stylesheets="@styles.css" styleClass="AnchorPane">
+   <children>
+      <VBox layoutX="17.0" prefHeight="400.0" prefWidth="566.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="51.0" prefWidth="601.0" text="Noter l'utilisateur"
+            styleClass="LabelViolet" >
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="48.0" prefWidth="707.0" text="username">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="52.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="158.0" text="Note :       ">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="un" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="1" />
+                  <CheckBox fx:id="deux" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="2" />
+                  <CheckBox fx:id="trois" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="3" />
+                  <CheckBox fx:id="quatre" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="4" />
+                  <CheckBox fx:id="cinq" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="5" />
+               </children>
+            </HBox>
+            <Label alignment="CENTER" prefHeight="29.0" prefWidth="566.0" text="Commentaire :">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="commentaire" prefHeight="129.0" prefWidth="566.0" styleClass="FieldFocus"/>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#noter" prefHeight="24.0" prefWidth="72.0" text="Noter">
+               <VBox.margin>
+                  <Insets left="500.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="ButtonOrange" />
+                  <String fx:value="ButtonArrondi" />
+               </styleClass>
+            </Button>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

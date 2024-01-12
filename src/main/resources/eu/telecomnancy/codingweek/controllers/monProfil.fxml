@@ -7,59 +7,51 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" styleClass="AnchorPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="eu.telecomnancy.codingweek.controllers.MonProfilController">
-    <children>
-        <VBox layoutX="34.0" layoutY="136.0" prefHeight="200.0" prefWidth="239.0">
-            <children>
-                <Label fx:id="firstName" contentDisplay="CENTER" prefHeight="34.0" prefWidth="199.0" text="Prénom"
-                       wrapText="true"/>
-                <Label fx:id="lastName" prefHeight="34.0" prefWidth="199.0" text="Nom" wrapText="true"/>
-                <Label fx:id="address" prefHeight="34.0" prefWidth="199.0" text="adresse" wrapText="true"/>
-                <Label fx:id="email" prefHeight="34.0" prefWidth="199.0" text="email" wrapText="true"/>
-                <Label fx:id="city" prefHeight="34.0" prefWidth="199.0" text="Ville" wrapText="true"/>
-            </children>
-        </VBox>
-        <Label alignment="CENTER" layoutX="198.0" layoutY="27.0" prefHeight="34.0" prefWidth="205.0"
-               styleClass="LabelViolet" text="Mon Profil">
-            <font>
-                <Font size="24.0"/>
-            </font>
-        </Label>
-        <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" layoutX="187.0" layoutY="68.0"
-               prefHeight="44.0" prefWidth="228.0" text="Nom d'utilisateur">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Label>
-        <Button layoutX="300.0" layoutY="148.0" mnemonicParsing="false" onAction="#displayPlanning" prefHeight="34.0"
-                prefWidth="221.0" text="Voir/Modifier mon planning">
-            <styleClass>
-                <String fx:value="ButtonOrange"/>
-                <String fx:value="ButtonArrondi"/>
-            </styleClass>
-        </Button>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="304.0" layoutY="219.0" prefHeight="34.0"
-               prefWidth="221.0" text="Note donnée par les utilisateurs:"/>
-        <Label fx:id="eval" alignment="CENTER" layoutX="529.0" layoutY="224.0" prefHeight="24.0" prefWidth="52.0"
-               text="note"/>
-        <Button fx:id="modifier" layoutX="300.0" layoutY="359.0" mnemonicParsing="false" onAction="#modifierProfil"
-                prefHeight="34.0" prefWidth="135.0" text="Modifier Profil">
-            <styleClass>
-                <String fx:value="ButtonOrange"/>
-                <String fx:value="ButtonArrondi"/>
-            </styleClass>
-        </Button>
-        <Button fx:id="supprimer" layoutX="442.0" layoutY="359.0" mnemonicParsing="false" onAction="#supprimerProfil"
-                prefHeight="34.0" prefWidth="135.0" text="Supprimer Profil">
-            <styleClass>
-                <String fx:value="ButtonOrange"/>
-                <String fx:value="ButtonArrondi"/>
-            </styleClass>
-        </Button>
-        <Button layoutX="304.0" layoutY="259.0" mnemonicParsing="false" onAction="#voirEvaluations" prefHeight="25.0"
-                prefWidth="165.0" text="Voir les évaluations"/>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
+styleClass="AnchorPane" stylesheets="@styles.css" 
+xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="eu.telecomnancy.codingweek.controllers.MonProfilController">
+   <children>
+      <VBox layoutX="34.0" layoutY="136.0" prefHeight="200.0" prefWidth="239.0">
+         <children>
+            <Label fx:id="firstName" contentDisplay="CENTER" prefHeight="34.0" prefWidth="199.0" text="Prénom" wrapText="true" />
+            <Label fx:id="lastName" prefHeight="34.0" prefWidth="199.0" text="Nom" wrapText="true" />
+            <Label fx:id="address" prefHeight="34.0" prefWidth="199.0" text="adresse" wrapText="true" />
+            <Label fx:id="email" prefHeight="34.0" prefWidth="199.0" text="email" wrapText="true" />
+            <Label fx:id="city" prefHeight="34.0" prefWidth="199.0" text="Ville" wrapText="true" />
+         </children>
+      </VBox>
+      <Label alignment="CENTER" layoutX="198.0" layoutY="27.0" prefHeight="34.0" prefWidth="205.0" styleClass="LabelViolet" text="Mon Profil">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" layoutX="187.0" layoutY="68.0" prefHeight="44.0" prefWidth="228.0" text="Nom d'utilisateur">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Button layoutX="300.0" layoutY="148.0" mnemonicParsing="false" onAction="#displayPlanning" prefHeight="34.0" prefWidth="221.0" text="Voir/Modifier mon planning">
+         <styleClass>
+            <String fx:value="ButtonOrange" />
+            <String fx:value="ButtonArrondi" />
+         </styleClass></Button>
+      <Button layoutX="304.0" layoutY="259.0" mnemonicParsing="false" onAction="#voirEvaluations" prefHeight="34.0" prefWidth="165.0" text="Voir les évaluations" >
+         <styleClass>
+            <String fx:value="ButtonOrange" />
+            <String fx:value="ButtonArrondi" />
+         </styleClass>
+      </Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="304.0" layoutY="219.0" prefHeight="34.0" prefWidth="221.0" text="Note donnée par les utilisateurs:" />
+      <Label fx:id="eval" alignment="CENTER" layoutX="529.0" layoutY="224.0" prefHeight="24.0" prefWidth="52.0" text="note" />
+      <Button fx:id="modifier" layoutX="300.0" layoutY="359.0" mnemonicParsing="false" onAction="#modifierProfil" prefHeight="34.0" prefWidth="135.0" text="Modifier Profil">
+         <styleClass>
+            <String fx:value="ButtonOrange" />
+            <String fx:value="ButtonArrondi" />
+         </styleClass></Button>
+      <Button fx:id="supprimer" layoutX="442.0" layoutY="359.0" mnemonicParsing="false" onAction="#supprimerProfil" prefHeight="34.0" prefWidth="135.0" text="Supprimer Profil">
+         <styleClass>
+            <String fx:value="ButtonOrange" />
+            <String fx:value="ButtonArrondi" />
+         </styleClass></Button>
+   </children>
 </AnchorPane>

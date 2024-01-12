@@ -142,22 +142,20 @@ public class MesAnnoncesController implements Observer {
 
         for (Transaction transaction : this.transactions) {
             HBox hbox = new HBox();
-            hbox.setSpacing(10);
+            hbox.setSpacing(8);
             hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
+            hbox.setPrefHeight(20);
 
             Label id = new Label("(id : " + transaction.getId() + ")");
             id.setPrefWidth(50);
-            id.setPrefHeight(10);
             id.setWrapText(true);
 
             Label client = new Label(transaction.getIdClient());
             client.setPrefWidth(200);
-            client.setPrefHeight(10);
             client.setWrapText(true);
 
             Label status = new Label(transaction.getStatus());
             status.setPrefWidth(100);
-            status.setPrefHeight(10);
             status.setWrapText(true);
 
             Button accepter = new Button();
@@ -207,12 +205,12 @@ public class MesAnnoncesController implements Observer {
 
             switch (transaction.getStatus()) {
                 case "En attente" -> {
-                    hbox.setStyle("-fx-background-color: #DAA520; prefHeight:\"279.0\"");
+                    hbox.setStyle("-fx-background-color: #FFEBCD; prefHeight:\"279.0\"");
                     hbox.getChildren().addAll(accepter, refuser);
                 }
-                case "Acceptée" -> hbox.setStyle("-fx-background-color: #00FF00; prefHeight:\"279.0\"");
-                case "Refusée" -> hbox.setStyle("-fx-background-color: #FF0000; prefHeight:\"279.0\"");
-                case "Notée" -> hbox.setStyle("-fx-background-color: #0000FF; prefHeight:\"279.0\"");
+                case "Acceptée" -> hbox.setStyle("-fx-background-color: #98FB98; prefHeight:\"279.0\"");
+                case "Refusée" -> hbox.setStyle("-fx-background-color: #FF7F50; prefHeight:\"279.0\"");
+                case "Notée" -> hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
             }
 
             reservations.getChildren().add(hbox);

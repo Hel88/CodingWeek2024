@@ -33,6 +33,7 @@ public class MesTransactionsController implements Observer {
                 User user = app.getMainUser();
                 //System.out.println(user.getUserName());
                 ArrayList<Transaction> transactions = app.getDataTransactionUtils().getTransactionsByClientUser(user);
+                System.out.println(transactions.size());
                 for (Transaction transaction : transactions){
                     HBox hboxStatut = new HBox();
                     HBox hboxTitre = new HBox();
@@ -40,9 +41,9 @@ public class MesTransactionsController implements Observer {
                     HBox hboxPrix = new HBox();
                     HBox HBox = new HBox();
 
-                    hboxStatut.setPrefWidth(100);
-                    hboxTitre.setPrefWidth(200);
-                    hboxUser.setPrefWidth(100);
+                    // hboxStatut.setPrefWidth(100);
+                    // hboxTitre.setPrefWidth(200);
+                    // hboxUser.setPrefWidth(100);
                     //hboxPrix.setPrefWidth(100);
 
                     HBox.getChildren().add(hboxStatut);
@@ -55,15 +56,23 @@ public class MesTransactionsController implements Observer {
                     
 
                     Label statut = new Label(transaction.getStatus());
+                    statut.setPrefWidth(100);
+                    statut.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxStatut.getChildren().add(statut);
 
                     Label titre = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getTitre());
+                    titre.setPrefWidth(200);
+                    titre.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxTitre.getChildren().add(titre);
 
                     Label referent = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getReferent());
+                    referent.setPrefWidth(200);
+                    referent.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxUser.getChildren().add(referent);
 
-                    Label prix = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getPrix()+"");
+                    Label prix = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getPrix() + "");
+                    //prix.setPrefWidth(100);
+                    prix.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxPrix.getChildren().add(prix);
 
                     if (transaction.getStatus().equals("Acceptée")) {
@@ -81,7 +90,17 @@ public class MesTransactionsController implements Observer {
                             }
                         });
                         hboxPrix.getChildren().add(noterButton);
+                        HBox.setStyle("-fx-background-color: #98FB98;");
                     }
+
+                    if (transaction.getStatus().equals("Refusée")){
+                        HBox.setStyle("-fx-background-color: #FF7F50;");
+                    }
+
+                    if (transaction.getStatus().equals("En attente")){
+                        HBox.setStyle("-fx-background-color: #FFEBCD;");
+                    }
+                    
 
 
                 }

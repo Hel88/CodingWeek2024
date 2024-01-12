@@ -30,9 +30,8 @@
                         <Font size="16.0"/>
                     </font>
                 </Label>
-                <TextArea fx:id="message" prefHeight="129.0" prefWidth="566.0"/>
-                <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendReport" prefHeight="24.0"
-                        prefWidth="93.0" text="Envoyer">
+                <TextArea fx:id="message" prefHeight="129.0" prefWidth="566.0" styleClass="FieldFocus" />
+                <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendReport" prefHeight="24.0" prefWidth="93.0" text="Envoyer">
                     <VBox.margin>
                         <Insets left="472.0"/>
                     </VBox.margin>
