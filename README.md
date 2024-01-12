@@ -199,7 +199,7 @@ TODO (screens, examples)
       - [ ] Planning
         - Not found yet
     - [x] Manage Switch between scenes
-    - [ ] Manage the connection
+    - [ ] Manage the connection (reported for day 2)
     - [x] Create the json files
     - [x] Find a way to store the planning (found, in implementation)
 - [x] Day 2
