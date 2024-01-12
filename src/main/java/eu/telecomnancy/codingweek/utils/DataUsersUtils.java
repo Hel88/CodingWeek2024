@@ -73,6 +73,7 @@ public class DataUsersUtils {
         DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
         userObject.put("planning", String.valueOf(dataCalendarUtils.store(new Calendar("Agenda de "+ userName))));
         userObject.put("eval", "");
+        userObject.put("idConversations", "");
         userObject.put("solde", 100);
         userObject.put("isAdmin", false);
 
