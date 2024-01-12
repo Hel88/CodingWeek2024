@@ -42,7 +42,7 @@ public class UserEvaluationsController implements Observer {
 
 
             VBoxEvaluations.getChildren().clear();
-            username.setText(userEvalue.getUserName());
+            username.setText("Evaluations de: "+userEvalue.getUserName());
             noteMoyenne.setText(userEvalue.getMoyenne()+" / 5");
 
             ArrayList<Note> notes;
