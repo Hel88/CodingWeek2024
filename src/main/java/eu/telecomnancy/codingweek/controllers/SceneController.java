@@ -184,13 +184,13 @@ public class SceneController {
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("messageries.fxml"));
-        pageLoader.setControllerFactory(iC->new MessageriesController(app));
+        pageLoader.setControllerFactory(iC->new ConversationController(app));
         pageScene = new Scene(pageLoader.load());
         this.messageries = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("consulterMessagerie.fxml"));
-        pageLoader.setControllerFactory(iC->new ConsulterMessagerieController(app));
+        pageLoader.setLocation(getClass().getResource("consulterConversation.fxml"));
+        pageLoader.setControllerFactory(iC->new ConsulterConversationController(app));
         pageScene = new Scene(pageLoader.load());
         this.consulterMessagerie = pageScene;
 

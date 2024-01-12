@@ -2,10 +2,7 @@ package eu.telecomnancy.codingweek;
 
 import eu.telecomnancy.codingweek.controllers.Observer;
 import eu.telecomnancy.codingweek.controllers.SceneController;
-import eu.telecomnancy.codingweek.global.Annonce;
-import eu.telecomnancy.codingweek.global.CalendarDisplay;
-import eu.telecomnancy.codingweek.global.Report;
-import eu.telecomnancy.codingweek.global.User;
+import eu.telecomnancy.codingweek.global.*;
 import eu.telecomnancy.codingweek.utils.*;
 import javafx.stage.Stage;
 
@@ -20,10 +17,13 @@ public class Application extends javafx.application.Application {
     private DataTransactionUtils dataTransactionUtils;
     private DataNoteUtils dataNoteUtils;
     private DataReportUtils dataReportUtils;
+    private DataMessagesUtils dataMessagesUtils;
+    private DataConversationsUtils dataConversationsUtils;
     private User mainUser;
     private final ArrayList<Observer> observers = new ArrayList<Observer>();
     private Annonce annonceAffichee;
     private Report reportAffiche;
+    private Conversations conversationAffichee;
     private String categorieAnnonceACreer;
 
 
@@ -37,6 +37,8 @@ public class Application extends javafx.application.Application {
             this.dataNoteUtils = DataNoteUtils.getInstance();
             this.dataReportUtils = DataReportUtils.getInstance();
             this.mainUser = null;
+            this.dataMessagesUtils = DataMessagesUtils.getInstance();
+            this.dataConversationsUtils = DataConversationsUtils.getInstance();
         } catch (Exception e) {
             System.out.println("Error while loading the scene controller");
             e.printStackTrace();
@@ -66,6 +68,12 @@ public class Application extends javafx.application.Application {
     }
     public DataReportUtils getDataReportUtils() {
         return dataReportUtils;
+    }
+    public DataMessagesUtils getDataMessagesUtils() {
+        return dataMessagesUtils;
+    }
+    public DataConversationsUtils getDataConversationsUtils() {
+        return dataConversationsUtils;
     }
 
     public User getMainUser() {
@@ -112,5 +120,13 @@ public class Application extends javafx.application.Application {
 
     public void setReportAffiche(Report reportAffiche) {
         this.reportAffiche = reportAffiche;
+    }
+
+    public Conversations getConversationAffichee() {
+        return conversationAffichee;
+    }
+
+    public void setConversationAffichee(Conversations conversationAffichee) {
+        this.conversationAffichee = conversationAffichee;
     }
 }
