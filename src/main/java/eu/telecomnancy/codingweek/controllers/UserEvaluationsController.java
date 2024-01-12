@@ -41,7 +41,7 @@ public class UserEvaluationsController implements Observer{
 
             
             VBoxEvaluations.getChildren().clear();
-            username.setText(userEvalue.getUserName());
+            username.setText("Evaluations de " + userEvalue.getUserName());
             //ajouter note moyenne
 
             ArrayList<Note> notes = app.getDataNoteUtils().getNotesByUser(userEvalue);

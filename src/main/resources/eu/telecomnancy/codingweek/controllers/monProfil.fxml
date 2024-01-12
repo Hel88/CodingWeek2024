@@ -32,6 +32,12 @@
             <String fx:value="ButtonOrange" />
             <String fx:value="ButtonArrondi" />
          </styleClass></Button>
+      <Button layoutX="304.0" layoutY="259.0" mnemonicParsing="false" onAction="#voirEvaluations" prefHeight="34.0" prefWidth="165.0" text="Voir les évaluations" >
+         <styleClass>
+            <String fx:value="ButtonOrange" />
+            <String fx:value="ButtonArrondi" />
+         </styleClass>
+      </Button>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="304.0" layoutY="219.0" prefHeight="34.0" prefWidth="221.0" text="Note donnée par les utilisateurs:" />
       <Label fx:id="eval" alignment="CENTER" layoutX="529.0" layoutY="224.0" prefHeight="24.0" prefWidth="52.0" text="note" />
       <Button fx:id="modifier" layoutX="300.0" layoutY="359.0" mnemonicParsing="false" onAction="#modifierProfil" prefHeight="34.0" prefWidth="135.0" text="Modifier Profil">
@@ -44,6 +50,5 @@
             <String fx:value="ButtonOrange" />
             <String fx:value="ButtonArrondi" />
          </styleClass></Button>
-      <Button layoutX="304.0" layoutY="259.0" mnemonicParsing="false" onAction="#voirEvaluations" prefHeight="25.0" prefWidth="165.0" text="Voir les évaluations" />
    </children>
 </AnchorPane>
