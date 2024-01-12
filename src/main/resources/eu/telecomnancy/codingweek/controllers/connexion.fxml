@@ -15,12 +15,13 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="userName" layoutX="166.0" layoutY="146.0" prefHeight="32.0" prefWidth="269.0" promptText="Nom d'utilisateur" />
-      <PasswordField fx:id="pwd" layoutX="166.0" layoutY="209.0" prefHeight="32.0" prefWidth="269.0" promptText="mot de passe" />
+      <TextField fx:id="userName" layoutX="166.0" layoutY="146.0" prefHeight="32.0" prefWidth="269.0" promptText="Nom d'utilisateur" styleClass="FieldFocus" />
+      <PasswordField fx:id="pwd" layoutX="166.0" layoutY="209.0" prefHeight="32.0" prefWidth="269.0" promptText="mot de passe" styleClass="FieldFocus" />
       <Button fx:id="connexion" layoutX="386.0" layoutY="292.0" mnemonicParsing="false" onAction="#connexion" prefHeight="32.0" prefWidth="99.0" text="Connexion">
          <styleClass>
             <String fx:value="ButtonOrange" />
             <String fx:value="ButtonArrondi" />
+            <String fx:value="ButtonFocus" />
          </styleClass></Button>
       <Button fx:id="inscription" layoutX="110.0" layoutY="292.0" mnemonicParsing="false" onAction="#inscription" prefHeight="32.0" prefWidth="99.0" text="Inscription">
          <styleClass>
