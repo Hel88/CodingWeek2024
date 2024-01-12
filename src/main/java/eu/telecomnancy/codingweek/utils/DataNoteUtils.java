@@ -8,7 +8,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -25,7 +24,7 @@ public class DataNoteUtils {
         FileAccess fileAccess = new FileAccess();
         this.filePath = fileAccess.getPathOf("notes.json");
         File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
     }
 
@@ -58,7 +57,7 @@ public class DataNoteUtils {
         }
     }
 
-    public ArrayList<Note> getNotes() throws IOException {
+    public ArrayList<Note> getNotes() {
         // Method related to the display of the notes
 
         ArrayList<Note> notes = new ArrayList<>();
@@ -71,7 +70,7 @@ public class DataNoteUtils {
         return notes;
     }
 
-    public ArrayList<Note> getNotesByUser(User user) throws IOException {
+    public ArrayList<Note> getNotesByUser(User user) {
         // Method related to the display of the notes of a user
 
         ArrayList<Note> notes = new ArrayList<>();

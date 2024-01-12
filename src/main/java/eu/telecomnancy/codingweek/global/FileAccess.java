@@ -12,8 +12,6 @@ public class FileAccess {
         String newStr = myStr.replaceFirst("^file:/*", "/");
         newStr = newStr.replaceFirst("/[^/]*.jar.*", "/files/");
         this.absoluteResourceFolderPath = newStr;
-
-        String path = this.absoluteResourceFolderPath + "users.json";
     }
 
     public String getAbsoluteResourceFolderPath() {

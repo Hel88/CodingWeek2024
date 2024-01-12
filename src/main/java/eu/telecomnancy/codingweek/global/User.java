@@ -47,6 +47,7 @@ public class User {
     public String getUserName() {
         return userName;
     }
+
     public String getPassword() {
         return password;
     }
@@ -100,7 +101,7 @@ public class User {
         int nb = 0;
         String[] evals = eval.split(",");
         for (String e : evals) {
-            if (!e.equals("")) {
+            if (!e.isEmpty()) {
                 moyenne += Integer.parseInt(e);
                 nb++;
             }
