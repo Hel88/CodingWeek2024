@@ -39,7 +39,6 @@ public class MesConversationController implements Observer {
                 throw new IOException("User not connected");
             }
             conversations = app.getDataConversationsUtils().getConversationsByUser(user.getUserName());
-            System.out.println(conversations);
         } catch (IOException e) {
             System.out.println("Erreur lors de la récupération des conversations : Utilisateur non connecté");
         }
@@ -69,7 +68,6 @@ public class MesConversationController implements Observer {
             Label texte = null;
             try {
                 Messages test = app.getDataMessagesUtils().getLastMessageFromConversation(String.valueOf(conversation.getId()));
-                System.out.println(test);
                 if (test == null) {
                     texte = new Label("Aucun message");
                 } else {
