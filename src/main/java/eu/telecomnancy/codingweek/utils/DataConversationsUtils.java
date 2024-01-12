@@ -36,7 +36,15 @@ public class DataConversationsUtils {
     }
 
     public void addConversation(String user1, String user2, String idMessages) throws IOException {
-        int id = newId();
+        int id = checkIfConversationExist(user1, user2);
+
+        if(id == -1){
+            id = newId();
+        }
+        else {
+            JSONObject conversationObject = data.getJSONObject(Integer.toString(id));
+            idMessages = conversationObject.getString("idMessages") + "," + idMessages;
+        }
 
         JSONObject conversationObject = new JSONObject();
         conversationObject.put("id", id);
@@ -49,6 +57,40 @@ public class DataConversationsUtils {
             file.write(data.toString());
             file.flush();
         }
+    }
+
+    public void addIdMessagesToConversation(int id, String idMessages) throws IOException {
+        JSONObject conversationObject = data.getJSONObject(Integer.toString(id));
+        idMessages = conversationObject.getString("idMessages") + "," + idMessages;
+        conversationObject.put("idMessages", idMessages);
+        data.put(Integer.toString(id), conversationObject);
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
+    }
+
+    public void addIdMessagesToConversation(Conversations conversations, String idMessages) throws IOException {
+        JSONObject conversationObject = data.getJSONObject(Integer.toString(conversations.getId()));
+        idMessages = conversationObject.getString("idMessages") + "," + idMessages;
+        conversationObject.put("idMessages", idMessages);
+        data.put(Integer.toString(conversations.getId()), conversationObject);
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
+    }
+
+    public int checkIfConversationExist(String user1, String user2) throws IOException {
+        for (String key : data.keySet()) {
+            JSONObject conversationObject = data.getJSONObject(key);
+            String user3 = conversationObject.getString("user1");
+            String user4 = conversationObject.getString("user2");
+            if ((user1.equals(user3) && user2.equals(user4)) || (user1.equals(user4) && user2.equals(user3))) {
+                return conversationObject.getInt("id");
+            }
+        }
+        return -1;
     }
 
     public ArrayList<Conversations> getConversations() throws IOException {

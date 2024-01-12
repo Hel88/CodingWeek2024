@@ -48,6 +48,15 @@ public class DataMessagesUtils {
         }
     }
 
+    public Messages getLastMessageFromConversation(String idConversation) throws IOException {
+        Messages message = null;
+        ArrayList<Messages> messages = getMessagesFromConversation(idConversation);
+        if (!messages.isEmpty()) {
+            message = messages.get(messages.size() - 1);
+        }
+        return message;
+    }
+
     public ArrayList<Messages> getMessages() throws IOException {
         ArrayList<Messages> messages = new ArrayList<>();
         for (String key : data.keySet()) {
@@ -73,6 +82,10 @@ public class DataMessagesUtils {
                 messages.add(new Messages(id, message, username, Integer.parseInt(idConversation)));
             }
         }
+        // sort the messages by id
+        messages.sort((o1, o2) -> {
+            return Integer.compare(o1.getId(), o2.getId());
+        });
         return messages;
     }
 

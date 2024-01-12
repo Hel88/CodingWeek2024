@@ -75,6 +75,7 @@ public class DataUsersUtils {
         userObject.put("eval", "");
         userObject.put("solde", 100);
         userObject.put("isAdmin", false);
+        userObject.put("idConversations", "");
 
         // Add the user to the JSON file
         data.put(userName, userObject);
@@ -205,6 +206,20 @@ public class DataUsersUtils {
         }
 
         user.setTransactionsClient(transactions);
+
+        updateUser(user);
+    }
+
+    public void addConversationToUser(String userName, int id) throws IOException {
+        User user = getUserByUserName(userName);
+        String conversations = user.getIdConversations();
+        if (conversations.isEmpty()) {
+            conversations = String.valueOf(id);
+        } else {
+            conversations = conversations + "," + id;
+        }
+
+        user.setIdConversations(conversations);
 
         updateUser(user);
     }

@@ -19,6 +19,14 @@ public class Conversations {
         return id;
     }
 
+    public String getOtherUser(String user) {
+        if (user.equals(user1)) {
+            return user2;
+        } else {
+            return user1;
+        }
+    }
+
     public void setId(int id) {
         this.id = id;
     }
