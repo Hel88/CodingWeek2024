@@ -105,6 +105,8 @@ public class MonProfilController implements Observer {
         } else {
             enleverSommeil();
         }
+        app.notifyObservers("user");
+        app.notifyObservers("annonce");
     }
 
     @FXML

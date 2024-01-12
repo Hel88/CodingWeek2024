@@ -30,6 +30,10 @@ public class Annonce {
 
     //Getters et setters -------------------------------
 
+    public Boolean isActif() {
+        return actif;
+    }
+
     public int getId() {
         return id;
     }
