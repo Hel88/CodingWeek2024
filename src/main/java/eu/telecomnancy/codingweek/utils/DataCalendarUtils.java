@@ -145,4 +145,8 @@ public class DataCalendarUtils {
     public int getId(Calendar calendar) throws IOException {
         return this.store(calendar);
     }
+
+    public String getFilePath() {
+        return filePath;
+    }
 }

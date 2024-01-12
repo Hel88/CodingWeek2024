@@ -89,4 +89,8 @@ public class DataReportUtils {
         }
         return id + 1;
     }
+
+    public String getFilePath() {
+        return filePath;
+    }
 }

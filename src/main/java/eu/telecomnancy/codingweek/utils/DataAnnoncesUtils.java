@@ -37,6 +37,15 @@ public class DataAnnoncesUtils {
         return instance;
     }
 
+    // Getters
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public JSONObject getData() {
+        return data;
+    }
+
     // Methods
     public int addAnnonce(String titre, String description, String prix, String categorie, String referent) throws IOException {
         // Method related to the creation of a new annonce

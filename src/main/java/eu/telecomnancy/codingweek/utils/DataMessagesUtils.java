@@ -114,4 +114,8 @@ public class DataMessagesUtils {
         }
         return id + 1;
     }
+
+    public String getFilePath() {
+        return filePath;
+    }
 }
