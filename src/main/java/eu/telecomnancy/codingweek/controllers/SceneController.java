@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class SceneController {
 
@@ -53,9 +54,22 @@ public class SceneController {
     public SceneController(Stage primaryStage, Application app) throws Exception {
 
         this.primaryStage = primaryStage;
-
+        
+        primaryStage.setTitle("Telecom Nancy Direct Dealing");
+        primaryStage.initStyle(StageStyle.DECORATED);
+        //primaryStage.setFullScreen(true);
         this.layout = new BorderPane();
-        //layout.setMinSize(1000, 850);
+        layout.setMinSize(800, 700);
+
+        //  // Récupérer les dimensions de l'écran principal
+        // Screen screen = Screen.getPrimary();
+        // double screenWidth = screen.getBounds().getWidth();
+        // double screenHeight = screen.getBounds().getHeight();
+
+        // // Régler la taille de la fenêtre en fonction des dimensions de l'écran
+        // primaryStage.setWidth(screenWidth * 0.8); // Vous pouvez ajuster le facteur de mise à l'échelle selon vos besoins
+        // primaryStage.setHeight(screenHeight * 0.8);
+        
 
         // on charge toutes les scènes et on les associe à leur controller
         FXMLLoader pageLoader = new FXMLLoader();

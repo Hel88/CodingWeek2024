@@ -8,24 +8,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="AnchorPane" stylesheets="@styles.css" 
-xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="eu.telecomnancy.codingweek.controllers.ConnexionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="AnchorPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.ConnexionController">
    <children>
-      <Label alignment="CENTER" layoutX="189.0" layoutY="45.0" prefHeight="32.0" prefWidth="222.0" styleClass="LabelViolet" text="Connexion">
+      <Label alignment="CENTER" layoutX="239.0" layoutY="112.0" prefHeight="32.0" prefWidth="222.0" styleClass="LabelViolet" text="Connexion">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="userName" layoutX="166.0" layoutY="146.0" prefHeight="32.0" prefWidth="269.0" promptText="Nom d'utilisateur" styleClass="FieldFocus" />
-      <PasswordField fx:id="pwd" layoutX="166.0" layoutY="209.0" prefHeight="32.0" prefWidth="269.0" promptText="mot de passe" styleClass="FieldFocus" />
-      <Button fx:id="connexion" layoutX="386.0" layoutY="292.0" mnemonicParsing="false" onAction="#connexion" prefHeight="32.0" prefWidth="99.0" text="Connexion">
+      <TextField fx:id="userName" layoutX="216.0" layoutY="221.0" prefHeight="32.0" prefWidth="269.0" promptText="Nom d'utilisateur" styleClass="FieldFocus" />
+      <PasswordField fx:id="pwd" layoutX="216.0" layoutY="268.0" prefHeight="32.0" prefWidth="269.0" promptText="mot de passe" styleClass="FieldFocus" />
+      <Button fx:id="connexion" layoutX="386.0" layoutY="344.0" mnemonicParsing="false" onAction="#connexion" prefHeight="32.0" prefWidth="99.0" text="Connexion">
          <styleClass>
             <String fx:value="ButtonOrange" />
             <String fx:value="ButtonArrondi" />
             <String fx:value="ButtonFocus" />
          </styleClass></Button>
-      <Button fx:id="inscription" layoutX="110.0" layoutY="292.0" mnemonicParsing="false" onAction="#inscription" prefHeight="32.0" prefWidth="99.0" text="Inscription">
+      <Button fx:id="inscription" layoutX="216.0" layoutY="344.0" mnemonicParsing="false" onAction="#inscription" prefHeight="32.0" prefWidth="99.0" text="Inscription">
          <styleClass>
             <String fx:value="ButtonOrange" />
             <String fx:value="ButtonArrondi" />

@@ -11,16 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
-xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
-fx:controller="eu.telecomnancy.codingweek.controllers.NoterUserController"
-stylesheets="@styles.css" styleClass="AnchorPane">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="AnchorPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.NoterUserController">
    <children>
-      <VBox layoutX="17.0" prefHeight="400.0" prefWidth="566.0" spacing="10.0">
+      <VBox layoutX="67.0" layoutY="43.0" prefHeight="515.0" prefWidth="566.0" spacing="10.0">
          <children>
-            <Label alignment="CENTER" prefHeight="51.0" prefWidth="601.0" text="Noter l'utilisateur"
-            styleClass="LabelViolet" >
+            <Label alignment="CENTER" prefHeight="51.0" prefWidth="601.0" styleClass="LabelViolet" text="Noter l'utilisateur">
                <font>
                   <Font size="24.0" />
                </font>
@@ -49,7 +44,7 @@ stylesheets="@styles.css" styleClass="AnchorPane">
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextArea fx:id="commentaire" prefHeight="129.0" prefWidth="566.0" styleClass="FieldFocus"/>
+            <TextArea fx:id="commentaire" prefHeight="250.0" prefWidth="566.0" styleClass="FieldFocus" />
             <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#noter" prefHeight="24.0" prefWidth="72.0" text="Noter">
                <VBox.margin>
                   <Insets left="500.0" />
