@@ -33,7 +33,6 @@ public class MesTransactionsController implements Observer {
                 User user = app.getMainUser();
                 //System.out.println(user.getUserName());
                 ArrayList<Transaction> transactions = app.getDataTransactionUtils().getTransactionsByClientUser(user);
-                System.out.println(transactions.size());
                 for (Transaction transaction : transactions){
                     HBox hboxStatut = new HBox();
                     HBox hboxTitre = new HBox();
