@@ -67,6 +67,7 @@ public class MenuController implements Observer{
     
     @FXML
     public void messagerie(){
+        app.notifyObservers("conversation");
         app.getSceneController().switchToMessageries();
     }
     

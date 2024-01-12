@@ -33,6 +33,7 @@ public class ConsulterConversationController implements Observer {
 
     public void initialize(){
         conversations = app.getConversationsAffichee();
+        monMessage.setText("");
         if (conversations == null) { return; }
         User user = app.getMainUser();
         if(user != null && conversations.getUser1().equals(user.getUserName())){
@@ -67,6 +68,10 @@ public class ConsulterConversationController implements Observer {
         for (Messages message : messages) {
             Label label = new Label();
             label.setText(message.getMessage());
+            Label label2 = new Label();
+            label2.setText(message.getExpediteur());
+            label2.setStyle("-fx-font-weight: bold;");
+            VBoxMessages.getChildren().add(label2);
             VBoxMessages.getChildren().add(label);
         }
     }
