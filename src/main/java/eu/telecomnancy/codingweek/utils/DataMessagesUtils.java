@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
@@ -21,7 +20,7 @@ public class DataMessagesUtils {
         FileAccess fileAccess = new FileAccess();
         this.filePath = fileAccess.getPathOf("messages.json");
         File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
     }
 
@@ -48,7 +47,7 @@ public class DataMessagesUtils {
         }
     }
 
-    public ArrayList<Messages> getMessages() throws IOException {
+    public ArrayList<Messages> getMessages() {
         ArrayList<Messages> messages = new ArrayList<>();
         for (String key : data.keySet()) {
             JSONObject messageObject = data.getJSONObject(key);
@@ -61,7 +60,7 @@ public class DataMessagesUtils {
         return messages;
     }
 
-    public ArrayList<Messages> getMessagesFromConversation(String idConversation) throws IOException {
+    public ArrayList<Messages> getMessagesFromConversation(String idConversation) {
         ArrayList<Messages> messages = new ArrayList<>();
         for (String key : data.keySet()) {
             JSONObject messageObject = data.getJSONObject(key);

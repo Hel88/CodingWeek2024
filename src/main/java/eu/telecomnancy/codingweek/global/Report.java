@@ -6,7 +6,8 @@ public class Report {
     private String message;
     private String time;
 
-    public Report() {}
+    public Report() {
+    }
 
     public Report(String referent, String message, String time, int id) {
         this.referent = referent;

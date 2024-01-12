@@ -2,17 +2,13 @@ package eu.telecomnancy.codingweek.utils;
 
 import eu.telecomnancy.codingweek.global.Conversations;
 import eu.telecomnancy.codingweek.global.FileAccess;
-import eu.telecomnancy.codingweek.global.Note;
-import eu.telecomnancy.codingweek.global.User;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DataConversationsUtils {
 
@@ -24,7 +20,7 @@ public class DataConversationsUtils {
         FileAccess fileAccess = new FileAccess();
         this.filePath = fileAccess.getPathOf("conversations.json");
         File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
     }
 
@@ -51,7 +47,7 @@ public class DataConversationsUtils {
         }
     }
 
-    public ArrayList<Conversations> getConversations() throws IOException {
+    public ArrayList<Conversations> getConversations() {
         ArrayList<Conversations> conversations = new ArrayList<>();
         for (String key : data.keySet()) {
             JSONObject conversationObject = data.getJSONObject(key);
@@ -64,7 +60,7 @@ public class DataConversationsUtils {
         return conversations;
     }
 
-    public ArrayList<Conversations> getConversationsByUser(String username) throws IOException {
+    public ArrayList<Conversations> getConversationsByUser(String username) {
         ArrayList<Conversations> conversations = new ArrayList<>();
         for (String key : data.keySet()) {
             JSONObject conversationObject = data.getJSONObject(key);

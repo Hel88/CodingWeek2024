@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -26,7 +25,7 @@ public class DataAnnoncesUtils {
         FileAccess fileAccess = new FileAccess();
         this.filePath = fileAccess.getPathOf("annonces.json");
         File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
     }
 
@@ -78,7 +77,7 @@ public class DataAnnoncesUtils {
 
     public int modifyAnnonce(int id, String titre, String description, String prix, String categorie, String referent, boolean actif, int idCalendar) throws IOException {
         // Method related to the modification of an annonce
-        
+
         // Create a JSON object with user information
         JSONObject annonceObject = new JSONObject();
         annonceObject.put("titre", titre);
@@ -91,14 +90,14 @@ public class DataAnnoncesUtils {
 
         // Write the new annonce in the JSON file
         data.put(String.valueOf(id), annonceObject);
-        FileWriter file = new FileWriter(filePath);
-        file.write(data.toString());
-        file.flush();
-
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
         return id;
     }
 
-    public ArrayList<Annonce> getAnnonces() throws IOException {
+    public ArrayList<Annonce> getAnnonces() {
         // Method related to the display of the annonces
 
         ArrayList<Annonce> annonces = new ArrayList<>();

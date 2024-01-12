@@ -1,8 +1,5 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Annonce;
 import eu.telecomnancy.codingweek.global.Transaction;
@@ -13,9 +10,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class MonAnnonceController implements Observer {
-    
-    private Application app;
+
+    private final Application app;
     private ArrayList<Transaction> transactions;
     @FXML
     private Label titre;
@@ -26,9 +26,8 @@ public class MonAnnonceController implements Observer {
     @FXML
     private VBox reservations;
 
-   private Annonce annonce;
+    private Annonce annonce;
 
-    
 
     public MonAnnonceController(Application app) {
         this.app = app;
@@ -36,7 +35,7 @@ public class MonAnnonceController implements Observer {
     }
 
     @FXML
-    public void modifierAnnonce(){
+    public void modifierAnnonce() {
         //on passe l'annonce à modifier à l'application
         app.setAnnonceAffichee(annonce);
         app.notifyObservers("annonce");
@@ -44,17 +43,17 @@ public class MonAnnonceController implements Observer {
     }
 
     @FXML
-    public void supprimerAnnonce() throws IOException{
+    public void supprimerAnnonce() throws IOException {
         //pop up etes-vous sûr de vouloir supprimer cette annonce ?
         Alert alert = new Alert(AlertType.CONFIRMATION);
 
         alert.setTitle("Confirmation");
         alert.setHeaderText("Etes-vous sûr de vouloir supprimer cette annonce ?");
         alert.showAndWait();
-        
+
         if (alert.getResult().getButtonData().isDefaultButton()) {
             //suppression de l'annonce
-            app.getDataAnnoncesUtils().deleteAnnonce(annonce.getId()+"");
+            app.getDataAnnoncesUtils().deleteAnnonce(annonce.getId() + "");
             app.notifyObservers("annonce");
             app.getSceneController().switchToMesAnnonces();
         }
@@ -72,10 +71,10 @@ public class MonAnnonceController implements Observer {
         if (app.getDataAnnoncesUtils() != null) {
             this.transactions = app.getDataTransactionUtils().getTransactionsByAnnonce(annonce);
         }
-        
+
         //afficher les transactions
 
-        for (Transaction transaction : this.transactions){
+        for (Transaction transaction : this.transactions) {
 
             HBox hbox = new HBox();
             hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
@@ -85,7 +84,7 @@ public class MonAnnonceController implements Observer {
             id.setPrefHeight(10);
             id.setWrapText(true);
 
-            Label client = new Label(transaction.getIdClient()+"");
+            Label client = new Label(transaction.getIdClient());
             client.setPrefWidth(200);
             client.setPrefHeight(10);
             client.setWrapText(true);
@@ -97,19 +96,15 @@ public class MonAnnonceController implements Observer {
 
             hbox.getChildren().addAll(status, client, id);
 
-            if (transaction.getStatus().equals("En attente")) {
-                hbox.setStyle("-fx-background-color: #DAA520; prefHeight:\"279.0\"");
-            }
-            else if (transaction.getStatus().equals("Acceptée")) {
-                hbox.setStyle("-fx-background-color: #00FF00; prefHeight:\"279.0\"");
-            }
-            else if (transaction.getStatus().equals("Refusée")) {
-                hbox.setStyle("-fx-background-color: #FF0000; prefHeight:\"279.0\"");
+            switch (transaction.getStatus()) {
+                case "En attente" -> hbox.setStyle("-fx-background-color: #DAA520; prefHeight:\"279.0\"");
+                case "Acceptée" -> hbox.setStyle("-fx-background-color: #00FF00; prefHeight:\"279.0\"");
+                case "Refusée" -> hbox.setStyle("-fx-background-color: #FF0000; prefHeight:\"279.0\"");
             }
 
             reservations.getChildren().add(hbox);
-            }
-        }    
+        }
+    }
 
     @Override
     public void update(String type) {
@@ -117,7 +112,7 @@ public class MonAnnonceController implements Observer {
         if (annonce != null) {
             titre.setText(annonce.getTitre());
             description.setText(annonce.getDescription());
-            prix.setText(annonce.getPrix()+"");
+            prix.setText(annonce.getPrix() + "");
             try {
                 initialize();
             } catch (IOException e) {
@@ -125,5 +120,5 @@ public class MonAnnonceController implements Observer {
             }
         }
     }
-    
+
 }
