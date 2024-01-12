@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="376.0" prefWidth="600.0"
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
 xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" 
 fx:controller="eu.telecomnancy.codingweek.controllers.CreationEtModificationAnnonceController"
 stylesheets="@styles.css" styleClass="AnchorPane">

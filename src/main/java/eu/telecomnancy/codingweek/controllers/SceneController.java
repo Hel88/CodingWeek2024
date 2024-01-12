@@ -1,19 +1,20 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
+
 import eu.telecomnancy.codingweek.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SceneController {
 
@@ -54,7 +55,7 @@ public class SceneController {
         this.primaryStage = primaryStage;
 
         this.layout = new BorderPane();
-        layout.setMinSize(1000, 850);
+        //layout.setMinSize(1000, 850);
 
         // on charge toutes les scènes et on les associe à leur controller
         FXMLLoader pageLoader = new FXMLLoader();

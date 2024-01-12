@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
 styleClass="AnchorPane" stylesheets="@styles.css" 
 xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
 fx:controller="eu.telecomnancy.codingweek.controllers.MonProfilController">
@@ -21,7 +21,7 @@ fx:controller="eu.telecomnancy.codingweek.controllers.MonProfilController">
             <Label fx:id="city" prefHeight="34.0" prefWidth="199.0" text="Ville" wrapText="true" />
          </children>
       </VBox>
-      <Label alignment="CENTER" layoutX="198.0" layoutY="27.0" prefHeight="34.0" prefWidth="205.0" styleClass="LabelViolet" text="Mon Profil">
+      <Label AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" alignment="CENTER" layoutX="198.0" layoutY="27.0" prefHeight="34.0" prefWidth="205.0" styleClass="LabelViolet" text="Mon Profil">
          <font>
             <Font size="24.0" />
          </font>
