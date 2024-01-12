@@ -10,11 +10,12 @@ public class Transaction {
     private int planning;
 
     // Constructor
-    public Transaction(int id, int idAnnonce, String idClient, String status) {
+    public Transaction(int id, int idAnnonce, String idClient, String status, int planning) {
         this.id = id;
         this.idAnnonce = idAnnonce;
         this.idClient = idClient;
         this.status = status;
+        this.planning = planning;
     }
 
     // Getters
