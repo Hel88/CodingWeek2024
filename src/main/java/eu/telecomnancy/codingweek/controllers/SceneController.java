@@ -170,13 +170,13 @@ public class SceneController {
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("showReports.fxml"));
-        pageLoader.setControllerFactory(iC->new ShowReportsController(app));
+        pageLoader.setControllerFactory(iC->new ReportsController(app));
         pageScene = new Scene(pageLoader.load());
         this.showReports = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("unReport.fxml"));
-        pageLoader.setControllerFactory(iC->new UnReportController(app));
+        pageLoader.setControllerFactory(iC->new ConsulterReportController(app));
         pageScene = new Scene(pageLoader.load());
         this.unReport = pageScene;
 
