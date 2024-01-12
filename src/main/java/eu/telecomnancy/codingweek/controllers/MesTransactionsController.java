@@ -50,15 +50,23 @@ public class MesTransactionsController implements Observer{
                     VBoxTransactions.getChildren().add(HBox);
 
                     Label id = new Label(transaction.getId()+"");
+                    id.setPrefWidth(70);
+                    id.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxGauche.getChildren().add(id);
 
                     Label statut = new Label(transaction.getStatus());
+                    statut.setPrefWidth(150);
+                    statut.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxGauche.getChildren().add(statut);
 
                     Label titre = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getTitre());
+                    titre.setPrefWidth(400);
+                    titre.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxCentre.getChildren().add(titre);
 
                     Label referent = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getReferent());
+                    referent.setPrefWidth(400);
+                    referent.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxCentre.getChildren().add(referent);
 
                     if (transaction.getStatus().equals("Acceptée")){
@@ -76,6 +84,19 @@ public class MesTransactionsController implements Observer{
                             }
                         });
                         hboxDroite.getChildren().add(noterButton);
+                        HBox.setStyle("-fx-background-color: #98FB98;");
+                    }
+
+                    if (transaction.getStatus().equals("Notée")){
+                        HBox.setStyle("-fx-background-color: #7FFFD4;");
+                    }
+
+                    if (transaction.getStatus().equals("Refusée")){
+                        HBox.setStyle("-fx-background-color: #FF7F50;");
+                    }
+
+                    if (transaction.getStatus().equals("En attente")){
+                        HBox.setStyle("-fx-background-color: #FFEBCD;");
                     }
 
 

@@ -207,17 +207,17 @@ public class MesAnnoncesController implements Observer{
             hbox.getChildren().addAll(status, client, id);
 
             if (transaction.getStatus().equals("En attente")) {
-                hbox.setStyle("-fx-background-color: #DAA520; prefHeight:\"279.0\"");
+                hbox.setStyle("-fx-background-color: #FFEBCD; prefHeight:\"279.0\"");
                 hbox.getChildren().addAll(accepter, refuser);
             }
             else if (transaction.getStatus().equals("Acceptée")) {
-                hbox.setStyle("-fx-background-color: #00FF00; prefHeight:\"279.0\"");
+                hbox.setStyle("-fx-background-color: #98FB98; prefHeight:\"279.0\"");
             }
             else if (transaction.getStatus().equals("Refusée")) {
-                hbox.setStyle("-fx-background-color: #FF0000; prefHeight:\"279.0\"");
+                hbox.setStyle("-fx-background-color: #FF7F50; prefHeight:\"279.0\"");
             }
             else if (transaction.getStatus().equals("Notée")) {
-                hbox.setStyle("-fx-background-color: #0000FF; prefHeight:\"279.0\"");
+                hbox.setStyle("-fx-background-color: #7FFFD4; prefHeight:\"279.0\"");
             }
 
             reservations.getChildren().add(hbox);
