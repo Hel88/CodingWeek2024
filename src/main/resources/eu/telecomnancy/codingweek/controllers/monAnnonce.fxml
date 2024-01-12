@@ -11,37 +11,49 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="700.0" styleClass="AnchorPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.MonAnnonceController">
     <children>
-        <Label fx:id="titre" alignment="CENTER_RIGHT" layoutX="75.0" layoutY="25.0" prefHeight="46.0" prefWidth="378.0" styleClass="LabelViolet" text="Titre de mon annonce" wrapText="true">
+        <Label fx:id="titre" alignment="CENTER" layoutX="161.0" layoutY="28.0" prefHeight="46.0" prefWidth="378.0" styleClass="LabelViolet" text="Titre de mon annonce" wrapText="true">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <Button fx:id="modifier" layoutX="358.0" layoutY="177.0" mnemonicParsing="false" onAction="#modifierAnnonce" prefHeight="27.0" prefWidth="120.0" text="Modifier">
-            <styleClass>
-                <String fx:value="ButtonOrange" />
-                <String fx:value="ButtonArrondi" />
-            </styleClass>
-        </Button>
-        <Button fx:id="supprimer" layoutX="232.0" layoutY="177.0" mnemonicParsing="false" onAction="#supprimerAnnonce" prefHeight="27.0" prefWidth="120.0" text="Supprimer">
-            <styleClass>
-                <String fx:value="ButtonOrange" />
-                <String fx:value="ButtonArrondi" />
-            </styleClass>
-        </Button>
-        <Label fx:id="description" alignment="CENTER" layoutX="99.0" layoutY="71.0" prefHeight="98.0" prefWidth="519.0" text="description" wrapText="true" />
-        <Label fx:id="prix" alignment="BOTTOM_LEFT" layoutX="505.0" layoutY="35.0" prefHeight="27.0" prefWidth="130.0" text="prix" />
-        <ScrollPane layoutX="91.0" layoutY="270.0" prefHeight="293.0" prefWidth="519.0">
-            <VBox fx:id="reservations" spacing="10.0">
-                <padding>
-                    <Insets bottom="10.0" top="10.0" />
-                </padding>
-            </VBox>
-        </ScrollPane>
-        <Label layoutX="91.0" layoutY="224.0" prefHeight="46.0" prefWidth="264.0" text="Réservations">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
-        <Label alignment="BOTTOM_RIGHT" layoutX="453.0" layoutY="35.0" prefHeight="27.0" prefWidth="41.0" text="Prix :" textFill="#000000b9" />
+      <AnchorPane layoutX="90.0" layoutY="74.0">
+         <children>
+              <Button fx:id="modifier" layoutX="259.0" layoutY="120.0" mnemonicParsing="false" onAction="#modifierAnnonce" prefHeight="27.0" prefWidth="120.0" text="Modifier">
+                  <styleClass>
+                      <String fx:value="ButtonOrange" />
+                      <String fx:value="ButtonArrondi" />
+                  </styleClass>
+              </Button>
+              <Button fx:id="supprimer" layoutX="133.0" layoutY="120.0" mnemonicParsing="false" onAction="#supprimerAnnonce" prefHeight="27.0" prefWidth="120.0" text="Supprimer">
+                  <styleClass>
+                      <String fx:value="ButtonOrange" />
+                      <String fx:value="ButtonArrondi" />
+                  </styleClass>
+              </Button>
+            <ScrollPane>
+               <content>
+                    <Label fx:id="description" alignment="CENTER" prefHeight="66.0" prefWidth="519.0" text="description" wrapText="true" />
+               </content>
+            </ScrollPane>
+              <Label fx:id="prix" alignment="BOTTOM_LEFT" layoutX="249.0" layoutY="72.0" prefHeight="27.0" prefWidth="130.0" text="prix" />
+              <Label alignment="BOTTOM_RIGHT" layoutX="197.0" layoutY="72.0" prefHeight="27.0" prefWidth="41.0" text="Prix :" textFill="#000000b9" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="91.0" layoutY="250.0">
+         <children>
+              <ScrollPane layoutY="46.0" prefHeight="293.0" prefWidth="519.0">
+                  <VBox fx:id="reservations" spacing="10.0">
+                      <padding>
+                          <Insets bottom="10.0" top="10.0" />
+                      </padding>
+                  </VBox>
+              </ScrollPane>
+              <Label prefHeight="46.0" prefWidth="264.0" styleClass="LabelViolet" text="Réservations">
+                  <font>
+                      <Font size="24.0" />
+                  </font>
+              </Label>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>
