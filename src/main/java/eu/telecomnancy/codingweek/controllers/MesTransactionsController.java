@@ -38,10 +38,10 @@ public class MesTransactionsController implements Observer{
                     HBox hboxDroite = new HBox();
                     HBox hboxCentre = new HBox();
                     HBox HBox = new HBox();
+                    HBox.setSpacing(8);
+                    HBox.setPrefHeight(20);
+                    HBox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
 
-                    hboxGauche.setPrefWidth(200);
-                    hboxDroite.setPrefWidth(200);
-                    hboxCentre.setPrefWidth(200);
 
                     HBox.getChildren().add(hboxGauche);
                     HBox.getChildren().add(hboxCentre);
@@ -50,22 +50,22 @@ public class MesTransactionsController implements Observer{
                     VBoxTransactions.getChildren().add(HBox);
 
                     Label id = new Label(transaction.getId()+"");
-                    id.setPrefWidth(70);
+                    id.setPrefWidth(50);
                     id.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxGauche.getChildren().add(id);
 
                     Label statut = new Label(transaction.getStatus());
-                    statut.setPrefWidth(150);
+                    statut.setPrefWidth(100);
                     statut.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxGauche.getChildren().add(statut);
 
                     Label titre = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getTitre());
-                    titre.setPrefWidth(400);
+                    titre.setPrefWidth(200);
                     titre.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxCentre.getChildren().add(titre);
 
                     Label referent = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getReferent());
-                    referent.setPrefWidth(400);
+                    referent.setPrefWidth(200);
                     referent.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxCentre.getChildren().add(referent);
 
@@ -85,10 +85,6 @@ public class MesTransactionsController implements Observer{
                         });
                         hboxDroite.getChildren().add(noterButton);
                         HBox.setStyle("-fx-background-color: #98FB98;");
-                    }
-
-                    if (transaction.getStatus().equals("Notée")){
-                        HBox.setStyle("-fx-background-color: #7FFFD4;");
                     }
 
                     if (transaction.getStatus().equals("Refusée")){
