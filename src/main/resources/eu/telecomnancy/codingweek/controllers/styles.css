@@ -24,6 +24,10 @@
     -fx-background-color: #FFA500;
 }
 
+.Toggle {
+    -fx-background-radius: 20;
+}
+
 .FieldFocus:focused{
     -fx-focus-color: #FFA500;
     -fx-faint-focus-color: #FFA500;

@@ -3,14 +3,12 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
-styleClass="AnchorPane" stylesheets="@styles.css" 
-xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="eu.telecomnancy.codingweek.controllers.MonProfilController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.MonProfilController">
    <children>
       <VBox layoutX="34.0" layoutY="136.0" prefHeight="200.0" prefWidth="239.0">
          <children>
@@ -19,6 +17,11 @@ fx:controller="eu.telecomnancy.codingweek.controllers.MonProfilController">
             <Label fx:id="address" prefHeight="34.0" prefWidth="199.0" text="adresse" wrapText="true" />
             <Label fx:id="email" prefHeight="34.0" prefWidth="199.0" text="email" wrapText="true" />
             <Label fx:id="city" prefHeight="34.0" prefWidth="199.0" text="Ville" wrapText="true" />
+            <ToggleButton fx:id="sleep" onAction="#switchSleep" mnemonicParsing="false" text="Mode Sleep">
+               <styleClass>
+                  <String fx:value="Toggle" />
+               </styleClass>
+            </ToggleButton>
          </children>
       </VBox>
       <Label alignment="CENTER" layoutX="198.0" layoutY="27.0" prefHeight="34.0" prefWidth="205.0" styleClass="LabelViolet" text="Mon Profil">
@@ -35,7 +38,7 @@ fx:controller="eu.telecomnancy.codingweek.controllers.MonProfilController">
             <String fx:value="ButtonOrange" />
             <String fx:value="ButtonArrondi" />
          </styleClass></Button>
-      <Button layoutX="304.0" layoutY="259.0" mnemonicParsing="false" onAction="#voirEvaluations" prefHeight="34.0" prefWidth="165.0" text="Voir les évaluations" >
+      <Button layoutX="304.0" layoutY="259.0" mnemonicParsing="false" onAction="#voirEvaluations" prefHeight="34.0" prefWidth="165.0" text="Voir les évaluations">
          <styleClass>
             <String fx:value="ButtonOrange" />
             <String fx:value="ButtonArrondi" />

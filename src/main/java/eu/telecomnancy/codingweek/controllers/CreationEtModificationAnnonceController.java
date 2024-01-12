@@ -104,6 +104,9 @@ public class CreationEtModificationAnnonceController implements Observer {
         if (Objects.equals(type, "annonce")) {
             categorie = app.getCategorieAnnonceACreer();
         }
+        if (Objects.equals(action, "creation")) {
+            label.setText("Création d'une " + categorie);
+        } else
         if (Objects.equals(action, "modification")) {
             label.setText("Modifier votre annonce");
             addAnnonce.setText("Modifier");
