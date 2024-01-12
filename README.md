@@ -145,8 +145,20 @@ There is no prerequisites to run the project.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-TODO (screens, examples)
+How to run the tests : 
 
+1. Run the projet a first time to create the build/ folder
+```shell
+    ./gradlew build
+```
+2. The build fails, you now have to copy/paste the content of the files/ folder : 
+```shell
+    cp -r ./Last_Release/files/. ./build/classes/java/main/eu/telecomnancy/codingweek/global/
+```
+3. You can now successfully run the build and the tests
+```shell
+    ./gradlew build
+```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
