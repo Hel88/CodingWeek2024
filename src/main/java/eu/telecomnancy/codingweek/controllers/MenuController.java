@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 
 public class MenuController implements Observer {
@@ -25,6 +26,9 @@ public class MenuController implements Observer {
     @FXML
     private Button boutonCalendrier;
 
+    @FXML
+    private MenuItem allReports;
+
    
     private final Application app;
 
@@ -36,6 +40,12 @@ public class MenuController implements Observer {
     @Override
     public void update(String type) {
         if (app.getMainUser() != null) {
+            if (app.getMainUser().getIsAdmin()){
+                allReports.setVisible(true);
+            }
+            else{
+                allReports.setVisible(false);
+            }
             menuBar.setVisible(true);
             hboxSolde.setVisible(true);
             username.setText(app.getMainUser().getUserName());
@@ -108,12 +118,19 @@ public class MenuController implements Observer {
 
     @FXML
     public void report() {
+        //envoyer un report
         app.getSceneController().switchToReportBug();
     }
 
     @FXML
     public void allReports() {
-        app.getSceneController().switchToAllReports();
+        //accéder à la liste des reports (que pour les admins)
+        if (app.getMainUser()!=null){
+
+            if (app.getMainUser().getIsAdmin()){
+                app.getSceneController().switchToAllReports();
+            }
+        }
     }
 
     @FXML

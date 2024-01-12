@@ -41,7 +41,7 @@
                               <MenuItem mnemonicParsing="false" onAction="#mesTransactions" styleClass="menu-item" text="Mes transactions" />
                               <MenuItem mnemonicParsing="false" onAction="#monProfil" styleClass="menu-item" text="Mon profil" />
                               <MenuItem mnemonicParsing="false" onAction="#deconnexion" styleClass="menu-item" text="Se déconnecter" />
-                              <MenuItem mnemonicParsing="false" onAction="#allReports" styleClass="menu-item" text="Reports" />
+                              <MenuItem fx:id="allReports" mnemonicParsing="false" onAction="#allReports" styleClass="menu-item" text="Reports" />
                           </items>
                       </Menu>
                   </menus>
