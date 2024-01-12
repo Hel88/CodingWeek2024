@@ -214,6 +214,12 @@ public class MesAnnoncesController implements Observer {
                 case "Notée" -> hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
             }
 
+            Button planning = new Button("Planning");
+            planning.setOnAction(e -> {
+                //TODO
+            });
+            hbox.getChildren().add(planning);
+
             reservations.getChildren().add(hbox);
         }
 

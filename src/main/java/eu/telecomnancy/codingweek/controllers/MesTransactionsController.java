@@ -68,14 +68,19 @@ public class MesTransactionsController implements Observer {
                     hboxTitre.getChildren().add(titre);
 
                     Label referent = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getReferent());
-                    referent.setPrefWidth(200);
+                    referent.setPrefWidth(170);
                     referent.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxUser.getChildren().add(referent);
 
                     Label prix = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getPrix() + "");
-                    //prix.setPrefWidth(100);
+                    prix.setPrefWidth(50);
                     prix.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxPrix.getChildren().add(prix);
+
+                    Button planning = new Button("Planning");
+                    planning.setOnAction(e -> {
+                        //TODO
+                    });
 
                     if (transaction.getStatus().equals("Acceptée")) {
                         //si la transaction est validée, on peut la noter
@@ -94,6 +99,7 @@ public class MesTransactionsController implements Observer {
                         hboxPrix.getChildren().add(noterButton);
                         HBox.setStyle("-fx-background-color: #98FB98;");
                     }
+                    hboxPrix.getChildren().add(planning);
 
                     if (transaction.getStatus().equals("Refusée")){
                         HBox.setStyle("-fx-background-color: #FF7F50;");
