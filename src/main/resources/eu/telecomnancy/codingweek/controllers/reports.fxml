@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,20 +14,18 @@
             fx:controller="eu.telecomnancy.codingweek.controllers.ReportsController"
             stylesheets="@styles.css" styleClass="AnchorPane">
     <children>
-        <Label fx:id="boxLabel" layoutX="14.0" layoutY="196.0" prefHeight="45.0" prefWidth="578.0"
-               text="Ensemble des reports">
+        <Label fx:id="boxLabel" layoutX="11.0" layoutY="14.0" prefHeight="45.0" prefWidth="578.0" text="Ensemble des reports">
             <font>
-                <Font size="30.0"/>
+                <Font size="30.0" />
             </font>
             <styleClass>
-                <String fx:value="LabelViolet"/>
+                <String fx:value="LabelViolet" />
             </styleClass>
         </Label>
-        <ScrollPane layoutX="14.0" layoutY="241.0" maxHeight="-Infinity" prefHeight="142.0" prefWidth="578.0"
-                    vbarPolicy="AS_NEEDED">
+        <ScrollPane layoutX="14.0" layoutY="56.0" maxHeight="-Infinity" prefHeight="327.0" prefWidth="578.0" vbarPolicy="AS_NEEDED">
             <VBox fx:id="signalements" spacing="10.0">
                 <padding>
-                    <Insets bottom="10.0" top="10.0"/>
+                    <Insets bottom="10.0" top="10.0" />
                 </padding>
             </VBox>
         </ScrollPane>
