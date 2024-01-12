@@ -10,68 +10,83 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
-xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="eu.telecomnancy.codingweek.controllers.ModifierProfilController"
-stylesheets="@styles.css" styleClass="AnchorPane">
-   <children>
-      <Label alignment="CENTER" layoutX="120.0" layoutY="24.0" prefHeight="34.0" prefWidth="367.0" text="Modifier mon profil"
-      styleClass="LabelViolet" >
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Button layoutX="271.0" layoutY="352.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="170.0" text="Modifier mon planning" />
-      <Button fx:id="validerModifications" layoutX="449.0" layoutY="352.0" mnemonicParsing="false" onAction="#validerModifProfil" prefHeight="34.0" prefWidth="135.0" text="Valider" >
-         <styleClass>
-            <String fx:value="ButtonOrange" />
-            <String fx:value="ButtonArrondi" />
-         </styleClass> </Button>
-      <HBox layoutX="20.0" layoutY="117.0" prefHeight="225.0" prefWidth="548.0" spacing="30.0">
-         <children>
-            <VBox prefHeight="225.0" prefWidth="156.0" spacing="30.0">
-               <children>
-                  <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="100.0" text="Nom" textFill="#000000b5" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="95.0" text="Prénom" textFill="#000000b5" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="89.0" text="Email" textFill="#000000b5" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="90.0" text="Adresse" textFill="#000000b5" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="88.0" text="Ville" textFill="#000000b5" />
-               </children>
-            </VBox>
-            <VBox prefHeight="232.0" prefWidth="274.0" spacing="20.0">
-               <children>
-                  <TextField fx:id="nom" prefHeight="24.0" prefWidth="199.0" promptText="Nom" />
-                  <TextField fx:id="prenom" prefHeight="24.0" prefWidth="199.0" promptText="Prénom" />
-                  <TextField fx:id="email" prefHeight="24.0" prefWidth="199.0" promptText="Email" />
-                  <TextField fx:id="adresse" prefHeight="24.0" prefWidth="199.0" promptText="Adresse" />
-                  <TextField fx:id="ville" prefHeight="24.0" prefWidth="199.0" promptText="ville" />
-               </children>
-            </VBox>
-            <VBox prefHeight="232.0" prefWidth="274.0" spacing="8.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="202.0" text="Note donnée par les utilisateurs :" wrapText="true" />
-                  <Label fx:id="note" alignment="CENTER" prefHeight="24.0" prefWidth="293.0" text="note" />
-                  <Label prefHeight="16.0" prefWidth="208.0" />
-                  <Label alignment="CENTER" prefHeight="24.0" prefWidth="279.0" text="modifier le mot de passe :" />
-                  <PasswordField fx:id="ancienPWD" prefHeight="24.0" prefWidth="199.0" promptText="ancien mot de passe" />
-                  <PasswordField fx:id="nouveauPWD" prefHeight="24.0" prefWidth="199.0" promptText="nouveau mot de passe" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutY="61.0" prefHeight="46.0" prefWidth="600.0">
-         <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="400.0" text="username : " textFill="#000000a5">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
-            <Label fx:id="username" prefHeight="50.0" prefWidth="400.0" text="username">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="eu.telecomnancy.codingweek.controllers.ModifierProfilController"
+            stylesheets="@styles.css" styleClass="AnchorPane">
+    <children>
+        <Label alignment="CENTER" layoutX="120.0" layoutY="24.0" prefHeight="34.0" prefWidth="367.0"
+               text="Modifier mon profil"
+               styleClass="LabelViolet">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <Button layoutX="271.0" layoutY="352.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="170.0"
+                text="Modifier mon planning"/>
+        <Button fx:id="validerModifications" layoutX="449.0" layoutY="352.0" mnemonicParsing="false"
+                onAction="#validerModifProfil" prefHeight="34.0" prefWidth="135.0" text="Valider">
+            <styleClass>
+                <String fx:value="ButtonOrange"/>
+                <String fx:value="ButtonArrondi"/>
+            </styleClass>
+        </Button>
+        <HBox layoutX="20.0" layoutY="117.0" prefHeight="225.0" prefWidth="548.0" spacing="30.0">
+            <children>
+                <VBox prefHeight="225.0" prefWidth="156.0" spacing="30.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="100.0" text="Nom"
+                               textFill="#000000b5"/>
+                        <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="95.0" text="Prénom"
+                               textFill="#000000b5"/>
+                        <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="89.0" text="Email"
+                               textFill="#000000b5"/>
+                        <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="90.0" text="Adresse"
+                               textFill="#000000b5"/>
+                        <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="88.0" text="Ville"
+                               textFill="#000000b5"/>
+                    </children>
+                </VBox>
+                <VBox prefHeight="232.0" prefWidth="274.0" spacing="20.0">
+                    <children>
+                        <TextField fx:id="nom" prefHeight="24.0" prefWidth="199.0" promptText="Nom"/>
+                        <TextField fx:id="prenom" prefHeight="24.0" prefWidth="199.0" promptText="Prénom"/>
+                        <TextField fx:id="email" prefHeight="24.0" prefWidth="199.0" promptText="Email"/>
+                        <TextField fx:id="adresse" prefHeight="24.0" prefWidth="199.0" promptText="Adresse"/>
+                        <TextField fx:id="ville" prefHeight="24.0" prefWidth="199.0" promptText="ville"/>
+                    </children>
+                </VBox>
+                <VBox prefHeight="232.0" prefWidth="274.0" spacing="8.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="202.0"
+                               text="Note donnée par les utilisateurs :" wrapText="true"/>
+                        <Label fx:id="note" alignment="CENTER" prefHeight="24.0" prefWidth="293.0" text="note"/>
+                        <Label prefHeight="16.0" prefWidth="208.0"/>
+                        <Label alignment="CENTER" prefHeight="24.0" prefWidth="279.0"
+                               text="modifier le mot de passe :"/>
+                        <PasswordField fx:id="ancienPWD" prefHeight="24.0" prefWidth="199.0"
+                                       promptText="ancien mot de passe"/>
+                        <PasswordField fx:id="nouveauPWD" prefHeight="24.0" prefWidth="199.0"
+                                       promptText="nouveau mot de passe"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" layoutY="61.0" prefHeight="46.0" prefWidth="600.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="400.0" text="username : "
+                       textFill="#000000a5">
+                    <font>
+                        <Font size="19.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="username" prefHeight="50.0" prefWidth="400.0" text="username">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+    </children>
 </AnchorPane>

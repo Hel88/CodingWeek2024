@@ -1,6 +1,5 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import eu.telecomnancy.codingweek.Application;
@@ -11,9 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class UserEvaluationsController implements Observer{
-    
-    private Application app;
+public class UserEvaluationsController implements Observer {
+
+    private final Application app;
 
     private User userEvalue;
 
@@ -25,7 +24,6 @@ public class UserEvaluationsController implements Observer{
 
     @FXML
     private Label noteMoyenne;
-    
 
     public UserEvaluationsController(Application app) {
         this.app = app;
@@ -37,18 +35,19 @@ public class UserEvaluationsController implements Observer{
       
         if (type.equals("evaluations")){
 
+            try {
 
             userEvalue = app.getUserEvalue(); //valable si on est sur la page d'une annonce
             //System.out.println(userEvalue.getUserName());
 
-            
+
             VBoxEvaluations.getChildren().clear();
             username.setText(userEvalue.getUserName());
             noteMoyenne.setText(userEvalue.getMoyenne()+" / 5");
 
             ArrayList<Note> notes;
-            try {
                 notes = app.getDataNoteUtils().getNotesByUser(userEvalue);
+                
                 
                 
                 for (Note eval : notes){
@@ -85,14 +84,13 @@ public class UserEvaluationsController implements Observer{
                     
                     VBoxEvaluations.getChildren().add(hbox);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            
                 
-            }
+            } catch (Exception e) {
             
        
     }
-    
-    
 }
+}
+}
+

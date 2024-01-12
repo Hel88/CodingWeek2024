@@ -8,7 +8,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -26,7 +25,7 @@ public class DataUsersUtils {
         FileAccess fileAccess = new FileAccess();
         this.filePath = fileAccess.getPathOf("users.json");
         File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
     }
 
@@ -39,14 +38,14 @@ public class DataUsersUtils {
     }
 
     // Methods
-    public boolean isUserNameUnique(String userName) throws IOException {
+    public boolean isUserNameUnique(String userName) {
         // Method related to the creation of a new user
 
         // Check if the username is already in use
         return !data.has(userName);
     }
 
-    public boolean doesUserExist(String userName) throws IOException {
+    public boolean doesUserExist(String userName) {
         // Method related to the authentication of a user
 
         // Check if the username exists
@@ -71,7 +70,7 @@ public class DataUsersUtils {
         userObject.put("transactions", "");
         // Create a calendar for the user
         DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
-        userObject.put("planning", String.valueOf(dataCalendarUtils.store(new Calendar("Agenda de "+ userName))));
+        userObject.put("planning", String.valueOf(dataCalendarUtils.store(new Calendar("Agenda de " + userName))));
         userObject.put("eval", "");
         userObject.put("idConversations", "");
         userObject.put("solde", 100);
@@ -79,9 +78,10 @@ public class DataUsersUtils {
 
         // Add the user to the JSON file
         data.put(userName, userObject);
-        FileWriter file = new FileWriter(filePath);
-        file.write(data.toString());
-        file.flush();
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
     }
 
     public User getUserByUserName(String userName) throws IOException {
@@ -145,9 +145,10 @@ public class DataUsersUtils {
 
         // Add the user to the JSON file
         data.put(User.getUserName(), userObject);
-        FileWriter file = new FileWriter(filePath);
-        file.write(data.toString());
-        file.flush();
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
     }
 
     public void deleteUser(String userName) throws IOException {
@@ -155,12 +156,13 @@ public class DataUsersUtils {
 
         // Remove the user from the JSON file
         data.remove(userName);
-        FileWriter file = new FileWriter(filePath);
-        file.write(data.toString());
-        file.flush();
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
     }
 
-    public int getCalendarOf(String userName) throws IOException {
+    public int getCalendarOf(String userName) {
         // Method related to the modification of a user
 
         // Create a JSON object with user information

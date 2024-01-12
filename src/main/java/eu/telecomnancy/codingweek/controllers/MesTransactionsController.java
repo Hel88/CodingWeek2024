@@ -13,11 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class MesTransactionsController implements Observer{
+public class MesTransactionsController implements Observer {
     @FXML
     private VBox VBoxTransactions;
 
-    private Application app;
+    private final Application app;
 
     public MesTransactionsController(Application app) {
         this.app = app;
@@ -26,7 +26,7 @@ public class MesTransactionsController implements Observer{
 
     @Override
     public void update(String type) {
-        if (type.equals("transactions")){
+        if (type.equals("transactions")) {
             VBoxTransactions.getChildren().clear();
             //ajouter les transactions à la VBox
             try {
@@ -66,13 +66,13 @@ public class MesTransactionsController implements Observer{
                     Label prix = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getPrix()+"");
                     hboxPrix.getChildren().add(prix);
 
-                    if (transaction.getStatus().equals("Acceptée")){
+                    if (transaction.getStatus().equals("Acceptée")) {
                         //si la transaction est validée, on peut la noter
                         Button noterButton = new Button("Noter");
                         noterButton.setOnAction(e -> {
                             try {
                                 app.setAnnonceAffichee(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()));
-                                app.getSceneController().switchToNoterUser(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()));
+                                app.getSceneController().switchToNoterUser();
                                 app.getDataTransactionUtils().noterTransaction(transaction);
                                 app.notifyObservers("transactions");
                             } catch (IOException e1) {
