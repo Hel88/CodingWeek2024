@@ -117,7 +117,7 @@ public class DataUsersUtils {
         updateUser(user);
     }
 
-    public String hashPassword(String password) {
+    public static String hashPassword(String password) {
         try {
             // Create MessageDigest instance for MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
