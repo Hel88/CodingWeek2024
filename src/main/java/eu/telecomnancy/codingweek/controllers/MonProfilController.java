@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.calendarfx.model.Calendar;
+
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Annonce;
 import eu.telecomnancy.codingweek.global.CalendarDisplay;
-import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import eu.telecomnancy.codingweek.global.Transaction;
+import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -63,6 +64,13 @@ public class MonProfilController implements Observer {
         }
     }
 
+    @FXML
+    public void voirEvaluations(){
+        app.setUserEvalue(app.getMainUser());
+        app.notifyObservers("evaluations");
+        app.getSceneController().switchToUserEvaluations(app.getMainUser().getUserName());
+    }
+
     @Override
     public void update(String type){
         if (type == "user"){
@@ -73,8 +81,10 @@ public class MonProfilController implements Observer {
             email.setText("email: "+app.getMainUser().getEmail());
             address.setText("adresse: "+app.getMainUser().getAddress());
             city.setText("Ville: "+app.getMainUser().getCity());
-            eval.setText(app.getMainUser().getEval()+"");
+            eval.setText(app.getMainUser().getMoyenne()+"");
         }
+
+        
     }
 
     @FXML
