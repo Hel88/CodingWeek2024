@@ -145,6 +145,7 @@ public class MesAnnoncesController implements Observer {
             hbox.setSpacing(8);
             hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
             hbox.setPrefHeight(20);
+            hbox.setSpacing(8);
 
             Label id = new Label("(id : " + transaction.getId() + ")");
             id.setPrefWidth(50);

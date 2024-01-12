@@ -22,7 +22,7 @@
                <children>
                   <Label prefHeight="35.0" prefWidth="130.0" text="Statut" />
                   <Label prefHeight="35.0" prefWidth="130.0" text="Titre" />
-                  <Label prefHeight="42.0" prefWidth="130.0" text="Utilisateur" />
+                  <Label prefHeight="42.0" prefWidth="200.0" text="Utilisateur" />
                   <Label prefHeight="53.0" prefWidth="51.0" text="Prix" />
                </children>
             </HBox>

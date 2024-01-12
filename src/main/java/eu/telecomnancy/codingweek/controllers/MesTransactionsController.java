@@ -40,6 +40,8 @@ public class MesTransactionsController implements Observer {
                     HBox hboxUser = new HBox();
                     HBox hboxPrix = new HBox();
                     HBox HBox = new HBox();
+                    HBox.setPrefHeight(20);
+                    HBox.setSpacing(8);
 
                     // hboxStatut.setPrefWidth(100);
                     // hboxTitre.setPrefWidth(200);
@@ -61,7 +63,7 @@ public class MesTransactionsController implements Observer {
                     hboxStatut.getChildren().add(statut);
 
                     Label titre = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getTitre());
-                    titre.setPrefWidth(200);
+                    titre.setPrefWidth(150);
                     titre.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hboxTitre.getChildren().add(titre);
 
