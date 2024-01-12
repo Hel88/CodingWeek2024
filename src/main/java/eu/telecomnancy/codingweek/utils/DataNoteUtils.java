@@ -56,6 +56,9 @@ public class DataNoteUtils {
             file.write(data.toString());
             file.flush();
         }
+
+        // Add the note to the user
+        DataUsersUtils.getInstance().addEvalToUser(usernameReferent, id);
     }
 
     public ArrayList<Note> getNotes() throws IOException {
