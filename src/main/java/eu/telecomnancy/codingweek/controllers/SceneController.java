@@ -52,8 +52,11 @@ public class SceneController {
     Calendar defaultCalendar;
     List<Calendar> currentCalendarList = new ArrayList<>();
 
+    Application app;
 
     public SceneController(Stage primaryStage, Application app) throws Exception {
+
+        this.app = app;
 
         this.primaryStage = primaryStage;
         
@@ -348,6 +351,8 @@ public class SceneController {
     public void switchToCalendar() {
         calendarView.setRequestedTime(LocalTime.now());
         calendarView.getCalendarSources().addAll(myCalendarSource);
+        //set visible
+        app.notifyObservers("calendrierValide");
         setView(this.calendar);
     }
 
