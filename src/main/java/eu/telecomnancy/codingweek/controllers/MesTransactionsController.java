@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import eu.telecomnancy.codingweek.global.Transaction;
 import eu.telecomnancy.codingweek.global.User;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -34,32 +34,37 @@ public class MesTransactionsController implements Observer{
                 //System.out.println(user.getUserName());
                 ArrayList<Transaction> transactions = app.getDataTransactionUtils().getTransactionsByClientUser(user);
                 for (Transaction transaction : transactions){
-                    HBox hboxGauche = new HBox();
-                    HBox hboxDroite = new HBox();
-                    HBox hboxCentre = new HBox();
+                    HBox hboxStatut = new HBox();
+                    HBox hboxTitre = new HBox();
+                    HBox hboxUser = new HBox();
+                    HBox hboxPrix = new HBox();
                     HBox HBox = new HBox();
 
-                    hboxGauche.setPrefWidth(200);
-                    hboxDroite.setPrefWidth(200);
-                    hboxCentre.setPrefWidth(200);
+                    hboxStatut.setPrefWidth(100);
+                    hboxTitre.setPrefWidth(200);
+                    hboxUser.setPrefWidth(100);
+                    //hboxPrix.setPrefWidth(100);
 
-                    HBox.getChildren().add(hboxGauche);
-                    HBox.getChildren().add(hboxCentre);
-                    HBox.getChildren().add(hboxDroite);
+                    HBox.getChildren().add(hboxStatut);
+                    HBox.getChildren().add(hboxTitre);
+                    HBox.getChildren().add(hboxUser);
+                    HBox.getChildren().add(hboxPrix);
 
                     VBoxTransactions.getChildren().add(HBox);
 
-                    Label id = new Label(transaction.getId()+"");
-                    hboxGauche.getChildren().add(id);
+                    
 
                     Label statut = new Label(transaction.getStatus());
-                    hboxGauche.getChildren().add(statut);
+                    hboxStatut.getChildren().add(statut);
 
                     Label titre = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getTitre());
-                    hboxCentre.getChildren().add(titre);
+                    hboxTitre.getChildren().add(titre);
 
                     Label referent = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getReferent());
-                    hboxCentre.getChildren().add(referent);
+                    hboxUser.getChildren().add(referent);
+
+                    Label prix = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getPrix()+"");
+                    hboxPrix.getChildren().add(prix);
 
                     if (transaction.getStatus().equals("Acceptée")){
                         //si la transaction est validée, on peut la noter
@@ -75,7 +80,7 @@ public class MesTransactionsController implements Observer{
                                 e1.printStackTrace();
                             }
                         });
-                        hboxDroite.getChildren().add(noterButton);
+                        hboxPrix.getChildren().add(noterButton);
                     }
 
 
