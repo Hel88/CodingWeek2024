@@ -10,16 +10,16 @@ import java.io.IOException;
 
 public class CalendarDisplay {
 
-    private SceneController sc;
+    private final SceneController sc;
 
     public CalendarDisplay(SceneController sceneController) {
         this.sc = sceneController;
     }
 
     public void calendarSave() throws IOException {
-        if(sc.getCurrentCalendarList() != null) {
+        if (sc.getCurrentCalendarList() != null) {
             DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
-            for(Calendar calendar : sc.getCurrentCalendarList()) {
+            for (Calendar calendar : sc.getCurrentCalendarList()) {
                 dataCalendarUtils.store(calendar);
             }
         }
@@ -38,7 +38,7 @@ public class CalendarDisplay {
         });
     }
 
-    public void calendarSwitchSetCurrentCalendarToDefault() throws IOException {
+    public void calendarSwitchSetCurrentCalendarToDefault() {
         sc.setDefaultCalendar(sc.getCurrentCalendar());
         sc.getCalendarView().setDefaultCalendarProvider(new Callback<DateControl, Calendar>() {
             @Override

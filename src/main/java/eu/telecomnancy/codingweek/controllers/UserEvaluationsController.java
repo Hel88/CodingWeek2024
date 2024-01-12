@@ -11,9 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class UserEvaluationsController implements Observer{
-    
-    private Application app;
+public class UserEvaluationsController implements Observer {
+
+    private final Application app;
 
     private User userEvalue;
 
@@ -22,7 +22,7 @@ public class UserEvaluationsController implements Observer{
 
     @FXML
     private Label username;
-    
+
 
     public UserEvaluationsController(Application app) {
         this.app = app;
@@ -32,7 +32,7 @@ public class UserEvaluationsController implements Observer{
     @Override
     public void update(String type) {
         try {
-        
+
         if (type.equals("evaluations")){
 
 
@@ -49,9 +49,9 @@ public class UserEvaluationsController implements Observer{
 
             System.out.println(notes.size());
 
-            
+
             for (Note eval : notes){
-                
+
                 HBox hbox = new HBox();
 
                 HBox hboxNote = new HBox();
@@ -66,17 +66,18 @@ public class UserEvaluationsController implements Observer{
                 HBox hboxCommentaire = new HBox();
                 hbox.getChildren().add(hboxCommentaire);
 
-                
+
                 int note = eval.getNote();
                 Label noteLabel = new Label(note+"/5");
                 hboxNote.getChildren().add(noteLabel);
 
+            String userQuiAMisLaNote = "user1";//récupérer le nom de l'utilisateur qui a mis la note
 
                 String userQuiAMisLaNote = eval.getUsernameClient();
                 Label userQuiAMisLaNoteLabel = new Label(userQuiAMisLaNote);
                 hboxUser.getChildren().add(userQuiAMisLaNoteLabel);
 
-                
+
                 String commentaire = eval.getCommentaire();
                 Label commentaireLabel = new Label(commentaire);
                 hboxCommentaire.getChildren().add(commentaireLabel);
@@ -84,13 +85,14 @@ public class UserEvaluationsController implements Observer{
 
                 VBoxEvaluations.getChildren().add(hbox);
             }
-                
+
             }
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
-    
-    
+
+
 }

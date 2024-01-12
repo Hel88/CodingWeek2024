@@ -8,7 +8,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +19,13 @@ public class DataCalendarUtils {
 
     private static DataCalendarUtils instance;
 
-    private JSONObject data = null;
+    private final JSONObject data;
 
     private DataCalendarUtils() throws IOException {
         FileAccess fileAccess = new FileAccess();
         this.filePath = fileAccess.getPathOf("calendars.json");
         File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
     }
 
@@ -42,7 +41,7 @@ public class DataCalendarUtils {
         Calendar calendar = new Calendar(calendarObject.getString("titre"));
         calendar.setShortName(String.valueOf(id));
         String entries = calendarObject.getString("entries");
-        if(entries.equals("")){
+        if (entries.isEmpty()) {
             return calendar;
         }
         String[] entriesArray = entries.split(",");
@@ -59,8 +58,7 @@ public class DataCalendarUtils {
         try {
             int idCalendar = Integer.parseInt(calendar.getShortName());
             return save(idCalendar, calendar);
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             int idCalendar = newID();
             return save(idCalendar, calendar);
         }
@@ -92,7 +90,7 @@ public class DataCalendarUtils {
             Entry<?> minEntry = entry;
             for (Entry<?> entry2 : calendar.findEntries(entry.getTitle())) {
                 if (String.valueOf(entry.isFullDay()).equals(String.valueOf(entry2.isFullDay())) && entry.getStartTime().equals(entry2.getStartTime()) && entry.getEndTime().equals(entry2.getEndTime()) && entry.getZoneId().equals(entry2.getZoneId()) && String.valueOf(entry.isRecurring()).equals(String.valueOf(entry2.isRecurring()))) {
-                    if(entry.isRecurring()) {
+                    if (entry.isRecurring()) {
                         if (!entry.getRecurrenceRule().equals(entry2.getRecurrenceRule())) {
                             continue;
                         }
@@ -102,19 +100,20 @@ public class DataCalendarUtils {
                     }
                 }
             }
-            if(!reallyToAdd.contains(minEntry)){
+            if (!reallyToAdd.contains(minEntry)) {
                 reallyToAdd.add(minEntry);
             }
         }
         for (Entry<?> entry : reallyToAdd) {
             int id = DataEntryUtils.getInstance().store(entry);
-            entries.append(String.valueOf(id)).append(",");
+            entries.append(id).append(",");
         }
         calendarObject.put("entries", entries.toString());
         data.put(String.valueOf(idCalendar), calendarObject);
-        FileWriter file = new FileWriter(filePath);
-        file.write(data.toString());
-        file.flush();
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
         return idCalendar;
     }
 
@@ -132,7 +131,7 @@ public class DataCalendarUtils {
         JSONObject calendarObject = data.getJSONObject(calendar.getShortName());
         calendar.setName(calendarObject.getString("titre"));
         String entries = calendarObject.getString("entries");
-        if(entries.equals("")){
+        if (entries.isEmpty()) {
             return;
         }
         String[] entriesArray = entries.split(",");

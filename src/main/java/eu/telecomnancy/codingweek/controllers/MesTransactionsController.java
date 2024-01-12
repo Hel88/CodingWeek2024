@@ -1,23 +1,23 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import eu.telecomnancy.codingweek.global.Transaction;
 import eu.telecomnancy.codingweek.global.User;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class MesTransactionsController implements Observer{
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class MesTransactionsController implements Observer {
     @FXML
     private VBox VBoxTransactions;
 
-    private Application app;
+    private final Application app;
 
     public MesTransactionsController(Application app) {
         this.app = app;
@@ -26,14 +26,14 @@ public class MesTransactionsController implements Observer{
 
     @Override
     public void update(String type) {
-        if (type.equals("transactions")){
+        if (type.equals("transactions")) {
             VBoxTransactions.getChildren().clear();
             //ajouter les transactions à la VBox
             try {
                 User user = app.getMainUser();
                 //System.out.println(user.getUserName());
                 ArrayList<Transaction> transactions = app.getDataTransactionUtils().getTransactionsByClientUser(user);
-                for (Transaction transaction : transactions){
+                for (Transaction transaction : transactions) {
                     HBox hboxGauche = new HBox();
                     HBox hboxDroite = new HBox();
                     HBox hboxCentre = new HBox();
@@ -49,7 +49,7 @@ public class MesTransactionsController implements Observer{
 
                     VBoxTransactions.getChildren().add(HBox);
 
-                    Label id = new Label(transaction.getId()+"");
+                    Label id = new Label(transaction.getId() + "");
                     hboxGauche.getChildren().add(id);
 
                     Label statut = new Label(transaction.getStatus());
@@ -61,13 +61,13 @@ public class MesTransactionsController implements Observer{
                     Label referent = new Label(app.getDataAnnoncesUtils().getAnnonce(transaction.getIdAnnonce()).getReferent());
                     hboxCentre.getChildren().add(referent);
 
-                    if (transaction.getStatus().equals("Acceptée")){
+                    if (transaction.getStatus().equals("Acceptée")) {
                         //si la transaction est validée, on peut la noter
                         Button noterButton = new Button("Noter");
                         noterButton.setOnAction(e -> {
                             try {
                                 app.setAnnonceAffichee(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()));
-                                app.getSceneController().switchToNoterUser(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()));
+                                app.getSceneController().switchToNoterUser();
                                 app.getDataTransactionUtils().noterTransaction(transaction);
                                 app.notifyObservers("transactions");
                             } catch (IOException e1) {

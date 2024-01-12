@@ -11,46 +11,54 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="600.0" 
-xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="eu.telecomnancy.codingweek.controllers.RechercheController"
-stylesheets="@styles.css" styleClass="AnchorPane">
-   <children>
-      <Label layoutX="14.0" layoutY="224.0" prefHeight="45.0" prefWidth="578.0" text="Résultats"
-      styleClass="LabelViolet" >
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <ScrollPane layoutX="14.0" layoutY="267.0" maxHeight="-Infinity" prefHeight="142.0" prefWidth="578.0" vbarPolicy="AS_NEEDED">
-         <content>
-            <VBox fx:id="resultats" spacing="10.0">
-               <padding>
-                  <Insets bottom="10.0" top="10.0" />
-               </padding>
-            </VBox>
-         </content>
-      </ScrollPane>
-      <TextField fx:id="user" layoutX="205.0" layoutY="58.0" prefHeight="24.0" prefWidth="251.0" />
-      <Label alignment="TOP_LEFT" layoutX="116.0" layoutY="58.0" prefHeight="24.0" prefWidth="63.0" text="par user" />
-      <TextField fx:id="titre" layoutX="205.0" layoutY="86.0" prefHeight="24.0" prefWidth="251.0" />
-      <Label alignment="TOP_LEFT" layoutX="116.0" layoutY="86.0" prefHeight="24.0" prefWidth="63.0" text="par titre" />
-      <TextField fx:id="ville" layoutX="205.0" layoutY="114.0" prefHeight="24.0" prefWidth="251.0" />
-      <Label alignment="TOP_LEFT" layoutX="116.0" layoutY="114.0" prefHeight="24.0" prefWidth="63.0" text="par ville" />
-      <Label layoutX="31.0" layoutY="202.0" prefHeight="24.0" prefWidth="251.0" text="par disponibilité ???" />
-      <CheckBox fx:id="offreService" layoutX="122.0" layoutY="146.0" mnemonicParsing="false" text="Offre de Service" />
-      <CheckBox fx:id="demandeService" layoutX="122.0" layoutY="178.0" mnemonicParsing="false" text="Demande de Service" />
-      <CheckBox fx:id="offreMateriel" layoutX="313.0" layoutY="146.0" mnemonicParsing="false" text="Prêt de Matériel" />
-      <CheckBox fx:id="demandeMateriel" layoutX="314.0" layoutY="178.0" mnemonicParsing="false" text="Demande de Matériel" />
-      <Label alignment="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="34.0" prefWidth="578.0" text="Recherche">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Button fx:id="valider" layoutX="505.0" layoutY="192.0" mnemonicParsing="false" onAction="#valider" text="valider" >
-         <styleClass>
-            <String fx:value="ButtonOrange" />
-            <String fx:value="ButtonArrondi" />
-         </styleClass> </Button>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0"
+            prefWidth="600.0"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="eu.telecomnancy.codingweek.controllers.RechercheController"
+            stylesheets="@styles.css" styleClass="AnchorPane">
+    <children>
+        <Label layoutX="14.0" layoutY="224.0" prefHeight="45.0" prefWidth="578.0" text="Résultats"
+               styleClass="LabelViolet">
+            <font>
+                <Font size="30.0"/>
+            </font>
+        </Label>
+        <ScrollPane layoutX="14.0" layoutY="267.0" maxHeight="-Infinity" prefHeight="142.0" prefWidth="578.0"
+                    vbarPolicy="AS_NEEDED">
+            <content>
+                <VBox fx:id="resultats" spacing="10.0">
+                    <padding>
+                        <Insets bottom="10.0" top="10.0"/>
+                    </padding>
+                </VBox>
+            </content>
+        </ScrollPane>
+        <TextField fx:id="user" layoutX="205.0" layoutY="58.0" prefHeight="24.0" prefWidth="251.0"/>
+        <Label alignment="TOP_LEFT" layoutX="116.0" layoutY="58.0" prefHeight="24.0" prefWidth="63.0" text="par user"/>
+        <TextField fx:id="titre" layoutX="205.0" layoutY="86.0" prefHeight="24.0" prefWidth="251.0"/>
+        <Label alignment="TOP_LEFT" layoutX="116.0" layoutY="86.0" prefHeight="24.0" prefWidth="63.0" text="par titre"/>
+        <TextField fx:id="ville" layoutX="205.0" layoutY="114.0" prefHeight="24.0" prefWidth="251.0"/>
+        <Label alignment="TOP_LEFT" layoutX="116.0" layoutY="114.0" prefHeight="24.0" prefWidth="63.0"
+               text="par ville"/>
+        <Label layoutX="31.0" layoutY="202.0" prefHeight="24.0" prefWidth="251.0" text="par disponibilité ???"/>
+        <CheckBox fx:id="offreService" layoutX="122.0" layoutY="146.0" mnemonicParsing="false" text="Offre de Service"/>
+        <CheckBox fx:id="demandeService" layoutX="122.0" layoutY="178.0" mnemonicParsing="false"
+                  text="Demande de Service"/>
+        <CheckBox fx:id="offreMateriel" layoutX="313.0" layoutY="146.0" mnemonicParsing="false"
+                  text="Prêt de Matériel"/>
+        <CheckBox fx:id="demandeMateriel" layoutX="314.0" layoutY="178.0" mnemonicParsing="false"
+                  text="Demande de Matériel"/>
+        <Label alignment="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="34.0" prefWidth="578.0" text="Recherche">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <Button fx:id="valider" layoutX="505.0" layoutY="192.0" mnemonicParsing="false" onAction="#valider"
+                text="valider">
+            <styleClass>
+                <String fx:value="ButtonOrange"/>
+                <String fx:value="ButtonArrondi"/>
+            </styleClass>
+        </Button>
+    </children>
 </AnchorPane>

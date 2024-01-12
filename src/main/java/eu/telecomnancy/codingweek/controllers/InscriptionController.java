@@ -1,9 +1,7 @@
 package eu.telecomnancy.codingweek.controllers;
 
 
-import com.calendarfx.model.Calendar;
 import eu.telecomnancy.codingweek.Application;
-import eu.telecomnancy.codingweek.utils.DataCalendarUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -39,7 +37,7 @@ public class InscriptionController {
 
     // Methods
     @FXML
-    public void versConnexion(){
+    public void versConnexion() {
         app.getSceneController().switchToConnexion();
     }
 

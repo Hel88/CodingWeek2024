@@ -57,18 +57,23 @@ public class Application extends javafx.application.Application {
     public SceneController getSceneController() {
         return sceneController;
     }
-    public DataUsersUtils   getDataUsersUtils() {
+
+    public DataUsersUtils getDataUsersUtils() {
         return dataUsersUtils;
     }
+
     public DataAnnoncesUtils getDataAnnoncesUtils() {
         return dataAnnoncesUtils;
     }
+
     public DataTransactionUtils getDataTransactionUtils() {
         return dataTransactionUtils;
     }
+
     public DataNoteUtils getDataNoteUtils() {
         return dataNoteUtils;
     }
+
     public DataReportUtils getDataReportUtils() {
         return dataReportUtils;
     }

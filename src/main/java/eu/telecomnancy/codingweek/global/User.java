@@ -1,5 +1,10 @@
 package eu.telecomnancy.codingweek.global;
 
+import eu.telecomnancy.codingweek.utils.DataNoteUtils;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class User {
 
     // Fields
@@ -47,6 +52,7 @@ public class User {
     public String getUserName() {
         return userName;
     }
+
     public String getPassword() {
         return password;
     }
@@ -95,15 +101,13 @@ public class User {
         return eval;
     }
 
-    public int getMoyenne() {
+    public int getMoyenne() throws IOException {
         int moyenne = 0;
         int nb = 0;
-        String[] evals = eval.split(",");
-        for (String e : evals) {
-            if (!e.equals("")) {
-                moyenne += Integer.parseInt(e);
-                nb++;
-            }
+        ArrayList<Note> notes = DataNoteUtils.getInstance().getNotesByUser(this);
+        for (Note note : notes) {
+            moyenne += note.getNote();
+            nb++;
         }
         if (nb == 0) {
             return 0;

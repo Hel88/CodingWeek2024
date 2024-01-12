@@ -13,9 +13,10 @@
     <children>
         <VBox layoutX="17.0" prefHeight="400.0" prefWidth="566.0" spacing="10.0">
             <children>
-                <Label alignment="CENTER" prefHeight="51.0" prefWidth="601.0" text="Signaler un bug à un administrateur">
+                <Label alignment="CENTER" prefHeight="51.0" prefWidth="601.0"
+                       text="Signaler un bug à un administrateur">
                     <font>
-                        <Font size="24.0" />
+                        <Font size="24.0"/>
                     </font>
                     <styleClass>
                         <String fx:value="LabelViolet" />
@@ -23,7 +24,7 @@
                 </Label>
                 <Label alignment="CENTER" prefHeight="29.0" prefWidth="566.0" text="Décrivez votre problème :">
                     <font>
-                        <Font size="16.0" />
+                        <Font size="16.0"/>
                     </font>
                 </Label>
                 <TextArea fx:id="message" prefHeight="129.0" prefWidth="566.0" />

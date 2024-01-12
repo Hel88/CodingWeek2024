@@ -7,7 +7,8 @@ public class Messages {
     private String expediteur;
     private int idConversation;
 
-    public Messages() {}
+    public Messages() {
+    }
 
     public Messages(int id, String message, String expediteur, int idConversation) {
         this.id = id;

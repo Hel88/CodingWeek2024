@@ -1,8 +1,5 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Annonce;
 import eu.telecomnancy.codingweek.global.Transaction;
@@ -17,14 +14,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
-public class MesAnnoncesController implements Observer{
-    
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
+
+public class MesAnnoncesController implements Observer {
+
     @FXML
     private VBox VBoxAnnonces;
     @FXML
     private VBox reservations;
 
-    private Application app;
+    private final Application app;
 
     private ArrayList<Annonce> annonces;
 
@@ -37,7 +38,7 @@ public class MesAnnoncesController implements Observer{
         app.addObserver(this);
     }
 
-    public void detailsAnnonce(Annonce annonce){
+    public void detailsAnnonce(Annonce annonce) {
         //on enregistre l'annonce à afficher pour y avoir accès dans ConsulterAnnonceController
         app.setAnnonceAffichee(annonce);
         app.notifyObservers("annonce");
@@ -45,25 +46,25 @@ public class MesAnnoncesController implements Observer{
     }
 
     //les différentes méthodes pour créer une annonce en fonction du bouton sur lequel on a cliqué
-    public void creerAnnonceDemandeService(){
+    public void creerAnnonceDemandeService() {
         app.setCategorieAnnonceACreer("DemandeService");
         app.notifyObservers("annonce");
         app.getSceneController().switchToCreationAnnonce();
     }
 
-    public void creerAnnonceDemandeMateriel(){
+    public void creerAnnonceDemandeMateriel() {
         app.setCategorieAnnonceACreer("DemandeMateriel");
         app.notifyObservers("annonce");
         app.getSceneController().switchToCreationAnnonce();
     }
 
-    public void creerAnnonceOffreService(){
+    public void creerAnnonceOffreService() {
         app.setCategorieAnnonceACreer("OffreService");
         app.notifyObservers("annonce");
         app.getSceneController().switchToCreationAnnonce();
     }
 
-    public void creerAnnonceOffreMateriel(){
+    public void creerAnnonceOffreMateriel() {
         app.setCategorieAnnonceACreer("OffreMateriel");
         app.notifyObservers("annonce");
         app.getSceneController().switchToCreationAnnonce();
@@ -77,11 +78,11 @@ public class MesAnnoncesController implements Observer{
 
         VBoxAnnonces.getChildren().clear();
         reservations.getChildren().clear();
-        
+
         synchroJson(); //synchronise les annonces avec le json
-        
+
         //Affichage de chaque annonce
-        for (Annonce annonce : this.annonces){
+        for (Annonce annonce : this.annonces) {
             HBox hbox = new HBox();
 
             hbox.setPrefWidth(600);
@@ -97,7 +98,7 @@ public class MesAnnoncesController implements Observer{
             hboxGauche.setPrefWidth(300);
             hboxCentre.setPrefWidth(100);
             hboxDroite.setPrefWidth(150);
-            
+
             Label titrelabel = new Label(annonce.getTitre());
             titrelabel.setStyle("-fx-font-weight: bold;");
             hboxGauche.getChildren().add(titrelabel);
@@ -112,11 +113,11 @@ public class MesAnnoncesController implements Observer{
             prix.setStyle("-fx-text-fill: gray;");
 
             hboxCentre.getChildren().add(prix);
-            hboxCentre.getChildren().add(new Label(annonce.getPrix()+""));
-            
-            Image image = new Image(getClass().getResource("images/florain.jpg").toExternalForm());
+            hboxCentre.getChildren().add(new Label(annonce.getPrix() + ""));
+
+            Image image = new Image(Objects.requireNonNull(getClass().getResource("images/florain.jpg")).toExternalForm());
             ImageView imagev = new ImageView(image);
-            
+
             Rectangle clip = new Rectangle(image.getWidth(), image.getHeight());
             clip.setArcWidth(20); // Modifier la courbure selon vos préférences
             clip.setArcHeight(20);
@@ -128,12 +129,10 @@ public class MesAnnoncesController implements Observer{
 
             Button button = new Button();
             button.setText("Voir les détails");
-            button.setOnAction((event) -> {
-                detailsAnnonce(annonce);
-            });
-            button.setId(annonce.getId()+"");
+            button.setOnAction((event) -> detailsAnnonce(annonce));
+            button.setId(annonce.getId() + "");
             hboxDroite.getChildren().add(button);
-            
+
             hbox.setStyle("-fx-background-color: #eeeeee;");
             hbox.setSpacing(10);
             VBoxAnnonces.getChildren().add(hbox);
@@ -141,7 +140,7 @@ public class MesAnnoncesController implements Observer{
 
         //affichage de chaque transaction
 
-        for (Transaction transaction : this.transactions){
+        for (Transaction transaction : this.transactions) {
             HBox hbox = new HBox();
             hbox.setSpacing(10);
             hbox.setStyle("-fx-background-color: #eeeeee; prefHeight:\"279.0\"");
@@ -151,7 +150,7 @@ public class MesAnnoncesController implements Observer{
             id.setPrefHeight(10);
             id.setWrapText(true);
 
-            Label client = new Label(transaction.getIdClient()+"");
+            Label client = new Label(transaction.getIdClient());
             client.setPrefWidth(200);
             client.setPrefHeight(10);
             client.setWrapText(true);
@@ -170,7 +169,7 @@ public class MesAnnoncesController implements Observer{
                 alert.setTitle("Confirmation");
                 alert.setHeaderText("Etes-vous sûr de vouloir accepter cette annonce ?");
                 alert.showAndWait();
-                
+
                 if (alert.getResult().getButtonData().isDefaultButton()) {
                     try {
                         app.getDataTransactionUtils().accepterTransaction(transaction);
@@ -193,7 +192,7 @@ public class MesAnnoncesController implements Observer{
                 alert.setTitle("Confirmation");
                 alert.setHeaderText("Etes-vous sûr de vouloir refuser cette annonce ?");
                 alert.showAndWait();
-                
+
                 if (alert.getResult().getButtonData().isDefaultButton()) {
                     try {
                         app.getDataTransactionUtils().refuserTransaction(transaction);
@@ -206,23 +205,19 @@ public class MesAnnoncesController implements Observer{
 
             hbox.getChildren().addAll(status, client, id);
 
-            if (transaction.getStatus().equals("En attente")) {
-                hbox.setStyle("-fx-background-color: #DAA520; prefHeight:\"279.0\"");
-                hbox.getChildren().addAll(accepter, refuser);
-            }
-            else if (transaction.getStatus().equals("Acceptée")) {
-                hbox.setStyle("-fx-background-color: #00FF00; prefHeight:\"279.0\"");
-            }
-            else if (transaction.getStatus().equals("Refusée")) {
-                hbox.setStyle("-fx-background-color: #FF0000; prefHeight:\"279.0\"");
-            }
-            else if (transaction.getStatus().equals("Notée")) {
-                hbox.setStyle("-fx-background-color: #0000FF; prefHeight:\"279.0\"");
+            switch (transaction.getStatus()) {
+                case "En attente" -> {
+                    hbox.setStyle("-fx-background-color: #DAA520; prefHeight:\"279.0\"");
+                    hbox.getChildren().addAll(accepter, refuser);
+                }
+                case "Acceptée" -> hbox.setStyle("-fx-background-color: #00FF00; prefHeight:\"279.0\"");
+                case "Refusée" -> hbox.setStyle("-fx-background-color: #FF0000; prefHeight:\"279.0\"");
+                case "Notée" -> hbox.setStyle("-fx-background-color: #0000FF; prefHeight:\"279.0\"");
             }
 
             reservations.getChildren().add(hbox);
-            }
-        
+        }
+
     }
 
     public void synchroJson() throws IOException {
@@ -234,15 +229,15 @@ public class MesAnnoncesController implements Observer{
         }
     }
 
-        @Override
-        public void update(String type) {
-            try {
-                initialize();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+    @Override
+    public void update(String type) {
+        try {
+            initialize();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
+}
 
 
 

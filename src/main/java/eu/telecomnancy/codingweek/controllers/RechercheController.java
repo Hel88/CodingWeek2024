@@ -1,12 +1,5 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Annonce;
 import javafx.fxml.FXML;
@@ -17,10 +10,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class RechercheController {
-    
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-    private Application app;
+public class RechercheController {
+
+
+    private final Application app;
     private ArrayList<Annonce> annonces;
     @FXML
     private VBox resultats;
@@ -47,41 +45,40 @@ public class RechercheController {
     }
 
     @FXML
-    public void valider() throws IOException{
-    // on réinitialise la liste des annonces et la VBox pour ne pas les afficher en double à chaque clic sur valider
-    this.annonces.clear();
-    resultats.getChildren().clear();
+    public void valider() throws IOException {
+        // on réinitialise la liste des annonces et la VBox pour ne pas les afficher en double à chaque clic sur valider
+        this.annonces.clear();
+        resultats.getChildren().clear();
 
-    // on définit les patterns à rechercher dans les annonces
-    Pattern userPattern = Pattern.compile(user.getText(), Pattern.CASE_INSENSITIVE);
-    Pattern titrePattern = Pattern.compile(titre.getText(), Pattern.CASE_INSENSITIVE);
-    Pattern villePattern = Pattern.compile(ville.getText(), Pattern.CASE_INSENSITIVE);
+        // on définit les patterns à rechercher dans les annonces
+        Pattern userPattern = Pattern.compile(user.getText(), Pattern.CASE_INSENSITIVE);
+        Pattern titrePattern = Pattern.compile(titre.getText(), Pattern.CASE_INSENSITIVE);
+        Pattern villePattern = Pattern.compile(ville.getText(), Pattern.CASE_INSENSITIVE);
 
-    rechercher(userPattern, titrePattern, villePattern);
+        rechercher(userPattern, titrePattern, villePattern);
 
-  }
+    }
 
-    public ArrayList<String> findCategorie(){
+    public ArrayList<String> findCategorie() {
         // on définit les catégories à rechercher dans les annonces
         ArrayList<String> categories = new ArrayList<String>();
-        if (offreMateriel.isSelected()){
+        if (offreMateriel.isSelected()) {
             categories.add("OffreMateriel");
         }
-        if (offreService.isSelected()){
+        if (offreService.isSelected()) {
             categories.add("OffreService");
         }
-        if (demandeMateriel.isSelected()){
+        if (demandeMateriel.isSelected()) {
             categories.add("DemandeMateriel");
         }
-        if (demandeService.isSelected()){
+        if (demandeService.isSelected()) {
             categories.add("DemandeService");
         }
         return categories;
     }
 
-    
 
-    public void rechercher(Pattern userPattern, Pattern titrePattern, Pattern villePattern) throws IOException{
+    public void rechercher(Pattern userPattern, Pattern titrePattern, Pattern villePattern) throws IOException {
 
         // initialiser les annonces, lire dans le json
         // Read existing content from users.json
@@ -106,7 +103,7 @@ public class RechercheController {
         }
 
         //matcher les annonces avec les critères de recherche et afficher celles qui correspndent
-        for (Annonce annonce : this.annonces){
+        for (Annonce annonce : this.annonces) {
             Matcher userMatcher = userPattern.matcher(annonce.getReferent());
             Matcher titreMatcher = titrePattern.matcher(annonce.getTitre());
             Matcher villeMatcher = villePattern.matcher(annonce.getVille());
@@ -115,10 +112,10 @@ public class RechercheController {
             boolean userMatch = userMatcher.find();
             boolean titreMatch = titreMatcher.find();
             boolean villeMatch = villeMatcher.find();
-    
+
             //condition pour trouver les bonnes annonces
-            if (annonce.getActif() && (userMatch || annonce.getReferent()==null) && (titreMatch || annonce.getTitre()==null) && (villeMatch || annonce.getVille()==null)
-            && (findCategorie().contains(annonce.getCategorie()) || findCategorie().isEmpty())){
+            if (annonce.getActif() && (userMatch || annonce.getReferent() == null) && (titreMatch || annonce.getTitre() == null) && (villeMatch || annonce.getVille() == null)
+                    && (findCategorie().contains(annonce.getCategorie()) || findCategorie().isEmpty())) {
 
 
                 //on affiche dynamiquement les annonces concernées dans la Vbox resultats
@@ -130,7 +127,7 @@ public class RechercheController {
                 titre.setPrefHeight(10);
                 titre.setWrapText(true);
 
-                Label prix = new Label(annonce.getPrix()+"");
+                Label prix = new Label(annonce.getPrix() + "");
                 prix.setPrefWidth(100);
                 prix.setPrefHeight(10);
                 prix.setWrapText(true);
@@ -142,9 +139,9 @@ public class RechercheController {
                 hbox.getChildren().addAll(titre, prix, details);
 
                 resultats.getChildren().add(hbox);
- 
+
             }
-        } 
-    } 
+        }
+    }
 }
 

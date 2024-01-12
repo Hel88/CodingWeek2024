@@ -1,15 +1,15 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 
+import java.io.IOException;
+
 public class NoterUserController {
-    
-    private Application app;
+
+    private final Application app;
     @FXML
     private CheckBox un;
     @FXML
@@ -22,36 +22,36 @@ public class NoterUserController {
     private CheckBox cinq;
     @FXML
     private TextArea commentaire;
-    
+
     public NoterUserController(Application app) {
         this.app = app;
     }
 
 
-    public int note(){
+    public int note() {
         int note = 0;
-        if(un.isSelected()){
+        if (un.isSelected()) {
             note = 1;
         }
-        if(deux.isSelected()){
+        if (deux.isSelected()) {
             note = 2;
         }
-        if(trois.isSelected()){
+        if (trois.isSelected()) {
             note = 3;
         }
-        if(quatre.isSelected()){
+        if (quatre.isSelected()) {
             note = 4;
         }
-        if(cinq.isSelected()){
+        if (cinq.isSelected()) {
             note = 5;
         }
         return note;
     }
 
     @FXML
-    public void noter() throws IOException{
+    public void noter() throws IOException {
         app.getSceneController().switchToMesTransactions();
-        app.getDataNoteUtils().addNote(note(), commentaire.getText(),app.getAnnonceAffichee().getReferent() , app.getMainUser().getUserName()+"", app.getAnnonceAffichee().getId());
+        app.getDataNoteUtils().addNote(note(), commentaire.getText(), app.getAnnonceAffichee().getReferent(), app.getMainUser().getUserName() + "", app.getAnnonceAffichee().getId());
         app.notifyObservers("note");
     }
 

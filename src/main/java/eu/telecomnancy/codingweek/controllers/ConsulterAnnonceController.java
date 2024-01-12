@@ -1,9 +1,6 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-
 import com.calendarfx.model.Calendar;
-
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Annonce;
 import eu.telecomnancy.codingweek.global.CalendarDisplay;
@@ -13,9 +10,12 @@ import eu.telecomnancy.codingweek.utils.DataTransactionUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class ConsulterAnnonceController implements Observer{
+import java.io.IOException;
+import java.util.Objects;
 
-    private Application app;
+public class ConsulterAnnonceController implements Observer {
+
+    private final Application app;
     private Annonce annonce;
     @FXML
     private Label titre;
@@ -31,7 +31,7 @@ public class ConsulterAnnonceController implements Observer{
     private Label lieu;
     @FXML
     private Label email;
-    
+
     public ConsulterAnnonceController(Application app) {
         this.app = app;
         app.addObserver(this);
@@ -39,28 +39,30 @@ public class ConsulterAnnonceController implements Observer{
 
     public void initialize() {
         annonce = app.getAnnonceAffichee();
-        if (annonce == null){return;} 
+        if (annonce == null) {
+            return;
+        }
         titre.setText(annonce.getTitre());
         description.setText(annonce.getDescription());
         name.setText(annonce.getReferent());
-        prix.setText(annonce.getPrix()+"");
+        prix.setText(annonce.getPrix() + "");
         categorie.setText(annonce.getCategorie());
 
         try {
             User user = app.getDataUsersUtils().getUserByUserName(annonce.getReferent());
             lieu.setText(user.getCity());
             email.setText(user.getEmail());
-            name.setText(user.getFirstName()+" "+user.getLastName()+" ("+user.getUserName()+")");
+            name.setText(user.getFirstName() + " " + user.getLastName() + " (" + user.getUserName() + ")");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-            
-        
+
+
     }
 
     public void update(String type) {
-        if (type == "annonce") {
+        if (Objects.equals(type, "annonce")) {
             initialize();
         }
     }
@@ -75,7 +77,6 @@ public class ConsulterAnnonceController implements Observer{
         } catch (Exception e) {
         }
     }
-
 
 
     @FXML

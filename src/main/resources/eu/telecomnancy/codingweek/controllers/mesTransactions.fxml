@@ -12,37 +12,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
-xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="eu.telecomnancy.codingweek.controllers.MesTransactionsController"
-stylesheets="@styles.css" styleClass="AnchorPane">
-   <children>
-      <Label contentDisplay="CENTER" layoutX="23.0" layoutY="-4.0" prefHeight="45.0" prefWidth="561.0" text="Mes transactions" textAlignment="CENTER"
-      styleClass="LabelViolet" >
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      
-      <VBox layoutX="23.0" layoutY="39.0" prefHeight="351.0" prefWidth="561.0" spacing="2.0">
-         <children>
-            <ScrollPane prefHeight="330.0" prefWidth="561.0">
-            <VBox fx:id="VBoxTransactions" spacing="10.0">
-                  
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="eu.telecomnancy.codingweek.controllers.MesTransactionsController"
+            stylesheets="@styles.css" styleClass="AnchorPane">
+    <children>
+        <Label contentDisplay="CENTER" layoutX="23.0" layoutY="-4.0" prefHeight="45.0" prefWidth="561.0"
+               text="Mes transactions" textAlignment="CENTER"
+               styleClass="LabelViolet">
+            <font>
+                <Font size="30.0"/>
+            </font>
+        </Label>
 
-               <padding>
-                  <Insets bottom="10.0" top="10.0" />
-               </padding>
-            </VBox>
-            </ScrollPane>
-            
+        <VBox layoutX="23.0" layoutY="39.0" prefHeight="351.0" prefWidth="561.0" spacing="2.0">
+            <children>
+                <ScrollPane prefHeight="330.0" prefWidth="561.0">
+                    <VBox fx:id="VBoxTransactions" spacing="10.0">
 
-         
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
 
-   </children>
+                        <padding>
+                            <Insets bottom="10.0" top="10.0"/>
+                        </padding>
+                    </VBox>
+                </ScrollPane>
+
+
+            </children>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+        </VBox>
+
+    </children>
 </AnchorPane>

@@ -7,14 +7,11 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.List;
-
-import static java.nio.file.Files.readAllBytes;
 
 public class DataEntryUtils {
 
@@ -22,13 +19,13 @@ public class DataEntryUtils {
 
     private static DataEntryUtils instance;
 
-    private JSONObject data = null;
+    private JSONObject data;
 
     private DataEntryUtils() throws IOException {
         FileAccess fileAccess = new FileAccess();
         this.filePath = fileAccess.getPathOf("entries.json");
         File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
     }
 
@@ -43,9 +40,10 @@ public class DataEntryUtils {
         for (Entry<?> entry : liste) {
             store(entry);
         }
-        FileWriter file = new FileWriter(filePath);
-        file.write(data.toString());
-        file.flush();
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
     }
 
     public int store(Entry<?> entry) throws IOException {
@@ -67,9 +65,10 @@ public class DataEntryUtils {
         entryObject.put("recurrenceid", entry.getRecurrenceId());
         String id = newID();
         data.put(id, entryObject);
-        FileWriter file = new FileWriter(filePath);
-        file.write(data.toString());
-        file.flush();
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
         return Integer.parseInt(id);
 
     }
@@ -87,7 +86,7 @@ public class DataEntryUtils {
 
     public Entry<String> load(int numero) throws IOException {
         File file = new File(filePath);
-        String fileContent = new String(readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
         JSONObject entryObject = data.getJSONObject(String.valueOf(numero));
         Entry<String> entry = new Entry<>(entryObject.getString("titre"));
