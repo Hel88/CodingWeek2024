@@ -16,7 +16,7 @@ public class Annonce {
     private int planning;
 
     public Annonce(int id, String titre, String categorie, String description, int prix, String referent, boolean actif, int planning) {
-        
+
         this.id = id;
         this.titre = titre;
         this.categorie = categorie;
@@ -26,8 +26,6 @@ public class Annonce {
         this.actif = actif;
         this.planning = planning;
     }
-
-   
 
 
     //Getters et setters -------------------------------
@@ -94,7 +92,7 @@ public class Annonce {
     }
 
     public void setActif(boolean actif) {
-        this.actif=actif;
+        this.actif = actif;
     }
 
     public void setPlanning(int planning) {

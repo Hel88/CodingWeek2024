@@ -1,28 +1,19 @@
 package eu.telecomnancy.codingweek.global;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
+import java.util.Objects;
 
 public class FileAccess {
 
-    private String absoluteResourceFolderPath;
+    private final String absoluteResourceFolderPath;
 
     public FileAccess() throws IOException {
-        String myStr = getClass().getResource("").getPath().toString();
+        String myStr = Objects.requireNonNull(getClass().getResource("")).getPath();
         String newStr = myStr.replaceFirst("^file:/*", "/");
-        newStr = newStr.replaceFirst("/[^/]*.jar.*","/files/");
+        newStr = newStr.replaceFirst("/[^/]*.jar.*", "/files/");
         this.absoluteResourceFolderPath = newStr;
 
-        try {
-            String path = this.absoluteResourceFolderPath + "users.json";
-            File file = new File(path);
-            String content = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            System.out.println("There is no 'files' folder in the project directory");
-            e.printStackTrace();
-        }
+        String path = this.absoluteResourceFolderPath + "users.json";
     }
 
     public String getAbsoluteResourceFolderPath() {
