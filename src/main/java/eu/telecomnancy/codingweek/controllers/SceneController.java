@@ -351,7 +351,6 @@ public class SceneController {
     public void switchToCalendar() {
         calendarView.setRequestedTime(LocalTime.now());
         calendarView.getCalendarSources().addAll(myCalendarSource);
-        //set visible
         app.notifyObservers("calendrierValide");
         setView(this.calendar);
     }

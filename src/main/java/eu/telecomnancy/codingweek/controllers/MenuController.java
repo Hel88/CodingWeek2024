@@ -51,6 +51,7 @@ public class MenuController implements Observer {
 
         if (type.equals("calendrierValide")){
             boutonCalendrier.setVisible(true);
+            menuBar.setVisible(false);
         }
 
     }
@@ -118,6 +119,7 @@ public class MenuController implements Observer {
     @FXML
     public void boutonCalendrier(){
         boutonCalendrier.setVisible(false);
+        menuBar.setVisible(true);
         app.getSceneController().switchToMonProfil();
     }
 
