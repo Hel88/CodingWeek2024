@@ -3,7 +3,7 @@ package eu.telecomnancy.codingweek.global;
 public class Messages {
 
     private int id;
-    private String message;
+    private String message=null;
     private String expediteur;
     private int idConversation;
 

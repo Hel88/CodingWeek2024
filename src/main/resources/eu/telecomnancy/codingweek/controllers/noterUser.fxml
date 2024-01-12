@@ -32,11 +32,11 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="un" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="1" />
-                  <CheckBox fx:id="deux" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="2" />
-                  <CheckBox fx:id="trois" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="3" />
-                  <CheckBox fx:id="quatre" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="4" />
-                  <CheckBox fx:id="cinq" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="5" />
+                  <CheckBox fx:id="un" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="1" styleClass="CheckBox"/>
+                  <CheckBox fx:id="deux" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="2"  styleClass="CheckBox"/>
+                  <CheckBox fx:id="trois" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="3"  styleClass="CheckBox"/>
+                  <CheckBox fx:id="quatre" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="4" styleClass="CheckBox" />
+                  <CheckBox fx:id="cinq" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="66.0" text="5"  styleClass="CheckBox"/>
                </children>
             </HBox>
             <Label alignment="CENTER" prefHeight="29.0" prefWidth="566.0" text="Commentaire :">

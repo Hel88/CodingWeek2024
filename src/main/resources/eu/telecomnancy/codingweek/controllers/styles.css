@@ -24,6 +24,10 @@
     -fx-background-color: #FFA500;
 }
 
+.Toggle {
+    -fx-background-radius: 20;
+}
+
 .FieldFocus:focused{
     -fx-focus-color: #FFA500;
     -fx-faint-focus-color: #FFA500;
@@ -64,4 +68,19 @@
 /*** The item's label (hovered / focused) ***/  
 .menu-item:focused .label, .menu-item:hovered .label {
     -fx-text-fill: #000000;
+}
+
+.CheckBox:hover {
+    -fx-border-color: #FFA500;
+    -fx-border-radius: 20;
+}
+
+.CheckBox:focused {
+    -fx-focus-color: #FFA500;
+    -fx-faint-focus-color: #FFA500;
+
+}
+
+.CheckBox[type="checkbox"]:checked {
+    -fx-background-color: #FFA500;
 }

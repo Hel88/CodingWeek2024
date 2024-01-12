@@ -7,11 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
-import java.util.Objects;
 
-public class UnReportController implements Observer {
+public class ConsulterReportController implements Observer{
 
-    private final Application app;
+    private Application app;
     private Report report;
 
     @FXML
@@ -26,21 +25,19 @@ public class UnReportController implements Observer {
     private Label fullName;
 
 
-    public UnReportController(Application app) {
+    public ConsulterReportController(Application app) {
         this.app = app;
         app.addObserver(this);
     }
 
     public void initialize() {
         report = app.getReportAffiche();
-        if (report == null) {
-            return;
-        }
+        if (report == null){return;}
         userName.setText(report.getReferent());
         message.setText(report.getMessage());
         date.setText(report.getTime());
 
-        if (userName.getText().isEmpty()) {
+        if(userName.getText().equals("")){
             userName.setText("Anonyme");
             email.setText("Anonyme");
             fullName.setText("Anonyme");
@@ -50,7 +47,7 @@ public class UnReportController implements Observer {
         try {
             User user = app.getDataUsersUtils().getUserByUserName(report.getReferent());
             email.setText(user.getEmail());
-            fullName.setText(user.getFirstName() + " " + user.getLastName() + " (" + user.getUserName() + ")");
+            fullName.setText(user.getFirstName()+" "+user.getLastName()+" ("+user.getUserName()+")");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,7 +55,7 @@ public class UnReportController implements Observer {
 
     @Override
     public void update(String str) {
-        if (Objects.equals(str, "report")) {
+        if (str == "report") {
             initialize();
         }
     }

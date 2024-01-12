@@ -35,10 +35,10 @@
             <Label alignment="TOP_LEFT" layoutX="105.0" layoutY="72.0" prefHeight="24.0" prefWidth="63.0" text="par titre" />
             <TextField fx:id="ville" layoutX="194.0" layoutY="100.0" prefHeight="24.0" prefWidth="251.0" styleClass="FieldFocus" />
             <Label alignment="TOP_LEFT" layoutX="105.0" layoutY="100.0" prefHeight="24.0" prefWidth="63.0" text="par ville" />
-            <CheckBox fx:id="offreService" layoutX="111.0" layoutY="132.0" mnemonicParsing="false" text="Offre de Service" />
-            <CheckBox fx:id="demandeService" layoutX="111.0" layoutY="164.0" mnemonicParsing="false" text="Demande de Service" />
-            <CheckBox fx:id="offreMateriel" layoutX="302.0" layoutY="132.0" mnemonicParsing="false" text="Prêt de Matériel" />
-            <CheckBox fx:id="demandeMateriel" layoutX="303.0" layoutY="164.0" mnemonicParsing="false" text="Demande de Matériel" />
+            <CheckBox fx:id="offreService" layoutX="111.0" layoutY="132.0" mnemonicParsing="false" text="Offre de Service" styleClass="CheckBox" />
+            <CheckBox fx:id="demandeService" layoutX="111.0" layoutY="164.0" mnemonicParsing="false" text="Demande de Service" styleClass="CheckBox" />
+            <CheckBox fx:id="offreMateriel" layoutX="302.0" layoutY="132.0" mnemonicParsing="false" text="Prêt de Matériel" styleClass="CheckBox" />
+            <CheckBox fx:id="demandeMateriel" layoutX="303.0" layoutY="164.0" mnemonicParsing="false" text="Demande de Matériel" styleClass="CheckBox" />
             <Label alignment="CENTER" layoutY="-3.0" prefHeight="34.0" prefWidth="578.0" text="Recherche">
                <font>
                   <Font size="24.0" />

@@ -39,6 +39,7 @@ public class DataMessagesUtils {
         messageObject.put("message", message);
         messageObject.put("username", username);
         messageObject.put("idConversation", idConversation);
+        DataConversationsUtils.getInstance().addIdMessagesToConversation(Integer.parseInt(idConversation), Integer.toString(id));
 
         data.put(Integer.toString(id), messageObject);
         try (FileWriter file = new FileWriter(filePath)) {
@@ -47,7 +48,16 @@ public class DataMessagesUtils {
         }
     }
 
-    public ArrayList<Messages> getMessages() {
+    public Messages getLastMessageFromConversation(String idConversation) throws IOException {
+        Messages message = null;
+        ArrayList<Messages> messages = getMessagesFromConversation(idConversation);
+        if (!messages.isEmpty()) {
+            message = messages.get(messages.size() - 1);
+        }
+        return message;
+    }
+
+    public ArrayList<Messages> getMessages() throws IOException {
         ArrayList<Messages> messages = new ArrayList<>();
         for (String key : data.keySet()) {
             JSONObject messageObject = data.getJSONObject(key);
@@ -60,7 +70,7 @@ public class DataMessagesUtils {
         return messages;
     }
 
-    public ArrayList<Messages> getMessagesFromConversation(String idConversation) {
+    public ArrayList<Messages> getMessagesFromConversation(String idConversation) throws IOException {
         ArrayList<Messages> messages = new ArrayList<>();
         for (String key : data.keySet()) {
             JSONObject messageObject = data.getJSONObject(key);
@@ -68,11 +78,29 @@ public class DataMessagesUtils {
             if (idConversationMessage.equals(idConversation)) {
                 int id = messageObject.getInt("id");
                 String message = messageObject.getString("message");
-                String username = messageObject.getString("expediteur");
+                String username = messageObject.getString("username");
                 messages.add(new Messages(id, message, username, Integer.parseInt(idConversation)));
             }
         }
+        // sort the messages by id
+        messages.sort((o1, o2) -> {
+            return Integer.compare(o1.getId(), o2.getId());
+        });
         return messages;
+    }
+
+    public Messages getMessageById(int id) throws IOException {
+        for (String key : data.keySet()) {
+            JSONObject messageObject = data.getJSONObject(key);
+            int idMessage = messageObject.getInt("id");
+            if (idMessage == id) {
+                String message = messageObject.getString("message");
+                String username = messageObject.getString("username");
+                int idConversation = messageObject.getInt("idConversation");
+                return new Messages(id, message, username, idConversation);
+            }
+        }
+        return null;
     }
 
     public int newId() {

@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import com.calendarfx.model.Calendar;
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Annonce;
+import eu.telecomnancy.codingweek.global.CalendarDisplay;
 import eu.telecomnancy.codingweek.global.Transaction;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -216,7 +219,16 @@ public class MesAnnoncesController implements Observer {
 
             Button planning = new Button("Planning");
             planning.setOnAction(e -> {
-                //TODO
+                try {
+                    CalendarDisplay calendarDisplay = new CalendarDisplay(app.getSceneController());
+                    calendarDisplay.calendarSwitchPreparation();
+                    calendarDisplay.calendarSwitchAddCalendarWithStyle(transaction.getPlanning(), Calendar.Style.STYLE1, false);
+                    calendarDisplay.calendarSwitchSetCurrentCalendarToDefault();
+                    calendarDisplay.calendarSwitchAddCalendarWithStyle(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getPlanning(), Calendar.Style.STYLE5, false);
+                    app.getSceneController().switchToCalendar();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             });
             hbox.getChildren().add(planning);
 

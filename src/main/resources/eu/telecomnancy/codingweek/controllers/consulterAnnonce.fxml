@@ -23,6 +23,11 @@
                       <String fx:value="ButtonArrondi" />
                   </styleClass>
               </Button>
+              <Button fx:id="contacter" layoutX="202.0" layoutY="400.0" mnemonicParsing="false" onAction="#contacter" prefHeight="36.0" prefWidth="197.0" text="contacter" >
+                <styleClass>
+                    <String fx:value="ButtonOrange" />
+                    <String fx:value="ButtonArrondi" />
+                </styleClass></Button>
               <HBox layoutX="56.0" layoutY="88.0" prefHeight="357.0" prefWidth="553.0" style="-fx-background-color: rgba(200, 200, 200, 0.5);">
                   <children>
                       <VBox prefHeight="357.0" prefWidth="244.0" style="-fx-padding: 10;">

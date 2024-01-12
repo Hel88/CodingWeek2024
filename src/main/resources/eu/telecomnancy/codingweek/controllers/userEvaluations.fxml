@@ -15,7 +15,9 @@
                 <Font size="21.0" />
             </font>
         </Label>
-        <VBox layoutX="65.0" layoutY="115.0" prefHeight="397.0" prefWidth="570.0">
+        <Label fx:id="noteMoyenne">
+        </Label>
+        <VBox layoutX="13.0" layoutY="91.0" prefHeight="295.0" prefWidth="570.0">
             <children>
                 <HBox prefHeight="47.0" prefWidth="570.0" style="-fx-background-color: #eeeeee;">
                     <children>

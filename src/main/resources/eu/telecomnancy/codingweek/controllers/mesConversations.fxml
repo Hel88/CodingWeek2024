@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.MesConversationController">
+<children>
+    <Label contentDisplay="CENTER" layoutX="23.0" layoutY="-4.0" prefHeight="45.0" prefWidth="561.0" styleClass="LabelViolet" text="Mes conversations" textAlignment="CENTER">
+        <font>
+            <Font size="30.0" />
+        </font>
+    </Label>
+
+    <VBox layoutX="23.0" layoutY="39.0" prefHeight="351.0" prefWidth="561.0" spacing="2.0">
+        <children>
+                <ScrollPane prefHeight="333.0" prefWidth="561.0">
+                    <VBox fx:id="VBoxConversations" spacing="10.0">
+
+
+                        <padding>
+                            <Insets bottom="10.0" top="10.0" />
+                        </padding>
+                    </VBox>
+                </ScrollPane>
+        </children>
+    </VBox>
+
+</children>
+</AnchorPane>

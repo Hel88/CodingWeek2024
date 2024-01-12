@@ -10,6 +10,7 @@ import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ public class MonProfilController implements Observer {
     private Label firstName;
     @FXML
     private Label eval;
+    @FXML
+    private ToggleButton sleep;
 
     public MonProfilController(Application app) {
         this.app = app;
@@ -87,9 +90,23 @@ public class MonProfilController implements Observer {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            if (isSommeil()) {
+                sleep.setSelected(true);
+            } else {
+                sleep.setSelected(false);
+            }
         }
+    }
 
-
+    @FXML
+    public void switchSleep() {
+        if (sleep.isSelected()) {
+            mettreSommeil();
+        } else {
+            enleverSommeil();
+        }
+        app.notifyObservers("user");
+        app.notifyObservers("annonce");
     }
 
     @FXML
@@ -115,5 +132,30 @@ public class MonProfilController implements Observer {
 
 
         app.getSceneController().switchToCalendar();
+    }
+
+
+    public boolean isSommeil() {
+        try {
+            return app.getDataUsersUtils().isUserSleeping(app.getMainUser().getUserName());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mettreSommeil() {
+        try {
+            app.getDataUsersUtils().setUserSleeping(app.getMainUser().getUserName());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void enleverSommeil() {
+        try {
+            app.getDataUsersUtils().setUserNotSleeping(app.getMainUser().getUserName());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

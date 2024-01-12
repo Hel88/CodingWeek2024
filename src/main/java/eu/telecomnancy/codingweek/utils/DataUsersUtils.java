@@ -1,6 +1,7 @@
 package eu.telecomnancy.codingweek.utils;
 
 import com.calendarfx.model.Calendar;
+import eu.telecomnancy.codingweek.global.Annonce;
 import eu.telecomnancy.codingweek.global.FileAccess;
 import eu.telecomnancy.codingweek.global.User;
 import org.json.JSONObject;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 
 public class DataUsersUtils {
@@ -38,14 +40,14 @@ public class DataUsersUtils {
     }
 
     // Methods
-    public boolean isUserNameUnique(String userName) {
+    public boolean isUserNameUnique(String userName) throws IOException {
         // Method related to the creation of a new user
 
         // Check if the username is already in use
         return !data.has(userName);
     }
 
-    public boolean doesUserExist(String userName) {
+    public boolean doesUserExist(String userName) throws IOException {
         // Method related to the authentication of a user
 
         // Check if the username exists
@@ -70,11 +72,11 @@ public class DataUsersUtils {
         userObject.put("transactions", "");
         // Create a calendar for the user
         DataCalendarUtils dataCalendarUtils = DataCalendarUtils.getInstance();
-        userObject.put("planning", String.valueOf(dataCalendarUtils.store(new Calendar("Agenda de " + userName))));
+        userObject.put("planning", String.valueOf(dataCalendarUtils.store(new Calendar("Agenda de "+ userName))));
         userObject.put("eval", "");
-        userObject.put("idConversations", "");
         userObject.put("solde", 100);
         userObject.put("isAdmin", false);
+        userObject.put("idConversations", "");
 
         // Add the user to the JSON file
         data.put(userName, userObject);
@@ -90,6 +92,20 @@ public class DataUsersUtils {
         // Retrieve the User object from the JSON file
         JSONObject userObject = data.getJSONObject(userName);
         return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactionsReferent"), userObject.getString("transactionsClient"), userObject.getInt("planning"), userObject.getString("eval"), userObject.getInt("solde"), userObject.getBoolean("isAdmin"), userObject.getString("idConversations"));
+    }
+
+    public void addIdConversationToUser(String userName, int id) throws IOException {
+        User user = getUserByUserName(userName);
+        String conversations = user.getIdConversations();
+        if (conversations.isEmpty()) {
+            conversations = String.valueOf(id);
+        } else {
+            conversations = conversations + "," + id;
+        }
+
+        user.setIdConversations(conversations);
+
+        updateUser(user);
     }
 
     public String hashPassword(String password) {
@@ -212,6 +228,20 @@ public class DataUsersUtils {
         updateUser(user);
     }
 
+    public void addConversationToUser(String userName, int id) throws IOException {
+        User user = getUserByUserName(userName);
+        String conversations = user.getIdConversations();
+        if (conversations.isEmpty()) {
+            conversations = String.valueOf(id);
+        } else {
+            conversations = conversations + "," + id;
+        }
+
+        user.setIdConversations(conversations);
+
+        updateUser(user);
+    }
+
     public void addEvalToUser(String referent, int id) throws IOException {
         User user = getUserByUserName(referent);
         String evals = user.getEval();
@@ -224,5 +254,31 @@ public class DataUsersUtils {
         user.setEval(evals);
 
         updateUser(user);
+    }
+
+    public void setUserSleeping(String userName) throws IOException {
+        DataAnnoncesUtils.getInstance().getAnnoncesByUsername(userName).forEach(annonce -> {
+            try {
+                DataAnnoncesUtils.getInstance().modifyAnnonce(annonce.getId(), annonce.getTitre(), annonce.getDescription(), String.valueOf(annonce.getPrix()), annonce.getCategorie(), annonce.getReferent(), false, annonce.getPlanning());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    public void setUserNotSleeping(String userName) throws IOException {
+        DataAnnoncesUtils.getInstance().getAnnoncesByUsername(userName).forEach(annonce -> {
+            try {
+                DataAnnoncesUtils.getInstance().modifyAnnonce(annonce.getId(), annonce.getTitre(), annonce.getDescription(), String.valueOf(annonce.getPrix()), annonce.getCategorie(), annonce.getReferent(), true, annonce.getPlanning());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    public boolean isUserSleeping(String userName) throws IOException {
+        ArrayList<Annonce> annonces = DataAnnoncesUtils.getInstance().getAnnoncesByUsername(userName);
+        Annonce uneAnnonce = annonces.get(0);
+        return !uneAnnonce.getActif();
     }
 }
