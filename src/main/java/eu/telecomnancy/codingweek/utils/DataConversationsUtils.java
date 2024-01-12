@@ -35,15 +35,14 @@ public class DataConversationsUtils {
         return instance;
     }
 
-    public void addConversation(String user1, String user2, String idMessages) throws IOException {
+    public int addConversation(String user1, String user2, String idMessages) throws IOException {
         int id = checkIfConversationExist(user1, user2);
 
         if(id == -1){
             id = newId();
         }
         else {
-            JSONObject conversationObject = data.getJSONObject(Integer.toString(id));
-            idMessages = conversationObject.getString("idMessages") + "," + idMessages;
+            return id;
         }
 
         JSONObject conversationObject = new JSONObject();
@@ -57,6 +56,7 @@ public class DataConversationsUtils {
             file.write(data.toString());
             file.flush();
         }
+        return id;
     }
 
     public void addIdMessagesToConversation(int id, String idMessages) throws IOException {
@@ -119,6 +119,32 @@ public class DataConversationsUtils {
             }
         }
         return conversations;
+    }
+
+    public Conversations getNewConversationWith(String user1, String user2) throws IOException {
+        Conversations conversation = getConversationWith(user1, user2);
+        if (conversation == null) {
+            int id = addConversation(user1, user2, "");
+            DataUsersUtils.getInstance().addIdConversationToUser(user1, id);
+            DataUsersUtils.getInstance().addIdConversationToUser(user2, id);
+            return new Conversations(id, user1, user2, "");
+        } else{
+            return conversation;
+        }
+    }
+
+    public Conversations getConversationWith(String user1, String user2) throws IOException {
+        for (String key : data.keySet()) {
+            JSONObject conversationObject = data.getJSONObject(key);
+            String user3 = conversationObject.getString("user1");
+            String user4 = conversationObject.getString("user2");
+            if ((user1.equals(user3) && user2.equals(user4)) || (user1.equals(user4) && user2.equals(user3))) {
+                int id = conversationObject.getInt("id");
+                String idMessages = conversationObject.getString("idMessages");
+                return new Conversations(id, user1, user2, idMessages);
+            }
+        }
+        return null;
     }
 
     public int newId() {

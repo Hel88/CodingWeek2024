@@ -92,6 +92,20 @@ public class DataUsersUtils {
         return new User(userName, userObject.getString("password"), userObject.getString("firstName"), userObject.getString("lastName"), userObject.getString("email"), userObject.getString("address"), userObject.getString("city"), userObject.getString("annonces"), userObject.getString("transactionsReferent"), userObject.getString("transactionsClient"), userObject.getInt("planning"), userObject.getString("eval"), userObject.getInt("solde"), userObject.getBoolean("isAdmin"), userObject.getString("idConversations"));
     }
 
+    public void addIdConversationToUser(String userName, int id) throws IOException {
+        User user = getUserByUserName(userName);
+        String conversations = user.getIdConversations();
+        if (conversations.isEmpty()) {
+            conversations = String.valueOf(id);
+        } else {
+            conversations = conversations + "," + id;
+        }
+
+        user.setIdConversations(conversations);
+
+        updateUser(user);
+    }
+
     public String hashPassword(String password) {
         try {
             // Create MessageDigest instance for MD5

@@ -2,6 +2,7 @@ package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Conversations;
+import eu.telecomnancy.codingweek.global.Messages;
 import eu.telecomnancy.codingweek.global.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -65,7 +66,12 @@ public class MesConversationController implements Observer {
 
             Label texte = null;
             try {
-                texte = new Label(app.getDataMessagesUtils().getLastMessageFromConversation(String.valueOf(conversation.getId())).getMessage());
+                Messages test = app.getDataMessagesUtils().getLastMessageFromConversation(String.valueOf(conversation.getId()));
+                if (test == null) {
+                    texte = new Label("Aucun message");
+                } else {
+                texte = new Label(test.getMessage());
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

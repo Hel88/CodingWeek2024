@@ -78,7 +78,7 @@ public class DataMessagesUtils {
             if (idConversationMessage.equals(idConversation)) {
                 int id = messageObject.getInt("id");
                 String message = messageObject.getString("message");
-                String username = messageObject.getString("expediteur");
+                String username = messageObject.getString("username");
                 messages.add(new Messages(id, message, username, Integer.parseInt(idConversation)));
             }
         }

@@ -86,4 +86,11 @@ public class ConsulterAnnonceController implements Observer{
 
         app.getSceneController().switchToCalendar();
     }
+
+    @FXML
+    public void contacter() throws IOException {
+        app.setConversationsAffichee(app.getDataConversationsUtils().getNewConversationWith(app.getMainUser().getUserName(), annonce.getReferent()));
+        app.notifyObservers("conversation");
+        app.getSceneController().switchToConsulterMessagerie();
+    }
 }
