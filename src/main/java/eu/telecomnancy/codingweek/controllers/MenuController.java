@@ -22,6 +22,9 @@ public class MenuController implements Observer{
     @FXML
     private MenuBar menuBar;
 
+    @FXML
+    private Label instruction;
+
     private Application app;
 
     public MenuController(Application app) {
@@ -36,12 +39,11 @@ public class MenuController implements Observer{
             hboxSolde.setVisible(true);
             username.setText(app.getMainUser().getUserName());
             solde.setText(app.getMainUser().getSolde()+"");
+            instruction.setText("");
         }
         else{
             menuBar.setVisible(false);
             hboxSolde.setVisible(false);
-            username.setText("Bienvenue, veuillez vous connecter");
-            
         }
         
     }
