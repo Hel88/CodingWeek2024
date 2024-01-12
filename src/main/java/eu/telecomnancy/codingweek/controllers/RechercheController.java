@@ -1,5 +1,10 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Annonce;
 import javafx.fxml.FXML;
@@ -9,11 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class RechercheController {
 
@@ -134,7 +134,11 @@ public class RechercheController {
 
                 Button details = new Button();
                 details.setText("Voir les détails");
-                details.setOnAction(e -> app.getSceneController().switchToConsulterAnnonce());
+                details.setOnAction(e -> {
+
+                    app.setAnnonceAffichee(annonce);
+                    app.notifyObservers("annonce"); app.getSceneController().switchToConsulterAnnonce();
+                });
 
                 hbox.getChildren().addAll(titre, prix, details);
 

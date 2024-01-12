@@ -157,12 +157,93 @@ TODO (screens, examples)
 - [x] Day 1
     - [x] Create the project
     - [x] Create the README
-    - [ ]
-- [ ] Day 2
-    - [x] User connection
-- [ ] Day 3
-- [ ] Day 4
-- [ ] Day 5
+    - [x] Create all the scenes with Scenebuilder
+      - [x] Connection
+      - [x] Registration
+      - [x] Profile
+      - [ ] Public profile (canceled)
+      - [x] Manage Adverts
+      - [x] Create Advert
+      - [x] Search Advert
+      - [x] Advert details
+      - [x] Advert modification
+      - [x] Home bar
+    - [x] Data management
+      - [x] User
+        - Id
+        - UserName
+        - Firstname
+        - Lastname
+        - Email
+        - Password (hashed)
+        - Money
+        - Adress
+        - City
+        - Planning
+        - Adverts
+        - Reviews
+      - [x] Advert
+        - Id
+        - Type
+        - Title
+        - Description
+        - IdOwner
+        - Price
+      - [x] Transaction
+        - Id
+        - IdAdvert
+        - IdBorrower
+        - Planning
+        - State
+        - Duration
+      - [ ] Planning
+        - Not found yet
+    - [x] Manage Switch between scenes
+    - [ ] Manage the connection (reported for day 2)
+    - [x] Create the json files
+    - [x] Find a way to store the planning (found, in implementation)
+- [x] Day 2
+    - [x] Backend for Users
+        - [x] Connection
+        - [x] Registration
+        - [x] ...
+    - [x] Backend for Adverts
+        - [x] Json file created
+    - [x] Create Advert and display (not sorted per user yet)
+    - [x] Calendar : display the planning
+- [x] Day 3
+  - [x] End of Adverts backend
+    - [x] Sort per user
+    - [x] Consult Advert
+    - [x] Fix some bugs
+  - [x] Calendar
+    - [x] Backend (utils)
+  - [x] General
+    - [x] Delete user
+    - [x] Delete advert
+    - [x] Modify user
+    - [x] Modify advert
+  - [x] Search advert
+  - [x] Display profile
+  - [x] Refactor code, fix bugs
+- [x] Day 4
+  - [x] Calendar
+    - [x] Link to the app
+      - Transactions
+      - Adverts
+      - Users
+  - [x] Transaction
+  - [x] Begin Review system
+  - [x] Complete unit tests
+- [x] Day 5
+  - [x] Report problem to admin
+  - [x] Admin logic
+  - [x] Review system
+  - [x] End of unit tests
+  - [x] User "Sleep" during vacation
+  - [x] Frontend work
+  - [x] CSS
+  - [x] Fix bugs
 
 See the [open issues](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k24/codingweek-08/-/issues) for a full list of proposed features (and known issues).
 

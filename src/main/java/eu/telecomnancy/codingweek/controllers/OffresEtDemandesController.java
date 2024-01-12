@@ -119,20 +119,23 @@ public class OffresEtDemandesController implements Observer {
             });
             hbox.getChildren().addAll(titre, referent, hboxPrix, details);
 
+            // choisir si on affiche l'annonce ou pas
+            if (annonce.isActif()){
             // choisir dans quelle catégorie afficher l'annonce
-            if (type.equals("Offre")) {
-                if (annonce.getCategorie().equals("OffreMateriel")) {
-                    materiel.getChildren().add(hbox);
-                } else if (annonce.getCategorie().equals("OffreService")) {
-                    services.getChildren().add(hbox);
+                if (type.equals("Offre")) {
+                    if (annonce.getCategorie().equals("OffreMateriel")) {
+                        materiel.getChildren().add(hbox);
+                    } else if (annonce.getCategorie().equals("OffreService")) {
+                        services.getChildren().add(hbox);
+                    }
+                } else if (type.equals("Demande")) {
+                    if (annonce.getCategorie().equals("DemandeMateriel")) {
+                        materiel.getChildren().add(hbox);
+                    } else if (annonce.getCategorie().equals("DemandeService")) {
+                        services.getChildren().add(hbox);
+                    }
                 }
-            } else if (type.equals("Demande")) {
-                if (annonce.getCategorie().equals("DemandeMateriel")) {
-                    materiel.getChildren().add(hbox);
-                } else if (annonce.getCategorie().equals("DemandeService")) {
-                    services.getChildren().add(hbox);
-                }
-            }
+            }   
         }
     }
 

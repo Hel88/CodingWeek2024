@@ -2,8 +2,10 @@ package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 
 public class MenuController implements Observer {
@@ -22,8 +24,12 @@ public class MenuController implements Observer {
     private MenuBar menuBar;
 
     @FXML
-    private Label instruction;
+    private Button boutonCalendrier;
 
+    @FXML
+    private MenuItem allReports;
+
+   
     private final Application app;
 
     public MenuController(Application app) {
@@ -34,15 +40,28 @@ public class MenuController implements Observer {
     @Override
     public void update(String type) {
         if (app.getMainUser() != null) {
+            if (app.getMainUser().getIsAdmin()){
+                allReports.setVisible(true);
+            }
+            else{
+                allReports.setVisible(false);
+            }
             menuBar.setVisible(true);
             hboxSolde.setVisible(true);
             username.setText(app.getMainUser().getUserName());
             solde.setText(app.getMainUser().getSolde()+"");
-            instruction.setText("");
         }
         else{
+            username.setText("Bienvenue, veuillez vous connecter");
             menuBar.setVisible(false);
             hboxSolde.setVisible(false);
+        }
+
+
+
+        if (type.equals("calendrierValide")){
+            boutonCalendrier.setVisible(true);
+            menuBar.setVisible(false);
         }
 
     }
@@ -99,11 +118,27 @@ public class MenuController implements Observer {
 
     @FXML
     public void report() {
+        //envoyer un report
         app.getSceneController().switchToReportBug();
     }
 
     @FXML
     public void allReports() {
-        app.getSceneController().switchToAllReports();
+        //accéder à la liste des reports (que pour les admins)
+        if (app.getMainUser()!=null){
+
+            if (app.getMainUser().getIsAdmin()){
+                app.getSceneController().switchToAllReports();
+            }
+        }
     }
+
+    @FXML
+    public void boutonCalendrier(){
+        boutonCalendrier.setVisible(false);
+        menuBar.setVisible(true);
+        app.getSceneController().switchToMonProfil();
+    }
+
+  
 }

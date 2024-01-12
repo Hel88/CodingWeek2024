@@ -7,29 +7,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.UserEvaluationsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="AnchorPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.UserEvaluationsController">
     <children>
         
-        <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" layoutX="149.0" layoutY="25.0" prefHeight="55.0" prefWidth="302.0" styleClass="LabelViolet" text="Nom d'utilisateur" textAlignment="CENTER" wrapText="true">
+        <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" layoutX="199.0" layoutY="27.0" prefHeight="55.0" prefWidth="302.0" styleClass="LabelViolet" text="Nom d'utilisateur" textAlignment="CENTER" wrapText="true">
             <font>
                 <Font size="21.0" />
             </font>
         </Label>
         <Label fx:id="noteMoyenne">
         </Label>
-        <VBox layoutX="13.0" layoutY="91.0" prefHeight="295.0" prefWidth="570.0">
+        <VBox layoutX="65.0" layoutY="103.0" prefHeight="458.0" prefWidth="570.0">
             <children>
-                <HBox prefHeight="90.0" prefWidth="570.0" style="-fx-background-color: #eeeeee;">
+                <HBox prefHeight="47.0" prefWidth="570.0" style="-fx-background-color: #eeeeee;">
                     <children>
                         <Label alignment="CENTER" prefHeight="50.0" prefWidth="118.0" text="Note /5" />
-                        <Label prefHeight="86.0" prefWidth="100.0" text="Laissé par:" />
+                        <Label prefHeight="51.0" prefWidth="100.0" text="Laissé par:" />
                         <Label alignment="CENTER" prefHeight="50.0" prefWidth="116.0" text="Commentaire" />
                     </children>
                 </HBox>
-                <HBox prefHeight="294.0" prefWidth="390.0">
+                <HBox prefHeight="355.0" prefWidth="570.0">
                     <children>
-                        <ScrollPane>
-                           <VBox fx:id="VBoxEvaluations" prefHeight="242.0" prefWidth="564.0" />
+                        <ScrollPane prefHeight="454.0" prefWidth="566.0">
+                           <VBox fx:id="VBoxEvaluations" prefHeight="320.0" prefWidth="564.0" />
 
                         </ScrollPane>
                     </children>

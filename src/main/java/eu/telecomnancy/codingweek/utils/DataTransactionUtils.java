@@ -47,7 +47,7 @@ public class DataTransactionUtils {
         // Get the transactions
         for (String key : data.keySet()) {
             JSONObject transaction = data.getJSONObject(key);
-            transactions.add(new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status")));
+            transactions.add(new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status"), transaction.getInt("planning")));
         }
         return transactions;
     }
@@ -57,7 +57,7 @@ public class DataTransactionUtils {
 
         // Get the transactions
         JSONObject transaction = data.getJSONObject(String.valueOf(id));
-        Transaction retour = new Transaction(id, transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status"));
+        Transaction retour = new Transaction(id, transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status"), transaction.getInt("planning"));
         retour.setPlanning(transaction.getInt("planning"));
         return retour;
     }
@@ -73,7 +73,7 @@ public class DataTransactionUtils {
         while (scanner.hasNext()) {
             String id = scanner.next();
             JSONObject transaction = data.getJSONObject(id);
-            transactions.add(new Transaction(Integer.parseInt(id), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status")));
+            transactions.add(new Transaction(Integer.parseInt(id), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status"), transaction.getInt("planning")));
         }
         return transactions;
     }
@@ -89,7 +89,7 @@ public class DataTransactionUtils {
         while (scanner.hasNext()) {
             String id = scanner.next();
             JSONObject transaction = data.getJSONObject(id);
-            transactions.add(new Transaction(Integer.parseInt(id), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status")));
+            transactions.add(new Transaction(Integer.parseInt(id), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status"), transaction.getInt("planning")));
         }
         return transactions;
     }
@@ -103,7 +103,7 @@ public class DataTransactionUtils {
         for (String key : data.keySet()) {
             JSONObject transaction = data.getJSONObject(key);
             if (transaction.getString("idAnnonce").equals(annonce.getId() + "")) {
-                Transaction temp = new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status"));
+                Transaction temp = new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status"), transaction.getInt("planning"));
                 temp.setPlanning(transaction.getInt("planning"));
                 transactions.add(temp);
             }
