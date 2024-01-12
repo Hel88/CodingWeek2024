@@ -68,14 +68,11 @@ public class ConsulterAnnonceController implements Observer {
     }
 
     @FXML
-    public void voirEvaluations(){
-        try {
-            User userEvalue = app.getDataUsersUtils().getUserByUserName(annonce.getReferent());
-            app.setUserEvalue(userEvalue);
-            app.notifyObservers("evaluations");
-            app.getSceneController().switchToUserEvaluations(annonce.getReferent());
-        } catch (Exception e) {
-        }
+    public void voirEvaluations() throws IOException {
+        User userEvalue = app.getDataUsersUtils().getUserByUserName(annonce.getReferent());
+        app.setUserEvalue(userEvalue);
+        app.notifyObservers("evaluations");
+        app.getSceneController().switchToUserEvaluations();
     }
 
 

@@ -1,8 +1,5 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Note;
 import eu.telecomnancy.codingweek.global.User;
@@ -10,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
 
 public class UserEvaluationsController implements Observer {
 
@@ -31,15 +30,14 @@ public class UserEvaluationsController implements Observer {
 
     @Override
     public void update(String type) {
-        try {
 
-        if (type.equals("evaluations")){
+        if (type.equals("evaluations")) {
 
 
             userEvalue = app.getUserEvalue(); //valable si on est sur la page d'une annonce
             //System.out.println(userEvalue.getUserName());
 
-            
+
             VBoxEvaluations.getChildren().clear();
             username.setText(userEvalue.getUserName());
             //ajouter note moyenne
@@ -50,7 +48,7 @@ public class UserEvaluationsController implements Observer {
             System.out.println(notes.size());
 
 
-            for (Note eval : notes){
+            for (Note eval : notes) {
 
                 HBox hbox = new HBox();
 
@@ -68,10 +66,8 @@ public class UserEvaluationsController implements Observer {
 
 
                 int note = eval.getNote();
-                Label noteLabel = new Label(note+"/5");
+                Label noteLabel = new Label(note + "/5");
                 hboxNote.getChildren().add(noteLabel);
-
-            String userQuiAMisLaNote = "user1";//récupérer le nom de l'utilisateur qui a mis la note
 
                 String userQuiAMisLaNote = eval.getUsernameClient();
                 Label userQuiAMisLaNoteLabel = new Label(userQuiAMisLaNote);
@@ -85,14 +81,6 @@ public class UserEvaluationsController implements Observer {
 
                 VBoxEvaluations.getChildren().add(hbox);
             }
-
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        
     }
-
-
 }

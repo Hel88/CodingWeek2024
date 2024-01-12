@@ -69,7 +69,7 @@ public class MonProfilController implements Observer {
     public void voirEvaluations(){
         app.setUserEvalue(app.getMainUser());
         app.notifyObservers("evaluations");
-        app.getSceneController().switchToUserEvaluations(app.getMainUser().getUserName());
+        app.getSceneController().switchToUserEvaluations();
     }
 
     @Override
@@ -82,7 +82,11 @@ public class MonProfilController implements Observer {
             email.setText("email: "+app.getMainUser().getEmail());
             address.setText("adresse: "+app.getMainUser().getAddress());
             city.setText("Ville: "+app.getMainUser().getCity());
-            eval.setText(app.getMainUser().getMoyenne()+"");
+            try {
+                eval.setText(app.getMainUser().getMoyenne()+"");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
 
