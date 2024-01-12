@@ -45,7 +45,7 @@ public class MesTransactionsController implements Observer {
                     // hboxStatut.setPrefWidth(100);
                     // hboxTitre.setPrefWidth(200);
                     // hboxUser.setPrefWidth(100);
-                    //hboxPrix.setPrefWidth(100);
+                    // hboxPrix.setPrefWidth(100);
 
                     HBox.getChildren().add(hboxStatut);
                     HBox.getChildren().add(hboxTitre);
