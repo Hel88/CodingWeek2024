@@ -39,6 +39,7 @@ public class ReportBugController implements Observer {
         } else {
             app.getSceneController().switchToConnexion();
         }
+        message.setText("");
     }
 
     private String date() {
