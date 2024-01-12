@@ -98,6 +98,7 @@ public class MesConversationController implements Observer {
     public void detailsConversation(Conversations conversation){
         app.setConversationsAffichee(conversation);
         app.notifyObservers("conversation");
+        app.notifyObservers("consulterConversation");
         app.getSceneController().switchToConsulterMessagerie();
     }
 

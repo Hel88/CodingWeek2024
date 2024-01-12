@@ -58,7 +58,7 @@ public class ConsulterConversationController implements Observer {
         }
 
         try {
-            messages = app.getDataMessagesUtils().getMessagesFromConversation(String.valueOf(conversations.getId()));
+            messages = app.getDataConversationsUtils().getMessagesFromConversation(conversations);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -78,7 +78,7 @@ public class ConsulterConversationController implements Observer {
 
     @Override
     public void update(String type) {
-        if(type == "conversation"){
+        if(type == "consulterConversation"){
             initialize();
         }
     }

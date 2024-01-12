@@ -91,6 +91,7 @@ public class ConsulterAnnonceController implements Observer{
     public void contacter() throws IOException {
         app.setConversationsAffichee(app.getDataConversationsUtils().getNewConversationWith(app.getMainUser().getUserName(), annonce.getReferent()));
         app.notifyObservers("conversation");
+        app.notifyObservers("consulterConversation");
         app.getSceneController().switchToConsulterMessagerie();
     }
 }

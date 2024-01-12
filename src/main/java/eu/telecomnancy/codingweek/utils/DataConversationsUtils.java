@@ -106,9 +106,15 @@ public class DataConversationsUtils {
     public ArrayList<Messages> getMessagesFromConversation(Conversations conversations) throws IOException {
         ArrayList<Messages> messages = new ArrayList<>();
         String[] idMessages = conversations.getIdMessages().split(",");
+        if (idMessages[0].equals("")) {
+            return messages;
+        }
         for (String idMessage : idMessages) {
             messages.add(DataMessagesUtils.getInstance().getMessageById(Integer.parseInt(idMessage)));
         }
+        messages.sort((o1, o2) -> {
+            return Integer.compare(o1.getId(), o2.getId());
+        });
         return messages;
     }
 
