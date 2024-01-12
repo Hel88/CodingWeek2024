@@ -58,7 +58,9 @@ public class DataConversationsUtils {
 
     public void addIdMessagesToConversation(int id, String idMessages) throws IOException {
         JSONObject conversationObject = data.getJSONObject(Integer.toString(id));
-        idMessages = conversationObject.getString("idMessages") + "," + idMessages;
+        if(!idMessages.equals("")) {
+            idMessages = conversationObject.getString("idMessages") + "," + idMessages;
+        }
         conversationObject.put("idMessages", idMessages);
         data.put(Integer.toString(id), conversationObject);
         try (FileWriter file = new FileWriter(filePath)) {
@@ -69,7 +71,9 @@ public class DataConversationsUtils {
 
     public void addIdMessagesToConversation(Conversations conversations, String idMessages) throws IOException {
         JSONObject conversationObject = data.getJSONObject(Integer.toString(conversations.getId()));
-        idMessages = conversationObject.getString("idMessages") + "," + idMessages;
+        if(!idMessages.equals("")) {
+            idMessages = conversationObject.getString("idMessages") + "," + idMessages;
+        }
         conversationObject.put("idMessages", idMessages);
         data.put(Integer.toString(conversations.getId()), conversationObject);
         try (FileWriter file = new FileWriter(filePath)) {

@@ -40,6 +40,7 @@ public class DataMessagesUtils {
         messageObject.put("message", message);
         messageObject.put("username", username);
         messageObject.put("idConversation", idConversation);
+        DataConversationsUtils.getInstance().addIdMessagesToConversation(Integer.parseInt(idConversation), Integer.toString(id));
 
         data.put(Integer.toString(id), messageObject);
         try (FileWriter file = new FileWriter(filePath)) {

@@ -91,5 +91,7 @@ public class ConsulterConversationController implements Observer {
             throw new RuntimeException(e);
         }
         app.notifyObservers("conversation");
+        app.notifyObservers("consulterConversation");
+        app.getSceneController().switchToConsulterMessagerie();
     }
 }
