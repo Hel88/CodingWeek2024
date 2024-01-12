@@ -1,5 +1,7 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.util.ArrayList;
+
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Note;
 import eu.telecomnancy.codingweek.global.User;
@@ -7,8 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import java.util.ArrayList;
 
 public class UserEvaluationsController implements Observer {
 
@@ -40,7 +40,7 @@ public class UserEvaluationsController implements Observer {
 
                 username.setText("Evaluations de: " + userEvalue.getUserName());
 
-                noteMoyenne.setText(userEvalue.getMoyenne() + " / 5");
+                noteMoyenne.setText("Note moyenne: "+userEvalue.getMoyenne() + " / 5");
                 ArrayList<Note> notes = app.getDataNoteUtils().getNotesByUser(userEvalue);
 
 

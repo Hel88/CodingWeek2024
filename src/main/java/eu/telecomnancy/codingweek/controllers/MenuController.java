@@ -2,6 +2,7 @@ package eu.telecomnancy.codingweek.controllers;
 
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.HBox;
@@ -20,6 +21,9 @@ public class MenuController implements Observer {
 
     @FXML
     private MenuBar menuBar;
+
+    @FXML
+    private Button boutonCalendrier;
 
    
     private final Application app;
@@ -41,6 +45,12 @@ public class MenuController implements Observer {
             username.setText("Bienvenue, veuillez vous connecter");
             menuBar.setVisible(false);
             hboxSolde.setVisible(false);
+        }
+
+
+
+        if (type.equals("calendrierValide")){
+            boutonCalendrier.setVisible(true);
         }
 
     }
@@ -104,4 +114,12 @@ public class MenuController implements Observer {
     public void allReports() {
         app.getSceneController().switchToAllReports();
     }
+
+    @FXML
+    public void boutonCalendrier(){
+        boutonCalendrier.setVisible(false);
+        app.getSceneController().switchToMonProfil();
+    }
+
+  
 }

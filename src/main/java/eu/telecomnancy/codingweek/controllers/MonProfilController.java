@@ -1,5 +1,9 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
+
 import com.calendarfx.model.Calendar;
 
 import eu.telecomnancy.codingweek.Application;
@@ -11,10 +15,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class MonProfilController implements Observer {
 
@@ -82,8 +82,8 @@ public class MonProfilController implements Observer {
             username.setText("Nom d'utilisateur: "+app.getMainUser().getUserName());
             firstName.setText("Prénom: "+app.getMainUser().getFirstName());
             lastName.setText("Nom: "+app.getMainUser().getLastName());
-            email.setText("email: "+app.getMainUser().getEmail());
-            address.setText("adresse: "+app.getMainUser().getAddress());
+            email.setText("Email: "+app.getMainUser().getEmail());
+            address.setText("Adresse: "+app.getMainUser().getAddress());
             city.setText("Ville: "+app.getMainUser().getCity());
             try {
                 eval.setText(app.getMainUser().getMoyenne()+"");
