@@ -54,6 +54,9 @@ public class MonAnnonceController implements Observer {
         if (alert.getResult().getButtonData().isDefaultButton()) {
             //suppression de l'annonce
             app.getDataAnnoncesUtils().deleteAnnonce(annonce.getId() + "");
+            // Supprimer l'annonce de la liste des annonces d'un User
+            app.getDataUsersUtils().deleteAnnonceFromUser(annonce.getReferent(), annonce.getId() + "");
+
             app.notifyObservers("annonce");
             app.getSceneController().switchToMesAnnonces();
         }

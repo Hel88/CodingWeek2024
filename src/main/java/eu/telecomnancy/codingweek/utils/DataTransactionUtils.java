@@ -202,4 +202,8 @@ public class DataTransactionUtils {
             file.flush();
         }
     }
+
+    public String getFilePath() {
+        return filePath;
+    }
 }

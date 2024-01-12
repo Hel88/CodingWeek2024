@@ -39,6 +39,15 @@ public class DataUsersUtils {
         return instance;
     }
 
+    // Getters
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public JSONObject getData() {
+        return data;
+    }
+
     // Methods
     public boolean isUserNameUnique(String userName) throws IOException {
         // Method related to the creation of a new user
@@ -281,5 +290,32 @@ public class DataUsersUtils {
         if(annonces.isEmpty()) return false;
         Annonce uneAnnonce = annonces.get(0);
         return !uneAnnonce.getActif();
+    }
+
+    public void deleteAnnonceFromUser(String referent, String s) throws IOException {
+        // Method related to the deletion of an annonce
+
+        // Create a JSON object with user information
+        JSONObject userObject = data.getJSONObject(referent);
+        String annonces = userObject.getString("annonces");
+        String[] annoncesArray = annonces.split(",");
+        String newAnnonces = "";
+        for (String annonce : annoncesArray) {
+            if (!annonce.equals(s)) {
+                if (newAnnonces.isEmpty()) {
+                    newAnnonces = annonce;
+                } else {
+                    newAnnonces = newAnnonces + "," + annonce;
+                }
+            }
+        }
+        userObject.put("annonces", newAnnonces);
+
+        // Add the user to the JSON file
+        data.put(referent, userObject);
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
     }
 }

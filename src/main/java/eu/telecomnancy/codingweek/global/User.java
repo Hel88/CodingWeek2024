@@ -185,6 +185,9 @@ public class User {
         this.idConversations = idConversations;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
     // toString method for better representation
     @Override
     public String toString() {

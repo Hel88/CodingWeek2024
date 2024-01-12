@@ -104,4 +104,8 @@ public class DataNoteUtils {
         // Return the id of the new annonce
         return id + 1;
     }
+
+    public String getFilePath() {
+        return filePath;
+    }
 }

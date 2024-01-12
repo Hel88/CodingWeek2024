@@ -1,15 +1,15 @@
 package eu.telecomnancy.codingweek.utils;
 
-import eu.telecomnancy.codingweek.global.*;
+import eu.telecomnancy.codingweek.global.Conversations;
+import eu.telecomnancy.codingweek.global.FileAccess;
+import eu.telecomnancy.codingweek.global.Messages;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DataConversationsUtils {
 
@@ -183,4 +183,7 @@ public class DataConversationsUtils {
         return id + 1;
     }
 
+    public String getFilePath() {
+        return filePath;
+    }
 }

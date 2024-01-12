@@ -120,4 +120,7 @@ public class DataEntryUtils {
         return -1;
     }
 
+    public String getFilePath() {
+        return filePath;
+    }
 }
