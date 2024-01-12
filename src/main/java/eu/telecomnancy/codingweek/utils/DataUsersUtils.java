@@ -275,4 +275,10 @@ public class DataUsersUtils {
             }
         });
     }
+
+    public boolean isUserSleeping(String userName) throws IOException {
+        ArrayList<Annonce> annonces = DataAnnoncesUtils.getInstance().getAnnoncesByUsername(userName);
+        Annonce uneAnnonce = annonces.get(0);
+        return !uneAnnonce.getActif();
+    }
 }

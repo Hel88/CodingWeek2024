@@ -117,6 +117,14 @@ public class MonProfilController implements Observer {
         app.getSceneController().switchToCalendar();
     }
 
+    public boolean isSommeil() {
+        try {
+            return app.getDataUsersUtils().isUserSleeping(app.getMainUser().getUserName());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void mettreSommeil() {
         try {
             app.getDataUsersUtils().setUserSleeping(app.getMainUser().getUserName());
