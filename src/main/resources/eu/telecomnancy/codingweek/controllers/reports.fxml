@@ -12,7 +12,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0"
             prefWidth="600.0"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="eu.telecomnancy.codingweek.controllers.OffresEtDemandesController"
+            fx:controller="eu.telecomnancy.codingweek.controllers.ReportsController"
             stylesheets="@styles.css" styleClass="AnchorPane">
     <children>
         <Label fx:id="boxLabel" layoutX="14.0" layoutY="196.0" prefHeight="45.0" prefWidth="578.0"
