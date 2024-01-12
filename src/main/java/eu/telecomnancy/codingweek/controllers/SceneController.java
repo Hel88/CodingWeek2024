@@ -182,6 +182,18 @@ public class SceneController {
         pageScene = new Scene(pageLoader.load());
         this.consulterReport = pageScene;
 
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("messageries.fxml"));
+        pageLoader.setControllerFactory(iC->new MessageriesController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.messageries = pageScene;
+
+        pageLoader = new FXMLLoader();
+        pageLoader.setLocation(getClass().getResource("consulterMessagerie.fxml"));
+        pageLoader.setControllerFactory(iC->new ConsulterMessagerieController(app));
+        pageScene = new Scene(pageLoader.load());
+        this.consulterMessagerie = pageScene;
+
         // on crée un calendrier
         calendarView = new CalendarView(); // (1)
         calendarView.setShowAddCalendarButton(false);
