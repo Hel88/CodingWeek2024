@@ -6,9 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class UserEvaluationsController implements Observer{
-    
-    private Application app;
+public class UserEvaluationsController implements Observer {
+
+    private final Application app;
 
     private String userEvalue;
 
@@ -17,7 +17,7 @@ public class UserEvaluationsController implements Observer{
 
     @FXML
     private Label username;
-    
+
 
     public UserEvaluationsController(Application app) {
         this.app = app;
@@ -26,21 +26,21 @@ public class UserEvaluationsController implements Observer{
 
     @Override
     public void update(String type) {
-        
-        if (type.equals("evaluations")){
+
+        if (type.equals("evaluations")) {
 
             userEvalue = app.getAnnonceAffichee().getReferent(); //valable si on est sur la page d'une annonce
             //dans le cas où on est sur le profil:
             //userEvalue = app.getMainUser().getUserName();
 
-            
+
             //VBoxEvaluations.getChildren().clear();
             username.setText(userEvalue);
             //ajouter les evaluations à la VBox
 
             HBox hbox = new HBox();
-            int note=4;//récupérer la note de l'utilisateur
-            Label noteCalculee = new Label(note+"");
+            int note = 4;//récupérer la note de l'utilisateur
+            Label noteCalculee = new Label(note + "");
 
             hbox.setPrefWidth(200);
 
@@ -56,10 +56,10 @@ public class UserEvaluationsController implements Observer{
             hbox.getChildren().add(noteCalculee);
             VBoxEvaluations.getChildren().add(hbox);
 
-            
+
         }
-        
+
     }
-    
-    
+
+
 }

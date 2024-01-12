@@ -1,16 +1,16 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-import java.util.Objects;
-
 import eu.telecomnancy.codingweek.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class ModifierProfilController implements Observer{
-    
-    private Application app;
+import java.io.IOException;
+import java.util.Objects;
+
+public class ModifierProfilController implements Observer {
+
+    private final Application app;
     @FXML
     private Label username;
     @FXML
@@ -45,11 +45,10 @@ public class ModifierProfilController implements Observer{
         app.getMainUser().setLastName(nom.getText());
         app.getMainUser().setFirstName(prenom.getText());
 
-        if(!ancienPWD.getText().isEmpty() && !nouveauPWD.getText().isEmpty()){
-            if(app.getDataUsersUtils().checkPassword(app.getMainUser().getUserName(), ancienPWD.getText())){
+        if (!ancienPWD.getText().isEmpty() && !nouveauPWD.getText().isEmpty()) {
+            if (app.getDataUsersUtils().checkPassword(app.getMainUser().getUserName(), ancienPWD.getText())) {
                 app.getMainUser().setPassword(app.getDataUsersUtils().hashPassword(nouveauPWD.getText()));
-            }
-            else {
+            } else {
                 showAlert("Le nom d'utilisateur n'existe pas");
                 return;
             }
@@ -62,7 +61,7 @@ public class ModifierProfilController implements Observer{
         app.getSceneController().switchToMonProfil();
     }
 
-    private void showAlert(String message){
+    private void showAlert(String message) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText(null);
@@ -71,8 +70,8 @@ public class ModifierProfilController implements Observer{
     }
 
     @Override
-    public void update(String type){
-        if (Objects.equals(type, "user")){
+    public void update(String type) {
+        if (Objects.equals(type, "user")) {
             if (app.getMainUser() == null) return;
             username.setText(app.getMainUser().getUserName());
             email.setText(app.getMainUser().getEmail());
@@ -80,7 +79,7 @@ public class ModifierProfilController implements Observer{
             ville.setText(app.getMainUser().getCity());
             nom.setText(app.getMainUser().getLastName());
             prenom.setText(app.getMainUser().getFirstName());
-            note.setText(app.getMainUser().getEval()+"");
+            note.setText(app.getMainUser().getEval());
             //ajouter maj solde
         }
     }

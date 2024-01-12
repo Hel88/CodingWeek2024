@@ -1,21 +1,22 @@
 package eu.telecomnancy.codingweek.controllers;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import com.calendarfx.model.Calendar;
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Annonce;
 import eu.telecomnancy.codingweek.global.CalendarDisplay;
-import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import eu.telecomnancy.codingweek.global.Transaction;
+import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class MonProfilController implements Observer {
 
-    private Application app;
+    private final Application app;
     @FXML
     private Label username;
     @FXML
@@ -34,10 +35,10 @@ public class MonProfilController implements Observer {
     public MonProfilController(Application app) {
         this.app = app;
         app.addObserver(this);
-        }
+    }
 
     @FXML
-    public void modifierProfil(){
+    public void modifierProfil() {
         app.notifyObservers("user");
         app.getSceneController().switchToModifierProfil();
     }
@@ -54,7 +55,7 @@ public class MonProfilController implements Observer {
         if (alert.getResult().getButtonData().isDefaultButton()) {
             ArrayList<Annonce> annonces = app.getDataAnnoncesUtils().getAnnoncesByUsername(app.getMainUser().getUserName());
             for (Annonce annonce : annonces) {
-                app.getDataAnnoncesUtils().deleteAnnonce(annonce.getId()+"");
+                app.getDataAnnoncesUtils().deleteAnnonce(annonce.getId() + "");
             }
             app.getDataUsersUtils().deleteUser(app.getMainUser().getUserName());
             app.setMainUser(null);
@@ -64,16 +65,16 @@ public class MonProfilController implements Observer {
     }
 
     @Override
-    public void update(String type){
-        if (type == "user"){
+    public void update(String type) {
+        if (Objects.equals(type, "user")) {
             if (app.getMainUser() == null) return;
-            username.setText("Nom d'utilisateur: "+app.getMainUser().getUserName());
-            firstName.setText("Prénom: "+app.getMainUser().getFirstName());
-            lastName.setText("Nom: "+app.getMainUser().getLastName());
-            email.setText("email: "+app.getMainUser().getEmail());
-            address.setText("adresse: "+app.getMainUser().getAddress());
-            city.setText("Ville: "+app.getMainUser().getCity());
-            eval.setText(app.getMainUser().getEval()+"");
+            username.setText("Nom d'utilisateur: " + app.getMainUser().getUserName());
+            firstName.setText("Prénom: " + app.getMainUser().getFirstName());
+            lastName.setText("Nom: " + app.getMainUser().getLastName());
+            email.setText("email: " + app.getMainUser().getEmail());
+            address.setText("adresse: " + app.getMainUser().getAddress());
+            city.setText("Ville: " + app.getMainUser().getCity());
+            eval.setText(app.getMainUser().getEval());
         }
     }
 

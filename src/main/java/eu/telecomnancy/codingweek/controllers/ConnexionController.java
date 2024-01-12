@@ -10,7 +10,7 @@ public class ConnexionController implements Observer {
 
     // Fields
     private final Application app;
-    @FXML 
+    @FXML
     private TextField pwd;
     @FXML
     private TextField userName;
@@ -46,7 +46,7 @@ public class ConnexionController implements Observer {
         }
     }
 
-    private void showAlert(String message){
+    private void showAlert(String message) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText(null);
@@ -54,16 +54,16 @@ public class ConnexionController implements Observer {
         alert.showAndWait();
     }
 
-    public void update(String str){
-        if(str.equals("connexion")){
+    public void update(String str) {
+        if (str.equals("connexion")) {
             userName.setText("");
             pwd.setText("");
         }
     }
 
     @FXML
-    public void inscription(){
+    public void inscription() {
         app.getSceneController().switchToInscription();
     }
-    
+
 }
