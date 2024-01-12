@@ -8,7 +8,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -26,7 +25,7 @@ public class DataUsersUtils {
         FileAccess fileAccess = new FileAccess();
         this.filePath = fileAccess.getPathOf("users.json");
         File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
     }
 
@@ -79,9 +78,10 @@ public class DataUsersUtils {
 
         // Add the user to the JSON file
         data.put(userName, userObject);
-        FileWriter file = new FileWriter(filePath);
-        file.write(data.toString());
-        file.flush();
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
     }
 
     public User getUserByUserName(String userName) throws IOException {
@@ -159,9 +159,10 @@ public class DataUsersUtils {
 
         // Add the user to the JSON file
         data.put(User.getUserName(), userObject);
-        FileWriter file = new FileWriter(filePath);
-        file.write(data.toString());
-        file.flush();
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
     }
 
     public void deleteUser(String userName) throws IOException {
@@ -169,12 +170,13 @@ public class DataUsersUtils {
 
         // Remove the user from the JSON file
         data.remove(userName);
-        FileWriter file = new FileWriter(filePath);
-        file.write(data.toString());
-        file.flush();
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(data.toString());
+            file.flush();
+        }
     }
 
-    public int getCalendarOf(String userName) throws IOException {
+    public int getCalendarOf(String userName) {
         // Method related to the modification of a user
 
         // Create a JSON object with user information
@@ -234,6 +236,20 @@ public class DataUsersUtils {
         }
 
         user.setIdConversations(conversations);
+
+        updateUser(user);
+    }
+
+    public void addEvalToUser(String referent, int id) throws IOException {
+        User user = getUserByUserName(referent);
+        String evals = user.getEval();
+        if (evals.isEmpty()) {
+            evals = String.valueOf(id);
+        } else {
+            evals = evals + "," + id;
+        }
+
+        user.setEval(evals);
 
         updateUser(user);
     }

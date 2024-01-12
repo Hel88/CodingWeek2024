@@ -15,13 +15,13 @@ import java.util.ArrayList;
 public class ReportsController implements Observer {
 
 
-        private Application app;
-        private ArrayList<Report> reports;
+    private final Application app;
+    private ArrayList<Report> reports;
 
-        @FXML
-        private VBox signalements;
-        @FXML
-        private Label boxLabel;
+    @FXML
+    private VBox signalements;
+    @FXML
+    private Label boxLabel;
 
 
         public ReportsController(Application app) {
@@ -29,12 +29,12 @@ public class ReportsController implements Observer {
             app.addObserver(this);
         }
 
-        public void consulterReport(Report report){
-            //on enregistre l'annonce à afficher pour y avoir accès dans ConsulterAnnonceController
-            app.setReportAffiche(report);
-            app.notifyObservers("report");
-            app.getSceneController().switchToConsulterReport();
-        }
+    public void consulterReport(Report report) {
+        //on enregistre l'annonce à afficher pour y avoir accès dans ConsulterAnnonceController
+        app.setReportAffiche(report);
+        app.notifyObservers("report");
+        app.getSceneController().switchToConsulterReport();
+    }
 
         public void initialize() throws IOException {
             reports = new ArrayList<Report>();

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
-xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" 
 fx:controller="eu.telecomnancy.codingweek.controllers.ModifierProfilController"
 stylesheets="@styles.css" styleClass="AnchorPane">
    <children>
@@ -40,11 +40,11 @@ stylesheets="@styles.css" styleClass="AnchorPane">
             </VBox>
             <VBox prefHeight="232.0" prefWidth="274.0" spacing="20.0">
                <children>
-                  <TextField fx:id="nom" prefHeight="24.0" prefWidth="199.0" promptText="Nom" />
-                  <TextField fx:id="prenom" prefHeight="24.0" prefWidth="199.0" promptText="Prénom" />
-                  <TextField fx:id="email" prefHeight="24.0" prefWidth="199.0" promptText="Email" />
-                  <TextField fx:id="adresse" prefHeight="24.0" prefWidth="199.0" promptText="Adresse" />
-                  <TextField fx:id="ville" prefHeight="24.0" prefWidth="199.0" promptText="ville" />
+                  <TextField fx:id="nom" prefHeight="24.0" prefWidth="199.0" promptText="Nom" styleClass="FieldFocus" />
+                  <TextField fx:id="prenom" prefHeight="24.0" prefWidth="199.0" promptText="Prénom" styleClass="FieldFocus" />
+                  <TextField fx:id="email" prefHeight="24.0" prefWidth="199.0" promptText="Email" styleClass="FieldFocus" />
+                  <TextField fx:id="adresse" prefHeight="24.0" prefWidth="199.0" promptText="Adresse" styleClass="FieldFocus" />
+                  <TextField fx:id="ville" prefHeight="24.0" prefWidth="199.0" promptText="ville" styleClass="FieldFocus" />
                </children>
             </VBox>
             <VBox prefHeight="232.0" prefWidth="274.0" spacing="8.0">
@@ -53,8 +53,8 @@ stylesheets="@styles.css" styleClass="AnchorPane">
                   <Label fx:id="note" alignment="CENTER" prefHeight="24.0" prefWidth="293.0" text="note" />
                   <Label prefHeight="16.0" prefWidth="208.0" />
                   <Label alignment="CENTER" prefHeight="24.0" prefWidth="279.0" text="modifier le mot de passe :" />
-                  <PasswordField fx:id="ancienPWD" prefHeight="24.0" prefWidth="199.0" promptText="ancien mot de passe" />
-                  <PasswordField fx:id="nouveauPWD" prefHeight="24.0" prefWidth="199.0" promptText="nouveau mot de passe" />
+                  <PasswordField fx:id="ancienPWD" prefHeight="24.0" prefWidth="199.0" promptText="ancien mot de passe" styleClass="FieldFocus" />
+                  <PasswordField fx:id="nouveauPWD" prefHeight="24.0" prefWidth="199.0" promptText="nouveau mot de passe" styleClass="FieldFocus" />
                </children>
             </VBox>
          </children>

@@ -1,23 +1,29 @@
 package eu.telecomnancy.codingweek.controllers;
 
+import java.util.ArrayList;
+
 import eu.telecomnancy.codingweek.Application;
+import eu.telecomnancy.codingweek.global.Note;
+import eu.telecomnancy.codingweek.global.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class UserEvaluationsController implements Observer{
-    
-    private Application app;
+public class UserEvaluationsController implements Observer {
 
-    private String userEvalue;
+    private final Application app;
+
+    private User userEvalue;
 
     @FXML
     private VBox VBoxEvaluations;
 
     @FXML
     private Label username;
-    
+
+    @FXML
+    private Label noteMoyenne;
 
     public UserEvaluationsController(Application app) {
         this.app = app;
@@ -26,40 +32,65 @@ public class UserEvaluationsController implements Observer{
 
     @Override
     public void update(String type) {
-        
+      
         if (type.equals("evaluations")){
 
-            userEvalue = app.getAnnonceAffichee().getReferent(); //valable si on est sur la page d'une annonce
-            //dans le cas où on est sur le profil:
-            //userEvalue = app.getMainUser().getUserName();
+            try {
 
+            userEvalue = app.getUserEvalue(); //valable si on est sur la page d'une annonce
+            //System.out.println(userEvalue.getUserName());
+
+
+            VBoxEvaluations.getChildren().clear();
+            username.setText("Evaluations de: "+userEvalue.getUserName());
+            noteMoyenne.setText(userEvalue.getMoyenne()+" / 5");
+
+            ArrayList<Note> notes;
+                notes = app.getDataNoteUtils().getNotesByUser(userEvalue);
+                
+                
+                
+                for (Note eval : notes){
+                    
+                    HBox hbox = new HBox();
+                    
+                    HBox hboxNote = new HBox();
+                    hbox.getChildren().add(hboxNote);
+                    hboxNote.setPrefWidth(100);
+                    hboxNote.setPadding(new javafx.geometry.Insets(0, 0, 0, 20));
+                    
+                    HBox hboxUser = new HBox();
+                    hbox.getChildren().add(hboxUser);
+                    hboxUser.setPrefWidth(120);
+                    
+                    HBox hboxCommentaire = new HBox();
+                    hbox.getChildren().add(hboxCommentaire);
+                    
+                    
+                    int note = eval.getNote();
+                    Label noteLabel = new Label(note+"/5");
+                    hboxNote.getChildren().add(noteLabel);
+                    
+                    
+                    String userQuiAMisLaNote = eval.getUsernameClient();
+                    Label userQuiAMisLaNoteLabel = new Label(userQuiAMisLaNote);
+                    hboxUser.getChildren().add(userQuiAMisLaNoteLabel);
+                    
+                    
+                    String commentaire = eval.getCommentaire();
+                    Label commentaireLabel = new Label(commentaire);
+                    hboxCommentaire.getChildren().add(commentaireLabel);
+                    
+                    
+                    VBoxEvaluations.getChildren().add(hbox);
+                }
             
-            //VBoxEvaluations.getChildren().clear();
-            username.setText(userEvalue);
-            //ajouter les evaluations à la VBox
-
-            HBox hbox = new HBox();
-            int note=4;//récupérer la note de l'utilisateur
-            Label noteCalculee = new Label(note+"");
-
-            hbox.setPrefWidth(200);
-
-            String userQuiAMisLaNote = "user1";//récupérer le nom de l'utilisateur qui a mis la note
-
-            Label userQuiAMisLaNoteLabel = new Label(userQuiAMisLaNote);
-            hbox.getChildren().add(userQuiAMisLaNoteLabel);
-
-            String commentaire = "super";
-            Label commentaireLabel = new Label(commentaire);
-            hbox.getChildren().add(commentaireLabel);
-
-            hbox.getChildren().add(noteCalculee);
-            VBoxEvaluations.getChildren().add(hbox);
-
+                
+            } catch (Exception e) {
             
-        }
-        
+       
     }
-    
-    
 }
+}
+}
+

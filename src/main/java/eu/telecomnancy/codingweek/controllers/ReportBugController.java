@@ -21,15 +21,15 @@ public class ReportBugController implements Observer {
         app.addObserver(this);
     }
 
-    public void update(String str) {}
+    public void update(String str) {
+    }
 
     @FXML
     public void sendReport() throws IOException {
         try {
             String username = app.getMainUser().getUserName();
             app.getDataReportUtils().addReport(username, message.getText(), date());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             String username = "";
             app.getDataReportUtils().addReport(username, message.getText(), date());
         }
@@ -39,6 +39,7 @@ public class ReportBugController implements Observer {
         } else {
             app.getSceneController().switchToConnexion();
         }
+        message.setText("");
     }
 
     private String date() {

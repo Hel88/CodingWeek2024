@@ -6,7 +6,8 @@ public class Conversations {
     private String user2;
     private String idMessages;
 
-    public Conversations() {}
+    public Conversations() {
+    }
 
     public Conversations(int id, String user1, String user2, String idMessages) {
         this.id = id;

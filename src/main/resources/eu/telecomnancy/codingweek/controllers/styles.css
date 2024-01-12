@@ -18,6 +18,17 @@
     -fx-background-radius: 20;
 }
 
+.ButtonOrange:focused {
+    -fx-focus-color: #FFA500;
+    -fx-faint-focus-color: #FFA500;
+    -fx-background-color: #FFA500;
+}
+
+.FieldFocus:focused{
+    -fx-focus-color: #FFA500;
+    -fx-faint-focus-color: #FFA500;
+}
+
 .ButtonArrondi{
     -fx-background-radius: 30;
 }

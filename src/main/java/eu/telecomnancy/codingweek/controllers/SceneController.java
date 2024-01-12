@@ -9,7 +9,6 @@ import java.util.List;
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
-
 import eu.telecomnancy.codingweek.Application;
 import eu.telecomnancy.codingweek.global.Annonce;
 import javafx.application.Platform;
@@ -59,108 +58,108 @@ public class SceneController {
         this.primaryStage = primaryStage;
 
         this.layout = new BorderPane();
-        layout.setMinSize(1000,850);
+        layout.setMinSize(1000, 850);
 
         // on charge toutes les scènes et on les associe à leur controller
         FXMLLoader pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("connexion.fxml"));
-        pageLoader.setControllerFactory(iC->new ConnexionController(app));
+        pageLoader.setControllerFactory(iC -> new ConnexionController(app));
         Scene pageScene = new Scene(pageLoader.load());
         this.connexion = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("inscription.fxml"));
-        pageLoader.setControllerFactory(iC->new InscriptionController(app));
+        pageLoader.setControllerFactory(iC -> new InscriptionController(app));
         pageScene = new Scene(pageLoader.load());
         this.inscription = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("creation_et_modificationAnnonce.fxml"));
-        pageLoader.setControllerFactory(iC->new CreationEtModificationAnnonceController(app, "creation"));
+        pageLoader.setControllerFactory(iC -> new CreationEtModificationAnnonceController(app, "creation"));
         pageScene = new Scene(pageLoader.load());
         this.creationAnnonce = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("menuBar.fxml"));
-        pageLoader.setControllerFactory(iC->new MenuController(app));
+        pageLoader.setControllerFactory(iC -> new MenuController(app));
         pageScene = new Scene(pageLoader.load());
         this.menu = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("monProfil.fxml"));
-        pageLoader.setControllerFactory(iC->new MonProfilController(app));
+        pageLoader.setControllerFactory(iC -> new MonProfilController(app));
         pageScene = new Scene(pageLoader.load());
         this.monProfil = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("modifierProfil.fxml"));
-        pageLoader.setControllerFactory(iC->new ModifierProfilController(app));
+        pageLoader.setControllerFactory(iC -> new ModifierProfilController(app));
         pageScene = new Scene(pageLoader.load());
         this.modifierProfil = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("monAnnonce.fxml"));
-        pageLoader.setControllerFactory(iC->new MonAnnonceController(app));
+        pageLoader.setControllerFactory(iC -> new MonAnnonceController(app));
         pageScene = new Scene(pageLoader.load());
-        this.monAnnonce = pageScene;  
-        
+        this.monAnnonce = pageScene;
+
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("consulterAnnonce.fxml"));
-        pageLoader.setControllerFactory(iC->new ConsulterAnnonceController(app));
+        pageLoader.setControllerFactory(iC -> new ConsulterAnnonceController(app));
         pageScene = new Scene(pageLoader.load());
         this.consulterAnnonce = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("mesAnnonces.fxml"));
-        pageLoader.setControllerFactory(iC->new MesAnnoncesController(app));
+        pageLoader.setControllerFactory(iC -> new MesAnnoncesController(app));
         pageScene = new Scene(pageLoader.load());
         this.mesAnnonces = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("offres_et_demandes.fxml"));
-        pageLoader.setControllerFactory(iC->new OffresEtDemandesController(app, "Offre"));
+        pageLoader.setControllerFactory(iC -> new OffresEtDemandesController(app, "Offre"));
         pageScene = new Scene(pageLoader.load());
         this.offres = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("offres_et_demandes.fxml"));
-        pageLoader.setControllerFactory(iC->new OffresEtDemandesController(app, "Demande"));
+        pageLoader.setControllerFactory(iC -> new OffresEtDemandesController(app, "Demande"));
         pageScene = new Scene(pageLoader.load());
         this.demandes = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("mesTransactions.fxml"));
-        pageLoader.setControllerFactory(iC->new MesTransactionsController(app));
+        pageLoader.setControllerFactory(iC -> new MesTransactionsController(app));
         pageScene = new Scene(pageLoader.load());
         this.mesTransactions = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("recherche.fxml"));
-        pageLoader.setControllerFactory(iC->new RechercheController(app));
+        pageLoader.setControllerFactory(iC -> new RechercheController(app));
         pageScene = new Scene(pageLoader.load());
         this.recherche = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("creation_et_modificationAnnonce.fxml"));
-        pageLoader.setControllerFactory(iC->new CreationEtModificationAnnonceController(app, "modification"));
+        pageLoader.setControllerFactory(iC -> new CreationEtModificationAnnonceController(app, "modification"));
         pageScene = new Scene(pageLoader.load());
         this.modifierAnnonce = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("noterUser.fxml"));
-        pageLoader.setControllerFactory(iC->new NoterUserController(app));
+        pageLoader.setControllerFactory(iC -> new NoterUserController(app));
         pageScene = new Scene(pageLoader.load());
         this.noterUser = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("mesTransactions.fxml"));
-        pageLoader.setControllerFactory(iC->new MesTransactionsController(app));
+        pageLoader.setControllerFactory(iC -> new MesTransactionsController(app));
         pageScene = new Scene(pageLoader.load());
         this.mesTransactions = pageScene;
 
         pageLoader = new FXMLLoader();
         pageLoader.setLocation(getClass().getResource("userEvaluations.fxml"));
-        pageLoader.setControllerFactory(iC->new UserEvaluationsController(app));
+        pageLoader.setControllerFactory(iC -> new UserEvaluationsController(app));
         pageScene = new Scene(pageLoader.load());
         this.userEvaluations = pageScene;
 
@@ -237,16 +236,17 @@ public class SceneController {
         // on définit la scene de base : on affiche la page de connexion au lancement de l'application
         layout.setTop(menu.getRoot());
         setView(this.connexion);
-        
+
+        primaryStage.setTitle("TelecomNancy DirectDealing");
         primaryStage.setScene(new Scene(layout));
         primaryStage.show();
     }
 
-    public void setView(Scene scene){
+    public void setView(Scene scene) {
         layout.setCenter(scene.getRoot());
     }
 
-    public List<Integer> getCalendarList(){
+    public List<Integer> getCalendarList() {
         return calendarList;
     }
 
@@ -256,17 +256,13 @@ public class SceneController {
         setView(this.inscription);
     }
 
-    public void switchToConnexion(String userName) {
-        setView(this.connexion);
-    }
-
     public void switchToConnexion() {
         setView(this.connexion);
     }
 
     public void switchToCreationAnnonce() {
         setView(this.creationAnnonce);
-        }
+    }
 
     public void switchToMesAnnonces() {
         setView(this.mesAnnonces);
@@ -284,7 +280,7 @@ public class SceneController {
         setView(this.modifierProfil);
     }
 
-    public void switchToMesTransactions(){
+    public void switchToMesTransactions() {
         setView(this.mesTransactions);
     }
 
@@ -308,19 +304,19 @@ public class SceneController {
         setView(this.recherche);
     }
 
-    public void switchToModifierAnnonce(){
+    public void switchToModifierAnnonce() {
         setView(this.modifierAnnonce);
     }
 
-    public void switchToNoterUser(Annonce annonce){
+    public void switchToNoterUser() {
         setView(this.noterUser);
     }
 
-    public void switchToUserEvaluations(String userName){
+    public void switchToUserEvaluations() {
         setView(this.userEvaluations);
     }
 
-    public void switchToReportBug(){
+    public void switchToReportBug() {
         setView(this.reportBug);
     }
 
@@ -336,45 +332,45 @@ public class SceneController {
         setView(this.consulterMessagerie);
     }
 
-    public void switchToCalendar() throws IOException {
+    public void switchToCalendar() {
         calendarView.setRequestedTime(LocalTime.now());
         calendarView.getCalendarSources().addAll(myCalendarSource);
         setView(this.calendar);
     }
 
-    public List<Calendar> getCurrentCalendarList(){
+    public List<Calendar> getCurrentCalendarList() {
         return currentCalendarList;
     }
 
-    public CalendarSource getMyCalendarSource(){
+    public CalendarSource getMyCalendarSource() {
         return myCalendarSource;
     }
 
-    public CalendarView getCalendarView(){
+    public CalendarView getCalendarView() {
         return calendarView;
     }
 
-    public Calendar getCurrentCalendar(){
+    public Calendar getCurrentCalendar() {
         return currentCalendar;
     }
 
-    public Calendar getDefaultCalendar(){
+    public Calendar getDefaultCalendar() {
         return defaultCalendar;
     }
 
-    public void setDefaultCalendar(Calendar calendar){
+    public void setDefaultCalendar(Calendar calendar) {
         defaultCalendar = calendar;
     }
 
-    public void setCurrentCalendar(Calendar calendar){
+    public void setCurrentCalendar(Calendar calendar) {
         currentCalendar = calendar;
     }
 
-    public void setCurrentCalendarList(List<Calendar> calendars){
+    public void setCurrentCalendarList(List<Calendar> calendars) {
         currentCalendarList = calendars;
     }
 
-    public void getCurrentCalendarList(List<Calendar> calendars){
+    public void getCurrentCalendarList(List<Calendar> calendars) {
         currentCalendarList = calendars;
     }
 }

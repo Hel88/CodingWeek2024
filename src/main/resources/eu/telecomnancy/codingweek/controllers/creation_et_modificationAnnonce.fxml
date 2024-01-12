@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="376.0" prefWidth="600.0"
-xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" 
 fx:controller="eu.telecomnancy.codingweek.controllers.CreationEtModificationAnnonceController"
 stylesheets="@styles.css" styleClass="AnchorPane">
    <children>
@@ -24,9 +24,9 @@ stylesheets="@styles.css" styleClass="AnchorPane">
             <String fx:value="ButtonOrange" />
             <String fx:value="ButtonArrondi" />
          </styleClass></Button>
-      <TextField fx:id="titre" layoutX="59.0" layoutY="89.0" promptText="titre" />
-      <TextField fx:id="prix" layoutX="59.0" layoutY="120.0" promptText="prix" />
-      <TextArea fx:id="description" layoutX="277.0" layoutY="80.0" prefHeight="200.0" prefWidth="262.0" promptText="description" wrapText="true" />
+      <TextField fx:id="titre" layoutX="59.0" layoutY="89.0" promptText="titre" styleClass="FieldFocus" />
+      <TextField fx:id="prix" layoutX="59.0" layoutY="120.0" promptText="prix" styleClass="FieldFocus" />
+      <TextArea fx:id="description" layoutX="277.0" layoutY="80.0" prefHeight="200.0" prefWidth="262.0" promptText="description" wrapText="true" styleClass="FieldFocus" />
       <Label fx:id="messageErreur" layoutX="59.0" layoutY="164.0" prefHeight="72.0" prefWidth="170.0" text=" " wrapText="true" />
    </children>
 </AnchorPane>

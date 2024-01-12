@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
@@ -21,7 +20,7 @@ public class DataMessagesUtils {
         FileAccess fileAccess = new FileAccess();
         this.filePath = fileAccess.getPathOf("messages.json");
         File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
     }
 

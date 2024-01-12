@@ -6,15 +6,13 @@ import eu.telecomnancy.codingweek.global.FileAccess;
 import eu.telecomnancy.codingweek.global.Transaction;
 import eu.telecomnancy.codingweek.global.User;
 import org.json.JSONObject;
-import java.util.Scanner;
-
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class DataTransactionUtils {
@@ -29,7 +27,7 @@ public class DataTransactionUtils {
         FileAccess fileAccess = new FileAccess();
         this.filePath = fileAccess.getPathOf("transactions.json");
         File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
     }
 
@@ -41,7 +39,7 @@ public class DataTransactionUtils {
         return instance;
     }
 
-    public ArrayList<Transaction> getTransactions() throws IOException {
+    public ArrayList<Transaction> getTransactions() {
         // Method related to the display of the transactions
 
         ArrayList<Transaction> transactions = new ArrayList<>();
@@ -54,7 +52,7 @@ public class DataTransactionUtils {
         return transactions;
     }
 
-    public Transaction getTransaction(int id) throws IOException {
+    public Transaction getTransaction(int id) {
         // Method related to the display of the transactions
 
         // Get the transactions
@@ -64,7 +62,7 @@ public class DataTransactionUtils {
         return retour;
     }
 
-    public ArrayList<Transaction> getTransactionsByRefentUser(User user) throws IOException {
+    public ArrayList<Transaction> getTransactionsByRefentUser(User user) {
         // Method related to the display of the transactions of a user
 
         ArrayList<Transaction> transactions = new ArrayList<>();
@@ -96,7 +94,7 @@ public class DataTransactionUtils {
         return transactions;
     }
 
-    public ArrayList<Transaction> getTransactionsByAnnonce(Annonce annonce) throws IOException {
+    public ArrayList<Transaction> getTransactionsByAnnonce(Annonce annonce) {
         // Method related to the display of the transactions of a user
 
         ArrayList<Transaction> transactions = new ArrayList<>();
@@ -104,7 +102,7 @@ public class DataTransactionUtils {
         // Get the transactions of the user
         for (String key : data.keySet()) {
             JSONObject transaction = data.getJSONObject(key);
-            if (transaction.getString("idAnnonce").equals(annonce.getId()+"")) {
+            if (transaction.getString("idAnnonce").equals(annonce.getId() + "")) {
                 Transaction temp = new Transaction(Integer.parseInt(key), transaction.getInt("idAnnonce"), transaction.getString("idClient"), transaction.getString("status"));
                 temp.setPlanning(transaction.getInt("planning"));
                 transactions.add(temp);
@@ -167,6 +165,16 @@ public class DataTransactionUtils {
             file.write(data.toString());
             file.flush();
         }
+
+        // Update the solde of the client
+        User client = DataUsersUtils.getInstance().getUserByUserName(transaction.getIdClient());
+        client.setSolde(client.getSolde() - DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getPrix());
+        DataUsersUtils.getInstance().updateUser(client);
+
+        // Update the solde of the referent
+        User referent = DataUsersUtils.getInstance().getUserByUserName(DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getReferent());
+        referent.setSolde(referent.getSolde() + DataAnnoncesUtils.getInstance().getAnnonce(transaction.getIdAnnonce()).getPrix());
+        DataUsersUtils.getInstance().updateUser(referent);
     }
 
     public void refuserTransaction(Transaction transaction) throws IOException {

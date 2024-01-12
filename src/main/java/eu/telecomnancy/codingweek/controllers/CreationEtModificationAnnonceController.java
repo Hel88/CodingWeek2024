@@ -10,13 +10,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.Objects;
 
 
-public class CreationEtModificationAnnonceController implements Observer{
+public class CreationEtModificationAnnonceController implements Observer {
 
-    private Application app;
+    private final Application app;
     private String categorie;
-    private String action;
+    private final String action;
     @FXML
     private TextField titre;
     @FXML
@@ -37,7 +38,7 @@ public class CreationEtModificationAnnonceController implements Observer{
         app.addObserver(this);
     }
 
-    public void creerAnnonce() throws IOException{
+    public void creerAnnonce() throws IOException {
         // Check if the price is an integer
         if (!prix.getText().matches("[0-9]+")) {
             messageErreur.setText("Le prix doit être un nombre entier.");
@@ -62,7 +63,7 @@ public class CreationEtModificationAnnonceController implements Observer{
         app.getSceneController().switchToCalendar();
     }
 
-    public void modifierAnnonce() throws IOException{
+    public void modifierAnnonce() throws IOException {
         // Check if the price is an integer
         if (!prix.getText().matches("[0-9]+")) {
             messageErreur.setText("Le prix doit être un nombre entier.");
@@ -87,13 +88,12 @@ public class CreationEtModificationAnnonceController implements Observer{
     }
 
     @FXML
-    public void addAnnonce() throws IOException { 
+    public void addAnnonce() throws IOException {
         // comme la page fxml se charge de la modification et de la création,
         // le bouton doit changer d'action selon ce qu'on veut faire
-        if (action == "creation") {
+        if (Objects.equals(action, "creation")) {
             creerAnnonce();
-        }
-        else if (action == "modification") {
+        } else if (Objects.equals(action, "modification")) {
             modifierAnnonce();
         }
 
@@ -101,16 +101,16 @@ public class CreationEtModificationAnnonceController implements Observer{
 
     @Override
     public void update(String type) {
-        if (type == "annonce") {
+        if (Objects.equals(type, "annonce")) {
             categorie = app.getCategorieAnnonceACreer();
         }
-        if (action == "modification") {
+        if (Objects.equals(action, "modification")) {
             label.setText("Modifier votre annonce");
             addAnnonce.setText("Modifier");
             if (app.getAnnonceAffichee() != null) {
                 titre.setText(app.getAnnonceAffichee().getTitre());
                 description.setText(app.getAnnonceAffichee().getDescription());
-                prix.setText(app.getAnnonceAffichee().getPrix()+"");   
+                prix.setText(app.getAnnonceAffichee().getPrix() + "");
             }
         }
     }

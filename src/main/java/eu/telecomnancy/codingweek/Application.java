@@ -1,13 +1,22 @@
 package eu.telecomnancy.codingweek;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import eu.telecomnancy.codingweek.controllers.Observer;
 import eu.telecomnancy.codingweek.controllers.SceneController;
 import eu.telecomnancy.codingweek.global.*;
 import eu.telecomnancy.codingweek.utils.*;
+import eu.telecomnancy.codingweek.global.Annonce;
+import eu.telecomnancy.codingweek.global.CalendarDisplay;
+import eu.telecomnancy.codingweek.global.Report;
+import eu.telecomnancy.codingweek.global.User;
+import eu.telecomnancy.codingweek.utils.DataAnnoncesUtils;
+import eu.telecomnancy.codingweek.utils.DataNoteUtils;
+import eu.telecomnancy.codingweek.utils.DataReportUtils;
+import eu.telecomnancy.codingweek.utils.DataTransactionUtils;
+import eu.telecomnancy.codingweek.utils.DataUsersUtils;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class Application extends javafx.application.Application {
 
@@ -22,6 +31,7 @@ public class Application extends javafx.application.Application {
     private User mainUser;
     private final ArrayList<Observer> observers = new ArrayList<Observer>();
     private Annonce annonceAffichee;
+    private User userEvalue;
     private Report reportAffiche;
     private Conversations conversationsAffichee;
     private String categorieAnnonceACreer;
@@ -54,24 +64,31 @@ public class Application extends javafx.application.Application {
     public SceneController getSceneController() {
         return sceneController;
     }
-    public DataUsersUtils   getDataUsersUtils() {
+
+    public DataUsersUtils getDataUsersUtils() {
         return dataUsersUtils;
     }
+
     public DataAnnoncesUtils getDataAnnoncesUtils() {
         return dataAnnoncesUtils;
     }
+
     public DataTransactionUtils getDataTransactionUtils() {
         return dataTransactionUtils;
     }
+
     public DataNoteUtils getDataNoteUtils() {
         return dataNoteUtils;
     }
+
     public DataReportUtils getDataReportUtils() {
         return dataReportUtils;
     }
+
     public DataMessagesUtils getDataMessagesUtils() {
         return dataMessagesUtils;
     }
+
     public DataConversationsUtils getDataConversationsUtils() {
         return dataConversationsUtils;
     }
@@ -104,6 +121,14 @@ public class Application extends javafx.application.Application {
 
     public void setAnnonceAffichee(Annonce annonceAffichee) {
         this.annonceAffichee = annonceAffichee;
+    }
+
+    public User getUserEvalue() {
+        return userEvalue;
+    }
+
+    public void setUserEvalue(User userEvalue) {
+        this.userEvalue = userEvalue;
     }
 
     public String getCategorieAnnonceACreer() {

@@ -21,7 +21,7 @@ public class DataConversationsUtils {
         FileAccess fileAccess = new FileAccess();
         this.filePath = fileAccess.getPathOf("conversations.json");
         File file = new File(filePath);
-        String fileContent = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        String fileContent = Files.readString(file.toPath());
         data = new JSONObject(fileContent);
     }
 
