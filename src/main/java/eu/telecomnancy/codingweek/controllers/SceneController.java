@@ -183,8 +183,8 @@ public class SceneController {
         this.consulterReport = pageScene;
 
         pageLoader = new FXMLLoader();
-        pageLoader.setLocation(getClass().getResource("messageries.fxml"));
-        pageLoader.setControllerFactory(iC->new ConversationController(app));
+        pageLoader.setLocation(getClass().getResource("mesConversations.fxml"));
+        pageLoader.setControllerFactory(iC->new MesConversationController(app));
         pageScene = new Scene(pageLoader.load());
         this.messageries = pageScene;
 
