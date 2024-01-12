@@ -40,7 +40,7 @@ public class MesConversationController implements Observer {
             }
             conversations = app.getDataConversationsUtils().getConversationsByUser(user.getUserName());
         } catch (IOException e) {
-            System.out.println("Erreur lors de la récupération des conversations : Utilisateur non connecté");
+            //System.out.println("Erreur lors de la récupération des conversations : Utilisateur non connecté");
         }
 
         for (Conversations conversation : conversations) {
