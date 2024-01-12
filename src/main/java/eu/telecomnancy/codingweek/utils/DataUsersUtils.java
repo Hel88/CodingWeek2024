@@ -209,4 +209,18 @@ public class DataUsersUtils {
 
         updateUser(user);
     }
+
+    public void addEvalToUser(String referent, int id) throws IOException {
+        User user = getUserByUserName(referent);
+        String evals = user.getEval();
+        if (evals.isEmpty()) {
+            evals = String.valueOf(id);
+        } else {
+            evals = evals + "," + id;
+        }
+
+        user.setEval(evals);
+
+        updateUser(user);
+    }
 }
