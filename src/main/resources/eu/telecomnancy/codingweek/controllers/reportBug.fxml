@@ -9,24 +9,28 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="eu.telecomnancy.codingweek.controllers.ReportBugController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="eu.telecomnancy.codingweek.controllers.ReportBugController">
     <children>
         <VBox layoutX="17.0" prefHeight="400.0" prefWidth="566.0" spacing="10.0">
             <children>
-                <Label alignment="CENTER" prefHeight="51.0" prefWidth="601.0" text="Signaler un bug à un administrateur">
+                <Label alignment="CENTER" prefHeight="51.0" prefWidth="601.0"
+                       text="Signaler un bug à un administrateur">
                     <font>
-                        <Font size="24.0" />
+                        <Font size="24.0"/>
                     </font>
                 </Label>
                 <Label alignment="CENTER" prefHeight="29.0" prefWidth="566.0" text="Décrivez votre problème :">
                     <font>
-                        <Font size="16.0" />
+                        <Font size="16.0"/>
                     </font>
                 </Label>
-                <TextArea fx:id="message" prefHeight="129.0" prefWidth="566.0" />
-                <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendReport" prefHeight="24.0" prefWidth="72.0" text="Envoyer">
+                <TextArea fx:id="message" prefHeight="129.0" prefWidth="566.0"/>
+                <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendReport" prefHeight="24.0"
+                        prefWidth="72.0" text="Envoyer">
                     <VBox.margin>
-                        <Insets left="500.0" />
+                        <Insets left="500.0"/>
                     </VBox.margin>
                 </Button>
             </children>

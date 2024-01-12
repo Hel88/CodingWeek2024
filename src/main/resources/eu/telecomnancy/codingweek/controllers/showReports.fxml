@@ -8,17 +8,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.codingweek.controllers.OffresEtDemandesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="eu.telecomnancy.codingweek.controllers.OffresEtDemandesController">
     <children>
-        <Label fx:id="boxLabel" layoutX="14.0" layoutY="196.0" prefHeight="45.0" prefWidth="578.0" text="Ensemble des reports">
+        <Label fx:id="boxLabel" layoutX="14.0" layoutY="196.0" prefHeight="45.0" prefWidth="578.0"
+               text="Ensemble des reports">
             <font>
-                <Font size="30.0" />
+                <Font size="30.0"/>
             </font>
         </Label>
-        <ScrollPane layoutX="14.0" layoutY="241.0" maxHeight="-Infinity" prefHeight="142.0" prefWidth="578.0" vbarPolicy="AS_NEEDED">
+        <ScrollPane layoutX="14.0" layoutY="241.0" maxHeight="-Infinity" prefHeight="142.0" prefWidth="578.0"
+                    vbarPolicy="AS_NEEDED">
             <VBox fx:id="signalements" spacing="10.0">
                 <padding>
-                    <Insets bottom="10.0" top="10.0" />
+                    <Insets bottom="10.0" top="10.0"/>
                 </padding>
             </VBox>
         </ScrollPane>
