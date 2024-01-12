@@ -132,7 +132,7 @@ There is no prerequisites to run the project.
 
 ### Run .jar
 
-1. Navigate to the folder where is located the .jar file
+1. Navigate to the folder where is located the .jar file (default is Last_Realease/ folder)
 2. Copy/Paste the "files/" folder
 3. Run the .jar with the required modules
     ```
