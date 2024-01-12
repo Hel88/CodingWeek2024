@@ -1,6 +1,7 @@
 package eu.telecomnancy.codingweek.utils;
 
 import com.calendarfx.model.Calendar;
+import eu.telecomnancy.codingweek.global.Annonce;
 import eu.telecomnancy.codingweek.global.FileAccess;
 import eu.telecomnancy.codingweek.global.User;
 import org.json.JSONObject;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 
 public class DataUsersUtils {
@@ -252,5 +254,25 @@ public class DataUsersUtils {
         user.setEval(evals);
 
         updateUser(user);
+    }
+
+    public void setUserSleeping(String userName) throws IOException {
+        DataAnnoncesUtils.getInstance().getAnnoncesByUsername(userName).forEach(annonce -> {
+            try {
+                DataAnnoncesUtils.getInstance().modifyAnnonce(annonce.getId(), annonce.getTitre(), annonce.getDescription(), String.valueOf(annonce.getPrix()), annonce.getCategorie(), annonce.getReferent(), false, annonce.getPlanning());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    public void setUserNotSleeping(String userName) throws IOException {
+        DataAnnoncesUtils.getInstance().getAnnoncesByUsername(userName).forEach(annonce -> {
+            try {
+                DataAnnoncesUtils.getInstance().modifyAnnonce(annonce.getId(), annonce.getTitre(), annonce.getDescription(), String.valueOf(annonce.getPrix()), annonce.getCategorie(), annonce.getReferent(), true, annonce.getPlanning());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }
