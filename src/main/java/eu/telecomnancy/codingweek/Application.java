@@ -23,7 +23,7 @@ public class Application extends javafx.application.Application {
     private final ArrayList<Observer> observers = new ArrayList<Observer>();
     private Annonce annonceAffichee;
     private Report reportAffiche;
-    private Conversations conversationAffichee;
+    private Conversations conversationsAffichee;
     private String categorieAnnonceACreer;
 
 
@@ -122,11 +122,11 @@ public class Application extends javafx.application.Application {
         this.reportAffiche = reportAffiche;
     }
 
-    public Conversations getConversationAffichee() {
-        return conversationAffichee;
+    public Conversations getConversationsAffichee() {
+        return conversationsAffichee;
     }
 
-    public void setConversationAffichee(Conversations conversationAffichee) {
-        this.conversationAffichee = conversationAffichee;
+    public void setConversationsAffichee(Conversations conversationsAffichee) {
+        this.conversationsAffichee = conversationsAffichee;
     }
 }
