@@ -93,6 +93,10 @@ TelecomNancy DirectDealing est une application d’économie circulaire en ligne
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+## Video
+
+You can find [here](https://youtu.be/eX1t0FXyYSQ) a video presentation of the project.
+
 
 <!-- GETTING STARTED -->
 ## Getting Started
